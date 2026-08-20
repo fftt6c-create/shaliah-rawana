@@ -2,5002 +2,3374 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#087ea4">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>شالية روانا</title>
 
 <style>
-
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color:transparent;
+:root{
+  --primary:#087f8c;
+  --primary2:#12a9b5;
+  --dark:#07505b;
+  --light:#e9fbfd;
+  --bg:#f4fbfc;
+  --card:#ffffff;
+  --text:#12343b;
+  --muted:#6b858b;
+  --border:#d7ecef;
+  --danger:#e53935;
+  --success:#22a447;
+  --warning:#f0b400;
+  --weekend:#fff2a8;
+  --shadow:0 5px 18px rgba(0,80,90,.09);
 }
 
-:root{
---primary:#087ea4;
---secondary:#20b8c8;
---dark:#07566f;
---background:#f3fbfd;
---card:#ffffff;
---text:#173b4a;
---muted:#708b96;
---border:#d9edf2;
-
---available:#2eae68;
---booked:#e74c3c;
---weekend:#f2c94c;
-
---shadow:0 7px 22px rgba(8,126,164,.10);
---radius:20px;
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
-margin:0;
-background:var(--background);
-color:var(--text);
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Tahoma,
-Arial,
-sans-serif;
+  margin:0;
+  font-family:Arial,"Tahoma",sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-button,
-input,
-select,
-textarea{
-font:inherit;
+button,input,select,textarea{
+  font-family:inherit;
 }
 
 button{
-cursor:pointer;
-}
-
-.hidden{
-display:none!important;
+  cursor:pointer;
 }
 
 .app{
-min-height:100vh;
-padding-bottom:82px;
+  max-width:900px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:90px;
 }
-
-/* ================= HEADER ================= */
 
 .header{
-background:
-linear-gradient(
-135deg,
-var(--dark),
-var(--primary),
-var(--secondary)
-);
-
-color:white;
-
-padding:22px 16px 55px;
-
-border-radius:
-0 0 30px 30px;
-
-position:relative;
-
-overflow:hidden;
+  background:linear-gradient(135deg,var(--dark),var(--primary),var(--primary2));
+  color:white;
+  padding:22px 18px 25px;
+  border-radius:0 0 25px 25px;
+  box-shadow:var(--shadow);
 }
 
-.header:after{
-content:"";
-
-position:absolute;
-
-width:240px;
-height:240px;
-
-border-radius:50%;
-
-background:#ffffff18;
-
-left:-80px;
-top:-100px;
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
 
-.header-inner{
-max-width:1000px;
-margin:auto;
-
-position:relative;
-z-index:1;
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.topline{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
+.logo-icon{
+  width:48px;
+  height:48px;
+  background:rgba(255,255,255,.18);
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
 }
 
-.brand{
-display:flex;
-align-items:center;
-gap:11px;
+.logo h1{
+  margin:0;
+  font-size:22px;
 }
 
-.brand-icon{
-width:48px;
-height:48px;
-
-border-radius:15px;
-
-background:#ffffff22;
-
-display:grid;
-place-items:center;
-
-font-size:26px;
+.logo small{
+  opacity:.85;
 }
 
-.brand h1{
-font-size:20px;
-margin:0;
+.menu-btn{
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:white;
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  font-size:24px;
 }
-
-.brand small{
-opacity:.85;
-}
-
-.icon-btn{
-border:0;
-background:#ffffff22;
-color:white;
-
-width:44px;
-height:44px;
-
-border-radius:14px;
-
-font-size:21px;
-}
-
-.welcome{
-margin-top:22px;
-font-size:13px;
-opacity:.9;
-}
-
-.header-title{
-font-size:27px;
-font-weight:800;
-
-margin-top:4px;
-}
-
-/* ================= CONTAINER ================= */
 
 .container{
-max-width:1000px;
-margin:-25px auto 0;
-
-padding:0 14px;
-
-position:relative;
+  padding:16px;
 }
 
 .page{
-display:none;
+  display:none;
 }
 
 .page.active{
-display:block;
+  display:block;
 }
 
-.section{
-margin-top:22px;
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:20px 0 12px;
 }
 
-.section-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-margin-bottom:11px;
+.section-title h2{
+  margin:0;
+  font-size:20px;
 }
 
-.section-head h2{
-font-size:18px;
-margin:0;
+.section-title span{
+  color:var(--muted);
+  font-size:13px;
 }
-
-.section-head span{
-font-size:12px;
-color:var(--muted);
-}
-
-/* ================= CARDS ================= */
 
 .card{
-background:var(--card);
-
-border:1px solid var(--border);
-
-border-radius:var(--radius);
-
-box-shadow:var(--shadow);
-
-padding:16px;
-}
-
-.grid{
-display:grid;
-gap:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:13px;
+  box-shadow:var(--shadow);
 }
 
 .stats{
-grid-template-columns:repeat(2,1fr);
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:15px;
+  box-shadow:var(--shadow);
+}
+
+.stat-icon{
+  font-size:25px;
+}
+
+.stat .label{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:7px;
+}
+
+.stat .value{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:5px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
 
 .quick{
-grid-template-columns:repeat(2,1fr);
+  border:1px solid var(--border);
+  background:white;
+  border-radius:17px;
+  padding:16px 10px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  color:var(--text);
 }
 
-.stat-card{
-padding:15px;
-}
-
-.stat-top{
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.stat-icon,
 .quick-icon{
-
-width:42px;
-height:42px;
-
-border-radius:14px;
-
-background:#eaf9fc;
-
-display:grid;
-place-items:center;
-
-font-size:21px;
+  font-size:28px;
+  margin-bottom:7px;
 }
-
-.stat-label{
-font-size:12px;
-color:var(--muted);
-}
-
-.stat-value{
-font-size:20px;
-font-weight:800;
-margin-top:10px;
-}
-
-.quick-card{
-border:1px solid var(--border);
-
-background:white;
-
-border-radius:19px;
-
-padding:16px;
-
-text-align:right;
-
-box-shadow:var(--shadow);
-}
-
-.quick-title{
-font-weight:800;
-margin-top:10px;
-}
-
-.quick-desc{
-font-size:11px;
-color:var(--muted);
-margin-top:4px;
-}
-
-/* ================= BUTTONS ================= */
 
 .btn{
-border:0;
-
-border-radius:14px;
-
-padding:11px 15px;
-
-font-weight:800;
+  border:0;
+  border-radius:13px;
+  padding:11px 15px;
+  font-size:14px;
+  font-weight:bold;
 }
 
-.primary{
-background:var(--primary);
-color:white;
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;
 }
 
-.secondary{
-background:#eaf9fc;
-color:var(--primary);
+.btn-secondary{
+  background:var(--light);
+  color:var(--dark);
 }
 
-.danger{
-background:#fff0ee;
-color:var(--booked);
+.btn-danger{
+  background:#fff0f0;
+  color:var(--danger);
 }
 
-.success{
-background:#ebf8f1;
-color:var(--available);
+.btn-success{
+  background:#edfff1;
+  color:var(--success);
 }
 
-.full{
-width:100%;
+.btn-warning{
+  background:#fff8dd;
+  color:#9a7100;
 }
 
-/* ================= ROW ================= */
-
-.row{
-display:flex;
-gap:8px;
-
-align-items:center;
-
-flex-wrap:wrap;
+.btn-block{
+  width:100%;
 }
 
-.between{
-justify-content:space-between;
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
 }
 
-/* ================= FORMS ================= */
+input,select,textarea{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+  background:white;
+  color:var(--text);
+  font-size:15px;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:var(--primary2);
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
 
 .field{
-margin-bottom:12px;
+  margin-bottom:3px;
+}
+
+.field.full{
+  grid-column:1/-1;
 }
 
 .field label{
-display:block;
-
-font-size:12px;
-
-font-weight:800;
-
-margin-bottom:6px;
-}
-
-.input,
-.select,
-.textarea{
-
-width:100%;
-
-border:
-1px solid var(--border);
-
-border-radius:13px;
-
-padding:12px;
-
-background:white;
-
-color:var(--text);
-
-outline:none;
-}
-
-.textarea{
-min-height:90px;
-resize:vertical;
-}
-
-.two{
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:10px;
-}
-
-/* ================= LIST ================= */
-
-.list{
-display:grid;
-gap:10px;
-}
-
-.list-item{
-
-background:white;
-
-border:
-1px solid var(--border);
-
-border-radius:17px;
-
-padding:13px;
-}
-
-.badge{
-
-display:inline-flex;
-
-padding:5px 9px;
-
-border-radius:99px;
-
-font-size:11px;
-
-font-weight:800;
-}
-
-.badge.green{
-background:#eaf8f0;
-color:var(--available);
-}
-
-.badge.red{
-background:#fff0ee;
-color:var(--booked);
-}
-
-.badge.yellow{
-background:#fff8d9;
-color:#9b7a00;
-}
-
-.badge.blue{
-background:#eaf9fc;
-color:var(--primary);
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+  font-size:13px;
 }
 
 .empty{
-text-align:center;
-
-padding:30px 15px;
-
-color:var(--muted);
+  text-align:center;
+  padding:30px 15px;
+  color:var(--muted);
 }
 
-.empty .emoji{
-font-size:38px;
-
-margin-bottom:8px;
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  border:1px solid var(--border);
+  padding:13px;
+  border-radius:15px;
+  margin-bottom:9px;
+  background:white;
 }
 
-/* ================= CALENDAR ================= */
+.item-main{
+  min-width:0;
+}
+
+.item-title{
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.item-meta{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.item-actions{
+  display:flex;
+  gap:5px;
+  flex-shrink:0;
+}
+
+.small-btn{
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:10px;
+  background:var(--light);
+  color:var(--dark);
+  font-size:16px;
+}
+
+.small-btn.delete{
+  background:#fff0f0;
+  color:var(--danger);
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.badge-success{
+  background:#eaffee;
+  color:var(--success);
+}
+
+.badge-danger{
+  background:#ffeded;
+  color:var(--danger);
+}
+
+.badge-warning{
+  background:#fff7d8;
+  color:#916d00;
+}
+
+.badge-info{
+  background:#e5faff;
+  color:var(--primary);
+}
+
+/* التقويم */
+
+.calendar-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.calendar-head button{
+  width:40px;
+  height:40px;
+  border:0;
+  border-radius:12px;
+  background:var(--light);
+  color:var(--dark);
+  font-size:20px;
+}
+
+.calendar-title{
+  font-size:19px;
+  font-weight:bold;
+}
+
+.calendar-week{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:4px;
+  margin-bottom:5px;
+}
+
+.calendar-week div{
+  text-align:center;
+  font-size:12px;
+  font-weight:bold;
+  color:var(--muted);
+  padding:7px 0;
+}
 
 .calendar{
-overflow:hidden;
-}
-
-.cal-head{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:12px;
-}
-
-.cal-head strong{
-font-size:18px;
-}
-
-.calendar-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(7,1fr);
-
-gap:5px;
-}
-
-.dow{
-
-text-align:center;
-
-font-size:10px;
-
-font-weight:800;
-
-color:var(--muted);
-
-padding:5px 0;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:5px;
 }
 
 .day{
-
-min-height:58px;
-
-border:
-1px solid var(--border);
-
-border-radius:11px;
-
-background:white;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-position:relative;
-
-font-weight:800;
-
-padding:3px;
+  min-height:55px;
+  border-radius:11px;
+  border:1px solid var(--border);
+  background:#eaffee;
+  padding:6px;
+  position:relative;
+  cursor:pointer;
 }
 
-.day.emptyday{
-visibility:hidden;
-}
-
-.day.available{
-
-background:
-color-mix(
-in srgb,
-var(--available) 12%,
-white
-);
-
-border-color:
-color-mix(
-in srgb,
-var(--available) 35%,
-white
-);
-
-color:
-color-mix(
-in srgb,
-var(--available) 80%,
-black
-);
-}
-
-.day.booked{
-
-background:
-color-mix(
-in srgb,
-var(--booked) 14%,
-white
-);
-
-border-color:
-color-mix(
-in srgb,
-var(--booked) 35%,
-white
-);
-
-color:
-color-mix(
-in srgb,
-var(--booked) 80%,
-black
-);
+.day.empty-day{
+  background:transparent;
+  border:0;
+  cursor:default;
 }
 
 .day.weekend{
-
-background:
-color-mix(
-in srgb,
-var(--weekend) 25%,
-white
-);
-
-border-color:
-color-mix(
-in srgb,
-var(--weekend) 55%,
-white
-);
-
-color:#806a00;
+  background:var(--weekend);
 }
 
-.day.booked.weekend{
-
-background:
-linear-gradient(
-135deg,
-color-mix(in srgb,var(--booked) 14%,white) 0 70%,
-color-mix(in srgb,var(--weekend) 25%,white) 70%
-);
+.day.booked{
+  background:#ffd9d9;
+  border-color:#ff8d8d;
+  color:#a70000;
 }
 
-.day.today{
-
-outline:
-2px solid var(--primary);
+.day-number{
+  font-size:14px;
+  font-weight:bold;
 }
 
-.day small{
-
-font-size:8px;
-
-margin-top:3px;
-
-white-space:nowrap;
-
-overflow:hidden;
-
-max-width:95%;
-
-text-overflow:ellipsis;
+.day-status{
+  font-size:9px;
+  margin-top:5px;
 }
 
-/* ================= MODAL ================= */
-
-.modal-wrap{
-
-position:fixed;
-
-inset:0;
-
-background:#0008;
-
-z-index:100;
-
-display:none;
-
-align-items:flex-end;
-
-justify-content:center;
-
-padding:10px;
+.legend{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:11px;
+  margin-top:12px;
 }
 
-.modal-wrap.show{
-display:flex;
+.legend span{
+  display:flex;
+  align-items:center;
+  gap:4px;
 }
+
+.dot{
+  width:13px;
+  height:13px;
+  border-radius:4px;
+  display:inline-block;
+}
+
+.dot.available{background:#bff3c9}
+.dot.booked{background:#ff9b9b}
+.dot.weekend{background:var(--weekend)}
+
+/* التنقل */
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(900px,100%);
+  background:white;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-around;
+  padding:8px 4px max(8px,env(safe-area-inset-bottom));
+  z-index:50;
+  box-shadow:0 -5px 20px rgba(0,70,80,.08);
+}
+
+.nav-item{
+  border:0;
+  background:none;
+  color:#6c858a;
+  font-size:10px;
+  min-width:55px;
+}
+
+.nav-item span{
+  display:block;
+  font-size:22px;
+  margin-bottom:2px;
+}
+
+.nav-item.active{
+  color:var(--primary);
+  font-weight:bold;
+}
+
+/* المودال */
 
 .modal{
-
-background:white;
-
-width:100%;
-
-max-width:700px;
-
-max-height:92vh;
-
-overflow:auto;
-
-border-radius:
-25px 25px 12px 12px;
-
-padding:18px;
+  position:fixed;
+  inset:0;
+  background:rgba(0,30,35,.55);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  z-index:100;
 }
 
-.modal-title{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-margin-bottom:16px;
+.modal.show{
+  display:flex;
 }
 
-.modal-title h2{
+.modal-box{
+  background:white;
+  width:min(700px,100%);
+  max-height:92vh;
+  overflow:auto;
+  border-radius:25px 25px 0 0;
+  padding:18px;
+}
 
-margin:0;
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
+}
 
-font-size:19px;
+.modal-head h3{
+  margin:0;
 }
 
 .close{
-
-border:0;
-
-background:#f0f5f7;
-
-border-radius:12px;
-
-width:38px;
-
-height:38px;
-
-font-size:22px;
+  border:0;
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  background:#f1f5f6;
+  font-size:20px;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* البحث */
 
-.bottom{
-
-position:fixed;
-
-bottom:0;
-
-right:0;
-left:0;
-
-height:76px;
-
-background:#fffffff5;
-
-backdrop-filter:blur(15px);
-
-border-top:
-1px solid var(--border);
-
-display:flex;
-
-justify-content:space-around;
-
-z-index:50;
-
-padding-bottom:
-env(safe-area-inset-bottom);
+.search{
+  margin-bottom:12px;
 }
 
-.nav{
+/* التبويبات */
 
-border:0;
-
-background:none;
-
-color:#8aa0a9;
-
-min-width:60px;
-
-border-radius:15px;
-
-margin:6px 2px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-gap:3px;
+.tabs{
+  display:flex;
+  gap:7px;
+  overflow:auto;
+  margin-bottom:12px;
 }
 
-.nav.active{
-
-color:var(--primary);
-
-background:#eaf9fc;
+.tab{
+  white-space:nowrap;
+  border:1px solid var(--border);
+  background:white;
+  color:var(--muted);
+  padding:9px 14px;
+  border-radius:20px;
 }
 
-.nav b{
-font-size:21px;
+.tab.active{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
 }
 
-.nav small{
-font-size:10px;
-
-font-weight:700;
-}
-
-/* ================= SETTINGS ================= */
+/* الإعدادات */
 
 .setting{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:13px 0;
-
-border-bottom:
-1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 0;
+  border-bottom:1px solid var(--border);
 }
 
 .setting:last-child{
-border-bottom:0;
+  border-bottom:0;
 }
 
-.setting label{
-font-weight:800;
+.setting-text strong{
+  display:block;
+  font-size:14px;
 }
 
-.setting small{
-
-display:block;
-
-color:var(--muted);
-
-font-weight:400;
-
-margin-top:3px;
+.setting-text small{
+  color:var(--muted);
 }
 
 .switch{
-
-width:48px;
-
-height:28px;
-
-border-radius:99px;
-
-background:#d7e4e8;
-
-padding:3px;
-
-border:0;
+  position:relative;
+  width:48px;
+  height:27px;
+  flex-shrink:0;
 }
 
-.switch:after{
-
-content:"";
-
-display:block;
-
-width:22px;
-
-height:22px;
-
-background:white;
-
-border-radius:50%;
-
-transition:.2s;
+.switch input{
+  display:none;
 }
 
-.switch.on{
-
-background:var(--primary);
+.slider{
+  position:absolute;
+  inset:0;
+  background:#ccdadd;
+  border-radius:30px;
+  transition:.2s;
 }
 
-.switch.on:after{
-
-transform:
-translateX(-20px);
+.slider:before{
+  content:"";
+  position:absolute;
+  width:21px;
+  height:21px;
+  right:3px;
+  top:3px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
 }
 
-.color-input{
-
-width:48px;
-
-height:36px;
-
-border:0;
-
-padding:0;
-
-background:none;
+.switch input:checked+.slider{
+  background:var(--primary);
 }
 
-/* ================= TOAST ================= */
+.switch input:checked+.slider:before{
+  transform:translateX(-21px);
+}
+
+.color-row{
+  display:grid;
+  grid-template-columns:1fr 70px;
+  gap:10px;
+  align-items:center;
+  margin:10px 0;
+}
+
+.color-row input[type=color]{
+  height:42px;
+  padding:3px;
+}
+
+/* إشعار */
 
 .toast{
-
-position:fixed;
-
-top:18px;
-
-left:50%;
-
-transform:
-translateX(-50%)
-translateY(-20px);
-
-background:#173b4a;
-
-color:white;
-
-padding:11px 16px;
-
-border-radius:12px;
-
-z-index:200;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:.25s;
-
-font-size:13px;
+  position:fixed;
+  top:18px;
+  right:50%;
+  transform:translateX(50%) translateY(-20px);
+  background:#123b42;
+  color:white;
+  padding:12px 18px;
+  border-radius:13px;
+  z-index:300;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  font-size:13px;
 }
 
 .toast.show{
-
-opacity:1;
-
-transform:
-translateX(-50%)
-translateY(0);
+  opacity:1;
+  transform:translateX(50%) translateY(0);
 }
 
-/* ================= DESKTOP ================= */
+/* تفاصيل */
 
-@media(min-width:700px){
-
-.stats{
-grid-template-columns:
-repeat(4,1fr);
+.detail-row{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.quick{
-grid-template-columns:
-repeat(4,1fr);
+.detail-row:last-child{
+  border-bottom:0;
 }
 
-.modal-wrap{
-align-items:center;
+.money{
+  font-weight:bold;
 }
 
-.modal{
-border-radius:25px;
+.profit{
+  color:var(--success);
 }
 
+.expense{
+  color:var(--danger);
 }
 
+@media(max-width:550px){
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .day{
+    min-height:50px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div id="toast" class="toast"></div>
-
 <div class="app">
 
-<!-- ================= HEADER ================= -->
-
 <header class="header">
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">🌊</div>
+      <div>
+        <h1 id="appName">شالية روانا</h1>
+        <small id="welcomeName">مرحباً بك 👋</small>
+      </div>
+    </div>
 
-<div class="header-inner">
-
-<div class="topline">
-
-<div class="brand">
-
-<div class="brand-icon">
-🌊
-</div>
-
-<div>
-
-<h1 id="brandName">
-شالية روانا
-</h1>
-
-<small>
-إدارة الشالية والحجوزات
-</small>
-
-</div>
-
-</div>
-
-<button
-class="icon-btn"
-onclick="openPage('settings')"
->
-⚙️
-</button>
-
-</div>
-
-<div class="welcome">
-أهلاً وسهلاً 👋
-</div>
-
-<div
-class="header-title"
-id="headerTitle"
->
-يومك سعيد
-</div>
-
-</div>
-
+    <button class="menu-btn" onclick="openSettings()">☰</button>
+  </div>
 </header>
 
-
-<div class="container">
-
-<!-- ================= HOME ================= -->
-
-<section
-id="page-home"
-class="page active"
->
-
-<div class="section">
-
-<div class="grid stats">
-
-<div
-class="card stat-card"
-data-home="revenue"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-💰
-</div>
-
-<span class="stat-label">
-الإيرادات
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statRevenue"
->
-0 ر.س
-</div>
-
-</div>
-
-
-<div
-class="card stat-card"
-data-home="expenses"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-💸
-</div>
-
-<span class="stat-label">
-المصروفات
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statExpenses"
->
-0 ر.س
-</div>
-
-</div>
-
-
-<div
-class="card stat-card"
-data-home="profit"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-📈
-</div>
-
-<span class="stat-label">
-صافي الربح
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statProfit"
->
-0 ر.س
-</div>
-
-</div>
-
-
-<div
-class="card stat-card"
-data-home="bookings"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-📅
-</div>
-
-<span class="stat-label">
-الحجوزات
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statBookings"
->
-0
-</div>
-
-</div>
-
-
-<div
-class="card stat-card"
-data-home="paid"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-💵
-</div>
-
-<span class="stat-label">
-المدفوع
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statPaid"
->
-0 ر.س
-</div>
-
-</div>
-
-
-<div
-class="card stat-card"
-data-home="remaining"
->
-
-<div class="stat-top">
-
-<div class="stat-icon">
-🧮
-</div>
-
-<span class="stat-label">
-المتبقي
-</span>
-
-</div>
-
-<div
-class="stat-value"
-id="statRemaining"
->
-0 ر.س
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- QUICK -->
-
-<div
-class="section"
-data-home-section="quick"
->
-
-<div class="section-head">
-
-<h2>
-إجراءات سريعة
-</h2>
-
-<span>
-الوصول السريع
-</span>
-
-</div>
-
-
-<div class="grid quick">
-
-<button
-class="quick-card"
-onclick="openBookingModal()"
->
-
-<div class="quick-icon">
-➕
-</div>
-
-<div class="quick-title">
-حجز جديد
-</div>
-
-<div class="quick-desc">
-إضافة حجز للشالية
-</div>
-
-</button>
-
-
-<button
-class="quick-card"
-onclick="openPage('bookings')"
->
-
-<div class="quick-icon">
-📅
-</div>
-
-<div class="quick-title">
-التقويم
-</div>
-
-<div class="quick-desc">
-عرض حالة الأيام
-</div>
-
-</button>
-
-
-<button
-class="quick-card"
-onclick="openExpenseModal()"
->
-
-<div class="quick-icon">
-💰
-</div>
-
-<div class="quick-title">
-مصروف جديد
-</div>
-
-<div class="quick-desc">
-تسجيل مصروف
-</div>
-
-</button>
-
-
-<button
-class="quick-card"
-onclick="openInvoiceModal()"
->
-
-<div class="quick-icon">
-🧾
-</div>
-
-<div class="quick-title">
-فاتورة جديدة
-</div>
-
-<div class="quick-desc">
-إنشاء فاتورة
-</div>
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- UPCOMING -->
-
-<div
-class="section"
-data-home-section="upcoming"
->
-
-<div class="section-head">
-
-<h2>
-الحجوزات القادمة
-</h2>
-
-<span>
-حسب التاريخ
-</span>
-
-</div>
-
-<div
-id="upcomingList"
-class="list"
->
-</div>
-
-</div>
+<main class="container">
+
+<!-- الرئيسية -->
+<section id="page-home" class="page active">
+
+  <div class="section-title">
+    <h2>لوحة التحكم</h2>
+    <span id="todayText"></span>
+  </div>
+
+  <div id="statsSection">
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-icon">💰</div>
+        <div class="label">إجمالي الإيرادات</div>
+        <div class="value" id="statRevenue">0 ر.س</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">💸</div>
+        <div class="label">إجمالي المصروفات</div>
+        <div class="value" id="statExpenses">0 ر.س</div>
+      </div>
+
+      <div class="stat" id="profitStat">
+        <div class="stat-icon">📈</div>
+        <div class="label">صافي الربح</div>
+        <div class="value profit" id="statProfit">0 ر.س</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">📅</div>
+        <div class="label">عدد الحجوزات</div>
+        <div class="value" id="statBookings">0</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">💵</div>
+        <div class="label">إجمالي المدفوع</div>
+        <div class="value" id="statPaid">0 ر.س</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">💳</div>
+        <div class="label">إجمالي المتبقي</div>
+        <div class="value" id="statRemaining">0 ر.س</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-icon">🧾</div>
+        <div class="label">عدد الفواتير</div>
+        <div class="value" id="statInvoices">0</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="quickSection">
+    <div class="section-title">
+      <h2>إجراءات سريعة</h2>
+    </div>
+
+    <div class="quick-grid">
+
+      <button class="quick" onclick="openBooking()">
+        <div class="quick-icon">➕</div>
+        حجز جديد
+      </button>
+
+      <button class="quick" onclick="openInvoice()">
+        <div class="quick-icon">🧾</div>
+        إنشاء فاتورة
+      </button>
+
+      <button class="quick" onclick="openContract()">
+        <div class="quick-icon">📜</div>
+        إنشاء عقد
+      </button>
+
+      <button class="quick" onclick="openExpense()">
+        <div class="quick-icon">💰</div>
+        إضافة مصروف
+      </button>
+
+      <button class="quick" onclick="openCoffeeItem()">
+        <div class="quick-icon">☕</div>
+        إضافة صنف
+      </button>
+
+      <button class="quick" onclick="openService()">
+        <div class="quick-icon">🛎️</div>
+        إضافة خدمة
+      </button>
+
+    </div>
+  </div>
+
+  <div id="upcomingSection">
+    <div class="section-title">
+      <h2>الحجوزات القادمة</h2>
+      <button class="btn btn-secondary" onclick="showPage('bookings')">عرض الكل</button>
+    </div>
+
+    <div id="upcomingList"></div>
+  </div>
 
 </section>
 
 
-<!-- ================= BOOKINGS ================= -->
+<!-- الحجوزات -->
+<section id="page-bookings" class="page">
 
-<section
-id="page-bookings"
-class="page"
->
+  <div class="section-title">
+    <h2>📅 الحجوزات</h2>
+    <button class="btn btn-primary" onclick="openBooking()">+ حجز جديد</button>
+  </div>
 
-<div class="section">
+  <div class="tabs">
+    <button class="tab active" onclick="bookingTab('calendar',this)">التقويم</button>
+    <button class="tab" onclick="bookingTab('list',this)">الحجوزات</button>
+  </div>
 
-<div class="row between">
+  <div id="calendarTab">
 
-<div>
+    <div class="card">
 
-<h2 style="margin:0">
-الحجوزات
-</h2>
+      <div class="calendar-head">
+        <button onclick="changeMonth(-1)">‹</button>
+        <div class="calendar-title" id="calendarTitle"></div>
+        <button onclick="changeMonth(1)">›</button>
+      </div>
 
-<small style="color:var(--muted)">
-التقويم وإدارة الحجوزات
-</small>
+      <div class="calendar-week">
+        <div>الأحد</div>
+        <div>الإثنين</div>
+        <div>الثلاثاء</div>
+        <div>الأربعاء</div>
+        <div>الخميس</div>
+        <div>الجمعة</div>
+        <div>السبت</div>
+      </div>
 
-</div>
+      <div id="calendar" class="calendar"></div>
 
-<button
-class="btn primary"
-onclick="openBookingModal()"
->
-+ حجز جديد
-</button>
+      <div class="legend">
+        <span><i class="dot available"></i> متاح</span>
+        <span><i class="dot booked"></i> محجوز</span>
+        <span><i class="dot weekend"></i> الخميس والجمعة</span>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
+  <div id="bookingListTab" style="display:none">
 
-<div class="section card calendar">
+    <input
+      class="search"
+      id="bookingSearch"
+      placeholder="🔎 البحث باسم العميل أو الجوال..."
+      oninput="renderBookings()"
+    >
 
-<div class="cal-head">
+    <div id="bookingsList"></div>
 
-<button
-class="btn secondary"
-onclick="changeMonth(-1)"
->
-‹ السابق
-</button>
-
-<strong
-id="monthTitle"
->
-</strong>
-
-<button
-class="btn secondary"
-onclick="changeMonth(1)"
->
-التالي ›
-</button>
-
-</div>
-
-
-<div
-class="calendar-grid"
-id="calendarGrid"
->
-</div>
-
-
-<div
-class="row"
-style="margin-top:12px"
->
-
-<span class="badge green">
-● متاح
-</span>
-
-<span class="badge red">
-● محجوز
-</span>
-
-<span class="badge yellow">
-● الخميس والجمعة
-</span>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-head">
-
-<h2>
-قائمة الحجوزات
-</h2>
-
-<span id="bookingCount">
-</span>
-
-</div>
-
-<div
-id="bookingList"
-class="list"
->
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- ================= EXPENSES ================= -->
+<!-- العملاء -->
+<section id="page-customers" class="page">
 
-<section
-id="page-expenses"
-class="page"
->
+  <div class="section-title">
+    <h2>👤 العملاء</h2>
+  </div>
 
-<div class="section">
+  <input
+    class="search"
+    id="customerSearch"
+    placeholder="🔎 البحث عن عميل..."
+    oninput="renderCustomers()"
+  >
 
-<div class="row between">
-
-<div>
-
-<h2 style="margin:0">
-المصروفات
-</h2>
-
-<small style="color:var(--muted)">
-إدارة ومتابعة المصروفات
-</small>
-
-</div>
-
-<button
-class="btn primary"
-onclick="openExpenseModal()"
->
-+ مصروف
-</button>
-
-</div>
-
-</div>
-
-
-<div class="section card">
-
-<div class="two">
-
-<div>
-
-<small>
-إجمالي المصروفات
-</small>
-
-<h2 id="expenseTotal">
-0 ر.س
-</h2>
-
-</div>
-
-<div>
-
-<small>
-عدد المصروفات
-</small>
-
-<h2 id="expenseCount">
-0
-</h2>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div
-id="expenseList"
-class="list"
->
-</div>
-
-</div>
+  <div id="customersList"></div>
 
 </section>
 
 
-<!-- ================= INVOICES ================= -->
+<!-- القهوة -->
+<section id="page-coffee" class="page">
 
-<section
-id="page-invoices"
-class="page"
->
+  <div class="section-title">
+    <h2>☕ ركن القهوة</h2>
+    <button class="btn btn-primary" onclick="openCoffeeItem()">+ إضافة صنف</button>
+  </div>
 
-<div class="section">
+  <div class="card">
+    <div class="section-title">
+      <h2>🗂️ الفئات</h2>
+      <button class="btn btn-secondary" onclick="openCategory()">+ فئة</button>
+    </div>
+    <div id="categoriesList"></div>
+  </div>
 
-<div class="row between">
+  <div class="tabs" id="coffeeTabs"></div>
 
-<div>
-
-<h2 style="margin:0">
-الفواتير
-</h2>
-
-<small style="color:var(--muted)">
-إنشاء وحفظ الفواتير
-</small>
-
-</div>
-
-<button
-class="btn primary"
-onclick="openInvoiceModal()"
->
-+ فاتورة
-</button>
-
-</div>
-
-</div>
-
-
-<div
-class="section"
-id="invoiceList"
->
-</div>
+  <div id="coffeeList"></div>
 
 </section>
 
 
-<!-- ================= SERVICES ================= -->
+<!-- الخدمات -->
+<section id="page-services" class="page">
 
-<section
-id="page-services"
-class="page"
->
+  <div class="section-title">
+    <h2>🛎️ الخدمات</h2>
+    <button class="btn btn-primary" onclick="openService()">+ خدمة</button>
+  </div>
 
-<div class="section">
-
-<div class="row between">
-
-<div>
-
-<h2 style="margin:0">
-الخدمات
-</h2>
-
-<small style="color:var(--muted)">
-الخدمات المستخدمة في الفواتير
-</small>
-
-</div>
-
-<button
-class="btn primary"
-onclick="openServiceModal()"
->
-+ خدمة
-</button>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div
-id="serviceList"
-class="list"
->
-</div>
-
-</div>
+  <div id="servicesList"></div>
 
 </section>
 
 
-<!-- ================= SETTINGS ================= -->
+<!-- العقود -->
+<section id="page-contracts" class="page">
 
-<section
-id="page-settings"
-class="page"
->
+  <div class="section-title">
+    <h2>📜 العقود</h2>
+    <button class="btn btn-primary" onclick="openContract()">+ إنشاء عقد</button>
+  </div>
 
-<div class="section">
+  <input
+    class="search"
+    id="contractSearch"
+    placeholder="🔎 البحث..."
+    oninput="renderContracts()"
+  >
 
-<h2 style="margin:0">
-الإعدادات
-</h2>
-
-<small style="color:var(--muted)">
-مركز التحكم في شالية روانا
-</small>
-
-</div>
-
-
-<div class="section card">
-
-<div class="field">
-
-<label>
-اسم الشالية
-</label>
-
-<input
-id="setName"
-class="input"
-onchange="saveSettings()"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-اسم المستخدم
-</label>
-
-<input
-id="setUser"
-class="input"
-onchange="saveSettings()"
->
-
-</div>
-
-
-<h3>
-الرئيسية
-</h3>
-
-<div id="homeSettings">
-</div>
-
-</div>
-
-
-<div class="section card">
-
-<h3>
-ألوان التطبيق
-</h3>
-
-
-<div class="setting">
-
-<div>
-
-<label>
-اللون الأساسي
-</label>
-
-<small>
-لون الأزرار والعناصر الرئيسية
-</small>
-
-</div>
-
-<input
-class="color-input"
-type="color"
-id="colorPrimary"
-onchange="saveColors()"
->
-
-</div>
-
-
-<div class="setting">
-
-<div>
-
-<label>
-لون المحجوز
-</label>
-
-</div>
-
-<input
-class="color-input"
-type="color"
-id="colorBooked"
-onchange="saveColors()"
->
-
-</div>
-
-
-<div class="setting">
-
-<div>
-
-<label>
-لون المتاح
-</label>
-
-</div>
-
-<input
-class="color-input"
-type="color"
-id="colorAvailable"
-onchange="saveColors()"
->
-
-</div>
-
-
-<div class="setting">
-
-<div>
-
-<label>
-لون الخميس والجمعة
-</label>
-
-</div>
-
-<input
-class="color-input"
-type="color"
-id="colorWeekend"
-onchange="saveColors()"
->
-
-</div>
-
-</div>
+  <div id="contractsList"></div>
 
 </section>
 
-</div>
+
+<!-- الفواتير -->
+<section id="page-invoices" class="page">
+
+  <div class="section-title">
+    <h2>🧾 الفواتير</h2>
+    <button class="btn btn-primary" onclick="openInvoice()">+ فاتورة</button>
+  </div>
+
+  <input
+    class="search"
+    id="invoiceSearch"
+    placeholder="🔎 البحث في الفواتير..."
+    oninput="renderInvoices()"
+  >
+
+  <div id="invoicesList"></div>
+
+</section>
 
 
-<!-- ================= NAV ================= -->
+<!-- المصروفات -->
+<section id="page-expenses" class="page">
 
-<nav class="bottom">
+  <div class="section-title">
+    <h2>💸 المصروفات</h2>
+    <button class="btn btn-primary" onclick="openExpense()">+ إضافة مصروف</button>
+  </div>
 
-<button
-class="nav active"
-id="nav-home"
-onclick="openPage('home')"
->
+  <div class="card">
+    <div class="detail-row">
+      <span>إجمالي المصروفات</span>
+      <strong class="expense" id="expenseTotal">0 ر.س</strong>
+    </div>
+  </div>
 
-<b>
-🏠
-</b>
+  <div id="expensesList"></div>
 
-<small>
-الرئيسية
-</small>
-
-</button>
-
-
-<button
-class="nav"
-id="nav-bookings"
-onclick="openPage('bookings')"
->
-
-<b>
-📅
-</b>
-
-<small>
-الحجوزات
-</small>
-
-</button>
+</section>
 
 
-<button
-class="nav"
-id="nav-expenses"
-onclick="openPage('expenses')"
->
+<!-- الأرباح -->
+<section id="page-profits" class="page">
 
-<b>
-💰
-</b>
+  <div class="section-title">
+    <h2>📈 الأرباح</h2>
+  </div>
 
-<small>
-المصروفات
-</small>
+  <div class="card">
+    <div class="detail-row">
+      <span>الإيرادات</span>
+      <strong id="profitRevenue">0 ر.س</strong>
+    </div>
 
-</button>
+    <div class="detail-row">
+      <span>المصروفات</span>
+      <strong class="expense" id="profitExpenses">0 ر.س</strong>
+    </div>
 
+    <div class="detail-row">
+      <span>صافي الربح</span>
+      <strong class="profit" id="profitNet">0 ر.س</strong>
+    </div>
+  </div>
 
-<button
-class="nav"
-id="nav-invoices"
-onclick="openPage('invoices')"
->
-
-<b>
-🧾
-</b>
-
-<small>
-الفواتير
-</small>
-
-</button>
+</section>
 
 
-<button
-class="nav"
-id="nav-services"
-onclick="openPage('services')"
->
+<!-- الإعدادات -->
+<section id="page-settings" class="page">
 
-<b>
-🛎️
-</b>
+  <div class="section-title">
+    <h2>⚙️ الإعدادات</h2>
+  </div>
 
-<small>
-الخدمات
-</small>
+  <div class="card">
 
-</button>
+    <div class="section-title">
+      <h2>🏠 بيانات التطبيق</h2>
+    </div>
+
+    <div class="field">
+      <label>اسم التطبيق / المنشأة</label>
+      <input id="settingAppName" value="شالية روانا" onchange="saveBasicSettings()">
+    </div>
+
+    <div class="field">
+      <label>اسم المستخدم</label>
+      <input id="settingUserName" placeholder="اكتب اسمك" onchange="saveBasicSettings()">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-title">
+      <h2>👁️ الرئيسية</h2>
+    </div>
+
+    <div id="homeSettings"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-title">
+      <h2>🎨 ألوان التقويم</h2>
+    </div>
+
+    <div class="color-row">
+      <label>لون المحجوز</label>
+      <input type="color" id="colorBooked" onchange="saveColors()">
+    </div>
+
+    <div class="color-row">
+      <label>لون المتاح</label>
+      <input type="color" id="colorAvailable" onchange="saveColors()">
+    </div>
+
+    <div class="color-row">
+      <label>لون الخميس</label>
+      <input type="color" id="colorThursday" onchange="saveColors()">
+    </div>
+
+    <div class="color-row">
+      <label>لون الجمعة</label>
+      <input type="color" id="colorFriday" onchange="saveColors()">
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="section-title">
+      <h2>📱 الأقسام</h2>
+    </div>
+
+    <div id="sectionSettings"></div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- التنقل السفلي -->
+<nav class="bottom-nav">
+
+  <button class="nav-item active" data-page="home" onclick="showPage('home')">
+    <span>🏠</span>
+    الرئيسية
+  </button>
+
+  <button class="nav-item" data-page="bookings" onclick="showPage('bookings')">
+    <span>📅</span>
+    الحجوزات
+  </button>
+
+  <button class="nav-item" data-page="coffee" onclick="showPage('coffee')">
+    <span>☕</span>
+    القهوة
+  </button>
+
+  <button class="nav-item" data-page="invoices" onclick="showPage('invoices')">
+    <span>🧾</span>
+    الفواتير
+  </button>
+
+  <button class="nav-item" data-page="settings" onclick="showPage('settings')">
+    <span>⚙️</span>
+    الإعدادات
+  </button>
 
 </nav>
 
 </div>
 
 
-<!-- ================= MODAL ================= -->
-
-<div
-id="modal"
-class="modal-wrap"
-onclick="if(event.target===this)closeModal()"
->
-
-<div class="modal">
-
-<div id="modalBody">
+<!-- المودال -->
+<div id="modal" class="modal" onclick="modalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modalBody"></div>
+  </div>
 </div>
 
-</div>
-
-</div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =====================================================
+/* =========================
    قاعدة البيانات
-===================================================== */
+========================= */
 
-const KEY="shaliahRawanaDB";
+const STORAGE_KEY="rawana_shaliah_db_v1";
 
-let db=
-JSON.parse(
-localStorage.getItem(KEY)||"null"
-)
-||
-{
+let db=JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
 
-settings:{
+  settings:{
+    appName:"شالية روانا",
+    userName:"",
+    showStats:true,
+    showProfit:true,
+    showQuick:true,
+    showBookings:true,
+    showExpenses:true,
+    showInvoices:true,
+    showContracts:true,
+    showServices:true,
+    showCoffee:true,
+    showCustomers:true
+  },
 
-name:"شالية روانا",
+  colors:{
+    booked:"#ffd9d9",
+    available:"#eaffee",
+    thursday:"#fff2a8",
+    friday:"#fff2a8"
+  },
 
-user:"",
-
-home:{
-
-revenue:true,
-expenses:true,
-profit:true,
-bookings:true,
-paid:true,
-remaining:true,
-quick:true,
-upcoming:true
-
-},
-
-colors:{
-
-primary:"#087ea4",
-booked:"#e74c3c",
-available:"#2eae68",
-weekend:"#f2c94c"
-
-}
-
-},
-
-bookings:[],
-expenses:[],
-invoices:[],
-services:[]
+  bookings:[],
+  customers:[],
+  expenses:[],
+  invoices:[],
+  contracts:[],
+  services:[],
+  categories:[
+    {id:id(),name:"القهوة",icon:"☕"},
+    {id:id(),name:"المشروبات",icon:"🥤"},
+    {id:id(),name:"الحلويات",icon:"🍰"},
+    {id:id(),name:"الضيافة",icon:"🍽️"}
+  ],
+  coffee:[]
 
 };
 
-
-/* =====================================================
-   المتغيرات
-===================================================== */
-
-let calDate=new Date();
-
-
-const months=[
-
-"يناير",
-"فبراير",
-"مارس",
-"أبريل",
-"مايو",
-"يونيو",
-"يوليو",
-"أغسطس",
-"سبتمبر",
-"أكتوبر",
-"نوفمبر",
-"ديسمبر"
-
-];
-
-
-const days=[
-
-"الأحد",
-"الاثنين",
-"الثلاثاء",
-"الأربعاء",
-"الخميس",
-"الجمعة",
-"السبت"
-
-];
-
-
-/* =====================================================
-   الحفظ
-===================================================== */
-
 function persist(){
-
-localStorage.setItem(
-KEY,
-JSON.stringify(db)
-);
-
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(db));
 }
 
 
-/* =====================================================
-   الأموال
-===================================================== */
+/* =========================
+   أدوات عامة
+========================= */
+
+function id(){
+  return Date.now().toString(36)+Math.random().toString(36).slice(2);
+}
 
 function money(n){
-
-return Number(n||0)
-.toLocaleString(
-"ar-SA",
-{
-maximumFractionDigits:2
-}
-)
-+" ر.س";
-
+  return Number(n||0).toLocaleString("ar-SA")+" ر.س";
 }
 
-
-/* =====================================================
-   حماية النصوص
-===================================================== */
-
-function esc(s){
-
-return String(s??"")
-.replace(/[&<>"']/g,m=>
-({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[m])
-);
-
+function safe(v){
+  return String(v??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;");
 }
 
-
-/* =====================================================
-   معرف
-===================================================== */
-
-function uid(){
-
-return Date.now()
-.toString(36)
-+
-Math.random()
-.toString(36)
-.slice(2,7);
-
+function today(){
+  return new Date().toISOString().slice(0,10);
 }
 
-
-/* =====================================================
-   التاريخ
-===================================================== */
-
-function dateKey(d){
-
-let x=new Date(d);
-
-return `${x.getFullYear()}-${
-String(x.getMonth()+1).padStart(2,"0")
-}-${
-String(x.getDate()).padStart(2,"0")
-}`;
-
+function formatDate(d){
+  if(!d)return"-";
+  return new Date(d+"T00:00:00").toLocaleDateString("ar-SA",{
+    year:"numeric",
+    month:"long",
+    day:"numeric"
+  });
 }
-
-
-function parseDate(s){
-
-let [y,m,d]=s
-.split("-")
-.map(Number);
-
-return new Date(
-y,
-m-1,
-d
-);
-
-}
-
-
-function formatDate(s){
-
-if(!s)return "-";
-
-let d=parseDate(s);
-
-return d.toLocaleDateString(
-"ar-SA",
-{
-year:"numeric",
-month:"long",
-day:"numeric"
-}
-);
-
-}
-
-
-/* =====================================================
-   رسالة
-===================================================== */
 
 function showToast(text){
-
-let e=
-document.getElementById("toast");
-
-e.textContent=text;
-
-e.classList.add("show");
-
-setTimeout(
-()=>e.classList.remove("show"),
-1800
-);
-
+  const t=document.getElementById("toast");
+  t.textContent=text;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2200);
 }
 
-
-/* =====================================================
-   الإعدادات
-===================================================== */
-
-function applySettings(){
-
-document.documentElement
-.style
-.setProperty(
-"--primary",
-db.settings.colors.primary
-);
-
-document.documentElement
-.style
-.setProperty(
-"--booked",
-db.settings.colors.booked
-);
-
-document.documentElement
-.style
-.setProperty(
-"--available",
-db.settings.colors.available
-);
-
-document.documentElement
-.style
-.setProperty(
-"--weekend",
-db.settings.colors.weekend
-);
-
-
-document.getElementById(
-"brandName"
-).textContent=
-db.settings.name||
-"شالية روانا";
-
-
-document.getElementById(
-"headerTitle"
-).textContent=
-db.settings.user
-?
-`أهلاً ${db.settings.user} 👋`
-:
-"يومك سعيد";
-
-
-document
-.querySelectorAll("[data-home]")
-.forEach(e=>{
-
-e.classList.toggle(
-"hidden",
-!db.settings.home[
-e.dataset.home
-]
-);
-
-});
-
-
-document
-.querySelectorAll("[data-home-section]")
-.forEach(e=>{
-
-e.classList.toggle(
-"hidden",
-!db.settings.home[
-e.dataset.homeSection
-]
-);
-
-});
-
+function openModal(title,body){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=body;
+  document.getElementById("modal").classList.add("show");
 }
-
-
-/* =====================================================
-   التنقل
-===================================================== */
-
-function openPage(page){
-
-document
-.querySelectorAll(".page")
-.forEach(e=>
-e.classList.remove("active")
-);
-
-document
-.getElementById(
-"page-"+page
-)
-.classList.add("active");
-
-
-document
-.querySelectorAll(".nav")
-.forEach(e=>
-e.classList.remove("active")
-);
-
-
-let nav=
-document.getElementById(
-"nav-"+page
-);
-
-if(nav)
-nav.classList.add("active");
-
-
-if(page==="bookings")
-renderCalendar();
-
-if(page==="expenses")
-renderExpenses();
-
-if(page==="invoices")
-renderInvoices();
-
-if(page==="services")
-renderServices();
-
-if(page==="settings")
-renderSettings();
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =====================================================
-   النوافذ
-===================================================== */
-
-function openModal(html){
-
-document.getElementById(
-"modalBody"
-).innerHTML=html;
-
-document
-.getElementById("modal")
-.classList.add("show");
-
-}
-
 
 function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
 
-document
-.getElementById("modal")
-.classList.remove("show");
-
+function modalOutside(e){
+  if(e.target.id==="modal")closeModal();
 }
 
 
-/* =====================================================
+/* =========================
+   التنقل
+========================= */
+
+function showPage(page){
+
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+
+  const target=document.getElementById("page-"+page);
+
+  if(target)target.classList.add("active");
+
+  document.querySelectorAll(".nav-item").forEach(x=>{
+    x.classList.toggle("active",x.dataset.page===page);
+  });
+
+  if(page==="home")renderHome();
+  if(page==="bookings"){
+    renderCalendar();
+    renderBookings();
+  }
+  if(page==="customers")renderCustomers();
+  if(page==="coffee"){
+    renderCategories();
+    renderCoffeeTabs();
+    renderCoffee();
+  }
+  if(page==="services")renderServices();
+  if(page==="contracts")renderContracts();
+  if(page==="invoices")renderInvoices();
+  if(page==="expenses")renderExpenses();
+  if(page==="profits")renderProfits();
+  if(page==="settings")renderSettings();
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function openSettings(){
+  showPage("settings");
+}
+
+
+/* =========================
    الرئيسية
-===================================================== */
+========================= */
+
+function calculate(){
+
+  const revenue=db.bookings.reduce((s,b)=>s+Number(b.price||0),0);
+
+  const expenses=db.expenses.reduce((s,e)=>s+Number(e.amount||0),0);
+
+  const paid=db.bookings.reduce((s,b)=>s+Number(b.paid||0),0);
+
+  const remaining=db.bookings.reduce(
+    (s,b)=>s+Math.max(0,Number(b.price||0)-Number(b.paid||0)),0
+  );
+
+  return{
+    revenue,
+    expenses,
+    profit:revenue-expenses,
+    paid,
+    remaining
+  };
+}
 
 function renderHome(){
 
-let revenue=
-db.bookings.reduce(
-(a,b)=>
-a+
-Number(b.total||0),
-0
-);
+  const c=calculate();
 
+  document.getElementById("statRevenue").textContent=money(c.revenue);
+  document.getElementById("statExpenses").textContent=money(c.expenses);
+  document.getElementById("statProfit").textContent=money(c.profit);
+  document.getElementById("statBookings").textContent=db.bookings.length;
+  document.getElementById("statPaid").textContent=money(c.paid);
+  document.getElementById("statRemaining").textContent=money(c.remaining);
+  document.getElementById("statInvoices").textContent=db.invoices.length;
 
-let expenses=
-db.expenses.reduce(
-(a,b)=>
-a+
-Number(b.amount||0),
-0
-);
+  document.getElementById("todayText").textContent=
+    new Date().toLocaleDateString("ar-SA",{
+      weekday:"long",
+      day:"numeric",
+      month:"long"
+    });
 
+  const upcoming=db.bookings
+    .filter(b=>b.checkIn>=today())
+    .sort((a,b)=>a.checkIn.localeCompare(b.checkIn))
+    .slice(0,5);
 
-let paid=
-db.bookings.reduce(
-(a,b)=>
-a+
-Number(b.paid||0),
-0
-);
+  const box=document.getElementById("upcomingList");
 
+  if(!upcoming.length){
+    box.innerHTML='<div class="card empty">لا توجد حجوزات قادمة</div>';
+  }else{
+    box.innerHTML=upcoming.map(bookingHTML).join("");
+  }
 
-document.getElementById(
-"statRevenue"
-).textContent=
-money(revenue);
-
-
-document.getElementById(
-"statExpenses"
-).textContent=
-money(expenses);
-
-
-document.getElementById(
-"statProfit"
-).textContent=
-money(revenue-expenses);
-
-
-document.getElementById(
-"statBookings"
-).textContent=
-db.bookings.length;
-
-
-document.getElementById(
-"statPaid"
-).textContent=
-money(paid);
-
-
-document.getElementById(
-"statRemaining"
-).textContent=
-money(revenue-paid);
-
-
-let today=
-new Date();
-
-today.setHours(
-0,0,0,0
-);
-
-
-let upcoming=
-db.bookings
-.filter(
-b=>
-parseDate(b.checkout)>=today
-)
-.sort(
-(a,b)=>
-parseDate(a.checkin)-
-parseDate(b.checkin)
-)
-.slice(0,5);
-
-
-document.getElementById(
-"upcomingList"
-).innerHTML=
-
-upcoming.length
-
-?
-
-upcoming
-.map(
-b=>bookingHTML(b)
-)
-.join("")
-
-:
-
-`
-<div class="card empty">
-
-<div class="emoji">
-🏝️
-</div>
-
-<b>
-لا توجد حجوزات قادمة
-</b>
-
-<div>
-أضف أول حجز ليظهر هنا
-</div>
-
-</div>
-`;
-
+  applyHomeSettings();
 }
 
 
-/* =====================================================
+/* =========================
    الحجز
-===================================================== */
+========================= */
+
+function openBooking(editId=null){
+
+  const b=db.bookings.find(x=>x.id===editId)||{};
+
+  openModal(
+    editId?"تعديل الحجز":"حجز جديد",
+`
+<form onsubmit="saveBooking(event,'${editId||""}')">
+
+<div class="form-grid">
+
+<div class="field">
+<label>اسم العميل *</label>
+<input id="bName" required value="${safe(b.name)}">
+</div>
+
+<div class="field">
+<label>رقم الجوال *</label>
+<input id="bPhone" required inputmode="tel" value="${safe(b.phone)}">
+</div>
+
+<div class="field">
+<label>تاريخ الدخول *</label>
+<input id="bIn" type="date" required value="${b.checkIn||today()}">
+</div>
+
+<div class="field">
+<label>تاريخ الخروج *</label>
+<input id="bOut" type="date" required value="${b.checkOut||today()}">
+</div>
+
+<div class="field">
+<label>عدد الأشخاص</label>
+<input id="bPeople" type="number" min="1" value="${b.people||1}">
+</div>
+
+<div class="field">
+<label>قيمة الحجز</label>
+<input id="bPrice" type="number" min="0" step="0.01" value="${b.price||0}">
+</div>
+
+<div class="field">
+<label>المدفوع / العربون</label>
+<input id="bPaid" type="number" min="0" step="0.01" value="${b.paid||0}">
+</div>
+
+<div class="field">
+<label>حالة الحجز</label>
+<select id="bStatus">
+<option ${b.status==="مؤكد"||!b.status?"selected":""}>مؤكد</option>
+<option ${b.status==="معلق"?"selected":""}>معلق</option>
+<option ${b.status==="ملغي"?"selected":""}>ملغي</option>
+</select>
+</div>
+
+<div class="field full">
+<label>ملاحظات</label>
+<textarea id="bNotes">${safe(b.notes)}</textarea>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:12px">
+<div class="detail-row">
+<span>المتبقي</span>
+<strong id="bookingRemainingPreview">${money(Number(b.price||0)-Number(b.paid||0))}</strong>
+</div>
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ الحجز
+</button>
+
+</form>
+`
+  );
+
+  setTimeout(()=>{
+
+    const p=document.getElementById("bPrice");
+    const paid=document.getElementById("bPaid");
+    const out=document.getElementById("bookingRemainingPreview");
+
+    function update(){
+      out.textContent=money(
+        Math.max(0,Number(p.value||0)-Number(paid.value||0))
+      );
+    }
+
+    p.oninput=update;
+    paid.oninput=update;
+
+  },50);
+}
+
+function saveBooking(e,editId){
+
+  e.preventDefault();
+
+  const data={
+    id:editId||id(),
+    name:document.getElementById("bName").value.trim(),
+    phone:document.getElementById("bPhone").value.trim(),
+    checkIn:document.getElementById("bIn").value,
+    checkOut:document.getElementById("bOut").value,
+    people:Number(document.getElementById("bPeople").value||1),
+    price:Number(document.getElementById("bPrice").value||0),
+    paid:Number(document.getElementById("bPaid").value||0),
+    status:document.getElementById("bStatus").value,
+    notes:document.getElementById("bNotes").value,
+    createdAt:new Date().toISOString()
+  };
+
+  if(data.checkOut<data.checkIn){
+    showToast("تاريخ الخروج يجب أن يكون بعد الدخول");
+    return;
+  }
+
+  const index=db.bookings.findIndex(x=>x.id===data.id);
+
+  if(index>=0)db.bookings[index]=data;
+  else db.bookings.push(data);
+
+  upsertCustomer(data);
+  persist();
+  closeModal();
+  renderAll();
+
+  showToast(editId?"تم تعديل الحجز":"تم حفظ الحجز");
+}
+
+function deleteBooking(idValue){
+
+  if(!confirm("هل تريد حذف هذا الحجز؟"))return;
+
+  db.bookings=db.bookings.filter(x=>x.id!==idValue);
+
+  persist();
+  renderAll();
+
+  showToast("تم حذف الحجز");
+}
+
+function upsertCustomer(b){
+
+  let c=db.customers.find(x=>x.phone===b.phone);
+
+  if(c){
+    c.name=b.name;
+  }else{
+    db.customers.push({
+      id:id(),
+      name:b.name,
+      phone:b.phone
+    });
+  }
+}
 
 function bookingHTML(b){
 
-return`
+  const remaining=Math.max(
+    0,
+    Number(b.price||0)-Number(b.paid||0)
+  );
 
-<div class="list-item">
+  return `
+<div class="item">
 
-<div class="row between">
-
-<div>
-
-<b>
-${esc(b.name)}
-</b>
-
-<div
-style="
-color:var(--muted);
-font-size:12px
-"
->
-
-${formatDate(b.checkin)}
-—
-${formatDate(b.checkout)}
-
-</div>
-
-</div>
-
-
-<span
-class="badge ${
-b.status==="ملغي"
-?"red"
-:"green"
-}"
->
-
-${esc(b.status||"مؤكد")}
-
+<div class="item-main">
+<div class="item-title">
+${safe(b.name)}
+<span class="badge ${b.status==="ملغي"?"badge-danger":b.status==="معلق"?"badge-warning":"badge-success"}">
+${safe(b.status||"مؤكد")}
 </span>
+</div>
+
+<div class="item-meta">
+📱 ${safe(b.phone)}<br>
+📅 ${formatDate(b.checkIn)} → ${formatDate(b.checkOut)}<br>
+💰 ${money(b.price)} | 💵 مدفوع ${money(b.paid)} | 💳 متبقي ${money(remaining)}
+</div>
+</div>
+
+<div class="item-actions">
+
+<button class="small-btn" onclick="viewBooking('${b.id}')">👁️</button>
+
+<button class="small-btn" onclick="openBooking('${b.id}')">✏️</button>
+
+<button class="small-btn delete" onclick="deleteBooking('${b.id}')">🗑️</button>
 
 </div>
 
+</div>`;
+}
 
-<div
-class="row between"
-style="
-margin-top:9px;
-font-size:12px
-"
->
+function renderBookings(){
 
-<span>
+  const q=(document.getElementById("bookingSearch")?.value||"")
+    .toLowerCase();
 
-الإجمالي:
+  const list=db.bookings.filter(b=>
+    b.name.toLowerCase().includes(q)||
+    b.phone.includes(q)
+  );
 
-<b>
-${money(b.total)}
-</b>
+  const box=document.getElementById("bookingsList");
 
-</span>
+  if(!list.length){
+    box.innerHTML='<div class="card empty">لا توجد حجوزات</div>';
+    return;
+  }
 
+  box.innerHTML=list
+    .sort((a,b)=>b.checkIn.localeCompare(a.checkIn))
+    .map(bookingHTML)
+    .join("");
+}
 
-<span>
+function viewBooking(idValue){
 
-المتبقي:
+  const b=db.bookings.find(x=>x.id===idValue);
 
-<b>
-${money(
-Number(b.total)-
-Number(b.paid)
-)}
-</b>
+  if(!b)return;
 
-</span>
+  const remaining=Math.max(
+    0,
+    Number(b.price||0)-Number(b.paid||0)
+  );
+
+  openModal(
+    "تفاصيل الحجز",
+`
+<div class="card">
+
+<div class="detail-row">
+<span>العميل</span>
+<strong>${safe(b.name)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الجوال</span>
+<strong>${safe(b.phone)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الدخول</span>
+<strong>${formatDate(b.checkIn)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الخروج</span>
+<strong>${formatDate(b.checkOut)}</strong>
+</div>
+
+<div class="detail-row">
+<span>عدد الأشخاص</span>
+<strong>${b.people}</strong>
+</div>
+
+<div class="detail-row">
+<span>قيمة الحجز</span>
+<strong>${money(b.price)}</strong>
+</div>
+
+<div class="detail-row">
+<span>المدفوع</span>
+<strong>${money(b.paid)}</strong>
+</div>
+
+<div class="detail-row">
+<span>المتبقي</span>
+<strong>${money(remaining)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الحالة</span>
+<strong>${safe(b.status)}</strong>
+</div>
+
+${b.notes?`
+<div class="detail-row">
+<span>الملاحظات</span>
+<strong>${safe(b.notes)}</strong>
+</div>`:""}
 
 </div>
 
+<div class="actions">
 
-<div
-class="row"
-style="margin-top:10px"
->
-
-<button
-class="btn secondary"
-onclick="openBookingModal('${b.id}')"
->
-تعديل
+<button class="btn btn-primary" onclick="openBooking('${b.id}')">
+✏️ تعديل
 </button>
 
-<button
-class="btn danger"
-onclick="deleteBooking('${b.id}')"
->
-حذف
+<button class="btn btn-secondary" onclick="openContract('${b.id}')">
+📜 إنشاء عقد
+</button>
+
+<button class="btn btn-secondary" onclick="openInvoice('${b.id}')">
+🧾 إنشاء فاتورة
 </button>
 
 </div>
-
-</div>
-
-`;
-
+`
+  );
 }
 
 
-/* =====================================================
-   تواريخ الحجز
-===================================================== */
-
-function datesBetween(a,b){
-
-let out=[];
-
-let d=parseDate(a);
-
-let end=parseDate(b);
-
-
-while(d<=end){
-
-out.push(
-dateKey(d)
-);
-
-d.setDate(
-d.getDate()+1
-);
-
-}
-
-return out;
-
-}
-
-
-function bookingForDate(key){
-
-return db.bookings.find(
-b=>
-
-datesBetween(
-b.checkin,
-b.checkout
-)
-.includes(key)
-
-&&
-
-b.status!=="ملغي"
-
-);
-
-}
-
-
-/* =====================================================
+/* =========================
    التقويم
-===================================================== */
+========================= */
+
+let calendarDate=new Date();
+
+function bookingTab(tab,button){
+
+  document.querySelectorAll(".tabs .tab")
+    .forEach(x=>x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  document.getElementById("calendarTab").style.display=
+    tab==="calendar"?"block":"none";
+
+  document.getElementById("bookingListTab").style.display=
+    tab==="list"?"block":"none";
+
+  if(tab==="list")renderBookings();
+}
+
+function changeMonth(delta){
+
+  calendarDate.setMonth(calendarDate.getMonth()+delta);
+
+  renderCalendar();
+}
+
+function dateKey(y,m,d){
+
+  const date=new Date(y,m,d);
+
+  return date.toISOString().slice(0,10);
+}
+
+function isBooked(key){
+
+  return db.bookings.some(b=>{
+    if(b.status==="ملغي")return false;
+
+    return key>=b.checkIn && key<b.checkOut;
+  });
+}
 
 function renderCalendar(){
 
-let y=
-calDate.getFullYear();
+  const year=calendarDate.getFullYear();
+  const month=calendarDate.getMonth();
 
-let m=
-calDate.getMonth();
+  document.getElementById("calendarTitle").textContent=
+    new Date(year,month,1).toLocaleDateString("ar-SA",{
+      month:"long",
+      year:"numeric"
+    });
 
+  const first=new Date(year,month,1).getDay();
+  const days=new Date(year,month+1,0).getDate();
 
-document.getElementById(
-"monthTitle"
-).textContent=
-`${months[m]} ${y}`;
+  let html="";
 
+  for(let i=0;i<first;i++){
+    html+='<div class="day empty-day"></div>';
+  }
 
-let first=
-new Date(
-y,
-m,
-1
-).getDay();
+  for(let d=1;d<=days;d++){
 
+    const date=new Date(year,month,d);
+    const key=dateKey(year,month,d);
+    const week=date.getDay();
 
-let daysIn=
-new Date(
-y,
-m+1,
-0
-).getDate();
+    const booked=isBooked(key);
 
+    let cls="day";
 
-let html=
-days
-.map(
-d=>
-`
-<div class="dow">
-${d.slice(0,2)}
+    if(booked)cls+=" booked";
+    else if(week===4 || week===5)cls+=" weekend";
+
+    html+=`
+<div class="${cls}"
+onclick="calendarDay('${key}')">
+
+<div class="day-number">${d}</div>
+
+<div class="day-status">
+${booked?"محجوز":"متاح"}
 </div>
-`
-)
-.join("");
 
+</div>`;
+  }
 
-for(
-let i=0;
-i<first;
-i++
-){
+  document.getElementById("calendar").innerHTML=html;
 
-html+=
-`
-<div class="day emptyday">
-</div>
-`;
+  document.documentElement.style.setProperty(
+    "--weekend",
+    db.colors.thursday
+  );
+}
 
+function calendarDay(key){
+
+  const booking=db.bookings.find(b=>
+    b.status!=="ملغي" &&
+    key>=b.checkIn &&
+    key<b.checkOut
+  );
+
+  if(booking){
+    viewBooking(booking.id);
+  }else{
+    openBookingForDate(key);
+  }
+}
+
+function openBookingForDate(key){
+
+  openBooking();
+
+  setTimeout(()=>{
+    const input=document.getElementById("bIn");
+
+    if(input){
+      input.value=key;
+
+      const out=document.getElementById("bOut");
+
+      if(out && out.value<key)
+        out.value=key;
+    }
+  },50);
 }
 
 
-for(
-let d=1;
-d<=daysIn;
-d++
-){
+/* =========================
+   العملاء
+========================= */
 
-let dt=
-new Date(
-y,
-m,
-d
-);
+function renderCustomers(){
 
+  const q=(document.getElementById("customerSearch")?.value||"")
+    .toLowerCase();
 
-let key=
-dateKey(dt);
+  const list=db.customers.filter(c=>
+    c.name.toLowerCase().includes(q)||
+    c.phone.includes(q)
+  );
 
+  const box=document.getElementById("customersList");
 
-let booking=
-bookingForDate(key);
+  if(!list.length){
+    box.innerHTML='<div class="card empty">لا يوجد عملاء بعد</div>';
+    return;
+  }
 
+  box.innerHTML=list.map(c=>{
 
-let weekend=
-dt.getDay()===4 ||
-dt.getDay()===5;
+    const bookings=db.bookings.filter(b=>b.phone===c.phone);
 
+    return `
+<div class="item">
 
-let today=
-key===dateKey(new Date());
+<div class="item-main">
+<div class="item-title">${safe(c.name)}</div>
 
+<div class="item-meta">
+📱 ${safe(c.phone)}<br>
+📅 عدد الحجوزات: ${bookings.length}
+</div>
+</div>
 
-let cls=
-"day "
-+
-(
-booking
-?
-"booked"
-:
-"available"
-)
-+
-(
-weekend
-?
-" weekend"
-:
-""
-)
-+
-(
-today
-?
-" today"
-:
-""
-);
+<div class="item-actions">
+<button class="small-btn" onclick="customerDetails('${c.id}')">👁️</button>
+</div>
 
-
-html+=`
-
-<button
-class="${cls}"
-onclick="dayAction('${key}')"
->
-
-<span>
-${d}
-</span>
-
-<small>
-
-${
-booking
-?
-esc(booking.name)
-:
-weekend
-?
-"ويكند"
-:
-"متاح"
+</div>`;
+  }).join("");
 }
 
-</small>
+function customerDetails(idValue){
 
+  const c=db.customers.find(x=>x.id===idValue);
+
+  if(!c)return;
+
+  const bookings=db.bookings.filter(b=>b.phone===c.phone);
+
+  openModal(
+    "سجل العميل",
+`
+<div class="card">
+
+<div class="detail-row">
+<span>الاسم</span>
+<strong>${safe(c.name)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الجوال</span>
+<strong>${safe(c.phone)}</strong>
+</div>
+
+<div class="detail-row">
+<span>عدد الحجوزات</span>
+<strong>${bookings.length}</strong>
+</div>
+
+</div>
+
+${bookings.map(bookingHTML).join("")}
+`
+  );
+}
+
+
+/* =========================
+   الفئات
+========================= */
+
+function openCategory(editId=null){
+
+  const c=db.categories.find(x=>x.id===editId)||{};
+
+  openModal(
+    editId?"تعديل الفئة":"إضافة فئة",
+`
+<form onsubmit="saveCategory(event,'${editId||""}')">
+
+<div class="field">
+<label>اسم الفئة</label>
+<input id="catName" required value="${safe(c.name)}">
+</div>
+
+<div class="field">
+<label>الأيقونة</label>
+<input id="catIcon" value="${safe(c.icon||"📁")}" maxlength="3">
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ
 </button>
 
-`;
-
-}
-
-
-document.getElementById(
-"calendarGrid"
-).innerHTML=
-html;
-
-
-document.getElementById(
-"bookingCount"
-).textContent=
-`${db.bookings.length} حجز`;
-
-
-document.getElementById(
-"bookingList"
-).innerHTML=
-
-db.bookings.length
-
-?
-
-[...db.bookings]
-.sort(
-(a,b)=>
-parseDate(b.checkin)-
-parseDate(a.checkin)
-)
-.map(
-bookingHTML
-)
-.join("")
-
-:
-
+</form>
 `
-<div class="card empty">
+  );
+}
 
-<div class="emoji">
-📅
+function saveCategory(e,editId){
+
+  e.preventDefault();
+
+  const data={
+    id:editId||id(),
+    name:document.getElementById("catName").value.trim(),
+    icon:document.getElementById("catIcon").value||"📁"
+  };
+
+  if(!data.name)return;
+
+  const i=db.categories.findIndex(x=>x.id===data.id);
+
+  if(i>=0)db.categories[i]=data;
+  else db.categories.push(data);
+
+  persist();
+  closeModal();
+  renderAll();
+
+  showToast("تم حفظ الفئة");
+}
+
+function deleteCategory(idValue){
+
+  if(!confirm("حذف الفئة؟"))return;
+
+  db.categories=db.categories.filter(x=>x.id!==idValue);
+
+  db.coffee.forEach(x=>{
+    if(x.categoryId===idValue)x.categoryId="";
+  });
+
+  persist();
+  renderAll();
+}
+
+function renderCategories(){
+
+  const box=document.getElementById("categoriesList");
+
+  if(!db.categories.length){
+    box.innerHTML='<div class="empty">لا توجد فئات</div>';
+    return;
+  }
+
+  box.innerHTML=db.categories.map(c=>`
+<div class="item">
+
+<div class="item-main">
+<div class="item-title">${safe(c.icon)} ${safe(c.name)}</div>
+<div class="item-meta">
+${db.coffee.filter(x=>x.categoryId===c.id).length} أصناف
+</div>
 </div>
 
-<b>
-لا توجد حجوزات
-</b>
+<div class="item-actions">
+
+<button class="small-btn" onclick="openCategory('${c.id}')">✏️</button>
+
+<button class="small-btn delete" onclick="deleteCategory('${c.id}')">🗑️</button>
 
 </div>
-`;
 
+</div>
+`).join("");
 }
 
 
-/* =====================================================
-   تغيير الشهر
-===================================================== */
+/* =========================
+   ركن القهوة
+========================= */
 
-function changeMonth(number){
+let selectedCategory="all";
 
-calDate.setMonth(
-calDate.getMonth()+number
-);
+function renderCoffeeTabs(){
 
-renderCalendar();
+  const tabs=document.getElementById("coffeeTabs");
 
-}
-
-
-/* =====================================================
-   الضغط على يوم
-===================================================== */
-
-function dayAction(key){
-
-let booking=
-bookingForDate(key);
-
-
-if(booking){
-
-openBookingModal(
-booking.id,
-key
-);
-
-}else{
-
-openBookingModal(
-"",
-key
-);
-
-}
-
-}
-
-
-/* =====================================================
-   نافذة الحجز
-===================================================== */
-
-function openBookingModal(
-id="",
-preset=""
-){
-
-let booking=
-id
-?
-db.bookings.find(
-x=>x.id===id
-)
-:
-null;
-
-
-let today=
-dateKey(new Date());
-
-
-let check=
-booking?.checkin ||
-preset ||
-today;
-
-
-let checkout=
-booking?.checkout ||
-preset ||
-today;
-
-
-openModal(`
-
-<div class="modal-title">
-
-<h2>
-${
-booking
-?
-"تعديل الحجز"
-:
-"حجز جديد"
-}
-</h2>
-
-<button
-class="close"
-onclick="closeModal()"
->
-×
+  tabs.innerHTML=`
+<button class="tab ${selectedCategory==="all"?"active":""}"
+onclick="selectCoffeeCategory('all')">
+الكل
 </button>
-
-</div>
-
-
-<div class="field">
-
-<label>
-اسم العميل
-</label>
-
-<input
-id="bName"
-class="input"
-value="${esc(booking?.name||"")}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-رقم الجوال
-</label>
-
-<input
-id="bPhone"
-class="input"
-inputmode="tel"
-value="${esc(booking?.phone||"")}"
->
-
-</div>
-
-
-<div class="two">
-
-<div class="field">
-
-<label>
-تاريخ الدخول
-</label>
-
-<input
-id="bIn"
-class="input"
-type="date"
-value="${check}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-تاريخ الخروج
-</label>
-
-<input
-id="bOut"
-class="input"
-type="date"
-value="${checkout}"
->
-
-</div>
-
-</div>
-
-
-<div class="two">
-
-<div class="field">
-
-<label>
-عدد الأشخاص
-</label>
-
-<input
-id="bPeople"
-class="input"
-type="number"
-min="1"
-value="${booking?.people||1}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-حالة الحجز
-</label>
-
-<select
-id="bStatus"
-class="select"
->
-
-<option
-${
-booking?.status==="مؤكد"||
-!booking
-?
-"selected"
-:
-""
+`+
+db.categories.map(c=>`
+<button class="tab ${selectedCategory===c.id?"active":""}"
+onclick="selectCoffeeCategory('${c.id}')">
+${safe(c.icon)} ${safe(c.name)}
+</button>
+`).join("");
 }
->
-مؤكد
-</option>
 
-<option
-${
-booking?.status==="معلق"
-?
-"selected"
-:
-""
+function selectCoffeeCategory(idValue){
+
+  selectedCategory=idValue;
+
+  renderCoffeeTabs();
+  renderCoffee();
 }
->
-معلق
-</option>
 
-<option
-${
-booking?.status==="ملغي"
-?
-"selected"
-:
-""
-}
->
-ملغي
-</option>
+function openCoffeeItem(editId=null){
 
+  const x=db.coffee.find(i=>i.id===editId)||{};
+
+  openModal(
+    editId?"تعديل الصنف":"إضافة صنف",
+`
+<form onsubmit="saveCoffee(event,'${editId||""}')">
+
+<div class="field">
+<label>اسم الصنف</label>
+<input id="coffeeName" required value="${safe(x.name)}">
+</div>
+
+<div class="form-grid">
+
+<div class="field">
+<label>السعر</label>
+<input id="coffeePrice" type="number" min="0" step=".01" value="${x.price||0}">
+</div>
+
+<div class="field">
+<label>الفئة</label>
+<select id="coffeeCategory">
+${db.categories.map(c=>`
+<option value="${c.id}" ${x.categoryId===c.id?"selected":""}>
+${safe(c.icon)} ${safe(c.name)}
+</option>`).join("")}
 </select>
-
 </div>
 
 </div>
-
-
-<div class="two">
 
 <div class="field">
-
-<label>
-قيمة الحجز
-</label>
-
-<input
-id="bTotal"
-class="input"
-type="number"
-min="0"
-value="${booking?.total||0}"
->
-
+<label>الوصف</label>
+<textarea id="coffeeDescription">${safe(x.description)}</textarea>
 </div>
 
-
-<div class="field">
-
-<label>
-المدفوع / العربون
-</label>
-
-<input
-id="bPaid"
-class="input"
-type="number"
-min="0"
-value="${booking?.paid||0}"
->
-
-</div>
-
-</div>
-
-
-<div class="field">
-
-<label>
-المتبقي
-</label>
-
-<input
-id="bRemain"
-class="input"
-readonly
-value="${money(
-Number(booking?.total||0)-
-Number(booking?.paid||0)
-)}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-ملاحظات
-</label>
-
-<textarea
-id="bNotes"
-class="textarea"
->${esc(booking?.notes||"")}</textarea>
-
-</div>
-
-
-<button
-class="btn primary full"
-onclick="saveBooking('${id}')"
->
-حفظ الحجز
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ الصنف
 </button>
 
-`);
-
-
-document
-.getElementById("bTotal")
-.addEventListener(
-"input",
-updateRemain
-);
-
-
-document
-.getElementById("bPaid")
-.addEventListener(
-"input",
-updateRemain
-);
-
-}
-
-
-/* =====================================================
-   حساب المتبقي
-===================================================== */
-
-function updateRemain(){
-
-let total=
-Number(
-document.getElementById(
-"bTotal"
-).value||0
-);
-
-
-let paid=
-Number(
-document.getElementById(
-"bPaid"
-).value||0
-);
-
-
-document.getElementById(
-"bRemain"
-).value=
-money(
-Math.max(
-0,
-total-paid
-)
-);
-
-}
-
-
-/* =====================================================
-   حفظ الحجز
-===================================================== */
-
-function saveBooking(id){
-
-let name=
-document
-.getElementById("bName")
-.value
-.trim();
-
-
-let check=
-document
-.getElementById("bIn")
-.value;
-
-
-let checkout=
-document
-.getElementById("bOut")
-.value;
-
-
-let total=
-Number(
-document
-.getElementById("bTotal")
-.value||0
-);
-
-
-let paid=
-Number(
-document
-.getElementById("bPaid")
-.value||0
-);
-
-
-if(
-!name||
-!check||
-!checkout
-){
-
-return showToast(
-"أكمل البيانات المطلوبة"
-);
-
-}
-
-
-if(
-parseDate(checkout)<
-parseDate(check)
-){
-
-return showToast(
-"تاريخ الخروج يجب أن يكون بعد الدخول"
-);
-
-}
-
-
-if(
-paid>total
-){
-
-return showToast(
-"المدفوع أكبر من قيمة الحجز"
-);
-
-}
-
-
-/* منع تداخل الحجوزات */
-
-let collision=
-db.bookings.some(
-x=>
-
-x.id!==id&&
-
-x.status!=="ملغي"&&
-
-datesBetween(
-check,
-checkout
-)
-.some(
-key=>
-datesBetween(
-x.checkin,
-x.checkout
-)
-.includes(key)
-)
-
-);
-
-
-if(collision){
-
-return showToast(
-"يوجد حجز متداخل مع هذه الأيام"
-);
-
-}
-
-
-let object={
-
-id:
-id||
-uid(),
-
-name:name,
-
-phone:
-document
-.getElementById("bPhone")
-.value
-.trim(),
-
-checkin:check,
-
-checkout:checkout,
-
-people:
-Number(
-document
-.getElementById("bPeople")
-.value||1
-),
-
-status:
-document
-.getElementById("bStatus")
-.value,
-
-total:total,
-
-paid:paid,
-
-notes:
-document
-.getElementById("bNotes")
-.value
-.trim()
-
-};
-
-
-let index=
-db.bookings.findIndex(
-x=>x.id===object.id
-);
-
-
-if(index>=0){
-
-db.bookings[index]=object;
-
-}else{
-
-db.bookings.push(object);
-
-}
-
-
-persist();
-
-closeModal();
-
-renderAll();
-
-showToast(
-"تم حفظ الحجز"
-);
-
-}
-
-
-/* =====================================================
-   حذف الحجز
-===================================================== */
-
-function deleteBooking(id){
-
-if(
-!confirm(
-"هل تريد حذف الحجز؟"
-)
-)
-return;
-
-
-db.bookings=
-db.bookings.filter(
-x=>x.id!==id
-);
-
-
-persist();
-
-renderAll();
-
-showToast(
-"تم حذف الحجز"
-);
-
-}
-
-
-/* =====================================================
-   المصروفات
-===================================================== */
-
-function openExpenseModal(id=""){
-
-let expense=
-id
-?
-db.expenses.find(
-x=>x.id===id
-)
-:
-null;
-
-
-openModal(`
-
-<div class="modal-title">
-
-<h2>
-${
-expense
-?
-"تعديل المصروف"
-:
-"إضافة مصروف"
-}
-</h2>
-
-<button
-class="close"
-onclick="closeModal()"
->
-×
-</button>
-
-</div>
-
-
-<div class="field">
-
-<label>
-الوصف
-</label>
-
-<input
-id="eDesc"
-class="input"
-value="${esc(expense?.desc||"")}"
->
-
-</div>
-
-
-<div class="two">
-
-<div class="field">
-
-<label>
-المبلغ
-</label>
-
-<input
-id="eAmount"
-class="input"
-type="number"
-min="0"
-value="${expense?.amount||0}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-التاريخ
-</label>
-
-<input
-id="eDate"
-class="input"
-type="date"
-value="${
-expense?.date||
-dateKey(new Date())
-}"
->
-
-</div>
-
-</div>
-
-
-<div class="field">
-
-<label>
-التصنيف
-</label>
-
-<input
-id="eCat"
-class="input"
-placeholder="مثال: صيانة"
-value="${esc(expense?.cat||"")}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-ملاحظات
-</label>
-
-<textarea
-id="eNotes"
-class="textarea"
->${esc(expense?.notes||"")}</textarea>
-
-</div>
-
-
-<button
-class="btn primary full"
-onclick="saveExpense('${id}')"
->
-حفظ
-</button>
-
-`);
-
-}
-
-
-function saveExpense(id){
-
-let desc=
-document
-.getElementById("eDesc")
-.value
-.trim();
-
-
-let amount=
-Number(
-document
-.getElementById("eAmount")
-.value||0
-);
-
-
-if(
-!desc||
-amount<=0
-){
-
-return showToast(
-"أدخل الوصف والمبلغ"
-);
-
-}
-
-
-let object={
-
-id:id||uid(),
-
-desc:desc,
-
-amount:amount,
-
-date:
-document
-.getElementById("eDate")
-.value,
-
-cat:
-document
-.getElementById("eCat")
-.value
-.trim(),
-
-notes:
-document
-.getElementById("eNotes")
-.value
-.trim()
-
-};
-
-
-let index=
-db.expenses.findIndex(
-x=>x.id===object.id
-);
-
-
-if(index>=0){
-
-db.expenses[index]=object;
-
-}else{
-
-db.expenses.push(object);
-
-}
-
-
-persist();
-
-closeModal();
-
-renderAll();
-
-showToast(
-"تم حفظ المصروف"
-);
-
-}
-
-
-function deleteExpense(id){
-
-if(
-!confirm(
-"حذف المصروف؟"
-)
-)
-return;
-
-
-db.expenses=
-db.expenses.filter(
-x=>x.id!==id
-);
-
-
-persist();
-
-renderAll();
-
-showToast(
-"تم حذف المصروف"
-);
-
-}
-
-
-function renderExpenses(){
-
-let total=
-db.expenses.reduce(
-(a,b)=>
-a+
-Number(b.amount||0),
-0
-);
-
-
-document.getElementById(
-"expenseTotal"
-).textContent=
-money(total);
-
-
-document.getElementById(
-"expenseCount"
-).textContent=
-db.expenses.length;
-
-
-document.getElementById(
-"expenseList"
-).innerHTML=
-
-db.expenses.length
-
-?
-
-[...db.expenses]
-.sort(
-(a,b)=>
-b.date.localeCompare(
-a.date
-)
-)
-.map(
-e=>`
-
-<div class="list-item">
-
-<div class="row between">
-
-<b>
-${esc(e.desc)}
-</b>
-
-<b>
-${money(e.amount)}
-</b>
-
-</div>
-
-
-<div
-style="
-color:var(--muted);
-font-size:12px;
-margin-top:5px
-"
->
-
-${formatDate(e.date)}
-
-${
-e.cat
-?
-` • ${esc(e.cat)}`
-:
-""
-}
-
-</div>
-
-
-<div
-class="row"
-style="margin-top:9px"
->
-
-<button
-class="btn secondary"
-onclick="openExpenseModal('${e.id}')"
->
-تعديل
-</button>
-
-
-<button
-class="btn danger"
-onclick="deleteExpense('${e.id}')"
->
-حذف
-</button>
-
-</div>
-
-</div>
-
+</form>
 `
-)
-.join("")
+  );
+}
 
-:
+function saveCoffee(e,editId){
 
-`
+  e.preventDefault();
 
-<div class="card empty">
+  const data={
+    id:editId||id(),
+    name:document.getElementById("coffeeName").value.trim(),
+    price:Number(document.getElementById("coffeePrice").value||0),
+    categoryId:document.getElementById("coffeeCategory").value,
+    description:document.getElementById("coffeeDescription").value
+  };
 
-<div class="emoji">
-💰
+  const i=db.coffee.findIndex(x=>x.id===data.id);
+
+  if(i>=0)db.coffee[i]=data;
+  else db.coffee.push(data);
+
+  persist();
+  closeModal();
+  renderAll();
+
+  showToast("تم حفظ الصنف");
+}
+
+function deleteCoffee(idValue){
+
+  if(!confirm("حذف الصنف؟"))return;
+
+  db.coffee=db.coffee.filter(x=>x.id!==idValue);
+
+  persist();
+  renderAll();
+}
+
+function renderCoffee(){
+
+  let list=db.coffee;
+
+  if(selectedCategory!=="all"){
+    list=list.filter(x=>x.categoryId===selectedCategory);
+  }
+
+  const box=document.getElementById("coffeeList");
+
+  if(!list.length){
+    box.innerHTML='<div class="card empty">لا توجد أصناف. أضف أول صنف ☕</div>';
+    return;
+  }
+
+  box.innerHTML=list.map(x=>{
+
+    const c=db.categories.find(c=>c.id===x.categoryId);
+
+    return `
+<div class="item">
+
+<div class="item-main">
+
+<div class="item-title">
+☕ ${safe(x.name)}
 </div>
 
-<b>
-لا توجد مصروفات
-</b>
+<div class="item-meta">
+${c?safe(c.name):"بدون فئة"}<br>
+${safe(x.description||"بدون وصف")}<br>
+<strong>${money(x.price)}</strong>
+</div>
 
 </div>
 
-`;
+<div class="item-actions">
 
+<button class="small-btn" onclick="openCoffeeItem('${x.id}')">✏️</button>
+
+<button class="small-btn delete" onclick="deleteCoffee('${x.id}')">🗑️</button>
+
+</div>
+
+</div>`;
+  }).join("");
 }
 
 
-/* =====================================================
+/* =========================
    الخدمات
-===================================================== */
+========================= */
 
-function openServiceModal(id=""){
+function openService(editId=null){
 
-let service=
-id
-?
-db.services.find(
-x=>x.id===id
-)
-:
-null;
+  const s=db.services.find(x=>x.id===editId)||{};
 
+  openModal(
+    editId?"تعديل الخدمة":"إضافة خدمة",
+`
+<form onsubmit="saveService(event,'${editId||""}')">
 
-openModal(`
+<div class="field">
+<label>اسم الخدمة</label>
+<input id="serviceName" required value="${safe(s.name)}">
+</div>
 
-<div class="modal-title">
+<div class="form-grid">
 
-<h2>
-${
-service
-?
-"تعديل الخدمة"
-:
-"إضافة خدمة"
-}
-</h2>
+<div class="field">
+<label>السعر</label>
+<input id="servicePrice" type="number" min="0" step=".01" value="${s.price||0}">
+</div>
 
-<button
-class="close"
-onclick="closeModal()"
->
-×
+<div class="field">
+<label>الفئة</label>
+<select id="serviceCategory">
+<option value="">بدون فئة</option>
+${db.categories.map(c=>`
+<option value="${c.id}" ${s.categoryId===c.id?"selected":""}>
+${safe(c.icon)} ${safe(c.name)}
+</option>`).join("")}
+</select>
+</div>
+
+</div>
+
+<div class="field">
+<label>الوصف</label>
+<textarea id="serviceDescription">${safe(s.description)}</textarea>
+</div>
+
+<div class="field">
+<label>الحالة</label>
+<select id="serviceStatus">
+<option ${s.status!=="موقوف"?"selected":""}>متاحة</option>
+<option ${s.status==="موقوف"?"selected":""}>موقوف</option>
+</select>
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ الخدمة
 </button>
 
-</div>
-
-
-<div class="field">
-
-<label>
-اسم الخدمة
-</label>
-
-<input
-id="sName"
-class="input"
-value="${esc(service?.name||"")}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-السعر
-</label>
-
-<input
-id="sPrice"
-class="input"
-type="number"
-min="0"
-value="${service?.price||0}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-الوصف
-</label>
-
-<textarea
-id="sDesc"
-class="textarea"
->${esc(service?.desc||"")}</textarea>
-
-</div>
-
-
-<button
-class="btn primary full"
-onclick="saveService('${id}')"
->
-حفظ الخدمة
-</button>
-
-`);
-
+</form>
+`
+  );
 }
 
+function saveService(e,editId){
 
-function saveService(id){
+  e.preventDefault();
 
-let name=
-document
-.getElementById("sName")
-.value
-.trim();
+  const data={
+    id:editId||id(),
+    name:document.getElementById("serviceName").value.trim(),
+    price:Number(document.getElementById("servicePrice").value||0),
+    categoryId:document.getElementById("serviceCategory").value,
+    description:document.getElementById("serviceDescription").value,
+    status:document.getElementById("serviceStatus").value
+  };
 
+  const i=db.services.findIndex(x=>x.id===data.id);
 
-let price=
-Number(
-document
-.getElementById("sPrice")
-.value||0
-);
+  if(i>=0)db.services[i]=data;
+  else db.services.push(data);
 
+  persist();
+  closeModal();
+  renderAll();
 
-if(!name){
-
-return showToast(
-"أدخل اسم الخدمة"
-);
-
+  showToast("تم حفظ الخدمة");
 }
 
+function deleteService(idValue){
 
-let old=
-id
-?
-db.services.find(
-x=>x.id===id
-)
-:
-null;
+  if(!confirm("حذف الخدمة؟"))return;
 
+  db.services=db.services.filter(x=>x.id!==idValue);
 
-let object={
-
-id:id||uid(),
-
-name:name,
-
-price:price,
-
-desc:
-document
-.getElementById("sDesc")
-.value
-.trim(),
-
-visible:
-old?.visible!==false
-
-};
-
-
-let index=
-db.services.findIndex(
-x=>x.id===object.id
-);
-
-
-if(index>=0){
-
-db.services[index]=object;
-
-}else{
-
-db.services.push(object);
-
+  persist();
+  renderAll();
 }
-
-
-persist();
-
-closeModal();
-
-renderAll();
-
-showToast(
-"تم حفظ الخدمة"
-);
-
-}
-
-
-function deleteService(id){
-
-if(
-!confirm(
-"حذف الخدمة؟"
-)
-)
-return;
-
-
-db.services=
-db.services.filter(
-x=>x.id!==id
-);
-
-
-persist();
-
-renderAll();
-
-showToast(
-"تم حذف الخدمة"
-);
-
-}
-
-
-function toggleService(id){
-
-let service=
-db.services.find(
-x=>x.id===id
-);
-
-
-if(service){
-
-service.visible=
-service.visible===false;
-
-persist();
-
-renderServices();
-
-}
-
-}
-
 
 function renderServices(){
 
-document.getElementById(
-"serviceList"
-).innerHTML=
+  const box=document.getElementById("servicesList");
 
-db.services.length
+  if(!db.services.length){
+    box.innerHTML='<div class="card empty">لا توجد خدمات. أضف خدمة جديدة 🛎️</div>';
+    return;
+  }
 
-?
+  box.innerHTML=db.services.map(s=>{
 
-db.services
-.map(
-s=>`
+    const c=db.categories.find(x=>x.id===s.categoryId);
 
-<div class="list-item">
+    return `
+<div class="item">
 
-<div class="row between">
+<div class="item-main">
 
-<div>
+<div class="item-title">
+🛎️ ${safe(s.name)}
+<span class="badge ${s.status==="موقوف"?"badge-danger":"badge-success"}">
+${safe(s.status||"متاحة")}
+</span>
+</div>
 
-<b>
-${esc(s.name)}
-</b>
-
-<div
-style="
-font-size:12px;
-color:var(--muted)
-"
->
-
-${esc(s.desc||"")}
-
+<div class="item-meta">
+${c?safe(c.name):"بدون فئة"}<br>
+${safe(s.description||"بدون وصف")}<br>
+<strong>${money(s.price)}</strong>
 </div>
 
 </div>
 
+<div class="item-actions">
 
-<b>
-${money(s.price)}
-</b>
+<button class="small-btn" onclick="openService('${s.id}')">✏️</button>
 
-</div>
-
-
-<div
-class="row"
-style="margin-top:9px"
->
-
-<button
-class="btn secondary"
-onclick="openServiceModal('${s.id}')"
->
-تعديل
-</button>
-
-
-<button
-class="btn ${
-s.visible===false
-?
-"success"
-:
-"danger"
-}"
-onclick="toggleService('${s.id}')"
->
-
-${
-s.visible===false
-?
-"إظهار"
-:
-"إخفاء"
-}
-
-</button>
-
-
-<button
-class="btn danger"
-onclick="deleteService('${s.id}')"
->
-حذف
-</button>
+<button class="small-btn delete" onclick="deleteService('${s.id}')">🗑️</button>
 
 </div>
 
-</div>
-
-`
-)
-.join("")
-
-:
-
-`
-
-<div class="card empty">
-
-<div class="emoji">
-🛎️
-</div>
-
-<b>
-لا توجد خدمات
-</b>
-
-<div>
-أضف خدماتك لاستخدامها في الفواتير
-</div>
-
-</div>
-
-`;
-
+</div>`;
+  }).join("");
 }
 
 
-/* =====================================================
+/* =========================
+   المصروفات
+========================= */
+
+function openExpense(editId=null){
+
+  const x=db.expenses.find(i=>i.id===editId)||{};
+
+  openModal(
+    editId?"تعديل المصروف":"إضافة مصروف",
+`
+<form onsubmit="saveExpense(event,'${editId||""}')">
+
+<div class="field">
+<label>اسم / وصف المصروف</label>
+<input id="expenseName" required value="${safe(x.name)}">
+</div>
+
+<div class="form-grid">
+
+<div class="field">
+<label>المبلغ</label>
+<input id="expenseAmount" type="number" min="0" step=".01" required value="${x.amount||0}">
+</div>
+
+<div class="field">
+<label>التاريخ</label>
+<input id="expenseDate" type="date" value="${x.date||today()}">
+</div>
+
+<div class="field">
+<label>التصنيف</label>
+<input id="expenseCategory" value="${safe(x.category)}" placeholder="مثلاً: صيانة">
+</div>
+
+</div>
+
+<div class="field">
+<label>ملاحظات</label>
+<textarea id="expenseNotes">${safe(x.notes)}</textarea>
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ المصروف
+</button>
+
+</form>
+`
+  );
+}
+
+function saveExpense(e,editId){
+
+  e.preventDefault();
+
+  const data={
+    id:editId||id(),
+    name:document.getElementById("expenseName").value.trim(),
+    amount:Number(document.getElementById("expenseAmount").value||0),
+    date:document.getElementById("expenseDate").value,
+    category:document.getElementById("expenseCategory").value,
+    notes:document.getElementById("expenseNotes").value
+  };
+
+  const i=db.expenses.findIndex(x=>x.id===data.id);
+
+  if(i>=0)db.expenses[i]=data;
+  else db.expenses.push(data);
+
+  persist();
+  closeModal();
+  renderAll();
+
+  showToast("تم حفظ المصروف");
+}
+
+function deleteExpense(idValue){
+
+  if(!confirm("حذف المصروف؟"))return;
+
+  db.expenses=db.expenses.filter(x=>x.id!==idValue);
+
+  persist();
+  renderAll();
+}
+
+function renderExpenses(){
+
+  const total=db.expenses.reduce(
+    (s,x)=>s+Number(x.amount||0),0
+  );
+
+  document.getElementById("expenseTotal").textContent=money(total);
+
+  const box=document.getElementById("expensesList");
+
+  if(!db.expenses.length){
+    box.innerHTML='<div class="card empty">لا توجد مصروفات</div>';
+    return;
+  }
+
+  box.innerHTML=db.expenses
+    .sort((a,b)=>b.date.localeCompare(a.date))
+    .map(x=>`
+<div class="item">
+
+<div class="item-main">
+
+<div class="item-title">${safe(x.name)}</div>
+
+<div class="item-meta">
+📅 ${formatDate(x.date)}<br>
+🏷️ ${safe(x.category||"عام")}<br>
+<span class="expense"><strong>${money(x.amount)}</strong></span>
+</div>
+
+</div>
+
+<div class="item-actions">
+
+<button class="small-btn" onclick="openExpense('${x.id}')">✏️</button>
+
+<button class="small-btn delete" onclick="deleteExpense('${x.id}')">🗑️</button>
+
+</div>
+
+</div>
+`).join("");
+}
+
+
+/* =========================
+   العقود
+========================= */
+
+function openContract(bookingId=null,editId=null){
+
+  const old=db.contracts.find(x=>x.id===editId)||{};
+
+  const booking=db.bookings.find(x=>x.id===bookingId);
+
+  const b=booking||db.bookings.find(x=>x.id===old.bookingId)||{};
+
+  openModal(
+    editId?"تعديل العقد":"إنشاء عقد",
+`
+<form onsubmit="saveContract(event,'${editId||""}')">
+
+<div class="form-grid">
+
+<div class="field">
+<label>العميل</label>
+<input id="contractCustomer" value="${safe(old.customer||b.name||"")}">
+</div>
+
+<div class="field">
+<label>الجوال</label>
+<input id="contractPhone" value="${safe(old.phone||b.phone||"")}">
+</div>
+
+<div class="field">
+<label>الحجز</label>
+<select id="contractBooking">
+<option value="">بدون ربط</option>
+${db.bookings.map(x=>`
+<option value="${x.id}"
+${(old.bookingId||bookingId)===x.id?"selected":""}>
+${safe(x.name)} — ${x.checkIn}
+</option>`).join("")}
+</select>
+</div>
+
+<div class="field">
+<label>تاريخ الدخول</label>
+<input id="contractIn" type="date" value="${old.checkIn||b.checkIn||today()}">
+</div>
+
+<div class="field">
+<label>تاريخ الخروج</label>
+<input id="contractOut" type="date" value="${old.checkOut||b.checkOut||today()}">
+</div>
+
+<div class="field">
+<label>قيمة الحجز</label>
+<input id="contractPrice" type="number" value="${old.price??b.price??0}">
+</div>
+
+<div class="field">
+<label>المدفوع</label>
+<input id="contractPaid" type="number" value="${old.paid??b.paid??0}">
+</div>
+
+</div>
+
+<div class="field">
+<label>الشروط والأحكام</label>
+<textarea id="contractTerms">${safe(old.terms||"يلتزم الطرفان بالشروط المتفق عليها.")}</textarea>
+</div>
+
+<div class="field">
+<label>ملاحظات</label>
+<textarea id="contractNotes">${safe(old.notes)}</textarea>
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ العقد
+</button>
+
+</form>
+`
+  );
+}
+
+function saveContract(e,editId){
+
+  e.preventDefault();
+
+  const data={
+    id:editId||id(),
+    customer:document.getElementById("contractCustomer").value,
+    phone:document.getElementById("contractPhone").value,
+    bookingId:document.getElementById("contractBooking").value,
+    checkIn:document.getElementById("contractIn").value,
+    checkOut:document.getElementById("contractOut").value,
+    price:Number(document.getElementById("contractPrice").value||0),
+    paid:Number(document.getElementById("contractPaid").value||0),
+    terms:document.getElementById("contractTerms").value,
+    notes:document.getElementById("contractNotes").value,
+    createdAt:new Date().toISOString()
+  };
+
+  const i=db.contracts.findIndex(x=>x.id===data.id);
+
+  if(i>=0)db.contracts[i]=data;
+  else db.contracts.push(data);
+
+  persist();
+  closeModal();
+  renderAll();
+
+  showToast("تم حفظ العقد");
+}
+
+function deleteContract(idValue){
+
+  if(!confirm("حذف العقد؟"))return;
+
+  db.contracts=db.contracts.filter(x=>x.id!==idValue);
+
+  persist();
+  renderAll();
+}
+
+function renderContracts(){
+
+  const q=(document.getElementById("contractSearch")?.value||"")
+    .toLowerCase();
+
+  const list=db.contracts.filter(x=>
+    (x.customer||"").toLowerCase().includes(q)||
+    (x.phone||"").includes(q)
+  );
+
+  const box=document.getElementById("contractsList");
+
+  if(!list.length){
+    box.innerHTML='<div class="card empty">لا توجد عقود</div>';
+    return;
+  }
+
+  box.innerHTML=list.map(x=>`
+<div class="item">
+
+<div class="item-main">
+
+<div class="item-title">📜 عقد — ${safe(x.customer)}</div>
+
+<div class="item-meta">
+📅 ${formatDate(x.checkIn)} → ${formatDate(x.checkOut)}<br>
+💰 ${money(x.price)} | 💵 ${money(x.paid)}
+</div>
+
+</div>
+
+<div class="item-actions">
+
+<button class="small-btn" onclick="viewContract('${x.id}')">👁️</button>
+
+<button class="small-btn" onclick="openContract(null,'${x.id}')">✏️</button>
+
+<button class="small-btn delete" onclick="deleteContract('${x.id}')">🗑️</button>
+
+</div>
+
+</div>
+`).join("");
+}
+
+function viewContract(idValue){
+
+  const x=db.contracts.find(c=>c.id===idValue);
+
+  if(!x)return;
+
+  openModal(
+    "عرض العقد",
+`
+<div class="card">
+
+<div class="detail-row">
+<span>العميل</span>
+<strong>${safe(x.customer)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الجوال</span>
+<strong>${safe(x.phone)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الدخول</span>
+<strong>${formatDate(x.checkIn)}</strong>
+</div>
+
+<div class="detail-row">
+<span>الخروج</span>
+<strong>${formatDate(x.checkOut)}</strong>
+</div>
+
+<div class="detail-row">
+<span>القيمة</span>
+<strong>${money(x.price)}</strong>
+</div>
+
+<div class="detail-row">
+<span>المدفوع</span>
+<strong>${money(x.paid)}</strong>
+</div>
+
+</div>
+
+<div class="card">
+<strong>الشروط والأحكام</strong>
+<p>${safe(x.terms)}</p>
+</div>
+
+<button class="btn btn-primary btn-block" onclick="shareText('عقد شالية روانا\\nالعميل: ${safe(x.customer)}\\nالدخول: ${formatDate(x.checkIn)}\\nالخروج: ${formatDate(x.checkOut)}\\nالقيمة: ${money(x.price)}')">
+📤 مشاركة العقد
+</button>
+`
+  );
+}
+
+
+/* =========================
    الفواتير
-===================================================== */
+========================= */
 
-function openInvoiceModal(id=""){
+function openInvoice(bookingId=null,editId=null){
 
-let invoice=
-id
-?
-db.invoices.find(
-x=>x.id===id
-)
-:
-null;
+  const old=db.invoices.find(x=>x.id===editId)||{};
 
+  const b=db.bookings.find(x=>x.id===bookingId)||{};
 
-let items=
-invoice?.items||
-[
-{
-serviceId:"",
-qty:1,
-price:0
-}
-];
+  const items=old.items||[];
 
-
-openModal(`
-
-<div class="modal-title">
-
-<h2>
-${
-invoice
-?
-"تعديل الفاتورة"
-:
-"فاتورة جديدة"
-}
-</h2>
-
-<button
-class="close"
-onclick="closeModal()"
->
-×
-</button>
-
-</div>
-
-
-<div class="field">
-
-<label>
-اسم العميل
-</label>
-
-<input
-id="iName"
-class="input"
-value="${esc(invoice?.name||"")}"
->
-
-</div>
-
-
-<div class="field">
-
-<label>
-رقم الجوال
-</label>
-
-<input
-id="iPhone"
-class="input"
-value="${esc(invoice?.phone||"")}"
->
-
-</div>
-
-
-<div id="invoiceItems">
-
-${
-items
-.map(
-(x,i)=>
-invoiceRow(x,i)
-)
-.join("")
-}
-
-</div>
-
-
-<button
-class="btn secondary full"
-onclick="addInvoiceRow()"
->
-+ إضافة خدمة
-</button>
-
-
-<div
-class="card"
-style="
-margin-top:12px;
-background:#f7fcfd
-"
->
-
-<div
-class="row between"
->
-
-<b>
-الإجمالي
-</b>
-
-<b
-id="invoiceTotal"
->
-0 ر.س
-</b>
-
-</div>
-
-</div>
-
-
-<button
-class="btn primary full"
-style="margin-top:12px"
-onclick="saveInvoice('${id}')"
->
-حفظ الفاتورة
-</button>
-
-`);
-
-
-updateInvoiceTotal();
-
-}
-
-
-function invoiceRow(
-item,
-index
-){
-
-return`
-
-<div
-class="card inv-row"
-style="
-margin-bottom:8px;
-padding:11px
-"
->
-
-<div class="two">
-
-<select
-class="select inv-service"
-onchange="serviceChanged(this)"
->
-
-<option value="">
-اختر الخدمة
-</option>
-
-${
-db.services
-.filter(
-s=>s.visible!==false
-)
-.map(
-s=>`
-
-<option
-value="${s.id}"
-data-price="${s.price}"
-${
-item.serviceId===s.id
-?
-"selected"
-:
-""
-}
->
-
-${esc(s.name)}
--
-${money(s.price)}
-
-</option>
-
+  openModal(
+    editId?"تعديل الفاتورة":"إنشاء فاتورة",
 `
-)
-.join("")
+<form onsubmit="saveInvoice(event,'${editId||""}')">
+
+<div class="form-grid">
+
+<div class="field">
+<label>اسم العميل</label>
+<input id="invoiceCustomer" value="${safe(old.customer||b.name||"")}">
+</div>
+
+<div class="field">
+<label>الجوال</label>
+<input id="invoicePhone" value="${safe(old.phone||b.phone||"")}">
+</div>
+
+<div class="field">
+<label>الحجز</label>
+<select id="invoiceBooking">
+<option value="">بدون حجز</option>
+${db.bookings.map(x=>`
+<option value="${x.id}" ${(old.bookingId||bookingId)===x.id?"selected":""}>
+${safe(x.name)} — ${x.checkIn}
+</option>`).join("")}
+</select>
+</div>
+
+<div class="field">
+<label>المدفوع</label>
+<input id="invoicePaid" type="number" min="0" value="${old.paid||b.paid||0}" oninput="invoiceTotal()">
+</div>
+
+</div>
+
+<div class="section-title">
+<h2>عناصر الفاتورة</h2>
+<button type="button" class="btn btn-secondary" onclick="addInvoiceItem()">+ عنصر</button>
+</div>
+
+<div id="invoiceItems"></div>
+
+<div class="card">
+
+<div class="detail-row">
+<span>الإجمالي</span>
+<strong id="invoiceTotalValue">0 ر.س</strong>
+</div>
+
+<div class="detail-row">
+<span>المدفوع</span>
+<strong id="invoicePaidValue">0 ر.س</strong>
+</div>
+
+<div class="detail-row">
+<span>المتبقي</span>
+<strong id="invoiceRemainingValue">0 ر.س</strong>
+</div>
+
+</div>
+
+<div class="field">
+<label>ملاحظات</label>
+<textarea id="invoiceNotes">${safe(old.notes)}</textarea>
+</div>
+
+<button class="btn btn-primary btn-block" type="submit">
+💾 حفظ الفاتورة
+</button>
+
+</form>
+`
+  );
+
+  window.currentInvoiceItems=items.length
+    ?JSON.parse(JSON.stringify(items))
+    :[
+      {
+        id:id(),
+        name:"حجز الشاليه",
+        qty:1,
+        price:Number(b.price||0)
+      }
+    ];
+
+  setTimeout(()=>{
+    renderInvoiceItems();
+    invoiceTotal();
+  },30);
 }
+
+window.currentInvoiceItems=[];
+
+function addInvoiceItem(){
+
+  window.currentInvoiceItems.push({
+    id:id(),
+    name:"",
+    qty:1,
+    price:0
+  });
+
+  renderInvoiceItems();
+}
+
+function removeInvoiceItem(idValue){
+
+  window.currentInvoiceItems=
+    window.currentInvoiceItems.filter(x=>x.id!==idValue);
+
+  renderInvoiceItems();
+  invoiceTotal();
+}
+
+function renderInvoiceItems(){
+
+  const box=document.getElementById("invoiceItems");
+
+  if(!box)return;
+
+  box.innerHTML=window.currentInvoiceItems.map((x,i)=>`
+
+<div class="card">
+
+<div class="field">
+<label>العنصر</label>
+<select onchange="invoiceSelectItem(${i},this.value)">
+<option value="">كتابة يدوية</option>
+
+<optgroup label="الخدمات">
+${db.services.map(s=>`
+<option value="service:${s.id}"
+${x.sourceId===s.id&&x.sourceType==="service"?"selected":""}>
+🛎️ ${safe(s.name)}
+</option>`).join("")}
+</optgroup>
+
+<optgroup label="ركن القهوة">
+${db.coffee.map(c=>`
+<option value="coffee:${c.id}"
+${x.sourceId===c.id&&x.sourceType==="coffee"?"selected":""}>
+☕ ${safe(c.name)}
+</option>`).join("")}
+</optgroup>
 
 </select>
+</div>
 
+<div class="form-grid">
 
-<input
-class="input inv-qty"
-type="number"
-min="1"
-value="${item.qty||1}"
-oninput="updateInvoiceTotal()"
->
+<div class="field">
+<label>الاسم</label>
+<input value="${safe(x.name)}"
+oninput="invoiceItemChange(${i},'name',this.value)">
+</div>
+
+<div class="field">
+<label>الكمية</label>
+<input type="number" min="1" value="${x.qty||1}"
+oninput="invoiceItemChange(${i},'qty',this.value)">
+</div>
+
+<div class="field">
+<label>السعر</label>
+<input type="number" min="0" step=".01" value="${x.price||0}"
+oninput="invoiceItemChange(${i},'price',this.value)">
+</div>
 
 </div>
 
-
-<div
-class="two"
-style="margin-top:8px"
->
-
-<input
-class="input inv-price"
-type="number"
-min="0"
-value="${item.price||0}"
-oninput="updateInvoiceTotal()"
->
-
-
-<button
-class="btn danger"
-onclick="
-this.closest('.inv-row').remove();
-updateInvoiceTotal()
-"
->
-حذف السطر
+<button type="button" class="btn btn-danger" onclick="removeInvoiceItem('${x.id}')">
+🗑️ حذف العنصر
 </button>
 
 </div>
-
-</div>
-
-`;
-
+`).join("");
 }
 
+function invoiceSelectItem(i,value){
 
-function addInvoiceRow(){
+  const x=window.currentInvoiceItems[i];
 
-let wrap=
-document.getElementById(
-"invoiceItems"
-);
+  if(!value){
+    x.sourceId="";
+    x.sourceType="";
+    return;
+  }
 
+  const [type,itemId]=value.split(":");
 
-let index=
-wrap.querySelectorAll(
-".inv-row"
-).length;
+  const item=type==="service"
+    ?db.services.find(s=>s.id===itemId)
+    :db.coffee.find(c=>c.id===itemId);
 
+  if(item){
+    x.name=item.name;
+    x.price=Number(item.price||0);
+    x.sourceId=item.id;
+    x.sourceType=type;
+  }
 
-wrap.insertAdjacentHTML(
-"beforeend",
-invoiceRow(
-{
-serviceId:"",
-qty:1,
-price:0
-},
-index
-)
-);
-
+  renderInvoiceItems();
+  invoiceTotal();
 }
 
+function invoiceItemChange(i,key,value){
 
-function serviceChanged(select){
+  window.currentInvoiceItems[i][key]=
+    key==="qty"||key==="price"
+      ?Number(value||0)
+      :value;
 
-let option=
-select.selectedOptions[0];
-
-
-let row=
-select.closest(
-".inv-row"
-);
-
-
-row.querySelector(
-".inv-price"
-).value=
-Number(
-option?.dataset.price||0
-);
-
-
-updateInvoiceTotal();
-
+  invoiceTotal();
 }
 
+function invoiceTotal(){
 
-function getInvoiceItems(){
+  const total=window.currentInvoiceItems.reduce(
+    (s,x)=>s+(Number(x.qty||0)*Number(x.price||0)),0
+  );
 
-return [
+  const paid=Number(
+    document.getElementById("invoicePaid")?.value||0
+  );
 
-...document.querySelectorAll(
-".inv-row"
-)
+  const remaining=Math.max(0,total-paid);
 
-]
-.map(
-row=>({
+  const a=document.getElementById("invoiceTotalValue");
+  const b=document.getElementById("invoicePaidValue");
+  const c=document.getElementById("invoiceRemainingValue");
 
-serviceId:
-row.querySelector(
-".inv-service"
-).value,
+  if(a)a.textContent=money(total);
+  if(b)b.textContent=money(paid);
+  if(c)c.textContent=money(remaining);
 
-qty:
-Number(
-row.querySelector(
-".inv-qty"
-).value||1
-),
-
-price:
-Number(
-row.querySelector(
-".inv-price"
-).value||0
-)
-
-})
-)
-.filter(
-x=>x.serviceId
-);
-
+  return{total,paid,remaining};
 }
 
+function saveInvoice(e,editId){
 
-function updateInvoiceTotal(){
+  e.preventDefault();
 
-let total=
-getInvoiceItems()
-.reduce(
-(a,x)=>
-a+
-x.qty*x.price,
-0
-);
+  const totals=invoiceTotal();
 
+  const data={
+    id:editId||id(),
+    customer:document.getElementById("invoiceCustomer").value,
+    phone:document.getElementById("invoicePhone").value,
+    bookingId:document.getElementById("invoiceBooking").value,
+    items:JSON.parse(JSON.stringify(window.currentInvoiceItems)),
+    total:totals.total,
+    paid:totals.paid,
+    remaining:totals.remaining,
+    notes:document.getElementById("invoiceNotes").value,
+    date:today()
+  };
 
-let element=
-document.getElementById(
-"invoiceTotal"
-);
+  const i=db.invoices.findIndex(x=>x.id===data.id);
 
+  if(i>=0)db.invoices[i]=data;
+  else db.invoices.push(data);
 
-if(element){
+  persist();
+  closeModal();
+  renderAll();
 
-element.textContent=
-money(total);
-
+  showToast("تم حفظ الفاتورة");
 }
 
+function deleteInvoice(idValue){
+
+  if(!confirm("حذف الفاتورة؟"))return;
+
+  db.invoices=db.invoices.filter(x=>x.id!==idValue);
+
+  persist();
+  renderAll();
 }
-
-
-function saveInvoice(id){
-
-let name=
-document
-.getElementById("iName")
-.value
-.trim();
-
-
-let items=
-getInvoiceItems();
-
-
-if(
-!name||
-!items.length
-){
-
-return showToast(
-"أدخل العميل وأضف خدمة"
-);
-
-}
-
-
-let total=
-items.reduce(
-(a,x)=>
-a+x.qty*x.price,
-0
-);
-
-
-let old=
-id
-?
-db.invoices.find(
-x=>x.id===id
-)
-:
-null;
-
-
-let object={
-
-id:id||uid(),
-
-number:
-old?.number||
-"RW-"+
-Date.now()
-.toString()
-.slice(-6),
-
-name:name,
-
-phone:
-document
-.getElementById("iPhone")
-.value
-.trim(),
-
-items:items,
-
-total:total,
-
-date:
-dateKey(new Date())
-
-};
-
-
-let index=
-db.invoices.findIndex(
-x=>x.id===object.id
-);
-
-
-if(index>=0){
-
-db.invoices[index]=object;
-
-}else{
-
-db.invoices.push(object);
-
-}
-
-
-persist();
-
-closeModal();
-
-renderAll();
-
-showToast(
-"تم حفظ الفاتورة"
-);
-
-}
-
-
-function deleteInvoice(id){
-
-if(
-!confirm(
-"حذف الفاتورة؟"
-)
-)
-return;
-
-
-db.invoices=
-db.invoices.filter(
-x=>x.id!==id
-);
-
-
-persist();
-
-renderAll();
-
-showToast(
-"تم حذف الفاتورة"
-);
-
-}
-
-
-function shareInvoice(id){
-
-let invoice=
-db.invoices.find(
-x=>x.id===id
-);
-
-
-let text=
-`
-فاتورة ${invoice.number}
-
-شالية روانا
-
-العميل:
-${invoice.name}
-
-الإجمالي:
-${money(invoice.total)}
-`;
-
-
-if(
-navigator.share
-){
-
-navigator.share({
-
-title:
-"فاتورة شالية روانا",
-
-text:text
-
-});
-
-}else{
-
-navigator.clipboard
-?.writeText(text)
-.then(
-()=>
-showToast(
-"تم نسخ الفاتورة"
-)
-);
-
-}
-
-}
-
 
 function renderInvoices(){
 
-document.getElementById(
-"invoiceList"
-).innerHTML=
+  const q=(document.getElementById("invoiceSearch")?.value||"")
+    .toLowerCase();
 
-db.invoices.length
+  const list=db.invoices.filter(x=>
+    (x.customer||"").toLowerCase().includes(q)||
+    (x.phone||"").includes(q)
+  );
 
-?
+  const box=document.getElementById("invoicesList");
 
-db.invoices
-.slice()
-.reverse()
-.map(
-invoice=>`
+  if(!list.length){
+    box.innerHTML='<div class="card empty">لا توجد فواتير</div>';
+    return;
+  }
 
-<div class="list-item">
+  box.innerHTML=list.map(x=>`
+<div class="item">
 
-<div
-class="row between"
->
+<div class="item-main">
 
-<div>
+<div class="item-title">🧾 فاتورة — ${safe(x.customer||"بدون اسم")}</div>
 
-<b>
-${esc(invoice.number)}
-</b>
-
-<div
-style="
-font-size:12px;
-color:var(--muted)
-"
->
-
-${esc(invoice.name)}
-
-•
-
-${formatDate(invoice.date)}
-
+<div class="item-meta">
+📅 ${formatDate(x.date)}<br>
+💰 الإجمالي: ${money(x.total)}<br>
+💵 المدفوع: ${money(x.paid)}<br>
+💳 المتبقي: ${money(x.remaining)}
 </div>
 
 </div>
 
+<div class="item-actions">
 
-<b>
-${money(invoice.total)}
-</b>
+<button class="small-btn" onclick="viewInvoice('${x.id}')">👁️</button>
 
-</div>
+<button class="small-btn" onclick="openInvoice(null,'${x.id}')">✏️</button>
 
+<button class="small-btn" onclick="shareInvoice('${x.id}')">📤</button>
 
-<div
-class="row"
-style="margin-top:9px"
->
-
-<button
-class="btn secondary"
-onclick="
-openInvoiceModal('${invoice.id}')
-"
->
-تعديل
-</button>
-
-
-<button
-class="btn success"
-onclick="
-shareInvoice('${invoice.id}')
-"
->
-مشاركة
-</button>
-
-
-<button
-class="btn danger"
-onclick="
-deleteInvoice('${invoice.id}')
-"
->
-حذف
-</button>
+<button class="small-btn delete" onclick="deleteInvoice('${x.id}')">🗑️</button>
 
 </div>
 
 </div>
+`).join("");
+}
 
+function viewInvoice(idValue){
+
+  const x=db.invoices.find(i=>i.id===idValue);
+
+  if(!x)return;
+
+  openModal(
+    "الفاتورة",
 `
-)
-.join("")
+<div class="card">
 
-:
+<div class="detail-row">
+<span>العميل</span>
+<strong>${safe(x.customer)}</strong>
+</div>
 
+<div class="detail-row">
+<span>الجوال</span>
+<strong>${safe(x.phone)}</strong>
+</div>
+
+</div>
+
+${x.items.map(i=>`
+<div class="item">
+
+<div class="item-main">
+<div class="item-title">${safe(i.name)}</div>
+<div class="item-meta">
+${i.qty} × ${money(i.price)}
+</div>
+</div>
+
+<strong>${money(i.qty*i.price)}</strong>
+
+</div>
+`).join("")}
+
+<div class="card">
+
+<div class="detail-row">
+<span>الإجمالي</span>
+<strong>${money(x.total)}</strong>
+</div>
+
+<div class="detail-row">
+<span>المدفوع</span>
+<strong>${money(x.paid)}</strong>
+</div>
+
+<div class="detail-row">
+<span>المتبقي</span>
+<strong>${money(x.remaining)}</strong>
+</div>
+
+</div>
+
+<button class="btn btn-primary btn-block" onclick="shareInvoice('${x.id}')">
+📤 مشاركة الفاتورة
+</button>
 `
+  );
+}
 
-<div class="card empty">
+function shareInvoice(idValue){
 
-<div class="emoji">
-🧾
-</div>
+  const x=db.invoices.find(i=>i.id===idValue);
 
-<b>
-لا توجد فواتير
-</b>
+  if(!x)return;
 
-</div>
+  const text=
+`🧾 فاتورة شالية روانا
 
-`;
+العميل: ${x.customer||"-"}
+الجوال: ${x.phone||"-"}
 
+${x.items.map(i=>
+`${i.name} — ${i.qty} × ${money(i.price)} = ${money(i.qty*i.price)}`
+).join("\n")}
+
+الإجمالي: ${money(x.total)}
+المدفوع: ${money(x.paid)}
+المتبقي: ${money(x.remaining)}
+
+شكراً لتعاملكم مع شالية روانا 🌊`;
+
+  shareText(text);
+}
+
+function shareText(text){
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"شالية روانا",
+      text
+    }).catch(()=>{});
+
+  }else{
+
+    navigator.clipboard?.writeText(text);
+
+    showToast("تم نسخ النص للمشاركة");
+  }
 }
 
 
-/* =====================================================
+/* =========================
+   الأرباح
+========================= */
+
+function renderProfits(){
+
+  const c=calculate();
+
+  document.getElementById("profitRevenue").textContent=money(c.revenue);
+  document.getElementById("profitExpenses").textContent=money(c.expenses);
+  document.getElementById("profitNet").textContent=money(c.profit);
+}
+
+
+/* =========================
    الإعدادات
-===================================================== */
+========================= */
 
-function saveSettings(){
+function saveBasicSettings(){
 
-db.settings.name=
-document
-.getElementById(
-"setName"
-)
-.value
-.trim()
-||
-"شالية روانا";
+  db.settings.appName=
+    document.getElementById("settingAppName").value||"شالية روانا";
 
+  db.settings.userName=
+    document.getElementById("settingUserName").value||"";
 
-db.settings.user=
-document
-.getElementById(
-"setUser"
-)
-.value
-.trim();
-
-
-persist();
-
-applySettings();
-
-showToast(
-"تم حفظ الإعدادات"
-);
-
+  persist();
+  applyBasicSettings();
+  showToast("تم حفظ الإعدادات");
 }
 
+function applyBasicSettings(){
+
+  document.getElementById("appName").textContent=
+    db.settings.appName;
+
+  document.getElementById("welcomeName").textContent=
+    db.settings.userName
+      ?`مرحباً ${db.settings.userName} 👋`
+      :"مرحباً بك 👋";
+
+  document.title=db.settings.appName;
+}
 
 function renderSettings(){
 
-document.getElementById(
-"setName"
-).value=
-db.settings.name;
+  document.getElementById("settingAppName").value=
+    db.settings.appName;
 
+  document.getElementById("settingUserName").value=
+    db.settings.userName;
 
-document.getElementById(
-"setUser"
-).value=
-db.settings.user;
+  document.getElementById("colorBooked").value=
+    db.colors.booked;
 
+  document.getElementById("colorAvailable").value=
+    db.colors.available;
 
-document.getElementById(
-"colorPrimary"
-).value=
-db.settings.colors.primary;
+  document.getElementById("colorThursday").value=
+    db.colors.thursday;
 
+  document.getElementById("colorFriday").value=
+    db.colors.friday;
 
-document.getElementById(
-"colorBooked"
-).value=
-db.settings.colors.booked;
+  const home=[
+    ["showStats","📊 الإحصائيات"],
+    ["showProfit","📈 صافي الربح"],
+    ["showQuick","⚡ الإجراءات السريعة"],
+    ["showBookings","📅 الحجوزات"],
+    ["showExpenses","💸 المصروفات"],
+    ["showInvoices","🧾 الفواتير"],
+    ["showContracts","📜 العقود"],
+    ["showServices","🛎️ الخدمات"],
+    ["showCoffee","☕ ركن القهوة"],
+    ["showCustomers","👤 العملاء"]
+  ];
 
+  document.getElementById("homeSettings").innerHTML=
+    home.map(([key,label])=>settingHTML(
+      key,
+      label,
+      "التحكم في ظهور العنصر"
+    )).join("");
 
-document.getElementById(
-"colorAvailable"
-).value=
-db.settings.colors.available;
+  const sections=[
+    ["showBookings","📅 الحجوزات"],
+    ["showCustomers","👤 العملاء"],
+    ["showCoffee","☕ ركن القهوة"],
+    ["showServices","🛎️ الخدمات"],
+    ["showContracts","📜 العقود"],
+    ["showInvoices","🧾 الفواتير"],
+    ["showExpenses","💸 المصروفات"]
+  ];
 
+  document.getElementById("sectionSettings").innerHTML=
+    sections.map(([key,label])=>settingHTML(
+      key,
+      label,
+      "إظهار أو إخفاء القسم"
+    )).join("");
+}
 
-document.getElementById(
-"colorWeekend"
-).value=
-db.settings.colors.weekend;
+function settingHTML(key,label,description){
 
-
-const labels={
-
-revenue:"الإيرادات",
-
-expenses:"المصروفات",
-
-profit:"صافي الربح",
-
-bookings:"الحجوزات",
-
-paid:"المدفوع",
-
-remaining:"المتبقي",
-
-quick:"الإجراءات السريعة",
-
-upcoming:"الحجوزات القادمة"
-
-};
-
-
-document.getElementById(
-"homeSettings"
-).innerHTML=
-
-Object
-.entries(labels)
-.map(
-([key,label])=>
-`
-
+  return `
 <div class="setting">
 
-<div>
+<div class="setting-text">
+<strong>${label}</strong>
+<small>${description}</small>
+</div>
 
-<label>
-${label}
+<label class="switch">
+
+<input type="checkbox"
+${db.settings[key]!==false?"checked":""}
+onchange="toggleSetting('${key}',this.checked)">
+
+<span class="slider"></span>
+
 </label>
 
-<small>
-إظهار أو إخفاء من الرئيسية
-</small>
-
-</div>
-
-
-<button
-class="switch ${
-db.settings.home[key]
-?
-"on"
-:
-""
-}"
-onclick="
-toggleHome('${key}')
-"
->
-</button>
-
-</div>
-
-`
-)
-.join("");
-
+</div>`;
 }
 
+function toggleSetting(key,value){
 
-function toggleHome(key){
+  db.settings[key]=value;
 
-db.settings.home[key]=
-!db.settings.home[key];
+  persist();
 
+  applyHomeSettings();
 
-persist();
-
-renderSettings();
-
-applySettings();
-
+  showToast("تم تحديث الإعداد");
 }
 
+function applyHomeSettings(){
+
+  const s=db.settings;
+
+  document.getElementById("statsSection").style.display=
+    s.showStats===false?"none":"block";
+
+  document.getElementById("profitStat").style.display=
+    s.showProfit===false?"none":"block";
+
+  document.getElementById("quickSection").style.display=
+    s.showQuick===false?"none":"block";
+
+  document.getElementById("upcomingSection").style.display=
+    s.showBookings===false?"none":"block";
+}
 
 function saveColors(){
 
-db.settings.colors.primary=
-document
-.getElementById(
-"colorPrimary"
-)
-.value;
+  db.colors.booked=
+    document.getElementById("colorBooked").value;
 
+  db.colors.available=
+    document.getElementById("colorAvailable").value;
 
-db.settings.colors.booked=
-document
-.getElementById(
-"colorBooked"
-)
-.value;
+  db.colors.thursday=
+    document.getElementById("colorThursday").value;
 
+  db.colors.friday=
+    document.getElementById("colorFriday").value;
 
-db.settings.colors.available=
-document
-.getElementById(
-"colorAvailable"
-)
-.value;
+  document.documentElement.style.setProperty(
+    "--weekend",
+    db.colors.thursday
+  );
 
+  persist();
+  renderCalendar();
 
-db.settings.colors.weekend=
-document
-.getElementById(
-"colorWeekend"
-)
-.value;
-
-
-persist();
-
-applySettings();
-
-renderCalendar();
-
-showToast(
-"تم حفظ الألوان"
-);
-
+  showToast("تم حفظ الألوان");
 }
 
 
-/* =====================================================
-   تشغيل التطبيق
-===================================================== */
+/* =========================
+   إظهار الأقسام في التنقل
+========================= */
+
+function updateNavigation(){
+
+  const map={
+    bookings:"showBookings",
+    coffee:"showCoffee",
+    invoices:"showInvoices"
+  };
+
+  document.querySelectorAll(".nav-item").forEach(btn=>{
+
+    const page=btn.dataset.page;
+
+    if(map[page]){
+      btn.style.display=
+        db.settings[map[page]]===false
+          ?"none"
+          :"block";
+    }
+
+  });
+}
+
+
+/* =========================
+   كل التحديثات
+========================= */
 
 function renderAll(){
 
-applySettings();
+  applyBasicSettings();
 
-renderHome();
+  renderHome();
+  renderCalendar();
+  renderBookings();
+  renderCustomers();
+  renderCategories();
+  renderCoffeeTabs();
+  renderCoffee();
+  renderServices();
+  renderContracts();
+  renderInvoices();
+  renderExpenses();
+  renderProfits();
+  renderSettings();
 
-renderCalendar();
-
-renderExpenses();
-
-renderInvoices();
-
-renderServices();
-
-persist();
-
+  updateNavigation();
 }
 
 
-renderAll();
+/* =========================
+   تشغيل التطبيق
+========================= */
+
+function init(){
+
+  applyBasicSettings();
+
+  renderAll();
+
+  document.documentElement.style.setProperty(
+    "--weekend",
+    db.colors.thursday
+  );
+
+}
+
+init();
 
 </script>
 
