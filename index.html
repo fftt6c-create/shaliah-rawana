@@ -2,972 +2,5002 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#087ea4">
 
 <title>شالية روانا</title>
 
 <style>
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 :root{
-    --primary:#087ea4;
-    --primary-dark:#075b78;
-    --secondary:#28b8c9;
-    --light:#eaf9fc;
-    --background:#f5fbfd;
-    --card:#ffffff;
-    --text:#173b4a;
-    --muted:#78909c;
-    --border:#d9edf2;
-    --shadow:0 6px 20px rgba(8,126,164,.10);
+--primary:#087ea4;
+--secondary:#20b8c8;
+--dark:#07566f;
+--background:#f3fbfd;
+--card:#ffffff;
+--text:#173b4a;
+--muted:#708b96;
+--border:#d9edf2;
 
-    --available:#2eae68;
-    --booked:#e74c3c;
-    --weekend:#f2c94c;
+--available:#2eae68;
+--booked:#e74c3c;
+--weekend:#f2c94c;
+
+--shadow:0 7px 22px rgba(8,126,164,.10);
+--radius:20px;
 }
 
 body{
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Tahoma,
-        Arial,
-        sans-serif;
-
-    background:var(--background);
-    color:var(--text);
-    min-height:100vh;
+margin:0;
+background:var(--background);
+color:var(--text);
+font-family:
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Tahoma,
+Arial,
+sans-serif;
 }
 
 button,
 input,
 select,
 textarea{
-    font-family:inherit;
+font:inherit;
 }
 
 button{
-    cursor:pointer;
+cursor:pointer;
+}
+
+.hidden{
+display:none!important;
 }
 
 .app{
-    min-height:100vh;
-    padding-bottom:90px;
+min-height:100vh;
+padding-bottom:82px;
 }
 
-/* =========================
-   الهيدر
-========================= */
+/* ================= HEADER ================= */
 
 .header{
-    position:relative;
-    overflow:hidden;
-    background:linear-gradient(
-        135deg,
-        var(--primary-dark),
-        var(--primary),
-        var(--secondary)
-    );
-    color:white;
-    padding:28px 20px 55px;
-    border-radius:0 0 32px 32px;
-    box-shadow:0 8px 25px rgba(8,126,164,.20);
+background:
+linear-gradient(
+135deg,
+var(--dark),
+var(--primary),
+var(--secondary)
+);
+
+color:white;
+
+padding:22px 16px 55px;
+
+border-radius:
+0 0 30px 30px;
+
+position:relative;
+
+overflow:hidden;
 }
 
-.header::after{
-    content:"";
-    position:absolute;
-    width:180px;
-    height:180px;
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    left:-60px;
-    top:-80px;
+.header:after{
+content:"";
+
+position:absolute;
+
+width:240px;
+height:240px;
+
+border-radius:50%;
+
+background:#ffffff18;
+
+left:-80px;
+top:-100px;
 }
 
-.header-content{
-    position:relative;
-    z-index:2;
+.header-inner{
+max-width:1000px;
+margin:auto;
+
+position:relative;
+z-index:1;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:25px;
+.topline{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
 }
 
-.logo-icon{
-    width:48px;
-    height:48px;
-    background:rgba(255,255,255,.18);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:26px;
+.brand{
+display:flex;
+align-items:center;
+gap:11px;
 }
 
-.logo h1{
-    font-size:20px;
-    font-weight:800;
+.brand-icon{
+width:48px;
+height:48px;
+
+border-radius:15px;
+
+background:#ffffff22;
+
+display:grid;
+place-items:center;
+
+font-size:26px;
 }
 
-.logo span{
-    display:block;
-    font-size:12px;
-    opacity:.85;
-    margin-top:3px;
+.brand h1{
+font-size:20px;
+margin:0;
+}
+
+.brand small{
+opacity:.85;
+}
+
+.icon-btn{
+border:0;
+background:#ffffff22;
+color:white;
+
+width:44px;
+height:44px;
+
+border-radius:14px;
+
+font-size:21px;
 }
 
 .welcome{
-    font-size:14px;
-    opacity:.85;
-    margin-bottom:6px;
+margin-top:22px;
+font-size:13px;
+opacity:.9;
 }
 
-.header h2{
-    font-size:27px;
-    font-weight:800;
+.header-title{
+font-size:27px;
+font-weight:800;
+
+margin-top:4px;
 }
 
-/* =========================
-   المحتوى
-========================= */
+/* ================= CONTAINER ================= */
 
-.content{
-    width:100%;
-    max-width:900px;
-    margin:-28px auto 0;
-    padding:0 15px;
-    position:relative;
-    z-index:3;
+.container{
+max-width:1000px;
+margin:-25px auto 0;
+
+padding:0 14px;
+
+position:relative;
 }
-
-/* =========================
-   الإحصائيات
-========================= */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.stat-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:17px;
-    box-shadow:var(--shadow);
-}
-
-.stat-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
-}
-
-.stat-icon{
-    width:40px;
-    height:40px;
-    border-radius:13px;
-    background:var(--light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-}
-
-.stat-label{
-    font-size:12px;
-    color:var(--muted);
-}
-
-.stat-value{
-    font-size:20px;
-    font-weight:800;
-    color:var(--text);
-}
-
-/* =========================
-   العناوين
-========================= */
-
-.section{
-    margin-top:25px;
-}
-
-.section-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:12px;
-}
-
-.section-title h3{
-    font-size:18px;
-    font-weight:800;
-}
-
-.section-title span{
-    font-size:12px;
-    color:var(--muted);
-}
-
-/* =========================
-   الإجراءات السريعة
-========================= */
-
-.quick-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.quick-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:18px;
-    min-height:110px;
-    box-shadow:var(--shadow);
-    transition:.2s;
-}
-
-.quick-card:active{
-    transform:scale(.97);
-}
-
-.quick-icon{
-    width:43px;
-    height:43px;
-    border-radius:14px;
-    background:var(--light);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    margin-bottom:12px;
-}
-
-.quick-title{
-    font-size:15px;
-    font-weight:800;
-}
-
-.quick-description{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
-
-/* =========================
-   الحالة
-========================= */
-
-.empty-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:30px 20px;
-    text-align:center;
-    box-shadow:var(--shadow);
-}
-
-.empty-icon{
-    font-size:38px;
-    margin-bottom:10px;
-}
-
-.empty-card h4{
-    font-size:16px;
-    margin-bottom:6px;
-}
-
-.empty-card p{
-    font-size:12px;
-    color:var(--muted);
-}
-
-/* =========================
-   شريط التنقل
-========================= */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    right:0;
-    left:0;
-    z-index:100;
-    height:76px;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(15px);
-    border-top:1px solid var(--border);
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:6px 8px env(safe-area-inset-bottom);
-}
-
-.nav-item{
-    border:0;
-    background:none;
-    color:#8ba0a9;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    min-width:60px;
-    height:62px;
-    border-radius:15px;
-    transition:.2s;
-}
-
-.nav-item .nav-icon{
-    font-size:22px;
-}
-
-.nav-item .nav-text{
-    font-size:10px;
-    font-weight:700;
-}
-
-.nav-item.active{
-    color:var(--primary);
-    background:var(--light);
-}
-
-/* =========================
-   الصفحات
-========================= */
 
 .page{
-    display:none;
+display:none;
 }
 
 .page.active{
-    display:block;
+display:block;
 }
 
-/* =========================
-   استجابة الشاشات
-========================= */
+.section{
+margin-top:22px;
+}
+
+.section-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:11px;
+}
+
+.section-head h2{
+font-size:18px;
+margin:0;
+}
+
+.section-head span{
+font-size:12px;
+color:var(--muted);
+}
+
+/* ================= CARDS ================= */
+
+.card{
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+padding:16px;
+}
+
+.grid{
+display:grid;
+gap:12px;
+}
+
+.stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.quick{
+grid-template-columns:repeat(2,1fr);
+}
+
+.stat-card{
+padding:15px;
+}
+
+.stat-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.stat-icon,
+.quick-icon{
+
+width:42px;
+height:42px;
+
+border-radius:14px;
+
+background:#eaf9fc;
+
+display:grid;
+place-items:center;
+
+font-size:21px;
+}
+
+.stat-label{
+font-size:12px;
+color:var(--muted);
+}
+
+.stat-value{
+font-size:20px;
+font-weight:800;
+margin-top:10px;
+}
+
+.quick-card{
+border:1px solid var(--border);
+
+background:white;
+
+border-radius:19px;
+
+padding:16px;
+
+text-align:right;
+
+box-shadow:var(--shadow);
+}
+
+.quick-title{
+font-weight:800;
+margin-top:10px;
+}
+
+.quick-desc{
+font-size:11px;
+color:var(--muted);
+margin-top:4px;
+}
+
+/* ================= BUTTONS ================= */
+
+.btn{
+border:0;
+
+border-radius:14px;
+
+padding:11px 15px;
+
+font-weight:800;
+}
+
+.primary{
+background:var(--primary);
+color:white;
+}
+
+.secondary{
+background:#eaf9fc;
+color:var(--primary);
+}
+
+.danger{
+background:#fff0ee;
+color:var(--booked);
+}
+
+.success{
+background:#ebf8f1;
+color:var(--available);
+}
+
+.full{
+width:100%;
+}
+
+/* ================= ROW ================= */
+
+.row{
+display:flex;
+gap:8px;
+
+align-items:center;
+
+flex-wrap:wrap;
+}
+
+.between{
+justify-content:space-between;
+}
+
+/* ================= FORMS ================= */
+
+.field{
+margin-bottom:12px;
+}
+
+.field label{
+display:block;
+
+font-size:12px;
+
+font-weight:800;
+
+margin-bottom:6px;
+}
+
+.input,
+.select,
+.textarea{
+
+width:100%;
+
+border:
+1px solid var(--border);
+
+border-radius:13px;
+
+padding:12px;
+
+background:white;
+
+color:var(--text);
+
+outline:none;
+}
+
+.textarea{
+min-height:90px;
+resize:vertical;
+}
+
+.two{
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+}
+
+/* ================= LIST ================= */
+
+.list{
+display:grid;
+gap:10px;
+}
+
+.list-item{
+
+background:white;
+
+border:
+1px solid var(--border);
+
+border-radius:17px;
+
+padding:13px;
+}
+
+.badge{
+
+display:inline-flex;
+
+padding:5px 9px;
+
+border-radius:99px;
+
+font-size:11px;
+
+font-weight:800;
+}
+
+.badge.green{
+background:#eaf8f0;
+color:var(--available);
+}
+
+.badge.red{
+background:#fff0ee;
+color:var(--booked);
+}
+
+.badge.yellow{
+background:#fff8d9;
+color:#9b7a00;
+}
+
+.badge.blue{
+background:#eaf9fc;
+color:var(--primary);
+}
+
+.empty{
+text-align:center;
+
+padding:30px 15px;
+
+color:var(--muted);
+}
+
+.empty .emoji{
+font-size:38px;
+
+margin-bottom:8px;
+}
+
+/* ================= CALENDAR ================= */
+
+.calendar{
+overflow:hidden;
+}
+
+.cal-head{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+}
+
+.cal-head strong{
+font-size:18px;
+}
+
+.calendar-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(7,1fr);
+
+gap:5px;
+}
+
+.dow{
+
+text-align:center;
+
+font-size:10px;
+
+font-weight:800;
+
+color:var(--muted);
+
+padding:5px 0;
+}
+
+.day{
+
+min-height:58px;
+
+border:
+1px solid var(--border);
+
+border-radius:11px;
+
+background:white;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+position:relative;
+
+font-weight:800;
+
+padding:3px;
+}
+
+.day.emptyday{
+visibility:hidden;
+}
+
+.day.available{
+
+background:
+color-mix(
+in srgb,
+var(--available) 12%,
+white
+);
+
+border-color:
+color-mix(
+in srgb,
+var(--available) 35%,
+white
+);
+
+color:
+color-mix(
+in srgb,
+var(--available) 80%,
+black
+);
+}
+
+.day.booked{
+
+background:
+color-mix(
+in srgb,
+var(--booked) 14%,
+white
+);
+
+border-color:
+color-mix(
+in srgb,
+var(--booked) 35%,
+white
+);
+
+color:
+color-mix(
+in srgb,
+var(--booked) 80%,
+black
+);
+}
+
+.day.weekend{
+
+background:
+color-mix(
+in srgb,
+var(--weekend) 25%,
+white
+);
+
+border-color:
+color-mix(
+in srgb,
+var(--weekend) 55%,
+white
+);
+
+color:#806a00;
+}
+
+.day.booked.weekend{
+
+background:
+linear-gradient(
+135deg,
+color-mix(in srgb,var(--booked) 14%,white) 0 70%,
+color-mix(in srgb,var(--weekend) 25%,white) 70%
+);
+}
+
+.day.today{
+
+outline:
+2px solid var(--primary);
+}
+
+.day small{
+
+font-size:8px;
+
+margin-top:3px;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+max-width:95%;
+
+text-overflow:ellipsis;
+}
+
+/* ================= MODAL ================= */
+
+.modal-wrap{
+
+position:fixed;
+
+inset:0;
+
+background:#0008;
+
+z-index:100;
+
+display:none;
+
+align-items:flex-end;
+
+justify-content:center;
+
+padding:10px;
+}
+
+.modal-wrap.show{
+display:flex;
+}
+
+.modal{
+
+background:white;
+
+width:100%;
+
+max-width:700px;
+
+max-height:92vh;
+
+overflow:auto;
+
+border-radius:
+25px 25px 12px 12px;
+
+padding:18px;
+}
+
+.modal-title{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:16px;
+}
+
+.modal-title h2{
+
+margin:0;
+
+font-size:19px;
+}
+
+.close{
+
+border:0;
+
+background:#f0f5f7;
+
+border-radius:12px;
+
+width:38px;
+
+height:38px;
+
+font-size:22px;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom{
+
+position:fixed;
+
+bottom:0;
+
+right:0;
+left:0;
+
+height:76px;
+
+background:#fffffff5;
+
+backdrop-filter:blur(15px);
+
+border-top:
+1px solid var(--border);
+
+display:flex;
+
+justify-content:space-around;
+
+z-index:50;
+
+padding-bottom:
+env(safe-area-inset-bottom);
+}
+
+.nav{
+
+border:0;
+
+background:none;
+
+color:#8aa0a9;
+
+min-width:60px;
+
+border-radius:15px;
+
+margin:6px 2px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:3px;
+}
+
+.nav.active{
+
+color:var(--primary);
+
+background:#eaf9fc;
+}
+
+.nav b{
+font-size:21px;
+}
+
+.nav small{
+font-size:10px;
+
+font-weight:700;
+}
+
+/* ================= SETTINGS ================= */
+
+.setting{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:13px 0;
+
+border-bottom:
+1px solid var(--border);
+}
+
+.setting:last-child{
+border-bottom:0;
+}
+
+.setting label{
+font-weight:800;
+}
+
+.setting small{
+
+display:block;
+
+color:var(--muted);
+
+font-weight:400;
+
+margin-top:3px;
+}
+
+.switch{
+
+width:48px;
+
+height:28px;
+
+border-radius:99px;
+
+background:#d7e4e8;
+
+padding:3px;
+
+border:0;
+}
+
+.switch:after{
+
+content:"";
+
+display:block;
+
+width:22px;
+
+height:22px;
+
+background:white;
+
+border-radius:50%;
+
+transition:.2s;
+}
+
+.switch.on{
+
+background:var(--primary);
+}
+
+.switch.on:after{
+
+transform:
+translateX(-20px);
+}
+
+.color-input{
+
+width:48px;
+
+height:36px;
+
+border:0;
+
+padding:0;
+
+background:none;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+
+position:fixed;
+
+top:18px;
+
+left:50%;
+
+transform:
+translateX(-50%)
+translateY(-20px);
+
+background:#173b4a;
+
+color:white;
+
+padding:11px 16px;
+
+border-radius:12px;
+
+z-index:200;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.25s;
+
+font-size:13px;
+}
+
+.toast.show{
+
+opacity:1;
+
+transform:
+translateX(-50%)
+translateY(0);
+}
+
+/* ================= DESKTOP ================= */
 
 @media(min-width:700px){
 
-    .stats{
-        grid-template-columns:repeat(4,1fr);
-    }
-
-    .quick-grid{
-        grid-template-columns:repeat(4,1fr);
-    }
-
-    .content{
-        padding:0 25px;
-    }
-
-    .header{
-        padding-right:calc((100% - 850px)/2 + 25px);
-        padding-left:calc((100% - 850px)/2 + 25px);
-    }
+.stats{
+grid-template-columns:
+repeat(4,1fr);
 }
+
+.quick{
+grid-template-columns:
+repeat(4,1fr);
+}
+
+.modal-wrap{
+align-items:center;
+}
+
+.modal{
+border-radius:25px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
+<div id="toast" class="toast"></div>
+
 <div class="app">
 
-    <!-- =========================
-         الرئيسية
-    ========================== -->
+<!-- ================= HEADER ================= -->
 
-    <main id="homePage" class="page active">
+<header class="header">
 
-        <header class="header">
+<div class="header-inner">
 
-            <div class="header-content">
+<div class="topline">
 
-                <div class="logo">
+<div class="brand">
 
-                    <div class="logo-icon">
-                        🌊
-                    </div>
+<div class="brand-icon">
+🌊
+</div>
 
-                    <div>
-                        <h1>شالية روانا</h1>
-                        <span>إدارة الشالية والحجوزات</span>
-                    </div>
+<div>
 
-                </div>
+<h1 id="brandName">
+شالية روانا
+</h1>
 
-                <div class="welcome">
-                    أهلاً وسهلاً 👋
-                </div>
+<small>
+إدارة الشالية والحجوزات
+</small>
 
-                <h2>
-                    يومك سعيد
-                </h2>
+</div>
 
-            </div>
+</div>
 
-        </header>
+<button
+class="icon-btn"
+onclick="openPage('settings')"
+>
+⚙️
+</button>
 
+</div>
 
-        <div class="content">
+<div class="welcome">
+أهلاً وسهلاً 👋
+</div>
 
-            <!-- الإحصائيات -->
+<div
+class="header-title"
+id="headerTitle"
+>
+يومك سعيد
+</div>
 
-            <section class="section">
+</div>
 
-                <div class="section-title">
-                    <h3>نظرة سريعة</h3>
-                    <span>الإحصائيات</span>
-                </div>
+</header>
 
-                <div class="stats">
 
-                    <div class="stat-card">
+<div class="container">
 
-                        <div class="stat-top">
+<!-- ================= HOME ================= -->
 
-                            <div class="stat-icon">
-                                💰
-                            </div>
+<section
+id="page-home"
+class="page active"
+>
 
-                            <div class="stat-label">
-                                الإيرادات
-                            </div>
+<div class="section">
 
-                        </div>
+<div class="grid stats">
 
-                        <div class="stat-value">
-                            0 ر.س
-                        </div>
+<div
+class="card stat-card"
+data-home="revenue"
+>
 
-                    </div>
+<div class="stat-top">
 
+<div class="stat-icon">
+💰
+</div>
 
-                    <div class="stat-card">
+<span class="stat-label">
+الإيرادات
+</span>
 
-                        <div class="stat-top">
+</div>
 
-                            <div class="stat-icon">
-                                💸
-                            </div>
+<div
+class="stat-value"
+id="statRevenue"
+>
+0 ر.س
+</div>
 
-                            <div class="stat-label">
-                                المصروفات
-                            </div>
+</div>
 
-                        </div>
 
-                        <div class="stat-value">
-                            0 ر.س
-                        </div>
+<div
+class="card stat-card"
+data-home="expenses"
+>
 
-                    </div>
+<div class="stat-top">
 
+<div class="stat-icon">
+💸
+</div>
 
-                    <div class="stat-card">
+<span class="stat-label">
+المصروفات
+</span>
 
-                        <div class="stat-top">
+</div>
 
-                            <div class="stat-icon">
-                                📈
-                            </div>
+<div
+class="stat-value"
+id="statExpenses"
+>
+0 ر.س
+</div>
 
-                            <div class="stat-label">
-                                صافي الربح
-                            </div>
+</div>
 
-                        </div>
 
-                        <div class="stat-value">
-                            0 ر.س
-                        </div>
+<div
+class="card stat-card"
+data-home="profit"
+>
 
-                    </div>
+<div class="stat-top">
 
+<div class="stat-icon">
+📈
+</div>
 
-                    <div class="stat-card">
+<span class="stat-label">
+صافي الربح
+</span>
 
-                        <div class="stat-top">
+</div>
 
-                            <div class="stat-icon">
-                                📅
-                            </div>
+<div
+class="stat-value"
+id="statProfit"
+>
+0 ر.س
+</div>
 
-                            <div class="stat-label">
-                                الحجوزات
-                            </div>
+</div>
 
-                        </div>
 
-                        <div class="stat-value">
-                            0
-                        </div>
+<div
+class="card stat-card"
+data-home="bookings"
+>
 
-                    </div>
+<div class="stat-top">
 
-                </div>
+<div class="stat-icon">
+📅
+</div>
 
-            </section>
+<span class="stat-label">
+الحجوزات
+</span>
 
+</div>
 
-            <!-- الإجراءات السريعة -->
+<div
+class="stat-value"
+id="statBookings"
+>
+0
+</div>
 
-            <section class="section">
+</div>
 
-                <div class="section-title">
-                    <h3>إجراءات سريعة</h3>
-                    <span>الوصول السريع</span>
-                </div>
 
-                <div class="quick-grid">
+<div
+class="card stat-card"
+data-home="paid"
+>
 
-                    <button class="quick-card" onclick="openPage('bookings')">
+<div class="stat-top">
 
-                        <div class="quick-icon">
-                            📅
-                        </div>
+<div class="stat-icon">
+💵
+</div>
 
-                        <div class="quick-title">
-                            الحجوزات
-                        </div>
+<span class="stat-label">
+المدفوع
+</span>
 
-                        <div class="quick-description">
-                            إدارة الحجوزات والتقويم
-                        </div>
+</div>
 
-                    </button>
+<div
+class="stat-value"
+id="statPaid"
+>
+0 ر.س
+</div>
 
+</div>
 
-                    <button class="quick-card" onclick="openPage('expenses')">
 
-                        <div class="quick-icon">
-                            💰
-                        </div>
+<div
+class="card stat-card"
+data-home="remaining"
+>
 
-                        <div class="quick-title">
-                            المصروفات
-                        </div>
+<div class="stat-top">
 
-                        <div class="quick-description">
-                            متابعة المصروفات
-                        </div>
+<div class="stat-icon">
+🧮
+</div>
 
-                    </button>
+<span class="stat-label">
+المتبقي
+</span>
 
+</div>
 
-                    <button class="quick-card" onclick="openPage('invoices')">
+<div
+class="stat-value"
+id="statRemaining"
+>
+0 ر.س
+</div>
 
-                        <div class="quick-icon">
-                            🧾
-                        </div>
+</div>
 
-                        <div class="quick-title">
-                            الفواتير
-                        </div>
+</div>
 
-                        <div class="quick-description">
-                            إنشاء وإدارة الفواتير
-                        </div>
+</div>
 
-                    </button>
 
+<!-- QUICK -->
 
-                    <button class="quick-card" onclick="openPage('services')">
+<div
+class="section"
+data-home-section="quick"
+>
 
-                        <div class="quick-icon">
-                            🛎️
-                        </div>
+<div class="section-head">
 
-                        <div class="quick-title">
-                            الخدمات
-                        </div>
+<h2>
+إجراءات سريعة
+</h2>
 
-                        <div class="quick-description">
-                            إدارة خدمات الشالية
-                        </div>
+<span>
+الوصول السريع
+</span>
 
-                    </button>
+</div>
 
-                </div>
 
-            </section>
+<div class="grid quick">
 
+<button
+class="quick-card"
+onclick="openBookingModal()"
+>
 
-            <!-- الحجوزات القادمة -->
+<div class="quick-icon">
+➕
+</div>
 
-            <section class="section">
+<div class="quick-title">
+حجز جديد
+</div>
 
-                <div class="section-title">
-                    <h3>الحجوزات القادمة</h3>
-                    <span>قريباً</span>
-                </div>
+<div class="quick-desc">
+إضافة حجز للشالية
+</div>
 
-                <div class="empty-card">
+</button>
 
-                    <div class="empty-icon">
-                        🏝️
-                    </div>
 
-                    <h4>
-                        لا توجد حجوزات حالياً
-                    </h4>
+<button
+class="quick-card"
+onclick="openPage('bookings')"
+>
 
-                    <p>
-                        ستظهر هنا الحجوزات القادمة عند إضافتها
-                    </p>
+<div class="quick-icon">
+📅
+</div>
 
-                </div>
+<div class="quick-title">
+التقويم
+</div>
 
-            </section>
+<div class="quick-desc">
+عرض حالة الأيام
+</div>
 
-        </div>
+</button>
 
-    </main>
 
+<button
+class="quick-card"
+onclick="openExpenseModal()"
+>
 
-    <!-- =========================
-         الحجوزات
-    ========================== -->
+<div class="quick-icon">
+💰
+</div>
 
-    <main id="bookingsPage" class="page">
+<div class="quick-title">
+مصروف جديد
+</div>
 
-        <header class="header">
+<div class="quick-desc">
+تسجيل مصروف
+</div>
 
-            <div class="header-content">
+</button>
 
-                <div class="logo">
-                    <div class="logo-icon">📅</div>
 
-                    <div>
-                        <h1>الحجوزات</h1>
-                        <span>التقويم وإدارة الحجوزات</span>
-                    </div>
-                </div>
+<button
+class="quick-card"
+onclick="openInvoiceModal()"
+>
 
-            </div>
+<div class="quick-icon">
+🧾
+</div>
 
-        </header>
+<div class="quick-title">
+فاتورة جديدة
+</div>
 
-        <div class="content">
+<div class="quick-desc">
+إنشاء فاتورة
+</div>
 
-            <div class="empty-card">
+</button>
 
-                <div class="empty-icon">
-                    📅
-                </div>
+</div>
 
-                <h4>
-                    قسم الحجوزات
-                </h4>
+</div>
 
-                <p>
-                    سيتم بناء التقويم والحجوزات في الخطوة القادمة
-                </p>
 
-            </div>
+<!-- UPCOMING -->
 
-        </div>
+<div
+class="section"
+data-home-section="upcoming"
+>
 
-    </main>
+<div class="section-head">
 
+<h2>
+الحجوزات القادمة
+</h2>
 
-    <!-- =========================
-         المصروفات
-    ========================== -->
+<span>
+حسب التاريخ
+</span>
 
-    <main id="expensesPage" class="page">
+</div>
 
-        <header class="header">
+<div
+id="upcomingList"
+class="list"
+>
+</div>
 
-            <div class="header-content">
+</div>
 
-                <div class="logo">
-                    <div class="logo-icon">💰</div>
+</section>
 
-                    <div>
-                        <h1>المصروفات</h1>
-                        <span>إدارة ومتابعة المصروفات</span>
-                    </div>
-                </div>
 
-            </div>
+<!-- ================= BOOKINGS ================= -->
 
-        </header>
+<section
+id="page-bookings"
+class="page"
+>
 
-        <div class="content">
+<div class="section">
 
-            <div class="empty-card">
+<div class="row between">
 
-                <div class="empty-icon">
-                    💰
-                </div>
+<div>
 
-                <h4>
-                    قسم المصروفات
-                </h4>
+<h2 style="margin:0">
+الحجوزات
+</h2>
 
-                <p>
-                    سيتم بناء إدارة المصروفات في الخطوة القادمة
-                </p>
+<small style="color:var(--muted)">
+التقويم وإدارة الحجوزات
+</small>
 
-            </div>
+</div>
 
-        </div>
+<button
+class="btn primary"
+onclick="openBookingModal()"
+>
++ حجز جديد
+</button>
 
-    </main>
+</div>
 
+</div>
 
-    <!-- =========================
-         الفواتير
-    ========================== -->
 
-    <main id="invoicesPage" class="page">
+<div class="section card calendar">
 
-        <header class="header">
+<div class="cal-head">
 
-            <div class="header-content">
+<button
+class="btn secondary"
+onclick="changeMonth(-1)"
+>
+‹ السابق
+</button>
 
-                <div class="logo">
-                    <div class="logo-icon">🧾</div>
+<strong
+id="monthTitle"
+>
+</strong>
 
-                    <div>
-                        <h1>الفواتير</h1>
-                        <span>إنشاء وإدارة الفواتير</span>
-                    </div>
-                </div>
+<button
+class="btn secondary"
+onclick="changeMonth(1)"
+>
+التالي ›
+</button>
 
-            </div>
+</div>
 
-        </header>
 
-        <div class="content">
+<div
+class="calendar-grid"
+id="calendarGrid"
+>
+</div>
 
-            <div class="empty-card">
 
-                <div class="empty-icon">
-                    🧾
-                </div>
+<div
+class="row"
+style="margin-top:12px"
+>
 
-                <h4>
-                    قسم الفواتير
-                </h4>
+<span class="badge green">
+● متاح
+</span>
 
-                <p>
-                    سيتم بناء نظام الفواتير في الخطوة القادمة
-                </p>
+<span class="badge red">
+● محجوز
+</span>
 
-            </div>
+<span class="badge yellow">
+● الخميس والجمعة
+</span>
 
-        </div>
+</div>
 
-    </main>
+</div>
 
 
-    <!-- =========================
-         الخدمات
-    ========================== -->
+<div class="section">
 
-    <main id="servicesPage" class="page">
+<div class="section-head">
 
-        <header class="header">
+<h2>
+قائمة الحجوزات
+</h2>
 
-            <div class="header-content">
+<span id="bookingCount">
+</span>
 
-                <div class="logo">
-                    <div class="logo-icon">🛎️</div>
+</div>
 
-                    <div>
-                        <h1>الخدمات</h1>
-                        <span>إدارة خدمات الشالية</span>
-                    </div>
-                </div>
+<div
+id="bookingList"
+class="list"
+>
+</div>
 
-            </div>
+</div>
 
-        </header>
+</section>
 
-        <div class="content">
 
-            <div class="empty-card">
+<!-- ================= EXPENSES ================= -->
 
-                <div class="empty-icon">
-                    🛎️
-                </div>
+<section
+id="page-expenses"
+class="page"
+>
 
-                <h4>
-                    قسم الخدمات
-                </h4>
+<div class="section">
 
-                <p>
-                    سيتم بناء إدارة الخدمات في الخطوة القادمة
-                </p>
+<div class="row between">
 
-            </div>
+<div>
 
-        </div>
+<h2 style="margin:0">
+المصروفات
+</h2>
 
-    </main>
+<small style="color:var(--muted)">
+إدارة ومتابعة المصروفات
+</small>
 
+</div>
 
-    <!-- =========================
-         شريط التنقل
-    ========================== -->
+<button
+class="btn primary"
+onclick="openExpenseModal()"
+>
++ مصروف
+</button>
 
-    <nav class="bottom-nav">
+</div>
 
-        <button
-            class="nav-item active"
-            onclick="openPage('home')"
-            id="nav-home"
-        >
+</div>
 
-            <span class="nav-icon">
-                🏠
-            </span>
 
-            <span class="nav-text">
-                الرئيسية
-            </span>
+<div class="section card">
 
-        </button>
+<div class="two">
 
+<div>
 
-        <button
-            class="nav-item"
-            onclick="openPage('bookings')"
-            id="nav-bookings"
-        >
+<small>
+إجمالي المصروفات
+</small>
 
-            <span class="nav-icon">
-                📅
-            </span>
+<h2 id="expenseTotal">
+0 ر.س
+</h2>
 
-            <span class="nav-text">
-                الحجوزات
-            </span>
+</div>
 
-        </button>
+<div>
 
+<small>
+عدد المصروفات
+</small>
 
-        <button
-            class="nav-item"
-            onclick="openPage('expenses')"
-            id="nav-expenses"
-        >
+<h2 id="expenseCount">
+0
+</h2>
 
-            <span class="nav-icon">
-                💰
-            </span>
+</div>
 
-            <span class="nav-text">
-                المصروفات
-            </span>
+</div>
 
-        </button>
+</div>
 
 
-        <button
-            class="nav-item"
-            onclick="openPage('invoices')"
-            id="nav-invoices"
-        >
+<div class="section">
 
-            <span class="nav-icon">
-                🧾
-            </span>
+<div
+id="expenseList"
+class="list"
+>
+</div>
 
-            <span class="nav-text">
-                الفواتير
-            </span>
+</div>
 
-        </button>
+</section>
 
 
-        <button
-            class="nav-item"
-            onclick="openPage('services')"
-            id="nav-services"
-        >
+<!-- ================= INVOICES ================= -->
 
-            <span class="nav-icon">
-                🛎️
-            </span>
+<section
+id="page-invoices"
+class="page"
+>
 
-            <span class="nav-text">
-                الخدمات
-            </span>
+<div class="section">
 
-        </button>
+<div class="row between">
 
-    </nav>
+<div>
+
+<h2 style="margin:0">
+الفواتير
+</h2>
+
+<small style="color:var(--muted)">
+إنشاء وحفظ الفواتير
+</small>
+
+</div>
+
+<button
+class="btn primary"
+onclick="openInvoiceModal()"
+>
++ فاتورة
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="section"
+id="invoiceList"
+>
+</div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section
+id="page-services"
+class="page"
+>
+
+<div class="section">
+
+<div class="row between">
+
+<div>
+
+<h2 style="margin:0">
+الخدمات
+</h2>
+
+<small style="color:var(--muted)">
+الخدمات المستخدمة في الفواتير
+</small>
+
+</div>
+
+<button
+class="btn primary"
+onclick="openServiceModal()"
+>
++ خدمة
+</button>
+
+</div>
+
+</div>
+
+
+<div class="section">
+
+<div
+id="serviceList"
+class="list"
+>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section
+id="page-settings"
+class="page"
+>
+
+<div class="section">
+
+<h2 style="margin:0">
+الإعدادات
+</h2>
+
+<small style="color:var(--muted)">
+مركز التحكم في شالية روانا
+</small>
+
+</div>
+
+
+<div class="section card">
+
+<div class="field">
+
+<label>
+اسم الشالية
+</label>
+
+<input
+id="setName"
+class="input"
+onchange="saveSettings()"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+اسم المستخدم
+</label>
+
+<input
+id="setUser"
+class="input"
+onchange="saveSettings()"
+>
+
+</div>
+
+
+<h3>
+الرئيسية
+</h3>
+
+<div id="homeSettings">
+</div>
+
+</div>
+
+
+<div class="section card">
+
+<h3>
+ألوان التطبيق
+</h3>
+
+
+<div class="setting">
+
+<div>
+
+<label>
+اللون الأساسي
+</label>
+
+<small>
+لون الأزرار والعناصر الرئيسية
+</small>
+
+</div>
+
+<input
+class="color-input"
+type="color"
+id="colorPrimary"
+onchange="saveColors()"
+>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<label>
+لون المحجوز
+</label>
+
+</div>
+
+<input
+class="color-input"
+type="color"
+id="colorBooked"
+onchange="saveColors()"
+>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<label>
+لون المتاح
+</label>
+
+</div>
+
+<input
+class="color-input"
+type="color"
+id="colorAvailable"
+onchange="saveColors()"
+>
+
+</div>
+
+
+<div class="setting">
+
+<div>
+
+<label>
+لون الخميس والجمعة
+</label>
+
+</div>
+
+<input
+class="color-input"
+type="color"
+id="colorWeekend"
+onchange="saveColors()"
+>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ================= NAV ================= -->
+
+<nav class="bottom">
+
+<button
+class="nav active"
+id="nav-home"
+onclick="openPage('home')"
+>
+
+<b>
+🏠
+</b>
+
+<small>
+الرئيسية
+</small>
+
+</button>
+
+
+<button
+class="nav"
+id="nav-bookings"
+onclick="openPage('bookings')"
+>
+
+<b>
+📅
+</b>
+
+<small>
+الحجوزات
+</small>
+
+</button>
+
+
+<button
+class="nav"
+id="nav-expenses"
+onclick="openPage('expenses')"
+>
+
+<b>
+💰
+</b>
+
+<small>
+المصروفات
+</small>
+
+</button>
+
+
+<button
+class="nav"
+id="nav-invoices"
+onclick="openPage('invoices')"
+>
+
+<b>
+🧾
+</b>
+
+<small>
+الفواتير
+</small>
+
+</button>
+
+
+<button
+class="nav"
+id="nav-services"
+onclick="openPage('services')"
+>
+
+<b>
+🛎️
+</b>
+
+<small>
+الخدمات
+</small>
+
+</button>
+
+</nav>
+
+</div>
+
+
+<!-- ================= MODAL ================= -->
+
+<div
+id="modal"
+class="modal-wrap"
+onclick="if(event.target===this)closeModal()"
+>
+
+<div class="modal">
+
+<div id="modalBody">
+</div>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   التنقل بين الصفحات
-========================= */
+/* =====================================================
+   قاعدة البيانات
+===================================================== */
+
+const KEY="shaliahRawanaDB";
+
+let db=
+JSON.parse(
+localStorage.getItem(KEY)||"null"
+)
+||
+{
+
+settings:{
+
+name:"شالية روانا",
+
+user:"",
+
+home:{
+
+revenue:true,
+expenses:true,
+profit:true,
+bookings:true,
+paid:true,
+remaining:true,
+quick:true,
+upcoming:true
+
+},
+
+colors:{
+
+primary:"#087ea4",
+booked:"#e74c3c",
+available:"#2eae68",
+weekend:"#f2c94c"
+
+}
+
+},
+
+bookings:[],
+expenses:[],
+invoices:[],
+services:[]
+
+};
+
+
+/* =====================================================
+   المتغيرات
+===================================================== */
+
+let calDate=new Date();
+
+
+const months=[
+
+"يناير",
+"فبراير",
+"مارس",
+"أبريل",
+"مايو",
+"يونيو",
+"يوليو",
+"أغسطس",
+"سبتمبر",
+"أكتوبر",
+"نوفمبر",
+"ديسمبر"
+
+];
+
+
+const days=[
+
+"الأحد",
+"الاثنين",
+"الثلاثاء",
+"الأربعاء",
+"الخميس",
+"الجمعة",
+"السبت"
+
+];
+
+
+/* =====================================================
+   الحفظ
+===================================================== */
+
+function persist(){
+
+localStorage.setItem(
+KEY,
+JSON.stringify(db)
+);
+
+}
+
+
+/* =====================================================
+   الأموال
+===================================================== */
+
+function money(n){
+
+return Number(n||0)
+.toLocaleString(
+"ar-SA",
+{
+maximumFractionDigits:2
+}
+)
++" ر.س";
+
+}
+
+
+/* =====================================================
+   حماية النصوص
+===================================================== */
+
+function esc(s){
+
+return String(s??"")
+.replace(/[&<>"']/g,m=>
+({
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[m])
+);
+
+}
+
+
+/* =====================================================
+   معرف
+===================================================== */
+
+function uid(){
+
+return Date.now()
+.toString(36)
++
+Math.random()
+.toString(36)
+.slice(2,7);
+
+}
+
+
+/* =====================================================
+   التاريخ
+===================================================== */
+
+function dateKey(d){
+
+let x=new Date(d);
+
+return `${x.getFullYear()}-${
+String(x.getMonth()+1).padStart(2,"0")
+}-${
+String(x.getDate()).padStart(2,"0")
+}`;
+
+}
+
+
+function parseDate(s){
+
+let [y,m,d]=s
+.split("-")
+.map(Number);
+
+return new Date(
+y,
+m-1,
+d
+);
+
+}
+
+
+function formatDate(s){
+
+if(!s)return "-";
+
+let d=parseDate(s);
+
+return d.toLocaleDateString(
+"ar-SA",
+{
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+);
+
+}
+
+
+/* =====================================================
+   رسالة
+===================================================== */
+
+function showToast(text){
+
+let e=
+document.getElementById("toast");
+
+e.textContent=text;
+
+e.classList.add("show");
+
+setTimeout(
+()=>e.classList.remove("show"),
+1800
+);
+
+}
+
+
+/* =====================================================
+   الإعدادات
+===================================================== */
+
+function applySettings(){
+
+document.documentElement
+.style
+.setProperty(
+"--primary",
+db.settings.colors.primary
+);
+
+document.documentElement
+.style
+.setProperty(
+"--booked",
+db.settings.colors.booked
+);
+
+document.documentElement
+.style
+.setProperty(
+"--available",
+db.settings.colors.available
+);
+
+document.documentElement
+.style
+.setProperty(
+"--weekend",
+db.settings.colors.weekend
+);
+
+
+document.getElementById(
+"brandName"
+).textContent=
+db.settings.name||
+"شالية روانا";
+
+
+document.getElementById(
+"headerTitle"
+).textContent=
+db.settings.user
+?
+`أهلاً ${db.settings.user} 👋`
+:
+"يومك سعيد";
+
+
+document
+.querySelectorAll("[data-home]")
+.forEach(e=>{
+
+e.classList.toggle(
+"hidden",
+!db.settings.home[
+e.dataset.home
+]
+);
+
+});
+
+
+document
+.querySelectorAll("[data-home-section]")
+.forEach(e=>{
+
+e.classList.toggle(
+"hidden",
+!db.settings.home[
+e.dataset.homeSection
+]
+);
+
+});
+
+}
+
+
+/* =====================================================
+   التنقل
+===================================================== */
 
 function openPage(page){
 
-    document
-        .querySelectorAll('.page')
-        .forEach(function(item){
+document
+.querySelectorAll(".page")
+.forEach(e=>
+e.classList.remove("active")
+);
 
-            item.classList.remove('active');
-
-        });
-
-
-    const target =
-        document.getElementById(page + 'Page');
-
-    if(target){
-        target.classList.add('active');
-    }
+document
+.getElementById(
+"page-"+page
+)
+.classList.add("active");
 
 
-    document
-        .querySelectorAll('.nav-item')
-        .forEach(function(item){
-
-            item.classList.remove('active');
-
-        });
+document
+.querySelectorAll(".nav")
+.forEach(e=>
+e.classList.remove("active")
+);
 
 
-    const nav =
-        document.getElementById('nav-' + page);
+let nav=
+document.getElementById(
+"nav-"+page
+);
 
-    if(nav){
-        nav.classList.add('active');
-    }
+if(nav)
+nav.classList.add("active");
 
 
-    window.scrollTo({
-        top:0,
-        behavior:'smooth'
-    });
+if(page==="bookings")
+renderCalendar();
+
+if(page==="expenses")
+renderExpenses();
+
+if(page==="invoices")
+renderInvoices();
+
+if(page==="services")
+renderServices();
+
+if(page==="settings")
+renderSettings();
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
+
+
+/* =====================================================
+   النوافذ
+===================================================== */
+
+function openModal(html){
+
+document.getElementById(
+"modalBody"
+).innerHTML=html;
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+/* =====================================================
+   الرئيسية
+===================================================== */
+
+function renderHome(){
+
+let revenue=
+db.bookings.reduce(
+(a,b)=>
+a+
+Number(b.total||0),
+0
+);
+
+
+let expenses=
+db.expenses.reduce(
+(a,b)=>
+a+
+Number(b.amount||0),
+0
+);
+
+
+let paid=
+db.bookings.reduce(
+(a,b)=>
+a+
+Number(b.paid||0),
+0
+);
+
+
+document.getElementById(
+"statRevenue"
+).textContent=
+money(revenue);
+
+
+document.getElementById(
+"statExpenses"
+).textContent=
+money(expenses);
+
+
+document.getElementById(
+"statProfit"
+).textContent=
+money(revenue-expenses);
+
+
+document.getElementById(
+"statBookings"
+).textContent=
+db.bookings.length;
+
+
+document.getElementById(
+"statPaid"
+).textContent=
+money(paid);
+
+
+document.getElementById(
+"statRemaining"
+).textContent=
+money(revenue-paid);
+
+
+let today=
+new Date();
+
+today.setHours(
+0,0,0,0
+);
+
+
+let upcoming=
+db.bookings
+.filter(
+b=>
+parseDate(b.checkout)>=today
+)
+.sort(
+(a,b)=>
+parseDate(a.checkin)-
+parseDate(b.checkin)
+)
+.slice(0,5);
+
+
+document.getElementById(
+"upcomingList"
+).innerHTML=
+
+upcoming.length
+
+?
+
+upcoming
+.map(
+b=>bookingHTML(b)
+)
+.join("")
+
+:
+
+`
+<div class="card empty">
+
+<div class="emoji">
+🏝️
+</div>
+
+<b>
+لا توجد حجوزات قادمة
+</b>
+
+<div>
+أضف أول حجز ليظهر هنا
+</div>
+
+</div>
+`;
+
+}
+
+
+/* =====================================================
+   الحجز
+===================================================== */
+
+function bookingHTML(b){
+
+return`
+
+<div class="list-item">
+
+<div class="row between">
+
+<div>
+
+<b>
+${esc(b.name)}
+</b>
+
+<div
+style="
+color:var(--muted);
+font-size:12px
+"
+>
+
+${formatDate(b.checkin)}
+—
+${formatDate(b.checkout)}
+
+</div>
+
+</div>
+
+
+<span
+class="badge ${
+b.status==="ملغي"
+?"red"
+:"green"
+}"
+>
+
+${esc(b.status||"مؤكد")}
+
+</span>
+
+</div>
+
+
+<div
+class="row between"
+style="
+margin-top:9px;
+font-size:12px
+"
+>
+
+<span>
+
+الإجمالي:
+
+<b>
+${money(b.total)}
+</b>
+
+</span>
+
+
+<span>
+
+المتبقي:
+
+<b>
+${money(
+Number(b.total)-
+Number(b.paid)
+)}
+</b>
+
+</span>
+
+</div>
+
+
+<div
+class="row"
+style="margin-top:10px"
+>
+
+<button
+class="btn secondary"
+onclick="openBookingModal('${b.id}')"
+>
+تعديل
+</button>
+
+<button
+class="btn danger"
+onclick="deleteBooking('${b.id}')"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   تواريخ الحجز
+===================================================== */
+
+function datesBetween(a,b){
+
+let out=[];
+
+let d=parseDate(a);
+
+let end=parseDate(b);
+
+
+while(d<=end){
+
+out.push(
+dateKey(d)
+);
+
+d.setDate(
+d.getDate()+1
+);
+
+}
+
+return out;
+
+}
+
+
+function bookingForDate(key){
+
+return db.bookings.find(
+b=>
+
+datesBetween(
+b.checkin,
+b.checkout
+)
+.includes(key)
+
+&&
+
+b.status!=="ملغي"
+
+);
+
+}
+
+
+/* =====================================================
+   التقويم
+===================================================== */
+
+function renderCalendar(){
+
+let y=
+calDate.getFullYear();
+
+let m=
+calDate.getMonth();
+
+
+document.getElementById(
+"monthTitle"
+).textContent=
+`${months[m]} ${y}`;
+
+
+let first=
+new Date(
+y,
+m,
+1
+).getDay();
+
+
+let daysIn=
+new Date(
+y,
+m+1,
+0
+).getDate();
+
+
+let html=
+days
+.map(
+d=>
+`
+<div class="dow">
+${d.slice(0,2)}
+</div>
+`
+)
+.join("");
+
+
+for(
+let i=0;
+i<first;
+i++
+){
+
+html+=
+`
+<div class="day emptyday">
+</div>
+`;
+
+}
+
+
+for(
+let d=1;
+d<=daysIn;
+d++
+){
+
+let dt=
+new Date(
+y,
+m,
+d
+);
+
+
+let key=
+dateKey(dt);
+
+
+let booking=
+bookingForDate(key);
+
+
+let weekend=
+dt.getDay()===4 ||
+dt.getDay()===5;
+
+
+let today=
+key===dateKey(new Date());
+
+
+let cls=
+"day "
++
+(
+booking
+?
+"booked"
+:
+"available"
+)
++
+(
+weekend
+?
+" weekend"
+:
+""
+)
++
+(
+today
+?
+" today"
+:
+""
+);
+
+
+html+=`
+
+<button
+class="${cls}"
+onclick="dayAction('${key}')"
+>
+
+<span>
+${d}
+</span>
+
+<small>
+
+${
+booking
+?
+esc(booking.name)
+:
+weekend
+?
+"ويكند"
+:
+"متاح"
+}
+
+</small>
+
+</button>
+
+`;
+
+}
+
+
+document.getElementById(
+"calendarGrid"
+).innerHTML=
+html;
+
+
+document.getElementById(
+"bookingCount"
+).textContent=
+`${db.bookings.length} حجز`;
+
+
+document.getElementById(
+"bookingList"
+).innerHTML=
+
+db.bookings.length
+
+?
+
+[...db.bookings]
+.sort(
+(a,b)=>
+parseDate(b.checkin)-
+parseDate(a.checkin)
+)
+.map(
+bookingHTML
+)
+.join("")
+
+:
+
+`
+<div class="card empty">
+
+<div class="emoji">
+📅
+</div>
+
+<b>
+لا توجد حجوزات
+</b>
+
+</div>
+`;
+
+}
+
+
+/* =====================================================
+   تغيير الشهر
+===================================================== */
+
+function changeMonth(number){
+
+calDate.setMonth(
+calDate.getMonth()+number
+);
+
+renderCalendar();
+
+}
+
+
+/* =====================================================
+   الضغط على يوم
+===================================================== */
+
+function dayAction(key){
+
+let booking=
+bookingForDate(key);
+
+
+if(booking){
+
+openBookingModal(
+booking.id,
+key
+);
+
+}else{
+
+openBookingModal(
+"",
+key
+);
+
+}
+
+}
+
+
+/* =====================================================
+   نافذة الحجز
+===================================================== */
+
+function openBookingModal(
+id="",
+preset=""
+){
+
+let booking=
+id
+?
+db.bookings.find(
+x=>x.id===id
+)
+:
+null;
+
+
+let today=
+dateKey(new Date());
+
+
+let check=
+booking?.checkin ||
+preset ||
+today;
+
+
+let checkout=
+booking?.checkout ||
+preset ||
+today;
+
+
+openModal(`
+
+<div class="modal-title">
+
+<h2>
+${
+booking
+?
+"تعديل الحجز"
+:
+"حجز جديد"
+}
+</h2>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<div class="field">
+
+<label>
+اسم العميل
+</label>
+
+<input
+id="bName"
+class="input"
+value="${esc(booking?.name||"")}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+رقم الجوال
+</label>
+
+<input
+id="bPhone"
+class="input"
+inputmode="tel"
+value="${esc(booking?.phone||"")}"
+>
+
+</div>
+
+
+<div class="two">
+
+<div class="field">
+
+<label>
+تاريخ الدخول
+</label>
+
+<input
+id="bIn"
+class="input"
+type="date"
+value="${check}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+تاريخ الخروج
+</label>
+
+<input
+id="bOut"
+class="input"
+type="date"
+value="${checkout}"
+>
+
+</div>
+
+</div>
+
+
+<div class="two">
+
+<div class="field">
+
+<label>
+عدد الأشخاص
+</label>
+
+<input
+id="bPeople"
+class="input"
+type="number"
+min="1"
+value="${booking?.people||1}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+حالة الحجز
+</label>
+
+<select
+id="bStatus"
+class="select"
+>
+
+<option
+${
+booking?.status==="مؤكد"||
+!booking
+?
+"selected"
+:
+""
+}
+>
+مؤكد
+</option>
+
+<option
+${
+booking?.status==="معلق"
+?
+"selected"
+:
+""
+}
+>
+معلق
+</option>
+
+<option
+${
+booking?.status==="ملغي"
+?
+"selected"
+:
+""
+}
+>
+ملغي
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="two">
+
+<div class="field">
+
+<label>
+قيمة الحجز
+</label>
+
+<input
+id="bTotal"
+class="input"
+type="number"
+min="0"
+value="${booking?.total||0}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+المدفوع / العربون
+</label>
+
+<input
+id="bPaid"
+class="input"
+type="number"
+min="0"
+value="${booking?.paid||0}"
+>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+المتبقي
+</label>
+
+<input
+id="bRemain"
+class="input"
+readonly
+value="${money(
+Number(booking?.total||0)-
+Number(booking?.paid||0)
+)}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+ملاحظات
+</label>
+
+<textarea
+id="bNotes"
+class="textarea"
+>${esc(booking?.notes||"")}</textarea>
+
+</div>
+
+
+<button
+class="btn primary full"
+onclick="saveBooking('${id}')"
+>
+حفظ الحجز
+</button>
+
+`);
+
+
+document
+.getElementById("bTotal")
+.addEventListener(
+"input",
+updateRemain
+);
+
+
+document
+.getElementById("bPaid")
+.addEventListener(
+"input",
+updateRemain
+);
+
+}
+
+
+/* =====================================================
+   حساب المتبقي
+===================================================== */
+
+function updateRemain(){
+
+let total=
+Number(
+document.getElementById(
+"bTotal"
+).value||0
+);
+
+
+let paid=
+Number(
+document.getElementById(
+"bPaid"
+).value||0
+);
+
+
+document.getElementById(
+"bRemain"
+).value=
+money(
+Math.max(
+0,
+total-paid
+)
+);
+
+}
+
+
+/* =====================================================
+   حفظ الحجز
+===================================================== */
+
+function saveBooking(id){
+
+let name=
+document
+.getElementById("bName")
+.value
+.trim();
+
+
+let check=
+document
+.getElementById("bIn")
+.value;
+
+
+let checkout=
+document
+.getElementById("bOut")
+.value;
+
+
+let total=
+Number(
+document
+.getElementById("bTotal")
+.value||0
+);
+
+
+let paid=
+Number(
+document
+.getElementById("bPaid")
+.value||0
+);
+
+
+if(
+!name||
+!check||
+!checkout
+){
+
+return showToast(
+"أكمل البيانات المطلوبة"
+);
+
+}
+
+
+if(
+parseDate(checkout)<
+parseDate(check)
+){
+
+return showToast(
+"تاريخ الخروج يجب أن يكون بعد الدخول"
+);
+
+}
+
+
+if(
+paid>total
+){
+
+return showToast(
+"المدفوع أكبر من قيمة الحجز"
+);
+
+}
+
+
+/* منع تداخل الحجوزات */
+
+let collision=
+db.bookings.some(
+x=>
+
+x.id!==id&&
+
+x.status!=="ملغي"&&
+
+datesBetween(
+check,
+checkout
+)
+.some(
+key=>
+datesBetween(
+x.checkin,
+x.checkout
+)
+.includes(key)
+)
+
+);
+
+
+if(collision){
+
+return showToast(
+"يوجد حجز متداخل مع هذه الأيام"
+);
+
+}
+
+
+let object={
+
+id:
+id||
+uid(),
+
+name:name,
+
+phone:
+document
+.getElementById("bPhone")
+.value
+.trim(),
+
+checkin:check,
+
+checkout:checkout,
+
+people:
+Number(
+document
+.getElementById("bPeople")
+.value||1
+),
+
+status:
+document
+.getElementById("bStatus")
+.value,
+
+total:total,
+
+paid:paid,
+
+notes:
+document
+.getElementById("bNotes")
+.value
+.trim()
+
+};
+
+
+let index=
+db.bookings.findIndex(
+x=>x.id===object.id
+);
+
+
+if(index>=0){
+
+db.bookings[index]=object;
+
+}else{
+
+db.bookings.push(object);
+
+}
+
+
+persist();
+
+closeModal();
+
+renderAll();
+
+showToast(
+"تم حفظ الحجز"
+);
+
+}
+
+
+/* =====================================================
+   حذف الحجز
+===================================================== */
+
+function deleteBooking(id){
+
+if(
+!confirm(
+"هل تريد حذف الحجز؟"
+)
+)
+return;
+
+
+db.bookings=
+db.bookings.filter(
+x=>x.id!==id
+);
+
+
+persist();
+
+renderAll();
+
+showToast(
+"تم حذف الحجز"
+);
+
+}
+
+
+/* =====================================================
+   المصروفات
+===================================================== */
+
+function openExpenseModal(id=""){
+
+let expense=
+id
+?
+db.expenses.find(
+x=>x.id===id
+)
+:
+null;
+
+
+openModal(`
+
+<div class="modal-title">
+
+<h2>
+${
+expense
+?
+"تعديل المصروف"
+:
+"إضافة مصروف"
+}
+</h2>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الوصف
+</label>
+
+<input
+id="eDesc"
+class="input"
+value="${esc(expense?.desc||"")}"
+>
+
+</div>
+
+
+<div class="two">
+
+<div class="field">
+
+<label>
+المبلغ
+</label>
+
+<input
+id="eAmount"
+class="input"
+type="number"
+min="0"
+value="${expense?.amount||0}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+التاريخ
+</label>
+
+<input
+id="eDate"
+class="input"
+type="date"
+value="${
+expense?.date||
+dateKey(new Date())
+}"
+>
+
+</div>
+
+</div>
+
+
+<div class="field">
+
+<label>
+التصنيف
+</label>
+
+<input
+id="eCat"
+class="input"
+placeholder="مثال: صيانة"
+value="${esc(expense?.cat||"")}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+ملاحظات
+</label>
+
+<textarea
+id="eNotes"
+class="textarea"
+>${esc(expense?.notes||"")}</textarea>
+
+</div>
+
+
+<button
+class="btn primary full"
+onclick="saveExpense('${id}')"
+>
+حفظ
+</button>
+
+`);
+
+}
+
+
+function saveExpense(id){
+
+let desc=
+document
+.getElementById("eDesc")
+.value
+.trim();
+
+
+let amount=
+Number(
+document
+.getElementById("eAmount")
+.value||0
+);
+
+
+if(
+!desc||
+amount<=0
+){
+
+return showToast(
+"أدخل الوصف والمبلغ"
+);
+
+}
+
+
+let object={
+
+id:id||uid(),
+
+desc:desc,
+
+amount:amount,
+
+date:
+document
+.getElementById("eDate")
+.value,
+
+cat:
+document
+.getElementById("eCat")
+.value
+.trim(),
+
+notes:
+document
+.getElementById("eNotes")
+.value
+.trim()
+
+};
+
+
+let index=
+db.expenses.findIndex(
+x=>x.id===object.id
+);
+
+
+if(index>=0){
+
+db.expenses[index]=object;
+
+}else{
+
+db.expenses.push(object);
+
+}
+
+
+persist();
+
+closeModal();
+
+renderAll();
+
+showToast(
+"تم حفظ المصروف"
+);
+
+}
+
+
+function deleteExpense(id){
+
+if(
+!confirm(
+"حذف المصروف؟"
+)
+)
+return;
+
+
+db.expenses=
+db.expenses.filter(
+x=>x.id!==id
+);
+
+
+persist();
+
+renderAll();
+
+showToast(
+"تم حذف المصروف"
+);
+
+}
+
+
+function renderExpenses(){
+
+let total=
+db.expenses.reduce(
+(a,b)=>
+a+
+Number(b.amount||0),
+0
+);
+
+
+document.getElementById(
+"expenseTotal"
+).textContent=
+money(total);
+
+
+document.getElementById(
+"expenseCount"
+).textContent=
+db.expenses.length;
+
+
+document.getElementById(
+"expenseList"
+).innerHTML=
+
+db.expenses.length
+
+?
+
+[...db.expenses]
+.sort(
+(a,b)=>
+b.date.localeCompare(
+a.date
+)
+)
+.map(
+e=>`
+
+<div class="list-item">
+
+<div class="row between">
+
+<b>
+${esc(e.desc)}
+</b>
+
+<b>
+${money(e.amount)}
+</b>
+
+</div>
+
+
+<div
+style="
+color:var(--muted);
+font-size:12px;
+margin-top:5px
+"
+>
+
+${formatDate(e.date)}
+
+${
+e.cat
+?
+` • ${esc(e.cat)}`
+:
+""
+}
+
+</div>
+
+
+<div
+class="row"
+style="margin-top:9px"
+>
+
+<button
+class="btn secondary"
+onclick="openExpenseModal('${e.id}')"
+>
+تعديل
+</button>
+
+
+<button
+class="btn danger"
+onclick="deleteExpense('${e.id}')"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`
+
+<div class="card empty">
+
+<div class="emoji">
+💰
+</div>
+
+<b>
+لا توجد مصروفات
+</b>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   الخدمات
+===================================================== */
+
+function openServiceModal(id=""){
+
+let service=
+id
+?
+db.services.find(
+x=>x.id===id
+)
+:
+null;
+
+
+openModal(`
+
+<div class="modal-title">
+
+<h2>
+${
+service
+?
+"تعديل الخدمة"
+:
+"إضافة خدمة"
+}
+</h2>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<div class="field">
+
+<label>
+اسم الخدمة
+</label>
+
+<input
+id="sName"
+class="input"
+value="${esc(service?.name||"")}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+السعر
+</label>
+
+<input
+id="sPrice"
+class="input"
+type="number"
+min="0"
+value="${service?.price||0}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+الوصف
+</label>
+
+<textarea
+id="sDesc"
+class="textarea"
+>${esc(service?.desc||"")}</textarea>
+
+</div>
+
+
+<button
+class="btn primary full"
+onclick="saveService('${id}')"
+>
+حفظ الخدمة
+</button>
+
+`);
+
+}
+
+
+function saveService(id){
+
+let name=
+document
+.getElementById("sName")
+.value
+.trim();
+
+
+let price=
+Number(
+document
+.getElementById("sPrice")
+.value||0
+);
+
+
+if(!name){
+
+return showToast(
+"أدخل اسم الخدمة"
+);
+
+}
+
+
+let old=
+id
+?
+db.services.find(
+x=>x.id===id
+)
+:
+null;
+
+
+let object={
+
+id:id||uid(),
+
+name:name,
+
+price:price,
+
+desc:
+document
+.getElementById("sDesc")
+.value
+.trim(),
+
+visible:
+old?.visible!==false
+
+};
+
+
+let index=
+db.services.findIndex(
+x=>x.id===object.id
+);
+
+
+if(index>=0){
+
+db.services[index]=object;
+
+}else{
+
+db.services.push(object);
+
+}
+
+
+persist();
+
+closeModal();
+
+renderAll();
+
+showToast(
+"تم حفظ الخدمة"
+);
+
+}
+
+
+function deleteService(id){
+
+if(
+!confirm(
+"حذف الخدمة؟"
+)
+)
+return;
+
+
+db.services=
+db.services.filter(
+x=>x.id!==id
+);
+
+
+persist();
+
+renderAll();
+
+showToast(
+"تم حذف الخدمة"
+);
+
+}
+
+
+function toggleService(id){
+
+let service=
+db.services.find(
+x=>x.id===id
+);
+
+
+if(service){
+
+service.visible=
+service.visible===false;
+
+persist();
+
+renderServices();
+
+}
+
+}
+
+
+function renderServices(){
+
+document.getElementById(
+"serviceList"
+).innerHTML=
+
+db.services.length
+
+?
+
+db.services
+.map(
+s=>`
+
+<div class="list-item">
+
+<div class="row between">
+
+<div>
+
+<b>
+${esc(s.name)}
+</b>
+
+<div
+style="
+font-size:12px;
+color:var(--muted)
+"
+>
+
+${esc(s.desc||"")}
+
+</div>
+
+</div>
+
+
+<b>
+${money(s.price)}
+</b>
+
+</div>
+
+
+<div
+class="row"
+style="margin-top:9px"
+>
+
+<button
+class="btn secondary"
+onclick="openServiceModal('${s.id}')"
+>
+تعديل
+</button>
+
+
+<button
+class="btn ${
+s.visible===false
+?
+"success"
+:
+"danger"
+}"
+onclick="toggleService('${s.id}')"
+>
+
+${
+s.visible===false
+?
+"إظهار"
+:
+"إخفاء"
+}
+
+</button>
+
+
+<button
+class="btn danger"
+onclick="deleteService('${s.id}')"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`
+
+<div class="card empty">
+
+<div class="emoji">
+🛎️
+</div>
+
+<b>
+لا توجد خدمات
+</b>
+
+<div>
+أضف خدماتك لاستخدامها في الفواتير
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   الفواتير
+===================================================== */
+
+function openInvoiceModal(id=""){
+
+let invoice=
+id
+?
+db.invoices.find(
+x=>x.id===id
+)
+:
+null;
+
+
+let items=
+invoice?.items||
+[
+{
+serviceId:"",
+qty:1,
+price:0
+}
+];
+
+
+openModal(`
+
+<div class="modal-title">
+
+<h2>
+${
+invoice
+?
+"تعديل الفاتورة"
+:
+"فاتورة جديدة"
+}
+</h2>
+
+<button
+class="close"
+onclick="closeModal()"
+>
+×
+</button>
+
+</div>
+
+
+<div class="field">
+
+<label>
+اسم العميل
+</label>
+
+<input
+id="iName"
+class="input"
+value="${esc(invoice?.name||"")}"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+رقم الجوال
+</label>
+
+<input
+id="iPhone"
+class="input"
+value="${esc(invoice?.phone||"")}"
+>
+
+</div>
+
+
+<div id="invoiceItems">
+
+${
+items
+.map(
+(x,i)=>
+invoiceRow(x,i)
+)
+.join("")
+}
+
+</div>
+
+
+<button
+class="btn secondary full"
+onclick="addInvoiceRow()"
+>
++ إضافة خدمة
+</button>
+
+
+<div
+class="card"
+style="
+margin-top:12px;
+background:#f7fcfd
+"
+>
+
+<div
+class="row between"
+>
+
+<b>
+الإجمالي
+</b>
+
+<b
+id="invoiceTotal"
+>
+0 ر.س
+</b>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary full"
+style="margin-top:12px"
+onclick="saveInvoice('${id}')"
+>
+حفظ الفاتورة
+</button>
+
+`);
+
+
+updateInvoiceTotal();
+
+}
+
+
+function invoiceRow(
+item,
+index
+){
+
+return`
+
+<div
+class="card inv-row"
+style="
+margin-bottom:8px;
+padding:11px
+"
+>
+
+<div class="two">
+
+<select
+class="select inv-service"
+onchange="serviceChanged(this)"
+>
+
+<option value="">
+اختر الخدمة
+</option>
+
+${
+db.services
+.filter(
+s=>s.visible!==false
+)
+.map(
+s=>`
+
+<option
+value="${s.id}"
+data-price="${s.price}"
+${
+item.serviceId===s.id
+?
+"selected"
+:
+""
+}
+>
+
+${esc(s.name)}
+-
+${money(s.price)}
+
+</option>
+
+`
+)
+.join("")
+}
+
+</select>
+
+
+<input
+class="input inv-qty"
+type="number"
+min="1"
+value="${item.qty||1}"
+oninput="updateInvoiceTotal()"
+>
+
+</div>
+
+
+<div
+class="two"
+style="margin-top:8px"
+>
+
+<input
+class="input inv-price"
+type="number"
+min="0"
+value="${item.price||0}"
+oninput="updateInvoiceTotal()"
+>
+
+
+<button
+class="btn danger"
+onclick="
+this.closest('.inv-row').remove();
+updateInvoiceTotal()
+"
+>
+حذف السطر
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function addInvoiceRow(){
+
+let wrap=
+document.getElementById(
+"invoiceItems"
+);
+
+
+let index=
+wrap.querySelectorAll(
+".inv-row"
+).length;
+
+
+wrap.insertAdjacentHTML(
+"beforeend",
+invoiceRow(
+{
+serviceId:"",
+qty:1,
+price:0
+},
+index
+)
+);
+
+}
+
+
+function serviceChanged(select){
+
+let option=
+select.selectedOptions[0];
+
+
+let row=
+select.closest(
+".inv-row"
+);
+
+
+row.querySelector(
+".inv-price"
+).value=
+Number(
+option?.dataset.price||0
+);
+
+
+updateInvoiceTotal();
+
+}
+
+
+function getInvoiceItems(){
+
+return [
+
+...document.querySelectorAll(
+".inv-row"
+)
+
+]
+.map(
+row=>({
+
+serviceId:
+row.querySelector(
+".inv-service"
+).value,
+
+qty:
+Number(
+row.querySelector(
+".inv-qty"
+).value||1
+),
+
+price:
+Number(
+row.querySelector(
+".inv-price"
+).value||0
+)
+
+})
+)
+.filter(
+x=>x.serviceId
+);
+
+}
+
+
+function updateInvoiceTotal(){
+
+let total=
+getInvoiceItems()
+.reduce(
+(a,x)=>
+a+
+x.qty*x.price,
+0
+);
+
+
+let element=
+document.getElementById(
+"invoiceTotal"
+);
+
+
+if(element){
+
+element.textContent=
+money(total);
+
+}
+
+}
+
+
+function saveInvoice(id){
+
+let name=
+document
+.getElementById("iName")
+.value
+.trim();
+
+
+let items=
+getInvoiceItems();
+
+
+if(
+!name||
+!items.length
+){
+
+return showToast(
+"أدخل العميل وأضف خدمة"
+);
+
+}
+
+
+let total=
+items.reduce(
+(a,x)=>
+a+x.qty*x.price,
+0
+);
+
+
+let old=
+id
+?
+db.invoices.find(
+x=>x.id===id
+)
+:
+null;
+
+
+let object={
+
+id:id||uid(),
+
+number:
+old?.number||
+"RW-"+
+Date.now()
+.toString()
+.slice(-6),
+
+name:name,
+
+phone:
+document
+.getElementById("iPhone")
+.value
+.trim(),
+
+items:items,
+
+total:total,
+
+date:
+dateKey(new Date())
+
+};
+
+
+let index=
+db.invoices.findIndex(
+x=>x.id===object.id
+);
+
+
+if(index>=0){
+
+db.invoices[index]=object;
+
+}else{
+
+db.invoices.push(object);
+
+}
+
+
+persist();
+
+closeModal();
+
+renderAll();
+
+showToast(
+"تم حفظ الفاتورة"
+);
+
+}
+
+
+function deleteInvoice(id){
+
+if(
+!confirm(
+"حذف الفاتورة؟"
+)
+)
+return;
+
+
+db.invoices=
+db.invoices.filter(
+x=>x.id!==id
+);
+
+
+persist();
+
+renderAll();
+
+showToast(
+"تم حذف الفاتورة"
+);
+
+}
+
+
+function shareInvoice(id){
+
+let invoice=
+db.invoices.find(
+x=>x.id===id
+);
+
+
+let text=
+`
+فاتورة ${invoice.number}
+
+شالية روانا
+
+العميل:
+${invoice.name}
+
+الإجمالي:
+${money(invoice.total)}
+`;
+
+
+if(
+navigator.share
+){
+
+navigator.share({
+
+title:
+"فاتورة شالية روانا",
+
+text:text
+
+});
+
+}else{
+
+navigator.clipboard
+?.writeText(text)
+.then(
+()=>
+showToast(
+"تم نسخ الفاتورة"
+)
+);
+
+}
+
+}
+
+
+function renderInvoices(){
+
+document.getElementById(
+"invoiceList"
+).innerHTML=
+
+db.invoices.length
+
+?
+
+db.invoices
+.slice()
+.reverse()
+.map(
+invoice=>`
+
+<div class="list-item">
+
+<div
+class="row between"
+>
+
+<div>
+
+<b>
+${esc(invoice.number)}
+</b>
+
+<div
+style="
+font-size:12px;
+color:var(--muted)
+"
+>
+
+${esc(invoice.name)}
+
+•
+
+${formatDate(invoice.date)}
+
+</div>
+
+</div>
+
+
+<b>
+${money(invoice.total)}
+</b>
+
+</div>
+
+
+<div
+class="row"
+style="margin-top:9px"
+>
+
+<button
+class="btn secondary"
+onclick="
+openInvoiceModal('${invoice.id}')
+"
+>
+تعديل
+</button>
+
+
+<button
+class="btn success"
+onclick="
+shareInvoice('${invoice.id}')
+"
+>
+مشاركة
+</button>
+
+
+<button
+class="btn danger"
+onclick="
+deleteInvoice('${invoice.id}')
+"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`
+)
+.join("")
+
+:
+
+`
+
+<div class="card empty">
+
+<div class="emoji">
+🧾
+</div>
+
+<b>
+لا توجد فواتير
+</b>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   الإعدادات
+===================================================== */
+
+function saveSettings(){
+
+db.settings.name=
+document
+.getElementById(
+"setName"
+)
+.value
+.trim()
+||
+"شالية روانا";
+
+
+db.settings.user=
+document
+.getElementById(
+"setUser"
+)
+.value
+.trim();
+
+
+persist();
+
+applySettings();
+
+showToast(
+"تم حفظ الإعدادات"
+);
+
+}
+
+
+function renderSettings(){
+
+document.getElementById(
+"setName"
+).value=
+db.settings.name;
+
+
+document.getElementById(
+"setUser"
+).value=
+db.settings.user;
+
+
+document.getElementById(
+"colorPrimary"
+).value=
+db.settings.colors.primary;
+
+
+document.getElementById(
+"colorBooked"
+).value=
+db.settings.colors.booked;
+
+
+document.getElementById(
+"colorAvailable"
+).value=
+db.settings.colors.available;
+
+
+document.getElementById(
+"colorWeekend"
+).value=
+db.settings.colors.weekend;
+
+
+const labels={
+
+revenue:"الإيرادات",
+
+expenses:"المصروفات",
+
+profit:"صافي الربح",
+
+bookings:"الحجوزات",
+
+paid:"المدفوع",
+
+remaining:"المتبقي",
+
+quick:"الإجراءات السريعة",
+
+upcoming:"الحجوزات القادمة"
+
+};
+
+
+document.getElementById(
+"homeSettings"
+).innerHTML=
+
+Object
+.entries(labels)
+.map(
+([key,label])=>
+`
+
+<div class="setting">
+
+<div>
+
+<label>
+${label}
+</label>
+
+<small>
+إظهار أو إخفاء من الرئيسية
+</small>
+
+</div>
+
+
+<button
+class="switch ${
+db.settings.home[key]
+?
+"on"
+:
+""
+}"
+onclick="
+toggleHome('${key}')
+"
+>
+</button>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+function toggleHome(key){
+
+db.settings.home[key]=
+!db.settings.home[key];
+
+
+persist();
+
+renderSettings();
+
+applySettings();
+
+}
+
+
+function saveColors(){
+
+db.settings.colors.primary=
+document
+.getElementById(
+"colorPrimary"
+)
+.value;
+
+
+db.settings.colors.booked=
+document
+.getElementById(
+"colorBooked"
+)
+.value;
+
+
+db.settings.colors.available=
+document
+.getElementById(
+"colorAvailable"
+)
+.value;
+
+
+db.settings.colors.weekend=
+document
+.getElementById(
+"colorWeekend"
+)
+.value;
+
+
+persist();
+
+applySettings();
+
+renderCalendar();
+
+showToast(
+"تم حفظ الألوان"
+);
+
+}
+
+
+/* =====================================================
+   تشغيل التطبيق
+===================================================== */
+
+function renderAll(){
+
+applySettings();
+
+renderHome();
+
+renderCalendar();
+
+renderExpenses();
+
+renderInvoices();
+
+renderServices();
+
+persist();
+
+}
+
+
+renderAll();
 
 </script>
 
