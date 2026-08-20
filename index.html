@@ -1,1 +1,975 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>شالية روانا</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --primary:#087ea4;
+    --primary-dark:#075b78;
+    --secondary:#28b8c9;
+    --light:#eaf9fc;
+    --background:#f5fbfd;
+    --card:#ffffff;
+    --text:#173b4a;
+    --muted:#78909c;
+    --border:#d9edf2;
+    --shadow:0 6px 20px rgba(8,126,164,.10);
+
+    --available:#2eae68;
+    --booked:#e74c3c;
+    --weekend:#f2c94c;
+}
+
+body{
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Tahoma,
+        Arial,
+        sans-serif;
+
+    background:var(--background);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.app{
+    min-height:100vh;
+    padding-bottom:90px;
+}
+
+/* =========================
+   الهيدر
+========================= */
+
+.header{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(
+        135deg,
+        var(--primary-dark),
+        var(--primary),
+        var(--secondary)
+    );
+    color:white;
+    padding:28px 20px 55px;
+    border-radius:0 0 32px 32px;
+    box-shadow:0 8px 25px rgba(8,126,164,.20);
+}
+
+.header::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    left:-60px;
+    top:-80px;
+}
+
+.header-content{
+    position:relative;
+    z-index:2;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:26px;
+}
+
+.logo h1{
+    font-size:20px;
+    font-weight:800;
+}
+
+.logo span{
+    display:block;
+    font-size:12px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.welcome{
+    font-size:14px;
+    opacity:.85;
+    margin-bottom:6px;
+}
+
+.header h2{
+    font-size:27px;
+    font-weight:800;
+}
+
+/* =========================
+   المحتوى
+========================= */
+
+.content{
+    width:100%;
+    max-width:900px;
+    margin:-28px auto 0;
+    padding:0 15px;
+    position:relative;
+    z-index:3;
+}
+
+/* =========================
+   الإحصائيات
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.stat-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:17px;
+    box-shadow:var(--shadow);
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.stat-icon{
+    width:40px;
+    height:40px;
+    border-radius:13px;
+    background:var(--light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.stat-label{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.stat-value{
+    font-size:20px;
+    font-weight:800;
+    color:var(--text);
+}
+
+/* =========================
+   العناوين
+========================= */
+
+.section{
+    margin-top:25px;
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.section-title h3{
+    font-size:18px;
+    font-weight:800;
+}
+
+.section-title span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* =========================
+   الإجراءات السريعة
+========================= */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.quick-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:18px;
+    min-height:110px;
+    box-shadow:var(--shadow);
+    transition:.2s;
+}
+
+.quick-card:active{
+    transform:scale(.97);
+}
+
+.quick-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:var(--light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.quick-title{
+    font-size:15px;
+    font-weight:800;
+}
+
+.quick-description{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* =========================
+   الحالة
+========================= */
+
+.empty-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+
+.empty-icon{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.empty-card h4{
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.empty-card p{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* =========================
+   شريط التنقل
+========================= */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    right:0;
+    left:0;
+    z-index:100;
+    height:76px;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(15px);
+    border-top:1px solid var(--border);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:6px 8px env(safe-area-inset-bottom);
+}
+
+.nav-item{
+    border:0;
+    background:none;
+    color:#8ba0a9;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    min-width:60px;
+    height:62px;
+    border-radius:15px;
+    transition:.2s;
+}
+
+.nav-item .nav-icon{
+    font-size:22px;
+}
+
+.nav-item .nav-text{
+    font-size:10px;
+    font-weight:700;
+}
+
+.nav-item.active{
+    color:var(--primary);
+    background:var(--light);
+}
+
+/* =========================
+   الصفحات
+========================= */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+/* =========================
+   استجابة الشاشات
+========================= */
+
+@media(min-width:700px){
+
+    .stats{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .quick-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .content{
+        padding:0 25px;
+    }
+
+    .header{
+        padding-right:calc((100% - 850px)/2 + 25px);
+        padding-left:calc((100% - 850px)/2 + 25px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         الرئيسية
+    ========================== -->
+
+    <main id="homePage" class="page active">
+
+        <header class="header">
+
+            <div class="header-content">
+
+                <div class="logo">
+
+                    <div class="logo-icon">
+                        🌊
+                    </div>
+
+                    <div>
+                        <h1>شالية روانا</h1>
+                        <span>إدارة الشالية والحجوزات</span>
+                    </div>
+
+                </div>
+
+                <div class="welcome">
+                    أهلاً وسهلاً 👋
+                </div>
+
+                <h2>
+                    يومك سعيد
+                </h2>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+            <!-- الإحصائيات -->
+
+            <section class="section">
+
+                <div class="section-title">
+                    <h3>نظرة سريعة</h3>
+                    <span>الإحصائيات</span>
+                </div>
+
+                <div class="stats">
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon">
+                                💰
+                            </div>
+
+                            <div class="stat-label">
+                                الإيرادات
+                            </div>
+
+                        </div>
+
+                        <div class="stat-value">
+                            0 ر.س
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon">
+                                💸
+                            </div>
+
+                            <div class="stat-label">
+                                المصروفات
+                            </div>
+
+                        </div>
+
+                        <div class="stat-value">
+                            0 ر.س
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon">
+                                📈
+                            </div>
+
+                            <div class="stat-label">
+                                صافي الربح
+                            </div>
+
+                        </div>
+
+                        <div class="stat-value">
+                            0 ر.س
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+
+                            <div class="stat-icon">
+                                📅
+                            </div>
+
+                            <div class="stat-label">
+                                الحجوزات
+                            </div>
+
+                        </div>
+
+                        <div class="stat-value">
+                            0
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- الإجراءات السريعة -->
+
+            <section class="section">
+
+                <div class="section-title">
+                    <h3>إجراءات سريعة</h3>
+                    <span>الوصول السريع</span>
+                </div>
+
+                <div class="quick-grid">
+
+                    <button class="quick-card" onclick="openPage('bookings')">
+
+                        <div class="quick-icon">
+                            📅
+                        </div>
+
+                        <div class="quick-title">
+                            الحجوزات
+                        </div>
+
+                        <div class="quick-description">
+                            إدارة الحجوزات والتقويم
+                        </div>
+
+                    </button>
+
+
+                    <button class="quick-card" onclick="openPage('expenses')">
+
+                        <div class="quick-icon">
+                            💰
+                        </div>
+
+                        <div class="quick-title">
+                            المصروفات
+                        </div>
+
+                        <div class="quick-description">
+                            متابعة المصروفات
+                        </div>
+
+                    </button>
+
+
+                    <button class="quick-card" onclick="openPage('invoices')">
+
+                        <div class="quick-icon">
+                            🧾
+                        </div>
+
+                        <div class="quick-title">
+                            الفواتير
+                        </div>
+
+                        <div class="quick-description">
+                            إنشاء وإدارة الفواتير
+                        </div>
+
+                    </button>
+
+
+                    <button class="quick-card" onclick="openPage('services')">
+
+                        <div class="quick-icon">
+                            🛎️
+                        </div>
+
+                        <div class="quick-title">
+                            الخدمات
+                        </div>
+
+                        <div class="quick-description">
+                            إدارة خدمات الشالية
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- الحجوزات القادمة -->
+
+            <section class="section">
+
+                <div class="section-title">
+                    <h3>الحجوزات القادمة</h3>
+                    <span>قريباً</span>
+                </div>
+
+                <div class="empty-card">
+
+                    <div class="empty-icon">
+                        🏝️
+                    </div>
+
+                    <h4>
+                        لا توجد حجوزات حالياً
+                    </h4>
+
+                    <p>
+                        ستظهر هنا الحجوزات القادمة عند إضافتها
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         الحجوزات
+    ========================== -->
+
+    <main id="bookingsPage" class="page">
+
+        <header class="header">
+
+            <div class="header-content">
+
+                <div class="logo">
+                    <div class="logo-icon">📅</div>
+
+                    <div>
+                        <h1>الحجوزات</h1>
+                        <span>التقويم وإدارة الحجوزات</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    📅
+                </div>
+
+                <h4>
+                    قسم الحجوزات
+                </h4>
+
+                <p>
+                    سيتم بناء التقويم والحجوزات في الخطوة القادمة
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         المصروفات
+    ========================== -->
+
+    <main id="expensesPage" class="page">
+
+        <header class="header">
+
+            <div class="header-content">
+
+                <div class="logo">
+                    <div class="logo-icon">💰</div>
+
+                    <div>
+                        <h1>المصروفات</h1>
+                        <span>إدارة ومتابعة المصروفات</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    💰
+                </div>
+
+                <h4>
+                    قسم المصروفات
+                </h4>
+
+                <p>
+                    سيتم بناء إدارة المصروفات في الخطوة القادمة
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         الفواتير
+    ========================== -->
+
+    <main id="invoicesPage" class="page">
+
+        <header class="header">
+
+            <div class="header-content">
+
+                <div class="logo">
+                    <div class="logo-icon">🧾</div>
+
+                    <div>
+                        <h1>الفواتير</h1>
+                        <span>إنشاء وإدارة الفواتير</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    🧾
+                </div>
+
+                <h4>
+                    قسم الفواتير
+                </h4>
+
+                <p>
+                    سيتم بناء نظام الفواتير في الخطوة القادمة
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         الخدمات
+    ========================== -->
+
+    <main id="servicesPage" class="page">
+
+        <header class="header">
+
+            <div class="header-content">
+
+                <div class="logo">
+                    <div class="logo-icon">🛎️</div>
+
+                    <div>
+                        <h1>الخدمات</h1>
+                        <span>إدارة خدمات الشالية</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="content">
+
+            <div class="empty-card">
+
+                <div class="empty-icon">
+                    🛎️
+                </div>
+
+                <h4>
+                    قسم الخدمات
+                </h4>
+
+                <p>
+                    سيتم بناء إدارة الخدمات في الخطوة القادمة
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         شريط التنقل
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+        <button
+            class="nav-item active"
+            onclick="openPage('home')"
+            id="nav-home"
+        >
+
+            <span class="nav-icon">
+                🏠
+            </span>
+
+            <span class="nav-text">
+                الرئيسية
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="openPage('bookings')"
+            id="nav-bookings"
+        >
+
+            <span class="nav-icon">
+                📅
+            </span>
+
+            <span class="nav-text">
+                الحجوزات
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="openPage('expenses')"
+            id="nav-expenses"
+        >
+
+            <span class="nav-icon">
+                💰
+            </span>
+
+            <span class="nav-text">
+                المصروفات
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="openPage('invoices')"
+            id="nav-invoices"
+        >
+
+            <span class="nav-icon">
+                🧾
+            </span>
+
+            <span class="nav-text">
+                الفواتير
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="openPage('services')"
+            id="nav-services"
+        >
+
+            <span class="nav-icon">
+                🛎️
+            </span>
+
+            <span class="nav-text">
+                الخدمات
+            </span>
+
+        </button>
+
+    </nav>
+
+</div>
+
+
+<script>
+
+/* =========================
+   التنقل بين الصفحات
+========================= */
+
+function openPage(page){
+
+    document
+        .querySelectorAll('.page')
+        .forEach(function(item){
+
+            item.classList.remove('active');
+
+        });
+
+
+    const target =
+        document.getElementById(page + 'Page');
+
+    if(target){
+        target.classList.add('active');
+    }
+
+
+    document
+        .querySelectorAll('.nav-item')
+        .forEach(function(item){
+
+            item.classList.remove('active');
+
+        });
+
+
+    const nav =
+        document.getElementById('nav-' + page);
+
+    if(nav){
+        nav.classList.add('active');
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+
+}
+
+</script>
+
+</body>
+</html>
