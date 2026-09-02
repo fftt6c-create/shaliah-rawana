@@ -12,269 +12,1311 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap');
 
 :root{
---burgundy:#761F35;--dark:#591628;--light:#F7EAEE;--bg:#F6F6F7;
---white:#fff;--text:#202124;--muted:#777;--border:#E5E5E8;
---green:#278552;--red:#C93636;--calendarBooked:#F7CACA;
---calendarAvailable:#DDF3E5;--calendarWeekend:#FFF0A8
+--burgundy:#761F35;
+--dark:#591628;
+--light:#F7EAEE;
+--bg:#F6F6F7;
+--white:#fff;
+--text:#202124;
+--muted:#777;
+--border:#E5E5E8;
+--green:#278552;
+--red:#C93636;
+--calendarBooked:#F7CACA;
+--calendarAvailable:#DDF3E5;
+--calendarWeekend:#FFF0A8;
 }
+
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Tajawal,Arial,sans-serif;font-size:14px}
-button,input,select,textarea{font-family:inherit}button{cursor:pointer}
-.app{max-width:760px;min-height:100vh;margin:auto;padding-bottom:90px}
-.topbar{height:72px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 17px;position:sticky;top:0;z-index:20}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Tajawal,Arial,sans-serif;
+font-size:14px;
+}
+
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
+
+.app{
+max-width:760px;
+min-height:100vh;
+margin:auto;
+padding-bottom:90px;
+}
+
+.topbar{
+height:72px;
+background:#fff;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 17px;
+position:sticky;
+top:0;
+z-index:20;
+}
+
 .brand{display:flex;align-items:center;gap:10px}
-.menu,.notification,.close{border:0;background:#F5F5F6;color:var(--burgundy);width:42px;height:42px;border-radius:13px;font-size:20px}
-.logo{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,var(--burgundy),var(--dark));color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800}
-.brand-name{font-size:19px;font-weight:800}.brand-sub{color:var(--muted);font-size:10px}
-.content{padding:18px}.title{font-size:25px;font-weight:800}.subtitle{color:var(--muted);font-size:12px;margin-top:5px}
-.hero{margin-top:17px;padding:22px;border-radius:23px;color:#fff;background:linear-gradient(135deg,var(--burgundy),var(--dark));box-shadow:0 12px 28px #761F3530}
-.hero small{opacity:.8}.hero h1{margin:6px 0;font-size:27px}.hero p{margin:0;opacity:.78;font-size:12px}
-.stats{margin-top:13px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px}
-.stat-icon{width:40px;height:40px;border-radius:11px;background:var(--light);color:var(--burgundy);display:grid;place-items:center;margin-bottom:10px}
-.label{color:var(--muted);font-size:11px}.value{font-size:21px;font-weight:800;margin-top:4px}
-.section{margin-top:23px}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.section-head h3{margin:0;font-size:17px}
-.link{border:0;background:none;color:var(--burgundy);font-weight:700;font-size:12px}
-.booking,.invoice-card,.client,.coffee-category,.contract-card,.service-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px;margin-bottom:10px}
-.booking-top{display:flex;justify-content:space-between;gap:10px}.customer{font-size:17px;font-weight:800}.booking-no{font-size:10px;color:var(--muted);margin-top:4px}
-.status{height:max-content;padding:7px 10px;border-radius:20px;font-size:10px;font-weight:700}
-.confirmed{color:var(--green);background:#E7F5EC}.pending{color:#B66C12;background:#FFF3DC}.cancelled{color:var(--red);background:#FBE8E8}
-.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
-.info{padding:11px;border-radius:11px;background:#F8F8F8}.info small{display:block;color:var(--muted);font-size:10px}.info strong{display:block;margin-top:4px;font-size:13px;line-height:1.8}
-.actions{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}.actions button{flex:1;min-height:43px}
-.primary,.secondary,.danger,.success{border:0;border-radius:11px;padding:11px 13px;font-weight:700;font-size:12px}
-.primary{background:var(--burgundy);color:#fff}.secondary{background:var(--light);color:var(--burgundy)}.danger{background:#FBE8E8;color:var(--red)}.success{background:#E7F5EC;color:var(--green)}
-.tabs{display:flex;background:#EAEAEC;padding:4px;border-radius:13px;margin:17px 0 12px}.tab{flex:1;border:0;background:transparent;border-radius:10px;padding:11px;font-size:12px}.tab.active{background:#fff;color:var(--burgundy);font-weight:800}
-.search{width:100%;border:1px solid var(--border);border-radius:13px;background:#fff;padding:13px;outline:0;font-size:13px}
-.client{display:flex;align-items:center;gap:11px}.avatar{width:45px;height:45px;border-radius:50%;background:var(--light);color:var(--burgundy);display:grid;place-items:center;font-weight:800}.grow{flex:1}
-.calendar{margin-top:17px;background:#fff;border:1px solid var(--border);border-radius:22px;padding:14px;box-shadow:0 5px 18px #00000008}
-.calendar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.calendar-title{font-size:20px;font-weight:800}.calendar-year{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-.calendar-legend{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.legend{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700}.legend i{width:15px;height:15px;border-radius:4px;display:inline-block;border:1px solid #ddd}
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.week{text-align:center;color:#555;font-size:12px;font-weight:800;padding:8px 0}.week.weekend{background:var(--calendarWeekend);border-radius:7px}
-.day{min-height:68px;background:var(--calendarAvailable);border:1px solid #CBE7D5;border-radius:11px;padding:7px 5px;font-size:14px;font-weight:700;position:relative}.day strong{font-size:16px}.day.booked{background:var(--calendarBooked);border-color:#E8A0A0;color:#8E2222}.day.weekend{box-shadow:inset 0 -4px 0 var(--calendarWeekend)}.day.today{outline:3px solid var(--burgundy);outline-offset:-3px}.day-event{margin-top:5px;font-size:9px;font-weight:800;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.calendar-nav{display:flex;gap:6px}.calendar-nav button{border:0;background:var(--light);color:var(--burgundy);border-radius:10px;padding:8px 12px;font-weight:800}
-.finance{margin-top:17px;padding:20px;border-radius:21px;background:linear-gradient(135deg,var(--burgundy),var(--dark));color:#fff}.finance small{opacity:.75}.finance strong{display:block;font-size:30px;margin-top:5px}
-.finance-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px}.empty{background:#fff;border:1px dashed #D8D8D8;border-radius:18px;padding:35px 15px;text-align:center;color:#999;font-size:12px}
-.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px}.quick-icon{width:42px;height:42px;border-radius:12px;background:var(--light);color:var(--burgundy);display:grid;place-items:center;font-size:20px;margin-bottom:9px}.quick-title{font-size:14px;font-weight:800}.quick-sub{font-size:10px;color:var(--muted);margin-top:4px}
-.overlay,.modal{position:fixed;inset:0;background:#0008;z-index:70;display:none}.overlay.open,.modal.open{display:block}
-.drawer{position:absolute;right:0;top:0;bottom:0;width:min(360px,90vw);background:#fff;padding:20px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:18px;border-bottom:1px solid var(--border)}
-.drawer-brand{color:var(--burgundy);font-size:23px;font-weight:800}.drawer-section{margin-top:20px}.drawer-label{color:#aaa;font-size:10px;margin:0 8px 7px}.drawer-item{width:100%;display:flex;align-items:center;gap:11px;border:0;background:none;border-radius:13px;padding:12px;text-align:right;font-size:13px}.drawer-item:hover{background:var(--light);color:var(--burgundy)}.drawer-icon{width:35px;height:35px;border-radius:9px;background:#F6F6F6;display:grid;place-items:center}
-.modal{overflow:auto;padding:8px}.modal-box{max-width:680px;margin:5px auto;background:#fff;border-radius:21px;padding:14px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal-head h2{margin:0;font-size:20px}
-.booking-section{background:#FAFAFB;border:1px solid var(--border);border-radius:17px;padding:13px;margin-bottom:9px}.booking-section-title{font-size:13px;font-weight:800;color:var(--burgundy);margin-bottom:10px}.booking-time-card{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.field label{display:block;color:#777;font-size:10px;margin-bottom:5px}.field input,.field select,.field textarea,.setting-row input,.setting-row select{width:100%;border:1px solid #DDD;border-radius:10px;padding:11px;outline:0;background:#fff;font-size:12px}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--burgundy)}
-.customer-row{display:grid;grid-template-columns:1fr auto;gap:7px}.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.remaining{background:var(--light);color:var(--burgundy);border-radius:11px;padding:11px;margin-top:8px;display:flex;justify-content:space-between;font-size:11px;font-weight:700}
-.coffee-select-list,.service-select-list{display:grid;gap:7px;margin-top:8px}.coffee-pick,.service-pick{display:grid;grid-template-columns:1fr 70px;gap:7px;align-items:center;background:#fff;border:1px solid #ddd;border-radius:11px;padding:8px}
-.coffee-pick-main,.service-pick-main{display:flex;align-items:center;gap:7px}.coffee-pick input[type=checkbox],.service-pick input[type=checkbox]{width:18px;height:18px}.coffee-qty,.service-qty{padding:8px!important}
-.selected-coffee,.selected-services,.deposit-box{margin-top:10px;background:#FFF8F0;border:1px solid #F1DDC4;border-radius:12px;padding:10px}.selected-services{background:#F7F3FA;border-color:#E2D7E8}.deposit-box{background:#FFF9E8;border-color:#EBDDAF}
-.selected-coffee-row,.selected-service-row{display:flex;justify-content:space-between;font-size:11px;padding:4px 0}
-.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.setting-row{background:#fff;border:1px solid var(--border);border-radius:15px;padding:13px;margin-bottom:9px}.setting-row label{font-size:11px;font-weight:700;display:block;margin-bottom:7px}
-.check-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--border);border-radius:15px;padding:13px;margin-bottom:9px;font-size:12px}
-.switch{width:48px;height:27px;border-radius:20px;background:#ddd;border:0;position:relative}.switch:after{content:"";position:absolute;width:21px;height:21px;top:3px;right:3px;background:#fff;border-radius:50%;transition:.2s}.switch.on{background:var(--burgundy)}.switch.on:after{right:24px}
-.setting-note{font-size:10px;color:#999;margin:5px 2px 12px}.invoice-preview,.contract-preview{background:#fff;border-radius:15px;padding:20px;border:1px solid #ddd}
-.invoice-header,.contract-header{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;padding-bottom:15px;border-bottom:2px solid var(--burgundy)}.invoice-brand,.contract-brand{font-size:23px;font-weight:800;color:var(--burgundy)}.invoice-title,.contract-title{font-size:20px;font-weight:800}.invoice-meta{font-size:10px;color:#777;margin-top:5px;line-height:1.9}
-.invoice-table{width:100%;border-collapse:collapse;margin-top:17px;font-size:11px}.invoice-table th,.invoice-table td{border-bottom:1px solid #eee;padding:9px 5px;text-align:right}.invoice-table th{color:#777;background:#fafafa}
-.invoice-summary{margin-top:15px;margin-right:auto;max-width:280px}.invoice-summary-row{display:flex;justify-content:space-between;padding:7px 0;font-size:11px;border-bottom:1px solid #eee}.invoice-summary-row.total{font-size:15px;font-weight:800;color:var(--burgundy)}
-.invoice-footer,.contract-footer{margin-top:20px;padding-top:12px;border-top:1px solid #eee;font-size:10px;color:#888;text-align:center}.invoice-status{display:inline-block;padding:5px 9px;border-radius:20px;font-size:9px;font-weight:700;background:#E7F5EC;color:var(--green)}
-.contract-content{white-space:pre-wrap;line-height:2;font-size:12px;margin-top:18px}.signature-box{margin-top:20px;border:1px solid #ddd;border-radius:14px;padding:10px;background:#fafafa}.signature-title{font-size:11px;font-weight:800;margin-bottom:7px}
-#signatureCanvas{width:100%;height:180px;background:#fff;border:1px dashed #aaa;border-radius:10px;touch-action:none;display:block}.signature-actions{display:flex;gap:7px;margin-top:7px}
-.contract-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.contract-field{background:#f8f8f8;border-radius:10px;padding:9px}.contract-field small{display:block;color:#888;font-size:9px}.contract-field strong{display:block;margin-top:3px;font-size:11px}
-.bottom{position:fixed;bottom:0;left:0;right:0;height:77px;background:#fff;border-top:1px solid var(--border);z-index:30;padding-bottom:env(safe-area-inset-bottom)}.bottom-inner{max-width:760px;height:100%;margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}.bottom button{border:0;background:none;color:#999;font-size:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}.bottom button span{font-size:20px}.bottom button.active{color:var(--burgundy);font-weight:800}
-@media(max-width:500px){.customer-row{grid-template-columns:1fr}.customer-row .secondary{width:100%}.settings-grid,.contract-fields{grid-template-columns:1fr}.calendar{padding:9px}.calendar-grid{gap:3px}.day{min-height:60px;padding:5px 3px}.week{font-size:9px}.day strong{font-size:14px}.day-event{font-size:7px}.quick-grid{grid-template-columns:1fr 1fr}.invoice-preview,.contract-preview{padding:13px}.invoice-header,.contract-header{flex-direction:column}.invoice-summary{max-width:100%}}
+
+.menu,.notification,.close{
+border:0;
+background:#F5F5F6;
+color:var(--burgundy);
+width:42px;
+height:42px;
+border-radius:13px;
+font-size:20px;
+}
+
+.logo{
+width:42px;height:42px;border-radius:13px;
+background:linear-gradient(145deg,var(--burgundy),var(--dark));
+color:#fff;display:grid;place-items:center;
+font-size:22px;font-weight:800;
+}
+
+.brand-name{font-size:19px;font-weight:800}
+.brand-sub{color:var(--muted);font-size:10px}
+
+.content{padding:18px}
+
+.title{font-size:25px;font-weight:800}
+.subtitle{color:var(--muted);font-size:12px;margin-top:5px}
+
+.hero{
+margin-top:17px;padding:22px;border-radius:23px;color:#fff;
+background:linear-gradient(135deg,var(--burgundy),var(--dark));
+box-shadow:0 12px 28px #761F3530;
+}
+
+.hero small{opacity:.8}
+.hero h1{margin:6px 0;font-size:27px}
+.hero p{margin:0;opacity:.78;font-size:12px}
+
+.stats{
+margin-top:13px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.card{
+background:#fff;border:1px solid var(--border);
+border-radius:18px;padding:15px;
+}
+
+.stat-icon{
+width:40px;height:40px;border-radius:11px;
+background:var(--light);color:var(--burgundy);
+display:grid;place-items:center;margin-bottom:10px;
+}
+
+.label{color:var(--muted);font-size:11px}
+.value{font-size:21px;font-weight:800;margin-top:4px}
+
+.section{margin-top:23px}
+
+.section-head{
+display:flex;align-items:center;justify-content:space-between;
+margin-bottom:10px;
+}
+
+.section-head h3{margin:0;font-size:17px}
+
+.link{
+border:0;background:none;color:var(--burgundy);
+font-weight:700;font-size:12px;
+}
+
+.booking,.invoice-card,.client,.coffee-category,.contract-card{
+background:#fff;border:1px solid var(--border);
+border-radius:18px;padding:15px;margin-bottom:10px;
+}
+
+.booking-top{
+display:flex;justify-content:space-between;gap:10px;
+}
+
+.customer{font-size:17px;font-weight:800}
+.booking-no{font-size:10px;color:var(--muted);margin-top:4px}
+
+.status{
+height:max-content;padding:7px 10px;border-radius:20px;
+font-size:10px;font-weight:700;
+}
+
+.confirmed{color:var(--green);background:#E7F5EC}
+.pending{color:#B66C12;background:#FFF3DC}
+.cancelled{color:var(--red);background:#FBE8E8}
+
+.booking-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:8px;margin-top:13px;
+}
+
+.info{
+padding:11px;border-radius:11px;background:#F8F8F8;
+}
+
+.info small{display:block;color:var(--muted);font-size:10px}
+.info strong{display:block;margin-top:4px;font-size:13px;line-height:1.8}
+
+.actions{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.actions button{flex:1;min-height:43px}
+
+.primary,.secondary,.danger,.success{
+border:0;border-radius:11px;padding:11px 13px;
+font-weight:700;font-size:12px;
+}
+
+.primary{background:var(--burgundy);color:#fff}
+.secondary{background:var(--light);color:var(--burgundy)}
+.danger{background:#FBE8E8;color:var(--red)}
+.success{background:#E7F5EC;color:var(--green)}
+
+.tabs{
+display:flex;background:#EAEAEC;padding:4px;
+border-radius:13px;margin:17px 0 12px;
+}
+
+.tab{
+flex:1;border:0;background:transparent;border-radius:10px;
+padding:11px;font-size:12px;
+}
+
+.tab.active{background:#fff;color:var(--burgundy);font-weight:800}
+
+.search{
+width:100%;border:1px solid var(--border);border-radius:13px;
+background:#fff;padding:13px;outline:0;font-size:13px;
+}
+
+.client{display:flex;align-items:center;gap:11px}
+
+.avatar{
+width:45px;height:45px;border-radius:50%;
+background:var(--light);color:var(--burgundy);
+display:grid;place-items:center;font-weight:800;
+}
+
+.grow{flex:1}
+
+.calendar{
+margin-top:17px;background:#fff;border:1px solid var(--border);
+border-radius:22px;padding:14px;
+box-shadow:0 5px 18px #00000008;
+}
+
+.calendar-head{
+display:flex;justify-content:space-between;align-items:center;
+margin-bottom:15px;
+}
+
+.calendar-title{font-size:20px;font-weight:800}
+.calendar-year{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+
+.calendar-legend{
+display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;
+}
+
+.legend{
+display:flex;align-items:center;gap:5px;
+font-size:10px;font-weight:700;
+}
+
+.legend i{
+width:15px;height:15px;border-radius:4px;
+display:inline-block;border:1px solid #ddd;
+}
+
+.calendar-grid{
+display:grid;grid-template-columns:repeat(7,1fr);gap:5px;
+}
+
+.week{
+text-align:center;color:#555;font-size:12px;
+font-weight:800;padding:8px 0;
+}
+
+.week.weekend{background:var(--calendarWeekend);border-radius:7px}
+
+.day{
+min-height:68px;
+background:var(--calendarAvailable);
+border:1px solid #CBE7D5;
+border-radius:11px;
+padding:7px 5px;
+font-size:14px;
+font-weight:700;
+position:relative;
+}
+
+.day strong{font-size:16px}
+
+.day.booked{
+background:var(--calendarBooked);
+border-color:#E8A0A0;
+color:#8E2222;
+}
+
+.day.weekend{
+box-shadow:inset 0 -4px 0 var(--calendarWeekend);
+}
+
+.day.today{
+outline:3px solid var(--burgundy);
+outline-offset:-3px;
+}
+
+.day-event{
+margin-top:5px;font-size:9px;font-weight:800;
+overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
+
+.calendar-nav{
+display:flex;gap:6px;
+}
+
+.calendar-nav button{
+border:0;background:var(--light);color:var(--burgundy);
+border-radius:10px;padding:8px 12px;font-weight:800;
+}
+
+.finance{
+margin-top:17px;padding:20px;border-radius:21px;
+background:linear-gradient(135deg,var(--burgundy),var(--dark));
+color:#fff;
+}
+
+.finance small{opacity:.75}
+.finance strong{display:block;font-size:30px;margin-top:5px}
+
+.finance-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:10px;margin-top:11px;
+}
+
+.empty{
+background:#fff;border:1px dashed #D8D8D8;border-radius:18px;
+padding:35px 15px;text-align:center;color:#999;font-size:12px;
+}
+
+.quick-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+
+.quick-card{
+background:#fff;border:1px solid var(--border);
+border-radius:18px;padding:15px;
+}
+
+.quick-icon{
+width:42px;height:42px;border-radius:12px;
+background:var(--light);color:var(--burgundy);
+display:grid;place-items:center;font-size:20px;margin-bottom:9px;
+}
+
+.quick-title{font-size:14px;font-weight:800}
+.quick-sub{font-size:10px;color:var(--muted);margin-top:4px}
+
+.overlay,.modal{
+position:fixed;inset:0;background:#0008;z-index:70;display:none;
+}
+
+.overlay.open,.modal.open{display:block}
+
+.drawer{
+position:absolute;right:0;top:0;bottom:0;
+width:min(360px,90vw);background:#fff;padding:20px;overflow:auto;
+}
+
+.drawer-head{
+display:flex;justify-content:space-between;align-items:center;
+padding-bottom:18px;border-bottom:1px solid var(--border);
+}
+
+.drawer-brand{color:var(--burgundy);font-size:23px;font-weight:800}
+.drawer-section{margin-top:20px}
+.drawer-label{color:#aaa;font-size:10px;margin:0 8px 7px}
+
+.drawer-item{
+width:100%;display:flex;align-items:center;gap:11px;
+border:0;background:none;border-radius:13px;padding:12px;
+text-align:right;font-size:13px;
+}
+
+.drawer-item:hover{background:var(--light);color:var(--burgundy)}
+
+.drawer-icon{
+width:35px;height:35px;border-radius:9px;
+background:#F6F6F6;display:grid;place-items:center;
+}
+
+.modal{overflow:auto;padding:8px}
+
+.modal-box{
+max-width:680px;margin:5px auto;background:#fff;
+border-radius:21px;padding:14px;
+}
+
+.modal-head{
+display:flex;justify-content:space-between;
+align-items:center;margin-bottom:14px;
+}
+
+.modal-head h2{margin:0;font-size:20px}
+
+.booking-section{
+background:#FAFAFB;border:1px solid var(--border);
+border-radius:17px;padding:13px;margin-bottom:9px;
+}
+
+.booking-section-title{
+font-size:13px;font-weight:800;color:var(--burgundy);
+margin-bottom:10px;
+}
+
+.booking-time-card{
+display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+
+.field label{
+display:block;color:#777;font-size:10px;margin-bottom:5px;
+}
+
+.field input,.field select,.field textarea,
+.setting-row input,.setting-row select{
+width:100%;border:1px solid #DDD;border-radius:10px;
+padding:11px;outline:0;background:#fff;font-size:12px;
+}
+
+.field input:focus,.field select:focus,.field textarea:focus{
+border-color:var(--burgundy);
+}
+
+.customer-row{
+display:grid;grid-template-columns:1fr auto;gap:7px;
+}
+
+.payment-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+
+.remaining{
+background:var(--light);color:var(--burgundy);
+border-radius:11px;padding:11px;margin-top:8px;
+display:flex;justify-content:space-between;
+font-size:11px;font-weight:700;
+}
+
+.coffee-select-list{
+display:grid;gap:7px;margin-top:8px;
+}
+
+.coffee-pick{
+display:grid;grid-template-columns:1fr 70px;
+gap:7px;align-items:center;
+background:#fff;border:1px solid #ddd;border-radius:11px;padding:8px;
+}
+
+.coffee-pick-main{
+display:flex;align-items:center;gap:7px;
+}
+
+.coffee-pick input[type=checkbox]{width:18px;height:18px}
+.coffee-qty{padding:8px!important}
+
+.selected-coffee{
+margin-top:10px;
+background:#FFF8F0;border:1px solid #F1DDC4;
+border-radius:12px;padding:10px;
+}
+
+.selected-coffee-row{
+display:flex;justify-content:space-between;
+font-size:11px;padding:4px 0;
+}
+
+.settings-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+
+.setting-row{
+background:#fff;border:1px solid var(--border);
+border-radius:15px;padding:13px;margin-bottom:9px;
+}
+
+.setting-row label{
+font-size:11px;font-weight:700;display:block;margin-bottom:7px;
+}
+
+.check-row{
+display:flex;align-items:center;justify-content:space-between;
+gap:10px;background:#fff;border:1px solid var(--border);
+border-radius:15px;padding:13px;margin-bottom:9px;font-size:12px;
+}
+
+.switch{
+width:48px;height:27px;border-radius:20px;background:#ddd;
+border:0;position:relative;
+}
+
+.switch:after{
+content:"";position:absolute;width:21px;height:21px;
+top:3px;right:3px;background:#fff;border-radius:50%;transition:.2s;
+}
+
+.switch.on{background:var(--burgundy)}
+.switch.on:after{right:24px}
+
+.setting-note{font-size:10px;color:#999;margin:5px 2px 12px}
+
+.invoice-preview,.contract-preview{
+background:#fff;border-radius:15px;padding:20px;border:1px solid #ddd;
+}
+
+.invoice-header,.contract-header{
+display:flex;justify-content:space-between;align-items:flex-start;
+gap:15px;padding-bottom:15px;
+border-bottom:2px solid var(--burgundy);
+}
+
+.invoice-brand,.contract-brand{
+font-size:23px;font-weight:800;color:var(--burgundy);
+}
+
+.invoice-title,.contract-title{font-size:20px;font-weight:800}
+.invoice-meta{font-size:10px;color:#777;margin-top:5px;line-height:1.9}
+
+.invoice-table{
+width:100%;border-collapse:collapse;margin-top:17px;font-size:11px;
+}
+
+.invoice-table th,.invoice-table td{
+border-bottom:1px solid #eee;padding:9px 5px;text-align:right;
+}
+
+.invoice-table th{color:#777;background:#fafafa}
+
+.invoice-summary{
+margin-top:15px;margin-right:auto;max-width:280px;
+}
+
+.invoice-summary-row{
+display:flex;justify-content:space-between;
+padding:7px 0;font-size:11px;border-bottom:1px solid #eee;
+}
+
+.invoice-summary-row.total{
+font-size:15px;font-weight:800;color:var(--burgundy);
+}
+
+.invoice-footer,.contract-footer{
+margin-top:20px;padding-top:12px;border-top:1px solid #eee;
+font-size:10px;color:#888;text-align:center;
+}
+
+.invoice-status{
+display:inline-block;padding:5px 9px;border-radius:20px;
+font-size:9px;font-weight:700;background:#E7F5EC;color:var(--green);
+}
+
+.contract-content{
+white-space:pre-wrap;
+line-height:2;
+font-size:12px;
+margin-top:18px;
+}
+
+.signature-box{
+margin-top:20px;
+border:1px solid #ddd;border-radius:14px;
+padding:10px;background:#fafafa;
+}
+
+.signature-title{
+font-size:11px;font-weight:800;margin-bottom:7px;
+}
+
+#signatureCanvas{
+width:100%;
+height:180px;
+background:#fff;
+border:1px dashed #aaa;
+border-radius:10px;
+touch-action:none;
+display:block;
+}
+
+.signature-actions{
+display:flex;gap:7px;margin-top:7px;
+}
+
+.contract-fields{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+margin-top:12px;
+}
+
+.contract-field{
+background:#f8f8f8;border-radius:10px;padding:9px;
+}
+
+.contract-field small{
+display:block;color:#888;font-size:9px;
+}
+
+.contract-field strong{
+display:block;margin-top:3px;font-size:11px;
+}
+
+.bottom{
+position:fixed;bottom:0;left:0;right:0;height:77px;
+background:#fff;border-top:1px solid var(--border);z-index:30;
+padding-bottom:env(safe-area-inset-bottom);
+}
+
+.bottom-inner{
+max-width:760px;height:100%;margin:auto;
+display:grid;grid-template-columns:repeat(4,1fr);
+}
+
+.bottom button{
+border:0;background:none;color:#999;font-size:10px;
+display:flex;flex-direction:column;align-items:center;
+justify-content:center;gap:5px;
+}
+
+.bottom button span{font-size:20px}
+.bottom button.active{color:var(--burgundy);font-weight:800}
+
+@media(max-width:500px){
+
+.customer-row{grid-template-columns:1fr}
+.customer-row .secondary{width:100%}
+
+.settings-grid,.contract-fields{grid-template-columns:1fr}
+
+.calendar{padding:9px}
+.calendar-grid{gap:3px}
+.day{min-height:60px;padding:5px 3px}
+.week{font-size:9px}
+.day strong{font-size:14px}
+.day-event{font-size:7px}
+
+.quick-grid{grid-template-columns:1fr 1fr}
+
+.invoice-preview,.contract-preview{padding:13px}
+
+.invoice-header,.contract-header{
+flex-direction:column;
+}
+
+.invoice-summary{max-width:100%}
+}
 </style>
 </head>
+
 <body>
 
 <div class="app">
+
 <header class="topbar">
+
 <div class="brand">
+
 <button class="menu" onclick="openMenu()">☰</button>
+
 <div class="logo">ر</div>
-<div><div class="brand-name" id="brandName">روانا</div><div class="brand-sub" id="brandSub">إدارة الشاليه</div></div>
+
+<div>
+<div class="brand-name" id="brandName">روانا</div>
+<div class="brand-sub" id="brandSub">إدارة الشاليه</div>
 </div>
+
+</div>
+
 <button class="notification">🔔</button>
+
 </header>
+
 <main id="content" class="content"></main>
+
 </div>
 
 <div id="overlay" class="overlay" onclick="closeMenu()">
-<aside class="drawer" onclick="event.stopPropagation()">
-<div class="drawer-head"><div><div class="drawer-brand" id="drawerBrand">روانا</div><div style="font-size:10px;color:#999">نظام إدارة الشاليه</div></div><button class="close" onclick="closeMenu()">×</button></div>
 
-<div class="drawer-section"><div class="drawer-label">الرئيسية</div><button class="drawer-item" onclick="go('home')"><span class="drawer-icon">🏠</span>الرئيسية</button></div>
-<div class="drawer-section"><div class="drawer-label">الحجوزات والعملاء</div><button class="drawer-item" onclick="go('bookings')"><span class="drawer-icon">📅</span>الحجوزات</button><button class="drawer-item" onclick="go('calendar')"><span class="drawer-icon">🗓️</span>التقويم</button><button class="drawer-item" onclick="go('clients')"><span class="drawer-icon">👤</span>العملاء</button></div>
-<div class="drawer-section"><div class="drawer-label">الخدمات</div><button class="drawer-item" onclick="go('coffee')"><span class="drawer-icon">☕</span><span id="drawerCoffeeName">ركن القهوة</span></button><div id="drawerServices"></div></div>
-<div class="drawer-section"><div class="drawer-label">المستندات والمالية</div><button class="drawer-item" onclick="go('invoices')"><span class="drawer-icon">🧾</span>الفواتير</button><button class="drawer-item" onclick="go('contracts')"><span class="drawer-icon">📄</span>العقود</button><button class="drawer-item" onclick="go('finance')"><span class="drawer-icon">💰</span>الإيرادات</button><button class="drawer-item" onclick="go('expenses')"><span class="drawer-icon">💸</span>المصروفات</button></div>
-<div class="drawer-section"><div class="drawer-label">التحليل</div><button class="drawer-item" onclick="go('reports')"><span class="drawer-icon">📊</span>التقارير</button></div>
-<div class="drawer-section"><div class="drawer-label">النظام</div><button class="drawer-item" onclick="go('settings')"><span class="drawer-icon">⚙️</span>الإعدادات</button></div>
+<aside class="drawer" onclick="event.stopPropagation()">
+
+<div class="drawer-head">
+
+<div>
+<div class="drawer-brand" id="drawerBrand">روانا</div>
+<div style="font-size:10px;color:#999">نظام إدارة الشاليه</div>
+</div>
+
+<button class="close" onclick="closeMenu()">×</button>
+
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">الرئيسية</div>
+
+<button class="drawer-item" onclick="go('home')">
+<span class="drawer-icon">🏠</span>الرئيسية
+</button>
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">الحجوزات والعملاء</div>
+
+<button class="drawer-item" onclick="go('bookings')">
+<span class="drawer-icon">📅</span>الحجوزات
+</button>
+
+<button class="drawer-item" onclick="go('calendar')">
+<span class="drawer-icon">🗓️</span>التقويم
+</button>
+
+<button class="drawer-item" onclick="go('clients')">
+<span class="drawer-icon">👤</span>العملاء
+</button>
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">الخدمات</div>
+
+<button class="drawer-item" onclick="go('coffee')">
+<span class="drawer-icon">☕</span>
+<span id="drawerCoffeeName">ركن القهوة</span>
+</button>
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">المستندات والمالية</div>
+
+<button class="drawer-item" onclick="go('invoices')">
+<span class="drawer-icon">🧾</span>الفواتير
+</button>
+
+<button class="drawer-item" onclick="go('contracts')">
+<span class="drawer-icon">📄</span>العقود
+</button>
+
+<button class="drawer-item" onclick="go('finance')">
+<span class="drawer-icon">💰</span>الإيرادات
+</button>
+
+<button class="drawer-item" onclick="go('expenses')">
+<span class="drawer-icon">💸</span>المصروفات
+</button>
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">التحليل</div>
+
+<button class="drawer-item" onclick="go('reports')">
+<span class="drawer-icon">📊</span>التقارير
+</button>
+</div>
+
+<div class="drawer-section">
+<div class="drawer-label">النظام</div>
+
+<button class="drawer-item" onclick="go('settings')">
+<span class="drawer-icon">⚙️</span>الإعدادات
+</button>
+</div>
+
 </aside>
 </div>
 
-<nav class="bottom"><div class="bottom-inner">
-<button onclick="go('home')" class="active"><span>⌂</span>الرئيسية</button>
-<button onclick="go('bookings')"><span>▣</span>الحجوزات</button>
-<button onclick="go('calendar')"><span>▦</span>التقويم</button>
-<button onclick="openMenu()"><span>☰</span>المزيد</button>
-</div></nav>
+<nav class="bottom">
+
+<div class="bottom-inner">
+
+<button onclick="go('home')" class="active">
+<span>⌂</span>الرئيسية
+</button>
+
+<button onclick="go('bookings')">
+<span>▣</span>الحجوزات
+</button>
+
+<button onclick="go('calendar')">
+<span>▦</span>التقويم
+</button>
+
+<button onclick="openMenu()">
+<span>☰</span>المزيد
+</button>
+
+</div>
+
+</nav>
 
 <!-- حجز -->
-<div id="modal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="bookingModalTitle">حجز جديد</h2><button class="close" onclick="closeBooking()">×</button></div>
 
-<div class="booking-section"><div class="booking-section-title">العميل</div><div class="customer-row">
-<select id="customerSelect"><option value="">اختر عميلًا</option></select>
-<button class="secondary" onclick="openClientModal()">+ إضافة عميل</button>
-</div></div>
+<div id="modal" class="modal">
 
-<div class="booking-section"><div class="booking-section-title">موعد الدخول</div><div class="booking-time-card">
-<div class="field"><label>التاريخ الميلادي</label><input id="startDate" type="date"></div>
-<div class="field"><label>الوقت</label><input id="startTime" type="time"></div>
-</div></div>
+<div class="modal-box">
 
-<div class="booking-section"><div class="booking-section-title">موعد الخروج</div><div class="booking-time-card">
-<div class="field"><label>التاريخ الميلادي</label><input id="endDate" type="date"></div>
-<div class="field"><label>الوقت</label><input id="endTime" type="time"></div>
-</div></div>
+<div class="modal-head">
 
-<div class="booking-section"><div class="booking-section-title">☕ ركن القهوة — يمكن اختيار أكثر من فئة</div>
-<div id="coffeePickList" class="coffee-select-list"></div><div id="selectedCoffeeBox" class="selected-coffee"></div></div>
+<h2 id="bookingModalTitle">حجز جديد</h2>
 
-<div class="booking-section"><div class="booking-section-title">⚙️ الخدمات الإضافية</div>
-<div id="servicePickList" class="service-select-list"></div><div id="selectedServicesBox" class="selected-services"></div></div>
+<button class="close" onclick="closeBooking()">×</button>
 
-<div class="booking-section"><div class="booking-section-title">💳 التأمين</div>
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">العميل</div>
+
+<div class="customer-row">
+
+<select id="customerSelect">
+<option value="">اختر عميلًا</option>
+</select>
+
+<button class="secondary" onclick="openClientModal()">
++ إضافة عميل
+</button>
+
+</div>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">موعد الدخول</div>
+
+<div class="booking-time-card">
+
+<div class="field">
+<label>التاريخ الميلادي</label>
+<input id="startDate" type="date">
+</div>
+
+<div class="field">
+<label>الوقت</label>
+<input id="startTime" type="time">
+</div>
+
+</div>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">موعد الخروج</div>
+
+<div class="booking-time-card">
+
+<div class="field">
+<label>التاريخ الميلادي</label>
+<input id="endDate" type="date">
+</div>
+
+<div class="field">
+<label>الوقت</label>
+<input id="endTime" type="time">
+</div>
+
+</div>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">☕ ركن القهوة — يمكن اختيار أكثر من فئة</div>
+
+<div id="coffeePickList" class="coffee-select-list"></div>
+
+<div id="selectedCoffeeBox" class="selected-coffee"></div>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">الدفع</div>
+
 <div class="payment-grid">
-<div class="field"><label>تأمين الشاليه</label><input id="chaletDeposit" type="number" min="0" placeholder="0" oninput="updateBookingTotal()"></div>
-<div class="field"><label>تأمين ركن القهوة</label><input id="coffeeDeposit" type="number" min="0" placeholder="0" oninput="updateBookingTotal()"></div>
-</div>
-<div class="deposit-box">
-<div class="selected-service-row"><span>التأمين مسترد</span><strong>مسترد في حال عدم وجود أي أضرار في الشالية.</strong></div>
-<div class="selected-service-row"><span>إجمالي التأمين</span><strong id="depositTotalValue">0 ر.س</strong></div>
-</div>
+
+<div class="field">
+
+<label>قيمة الحجز الأساسية</label>
+
+<input id="price" type="number" min="0"
+placeholder="0" oninput="updateBookingTotal()">
+
 </div>
 
-<div class="booking-section"><div class="booking-section-title">الدفع</div>
+<div class="field">
+
+<label>المدفوع</label>
+
+<input id="paid" type="number" min="0"
+value="0" oninput="updateBookingTotal()">
+
+</div>
+
+</div>
+
+<div class="remaining">
+<span>إجمالي الحجز</span>
+<span id="totalBookingValue">0 ر.س</span>
+</div>
+
+<div class="remaining">
+<span>المبلغ المتبقي</span>
+<span id="remainingValue">0 ر.س</span>
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">🔐 التأمين</div>
+
+<div class="setting-note" style="margin-top:-3px">
+التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
+</div>
+
 <div class="payment-grid">
-<div class="field"><label>قيمة الحجز الأساسية</label><input id="price" type="number" min="0" placeholder="0" oninput="updateBookingTotal()"></div>
-<div class="field"><label>المدفوع</label><input id="paid" type="number" min="0" value="0" oninput="updateBookingTotal()"></div>
+
+<div class="field">
+<label>تأمين الشالية</label>
+
+<input id="chaletDeposit" type="number" min="0"
+value="0" oninput="updateDepositTotal()">
+
 </div>
-<div class="remaining"><span>إجمالي الحجز شامل التأمين</span><span id="totalBookingValue">0 ر.س</span></div>
-<div class="remaining"><span>المبلغ المتبقي بدون التأمين</span><span id="remainingValue">0 ر.س</span></div>
+
+<div class="field">
+<label>تأمين ركن القهوة</label>
+
+<input id="coffeeDeposit" type="number" min="0"
+value="0" oninput="updateDepositTotal()">
+
 </div>
 
-<div class="booking-section"><div class="booking-section-title">حالة الحجز</div>
-<select id="status" style="width:100%;padding:11px;border:1px solid #ddd;border-radius:10px">
-<option>مؤكد</option><option>بانتظار العربون</option><option>مكتمل</option><option>ملغي</option>
-</select></div>
+</div>
 
-<div class="booking-section"><div class="booking-section-title">ملاحظات</div><textarea id="notes" rows="3" placeholder="أضف ملاحظات الحجز" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:10px"></textarea></div>
+<div class="remaining" style="margin-top:10px">
+<span>إجمالي التأمين</span>
+<span id="totalDepositValue">0 ر.س</span>
+</div>
 
-<div class="actions"><button class="primary" id="saveButton" onclick="saveBooking()">حفظ الحجز</button><button class="secondary" onclick="closeBooking()">إلغاء</button></div>
-</div></div>
+</div>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">حالة الحجز</div>
+
+<select id="status"
+style="width:100%;padding:11px;border:1px solid #ddd;border-radius:10px">
+
+<option>مؤكد</option>
+<option>بانتظار العربون</option>
+<option>مكتمل</option>
+<option>ملغي</option>
+
+</select>
+
+</div>
+
+<div class="booking-section">
+
+<div class="booking-section-title">ملاحظات</div>
+
+<textarea id="notes" rows="3"
+placeholder="أضف ملاحظات الحجز"
+style="width:100%;border:1px solid #ddd;border-radius:10px;padding:10px"></textarea>
+
+</div>
+
+<div class="actions">
+
+<button class="primary" id="saveButton" onclick="saveBooking()">
+حفظ الحجز
+</button>
+
+<button class="secondary" onclick="closeBooking()">
+إلغاء
+</button>
+
+</div>
+
+</div>
+</div>
 
 <!-- عميل -->
-<div id="clientModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2>إضافة عميل</h2><button class="close" onclick="closeClientModal()">×</button></div>
-<div class="booking-section"><div class="payment-grid">
-<div class="field"><label>اسم العميل</label><input id="clientName" placeholder="اسم العميل"></div>
-<div class="field"><label>رقم الجوال</label><input id="clientPhone" type="tel" placeholder="05xxxxxxxx"></div>
+
+<div id="clientModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+<h2>إضافة عميل</h2>
+<button class="close" onclick="closeClientModal()">×</button>
 </div>
-<div class="field" style="margin-top:10px"><label>ملاحظات العميل</label><textarea id="clientNotes" rows="3"></textarea></div></div>
-<div class="actions"><button class="primary" onclick="saveClient()">حفظ العميل</button><button class="secondary" onclick="closeClientModal()">إلغاء</button></div>
-</div></div>
+
+<div class="booking-section">
+
+<div class="payment-grid">
+
+<div class="field">
+<label>اسم العميل</label>
+<input id="clientName" placeholder="اسم العميل">
+</div>
+
+<div class="field">
+<label>رقم الجوال</label>
+<input id="clientPhone" type="tel" placeholder="05xxxxxxxx">
+</div>
+
+</div>
+
+<div class="field" style="margin-top:10px">
+<label>ملاحظات العميل</label>
+<textarea id="clientNotes" rows="3"></textarea>
+</div>
+
+</div>
+
+<div class="actions">
+<button class="primary" onclick="saveClient()">حفظ العميل</button>
+<button class="secondary" onclick="closeClientModal()">إلغاء</button>
+</div>
+
+</div>
+</div>
 
 <!-- مصروف -->
-<div id="expenseModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="expenseModalTitle">إضافة مصروف</h2><button class="close" onclick="closeExpenseModal()">×</button></div>
-<div class="booking-section"><div class="payment-grid">
-<div class="field"><label>اسم المصروف</label><input id="expenseTitle" placeholder="مثال: تنظيف"></div>
-<div class="field"><label>القيمة</label><input id="expenseAmount" type="number" min="0"></div>
+
+<div id="expenseModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+<h2 id="expenseModalTitle">إضافة مصروف</h2>
+<button class="close" onclick="closeExpenseModal()">×</button>
 </div>
-<div class="field" style="margin-top:10px"><label>التاريخ</label><input id="expenseDate" type="date"></div>
-<div class="field" style="margin-top:10px"><label>ملاحظات</label><textarea id="expenseNotes" rows="3"></textarea></div></div>
-<div class="actions"><button class="primary" onclick="saveExpense()">حفظ</button><button class="secondary" onclick="closeExpenseModal()">إلغاء</button></div>
-</div></div>
+
+<div class="booking-section">
+
+<div class="payment-grid">
+
+<div class="field">
+<label>اسم المصروف</label>
+<input id="expenseTitle" placeholder="مثال: تنظيف">
+</div>
+
+<div class="field">
+<label>القيمة</label>
+<input id="expenseAmount" type="number" min="0">
+</div>
+
+</div>
+
+<div class="field" style="margin-top:10px">
+<label>التاريخ</label>
+<input id="expenseDate" type="date">
+</div>
+
+<div class="field" style="margin-top:10px">
+<label>ملاحظات</label>
+<textarea id="expenseNotes" rows="3"></textarea>
+</div>
+
+</div>
+
+<div class="actions">
+<button class="primary" onclick="saveExpense()">حفظ</button>
+<button class="secondary" onclick="closeExpenseModal()">إلغاء</button>
+</div>
+
+</div>
+</div>
 
 <!-- قهوة -->
-<div id="coffeeModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="coffeeModalTitle">إضافة فئة قهوة</h2><button class="close" onclick="closeCoffeeModal()">×</button></div>
-<div class="booking-section">
-<div class="field"><label>اسم الفئة</label><input id="coffeeName" placeholder="مثال: الركن الملكي"></div>
-<div class="field" style="margin-top:10px"><label>السعر</label><input id="coffeePrice" type="number" min="0"></div>
-<div class="field" style="margin-top:10px"><label>الوصف</label><textarea id="coffeeDescription" rows="3"></textarea></div>
-</div>
-<div class="actions"><button class="primary" onclick="saveCoffee()">حفظ</button><button class="secondary" onclick="closeCoffeeModal()">إلغاء</button></div>
-</div></div>
 
-<!-- خدمة -->
-<div id="serviceModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="serviceModalTitle">إضافة خدمة</h2><button class="close" onclick="closeServiceModal()">×</button></div>
-<div class="booking-section">
-<div class="field"><label>اسم الخدمة</label><input id="serviceName" placeholder="مثال: تجهيز حفلة"></div>
-<div class="field" style="margin-top:10px"><label>السعر الافتراضي</label><input id="servicePrice" type="number" min="0" placeholder="0"></div>
-<div class="field" style="margin-top:10px"><label>الأيقونة</label><input id="serviceIcon" value="✨" maxlength="3"></div>
+<div id="coffeeModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+<h2 id="coffeeModalTitle">إضافة فئة قهوة</h2>
+<button class="close" onclick="closeCoffeeModal()">×</button>
 </div>
-<div id="serviceOptionsBox"></div>
-<div class="actions"><button class="primary" onclick="saveService()">حفظ</button><button class="secondary" onclick="closeServiceModal()">إلغاء</button></div>
-</div></div>
+
+<div class="booking-section">
+
+<div class="field">
+<label>اسم الفئة</label>
+<input id="coffeeName" placeholder="مثال: الركن الملكي">
+</div>
+
+<div class="field" style="margin-top:10px">
+<label>السعر</label>
+<input id="coffeePrice" type="number" min="0">
+</div>
+
+<div class="field" style="margin-top:10px">
+<label>الوصف</label>
+<textarea id="coffeeDescription" rows="3"></textarea>
+</div>
+
+</div>
+
+<div class="actions">
+<button class="primary" onclick="saveCoffee()">حفظ</button>
+<button class="secondary" onclick="closeCoffeeModal()">إلغاء</button>
+</div>
+
+</div>
+</div>
 
 <!-- فاتورة -->
-<div id="invoiceModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2>الفاتورة</h2><button class="close" onclick="closeInvoiceModal()">×</button></div>
+
+<div id="invoiceModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+<h2>الفاتورة</h2>
+<button class="close" onclick="closeInvoiceModal()">×</button>
+</div>
+
 <div id="invoicePreview"></div>
-<div class="actions"><button class="primary" onclick="printInvoice()">🖨️ حفظ / طباعة PDF</button><button class="success" onclick="shareInvoice()">📤 مشاركة</button></div>
-<div class="actions"><button class="secondary" onclick="closeInvoiceModal()">إغلاق</button></div>
-</div></div>
+
+<div class="actions">
+
+<button class="primary" onclick="printInvoice()">
+🖨️ حفظ / طباعة PDF
+</button>
+
+<button class="success" onclick="shareInvoice()">
+📤 مشاركة
+</button>
+
+</div>
+
+<div class="actions">
+<button class="secondary" onclick="closeInvoiceModal()">إغلاق</button>
+</div>
+
+</div>
+</div>
 
 <!-- عقد -->
-<div id="contractModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="contractModalTitle">العقد</h2><button class="close" onclick="closeContractModal()">×</button></div>
+
+<div id="contractModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2 id="contractModalTitle">العقد</h2>
+
+<button class="close" onclick="closeContractModal()">×</button>
+
+</div>
+
 <div id="contractPreview"></div>
-<div class="actions"><button class="primary" onclick="printContract()">🖨️ حفظ / طباعة PDF</button><button class="success" onclick="shareContract()">📤 مشاركة</button></div>
-<div class="actions"><button class="secondary" onclick="closeContractModal()">إغلاق</button></div>
-</div></div>
+
+<div class="actions">
+
+<button class="primary" onclick="printContract()">
+🖨️ حفظ / طباعة PDF
+</button>
+
+<button class="success" onclick="shareContract()">
+📤 مشاركة
+</button>
+
+</div>
+
+<div class="actions">
+
+<button class="secondary" onclick="closeContractModal()">
+إغلاق
+</button>
+
+</div>
+
+</div>
+</div>
 
 <!-- عقد تحرير -->
-<div id="contractEditModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2 id="contractEditTitle">إنشاء عقد</h2><button class="close" onclick="closeContractEditModal()">×</button></div>
-<div class="booking-section">
-<div class="field"><label>اسم العقد</label><input id="contractName" placeholder="مثال: عقد حجز الشاليه"></div>
-<div class="field" style="margin-top:10px"><label>محتوى العقد</label><textarea id="contractText" rows="15" placeholder="اكتب محتوى العقد هنا..."></textarea></div>
-<div class="setting-note">يمكنك استخدام المتغيرات: {اسم_الشاليه} {اسم_العميل} {الجوال} {تاريخ_الدخول} {وقت_الدخول} {تاريخ_الخروج} {وقت_الخروج} {قيمة_الحجز} {المدفوع} {المتبقي} {القهوة} {الخدمات} {التأمين}</div>
+
+<div id="contractEditModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2 id="contractEditTitle">إنشاء عقد</h2>
+
+<button class="close" onclick="closeContractEditModal()">×</button>
+
 </div>
-<div class="actions"><button class="primary" onclick="saveContract()">حفظ العقد</button><button class="secondary" onclick="closeContractEditModal()">إلغاء</button></div>
-</div></div>
+
+<div class="booking-section">
+
+<div class="field">
+
+<label>اسم العقد</label>
+
+<input id="contractName" placeholder="مثال: عقد حجز الشاليه">
+
+</div>
+
+<div class="field" style="margin-top:10px">
+
+<label>محتوى العقد</label>
+
+<textarea id="contractText" rows="15"
+placeholder="اكتب محتوى العقد هنا..."></textarea>
+
+</div>
+
+<div class="setting-note">
+
+يمكنك استخدام المتغيرات التالية داخل العقد:
+{اسم_الشاليه}
+{اسم_العميل}
+{الجوال}
+{تاريخ_الدخول}
+{وقت_الدخول}
+{تاريخ_الخروج}
+{وقت_الخروج}
+{قيمة_الحجز}
+{المدفوع}
+{المتبقي}
+{القهوة}
+{تأمين_الشالية}
+{تأمين_ركن_القهوة}
+{إجمالي_التأمين}
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="primary" onclick="saveContract()">
+حفظ العقد
+</button>
+
+<button class="secondary" onclick="closeContractEditModal()">
+إلغاء
+</button>
+
+</div>
+
+</div>
+</div>
 
 <!-- توقيع -->
-<div id="signModal" class="modal"><div class="modal-box">
-<div class="modal-head"><h2>توقيع العميل</h2><button class="close" onclick="closeSignModal()">×</button></div>
-<div class="booking-section">
-<div style="font-size:12px;font-weight:800;margin-bottom:8px">يرجى توقيع العميل داخل المربع</div>
-<canvas id="signatureCanvas"></canvas>
-<div class="signature-actions"><button class="danger" onclick="clearSignature()">مسح التوقيع</button><button class="primary" onclick="saveSignature()">حفظ التوقيع</button></div>
+
+<div id="signModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<h2>توقيع العميل</h2>
+
+<button class="close" onclick="closeSignModal()">×</button>
+
 </div>
-</div></div>
+
+<div class="booking-section">
+
+<div style="font-size:12px;font-weight:800;margin-bottom:8px">
+يرجى توقيع العميل داخل المربع
+</div>
+
+<canvas id="signatureCanvas"></canvas>
+
+<div class="signature-actions">
+
+<button class="danger" onclick="clearSignature()">
+مسح التوقيع
+</button>
+
+<button class="primary" onclick="saveSignature()">
+حفظ التوقيع
+</button>
+
+</div>
+
+</div>
+
+</div>
+</div>
 
 <script>
+
 const KEY="rawana_new_v6";
 
 const defaults={
-bookings:[],clients:[],expenses:[],coffeeCategories:[],services:[],
-invoices:[],contracts:[],signedContracts:[],
+bookings:[],
+clients:[],
+expenses:[],
+coffeeCategories:[],
+invoices:[],
+contracts:[],
+signedContracts:[],
 settings:{
-name:"روانا",subtitle:"إدارة الشاليه",primary:"#761F35",dark:"#591628",
-light:"#F7EAEE",bg:"#F6F6F7",currency:"ر.س",
-defaultStart:"16:00",defaultEnd:"04:00",
-calendarBooked:"#F7CACA",calendarAvailable:"#DDF3E5",calendarWeekend:"#FFF0A8",
-calendarThursday:"#FFF0A8",calendarFriday:"#FFF0A8",
-showToday:true,showUpcoming:true,showRevenue:true,showProfit:true,
-showQuick:true,showQuickBooking:true,showQuickClients:true,
-showQuickInvoices:true,showQuickExpenses:true,
-coffeeName:"ركن القهوة",showCalendarNames:true,showWeekend:true,
+name:"روانا",
+subtitle:"إدارة الشاليه",
+primary:"#761F35",
+dark:"#591628",
+light:"#F7EAEE",
+bg:"#F6F6F7",
+currency:"ر.س",
+defaultStart:"16:00",
+defaultEnd:"04:00",
+
+/* مبالغ التأمين الافتراضية */
+defaultChaletDeposit:0,
+defaultCoffeeDeposit:0,
+
+calendarBooked:"#F7CACA",
+calendarAvailable:"#DDF3E5",
+calendarWeekend:"#FFF0A8",
+
+showToday:true,
+showUpcoming:true,
+showRevenue:true,
+showProfit:true,
+showQuick:true,
+showQuickBooking:true,
+showQuickClients:true,
+showQuickInvoices:true,
+showQuickExpenses:true,
+
+coffeeName:"ركن القهوة",
+
+showCalendarNames:true,
+showWeekend:true,
+
 contractName:"عقد حجز الشاليه",
-contractText:`بسم الله الرحمن الرحيم
+
+contractText:
+`بسم الله الرحمن الرحيم
 
 عقد حجز شاليه
+
+تم الاتفاق بين الطرفين على حجز الشاليه وفق البيانات التالية:
 
 اسم الشاليه: {اسم_الشاليه}
 اسم العميل: {اسم_العميل}
@@ -283,13 +1325,16 @@ contractText:`بسم الله الرحمن الرحيم
 وقت الدخول: {وقت_الدخول}
 تاريخ الخروج: {تاريخ_الخروج}
 وقت الخروج: {وقت_الخروج}
-
 قيمة الحجز: {قيمة_الحجز}
 المدفوع: {المدفوع}
 المتبقي: {المتبقي}
 ركن القهوة: {القهوة}
-الخدمات: {الخدمات}
-التأمين: {التأمين}
+تأمين الشالية: {تأمين_الشالية}
+تأمين ركن القهوة: {تأمين_ركن_القهوة}
+إجمالي التأمين: {إجمالي_التأمين}
+
+ملاحظة التأمين:
+التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
 
 الشروط والأحكام:
 
@@ -297,96 +1342,216 @@ contractText:`بسم الله الرحمن الرحيم
 2- يلتزم العميل بوقت الدخول والخروج المحدد في الحجز.
 3- يتحمل العميل قيمة أي تلفيات أو أضرار تنتج عن استخدامه.
 4- يلتزم العميل بالتعليمات والأنظمة الخاصة بالشاليه.
-5- التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
-6- يعتبر توقيع العميل موافقة على بيانات الحجز والشروط المذكورة أعلاه.
+5- يعتبر توقيع العميل موافقة على بيانات الحجز والشروط المذكورة أعلاه.
 
-وتفضلوا بقبول التحية.`,
-whatsappMessage:`السلام عليكم {اسم_العميل} 🌹
-
-تم تأكيد حجزكم في {اسم_الشاليه}.
-
-📅 الدخول:
-{تاريخ_الدخول}
-🕐 {وقت_الدخول}
-
-📅 الخروج:
-{تاريخ_الخروج}
-🕐 {وقت_الخروج}
-
-💰 قيمة الحجز:
-{قيمة_الحجز}
-
-💳 المدفوع:
-{المدفوع}
-
-💵 المتبقي:
-{المتبقي}
-
-💰 إجمالي الحجز:
-{إجمالي_الحجز}
-
-شاكرين لكم اختيار {اسم_الشاليه} 🤍`
+وتفضلوا بقبول التحية.`
 }
 };
 
 let db=null;
-try{db=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){db=null}
-if(!db){try{db=JSON.parse(localStorage.getItem("rawana_new_v5")||"null")}catch(e){db=null}}
+
+try{
+db=JSON.parse(localStorage.getItem(KEY)||"null");
+}catch(e){db=null}
+
+if(!db){
+try{
+db=JSON.parse(localStorage.getItem("rawana_new_v5")||"null");
+}catch(e){db=null}
+}
+
 db=db||JSON.parse(JSON.stringify(defaults));
 
 db.bookings=db.bookings||[];
 db.clients=db.clients||[];
 db.expenses=db.expenses||[];
 db.coffeeCategories=db.coffeeCategories||[];
-db.services=db.services||[];
 db.invoices=db.invoices||[];
 db.contracts=db.contracts||[];
 db.signedContracts=db.signedContracts||[];
-db.settings={...defaults.settings,...(db.settings||{})};
 
-let page="home",bookingType="upcoming",editingId=null,editingExpenseId=null,
-editingCoffeeId=null,editingServiceId=null,editingContractId=null,
-currentInvoiceId=null,currentContractId=null,signingContractId=null;
+db.settings={
+...defaults.settings,
+...(db.settings||{})
+};
+
+/* توافق مع النسخة القديمة */
+if(
+(db.settings.defaultChaletDeposit===undefined ||
+ db.settings.defaultChaletDeposit===null)
+&&
+db.settings.defaultchaletdeposit!==undefined
+){
+db.settings.defaultChaletDeposit=
+Number(db.settings.defaultchaletdeposit||0);
+}
+
+if(
+(db.settings.defaultCoffeeDeposit===undefined ||
+ db.settings.defaultCoffeeDeposit===null)
+&&
+db.settings.defaultcoffeedeposit!==undefined
+){
+db.settings.defaultCoffeeDeposit=
+Number(db.settings.defaultcoffeedeposit||0);
+}
+
+db.settings.defaultChaletDeposit=
+Number(db.settings.defaultChaletDeposit||0);
+
+db.settings.defaultCoffeeDeposit=
+Number(db.settings.defaultCoffeeDeposit||0);
+
+let page="home";
+let bookingType="upcoming";
+let editingId=null;
+let editingExpenseId=null;
+let editingCoffeeId=null;
+let editingContractId=null;
+let currentInvoiceId=null;
+let currentContractId=null;
+let signingContractId=null;
+
 let calendarDate=new Date();
 
-function persist(){localStorage.setItem(KEY,JSON.stringify(db))}
-function money(n){return Number(n||0).toLocaleString("en-US")+" "+db.settings.currency}
-function safe(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function dateText(d){if(!d)return"—";const[y,m,day]=d.split("-");return`${day}/${m}/${y}`}
-function timeText(t){if(!t)return"—";let[h,m]=t.split(":").map(Number),p=h>=12?"مساءً":"صباحًا";h=h%12;if(h===0)h=12;return`${h}:${String(m).padStart(2,"0")} ${p}`}
-function dateObj(date,time){return new Date(`${date}T${time}`)}
-function startOf(b){return dateObj(b.startDate,b.startTime)}
-function endOf(b){return dateObj(b.endDate,b.endTime)}
-function past(b){return endOf(b)<new Date()}
-function hours(b){return Math.max(0,(endOf(b)-startOf(b))/3600000)}
+function persist(){
+localStorage.setItem(KEY,JSON.stringify(db));
+}
+
+function money(n){
+return Number(n||0).toLocaleString("en-US")+" "+db.settings.currency;
+}
+
+function safe(x){
+return String(x??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+}
+
+function dateText(d){
+if(!d)return"—";
+const[y,m,day]=d.split("-");
+return`${day}/${m}/${y}`;
+}
+
+function timeText(t){
+if(!t)return"—";
+
+let[h,m]=t.split(":").map(Number);
+const p=h>=12?"مساءً":"صباحًا";
+
+h=h%12;
+if(h===0)h=12;
+
+return`${h}:${String(m).padStart(2,"0")} ${p}`;
+}
+
+function dateObj(date,time){
+return new Date(`${date}T${time}`);
+}
+
+function startOf(b){
+return dateObj(b.startDate,b.startTime);
+}
+
+function endOf(b){
+return dateObj(b.endDate,b.endTime);
+}
+
+function past(b){
+return endOf(b)<new Date();
+}
+
+function hours(b){
+return Math.max(0,(endOf(b)-startOf(b))/3600000);
+}
 
 function getCoffeeItems(b){
-if(Array.isArray(b.coffeeItems))return b.coffeeItems;
-if(b.coffeeId){
-const c=db.coffeeCategories.find(x=>x.id===b.coffeeId);
-if(c)return[{id:c.id,qty:1,price:Number(b.coffeePrice||c.price||0),name:c.name}]
-}
-return[];
-}
-function coffeeTotal(b){return getCoffeeItems(b).reduce((s,x)=>s+Number(x.price||0)*Number(x.qty||1),0)}
 
-function getServices(b){
-if(Array.isArray(b.services))return b.services;
+if(Array.isArray(b.coffeeItems))
+return b.coffeeItems;
+
+if(b.coffeeId){
+
+const c=db.coffeeCategories.find(
+x=>x.id===b.coffeeId
+);
+
+if(c){
+return[{
+id:c.id,
+qty:1,
+price:Number(c.price||0),
+name:c.name
+}];
+}
+}
+
 return[];
 }
-function servicesTotal(b){
-return getServices(b).reduce((s,x)=>s+Number(x.price||0)*Number(x.qty||1),0);
+
+function coffeeTotal(b){
+
+return getCoffeeItems(b).reduce(
+(s,x)=>s+Number(x.price||0)*Number(x.qty||1),0
+);
 }
-function chaletDeposit(b){return Number(b.chaletDeposit||0)}
-function coffeeDeposit(b){return Number(b.coffeeDeposit||0)}
-function depositTotal(b){return chaletDeposit(b)+coffeeDeposit(b)}
-function serviceTotal(b){return Number(b.price||0)+coffeeTotal(b)+servicesTotal(b)}
-function bookingTotal(b){return serviceTotal(b)+depositTotal(b)}
-function remaining(b){return Math.max(0,serviceTotal(b)-Number(b.paid||0))}
-function operatingPaid(b){return Math.min(Number(b.paid||0),serviceTotal(b))}
-function operatingRevenue(){return db.bookings.reduce((s,b)=>s+operatingPaid(b),0)}
+
+/*
+الخدمات = قيمة الحجز الأساسية + ركن القهوة
+وهذه هي القيمة التشغيلية التي تدخل في الإيرادات.
+*/
+
+function serviceTotal(b){
+return Number(b?.price||0)+coffeeTotal(b);
+}
+
+/*
+التأمين مبلغ مسترد، لذلك يدخل في إجمالي الحجز
+والمتبقي، لكنه لا يدخل في الإيرادات أو الأرباح.
+*/
+
+function chaletDeposit(b){
+return Number(b?.chaletDeposit||0);
+}
+
+function coffeeDeposit(b){
+return Number(b?.coffeeDeposit||0);
+}
+
+function depositTotal(b){
+return chaletDeposit(b)+coffeeDeposit(b);
+}
+
+function bookingTotal(b){
+return serviceTotal(b)+depositTotal(b);
+}
+
+function remaining(b){
+return Math.max(
+0,
+bookingTotal(b)-Number(b.paid||0)
+);
+}
+
+/*
+المبلغ المعترف به كإيراد تشغيلي لا يمكن أن يتجاوز
+قيمة الخدمات، وبالتالي لا يتم احتساب التأمين المسترد
+ضمن الإيرادات حتى لو كان المدفوع يشمل التأمين.
+*/
+
+function revenueFromBooking(b){
+return Math.min(
+Number(b.paid||0),
+serviceTotal(b)
+);
+}
 
 function applyTheme(){
+
 document.documentElement.style.setProperty("--burgundy",db.settings.primary);
 document.documentElement.style.setProperty("--dark",db.settings.dark);
 document.documentElement.style.setProperty("--light",db.settings.light);
@@ -394,141 +1559,363 @@ document.documentElement.style.setProperty("--bg",db.settings.bg);
 document.documentElement.style.setProperty("--calendarBooked",db.settings.calendarBooked||"#F7CACA");
 document.documentElement.style.setProperty("--calendarAvailable",db.settings.calendarAvailable||"#DDF3E5");
 document.documentElement.style.setProperty("--calendarWeekend",db.settings.calendarWeekend||"#FFF0A8");
+
 document.getElementById("brandName").textContent=db.settings.name;
 document.getElementById("brandSub").textContent=db.settings.subtitle;
 document.getElementById("drawerBrand").textContent=db.settings.name;
 document.getElementById("drawerCoffeeName").textContent=db.settings.coffeeName||"ركن القهوة";
-const ds=document.getElementById("drawerServices");
-if(ds)ds.innerHTML=db.services.filter(x=>x.active!==false).map(x=>`<button class="drawer-item" onclick="go('bookings')"><span class="drawer-icon">${safe(x.icon||"✨")}</span>${safe(x.name)}</button>`).join("");
 }
-function openMenu(){document.getElementById("overlay").classList.add("open")}
-function closeMenu(){document.getElementById("overlay").classList.remove("open")}
-function go(p){page=p;closeMenu();render();window.scrollTo({top:0,behavior:"smooth"})}
-function formatDateForInput(date){return`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,"0")}-${String(date.getDate()).padStart(2,"0")}`}
-function addDays(dateString,days){const d=new Date(`${dateString}T12:00:00`);d.setDate(d.getDate()+days);return formatDateForInput(d)}
+
+function openMenu(){
+document.getElementById("overlay").classList.add("open");
+}
+
+function closeMenu(){
+document.getElementById("overlay").classList.remove("open");
+}
+
+function go(p){
+page=p;
+closeMenu();
+render();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function formatDateForInput(date){
+const year=date.getFullYear();
+const month=String(date.getMonth()+1).padStart(2,"0");
+const day=String(date.getDate()).padStart(2,"0");
+
+return `${year}-${month}-${day}`;
+}
+
+function addDays(dateString,days){
+const d=new Date(`${dateString}T12:00:00`);
+d.setDate(d.getDate()+days);
+return formatDateForInput(d);
+}
+
+/* العملاء */
 
 function fillCustomers(selected=""){
-const s=document.getElementById("customerSelect");if(!s)return;
-s.innerHTML=`<option value="">اختر عميلًا</option>`+db.clients.map(c=>`<option value="${safe(c.id)}" ${c.id===selected?"selected":""}>${safe(c.name)} — ${safe(c.phone)}</option>`).join("");
-}
-function openClientModal(){document.getElementById("clientModal").classList.add("open");document.getElementById("clientName").value="";document.getElementById("clientPhone").value="";document.getElementById("clientNotes").value=""}
-function closeClientModal(){document.getElementById("clientModal").classList.remove("open")}
-function saveClient(){
-const name=document.getElementById("clientName").value.trim(),phone=document.getElementById("clientPhone").value.trim(),notes=document.getElementById("clientNotes").value.trim();
-if(!name||!phone){alert("اكتب اسم العميل ورقم الجوال");return}
-const client={id:Date.now().toString(),name,phone,notes};db.clients.push(client);persist();closeClientModal();
-if(document.getElementById("customerSelect"))fillCustomers(client.id);render();
+
+const s=document.getElementById("customerSelect");
+
+if(!s)return;
+
+s.innerHTML=
+`<option value="">اختر عميلًا</option>`+
+db.clients.map(c=>`
+<option value="${safe(c.id)}" ${c.id===selected?"selected":""}>
+${safe(c.name)} — ${safe(c.phone)}
+</option>
+`).join("");
 }
 
-/* القهوة */
+function openClientModal(){
+
+document.getElementById("clientModal").classList.add("open");
+
+document.getElementById("clientName").value="";
+document.getElementById("clientPhone").value="";
+document.getElementById("clientNotes").value="";
+}
+
+function closeClientModal(){
+document.getElementById("clientModal").classList.remove("open");
+}
+
+function saveClient(){
+
+const name=document.getElementById("clientName").value.trim();
+const phone=document.getElementById("clientPhone").value.trim();
+const notes=document.getElementById("clientNotes").value.trim();
+
+if(!name||!phone){
+alert("اكتب اسم العميل ورقم الجوال");
+return;
+}
+
+const client={
+id:Date.now().toString(),
+name,
+phone,
+notes
+};
+
+db.clients.push(client);
+persist();
+
+closeClientModal();
+
+if(document.getElementById("customerSelect"))
+fillCustomers(client.id);
+
+render();
+}
+
+/* القهوة داخل الحجز */
+
 function renderCoffeePicker(items=[]){
-const box=document.getElementById("coffeePickList"),selectedBox=document.getElementById("selectedCoffeeBox");if(!box)return;
-box.innerHTML=db.coffeeCategories.length?db.coffeeCategories.map(c=>{
-const item=items.find(x=>x.id===c.id),checked=!!item,qty=item?.qty||1;
-return`<div class="coffee-pick"><div class="coffee-pick-main"><input type="checkbox" class="coffee-check" data-id="${safe(c.id)}" ${checked?"checked":""} onchange="updateBookingTotal()"><div><strong>${safe(c.name)}</strong><div class="booking-no">${money(c.price)}</div></div></div><input class="coffee-qty" data-qty="${safe(c.id)}" type="number" min="1" value="${qty}" ${checked?"":"disabled"} oninput="updateBookingTotal()"></div>`
-}).join(""):`<div class="empty">لا توجد فئات قهوة.<br>أضف الفئات من قسم ركن القهوة.</div>`;
+
+const box=document.getElementById("coffeePickList");
+const selectedBox=document.getElementById("selectedCoffeeBox");
+
+if(!box)return;
+
+box.innerHTML=db.coffeeCategories.length?
+
+db.coffeeCategories.map(c=>{
+
+const item=items.find(x=>x.id===c.id);
+const checked=!!item;
+const qty=item?.qty||1;
+
+return`
+<div class="coffee-pick">
+
+<div class="coffee-pick-main">
+
+<input type="checkbox"
+class="coffee-check"
+data-id="${safe(c.id)}"
+${checked?"checked":""}
+onchange="updateBookingTotal()">
+
+<div>
+
+<strong>${safe(c.name)}</strong>
+
+<div class="booking-no">
+${money(c.price)}
+</div>
+
+</div>
+
+</div>
+
+<input class="coffee-qty"
+data-qty="${safe(c.id)}"
+type="number"
+min="1"
+value="${qty}"
+${checked?"":"disabled"}
+oninput="updateBookingTotal()">
+
+</div>`;
+
+}).join("")
+
+:`
+<div class="empty">
+لا توجد فئات قهوة.<br>
+أضف الفئات من قسم ركن القهوة.
+</div>
+`;
+
 updateSelectedCoffeeBox();
 }
+
 function selectedCoffeeItems(){
-return Array.from(document.querySelectorAll(".coffee-check:checked")).map(chk=>{
-const id=chk.dataset.id,c=db.coffeeCategories.find(x=>x.id===id),input=document.querySelector(`[data-qty="${CSS.escape(id)}"]`),qty=Math.max(1,Number(input?.value||1));
-return{id,name:c?.name||"",price:Number(c?.price||0),qty};
+
+return Array.from(
+document.querySelectorAll(".coffee-check:checked")
+).map(chk=>{
+
+const id=chk.dataset.id;
+
+const c=db.coffeeCategories.find(
+x=>x.id===id
+);
+
+const input=document.querySelector(
+`[data-qty="${CSS.escape(id)}"]`
+);
+
+const qty=Math.max(
+1,
+Number(input?.value||1)
+);
+
+return{
+id,
+name:c?.name||"",
+price:Number(c?.price||0),
+qty
+};
+
 });
-}
-function updateSelectedCoffeeBox(){
-const box=document.getElementById("selectedCoffeeBox");if(!box)return;
-const items=selectedCoffeeItems();if(!items.length){box.innerHTML="لم يتم اختيار ركن قهوة";return}
-box.innerHTML=items.map(x=>`<div class="selected-coffee-row"><span>☕ ${safe(x.name)} × ${x.qty}</span><strong>${money(x.price*x.qty)}</strong></div>`).join("")+`<div class="selected-coffee-row" style="border-top:1px solid #ead5bd;margin-top:5px;padding-top:8px"><strong>إجمالي القهوة</strong><strong>${money(items.reduce((s,x)=>s+x.price*x.qty,0))}</strong></div>`;
 }
 
-/* الخدمات */
-function renderServicePicker(items=[]){
-const box=document.getElementById("servicePickList"),selectedBox=document.getElementById("selectedServicesBox");if(!box)return;
-const available=db.services.filter(x=>x.active!==false);
-box.innerHTML=available.length?available.map(s=>{
-const item=items.find(x=>x.id===s.id),checked=!!item,qty=item?.qty||1,price=item?.price??s.price??0;
-return`<div class="service-pick"><div class="service-pick-main"><input type="checkbox" class="service-check" data-id="${safe(s.id)}" ${checked?"checked":""} onchange="updateBookingTotal()"><div><strong>${safe(s.icon||"✨")} ${safe(s.name)}</strong><div class="booking-no">${money(price)}</div></div></div><input class="service-qty" data-service-qty="${safe(s.id)}" type="number" min="1" value="${qty}" ${checked?"":"disabled"} oninput="updateBookingTotal()"></div>`
-}).join(""):`<div class="empty">لا توجد خدمات مفعلة.<br>أضف الخدمات من الإعدادات.</div>`;
-updateSelectedServicesBox();
+function updateSelectedCoffeeBox(){
+
+const box=document.getElementById("selectedCoffeeBox");
+
+if(!box)return;
+
+const items=selectedCoffeeItems();
+
+if(!items.length){
+box.innerHTML="لم يتم اختيار ركن قهوة";
+return;
 }
-function selectedServiceItems(){
-return Array.from(document.querySelectorAll(".service-check:checked")).map(chk=>{
-const id=chk.dataset.id,s=db.services.find(x=>x.id===id),input=document.querySelector(`[data-service-qty="${CSS.escape(id)}"]`),qty=Math.max(1,Number(input?.value||1));
-return{id,name:s?.name||"",icon:s?.icon||"✨",price:Number(s?.price||0),qty};
-});
-}
-function updateSelectedServicesBox(){
-const box=document.getElementById("selectedServicesBox");if(!box)return;
-const items=selectedServiceItems();if(!items.length){box.innerHTML="لم تتم إضافة خدمات إضافية";return}
-box.innerHTML=items.map(x=>`<div class="selected-service-row"><span>${safe(x.icon)} ${safe(x.name)} × ${x.qty}</span><strong>${money(x.price*x.qty)}</strong></div>`).join("")+`<div class="selected-service-row" style="border-top:1px solid #ddd;margin-top:5px;padding-top:8px"><strong>إجمالي الخدمات</strong><strong>${money(items.reduce((s,x)=>s+x.price*x.qty,0))}</strong></div>`;
+
+box.innerHTML=items.map(x=>`
+<div class="selected-coffee-row">
+<span>☕ ${safe(x.name)} × ${x.qty}</span>
+<strong>${money(x.price*x.qty)}</strong>
+</div>
+`).join("")+
+`
+<div class="selected-coffee-row"
+style="border-top:1px solid #ead5bd;margin-top:5px;padding-top:8px">
+<strong>إجمالي القهوة</strong>
+<strong>${money(items.reduce((s,x)=>s+x.price*x.qty,0))}</strong>
+</div>
+`;
 }
 
 function updateBookingTotal(){
-document.querySelectorAll(".coffee-check").forEach(chk=>{const input=document.querySelector(`[data-qty="${CSS.escape(chk.dataset.id)}"]`);if(input)input.disabled=!chk.checked});
-document.querySelectorAll(".service-check").forEach(chk=>{const input=document.querySelector(`[data-service-qty="${CSS.escape(chk.dataset.id)}"]`);if(input)input.disabled=!chk.checked});
-updateSelectedCoffeeBox();updateSelectedServicesBox();
 
-const price=Number(document.getElementById("price")?.value||0),paid=Number(document.getElementById("paid")?.value||0);
-const coffee=selectedCoffeeItems().reduce((s,x)=>s+x.price*x.qty,0);
-const services=selectedServiceItems().reduce((s,x)=>s+x.price*x.qty,0);
-const chalet=Number(document.getElementById("chaletDeposit")?.value||0),coffeeDep=Number(document.getElementById("coffeeDeposit")?.value||0);
-const total=price+coffee+services+chalet+coffeeDep;
-const remainingValue=Math.max(0,price+coffee+services-paid);
-const totalEl=document.getElementById("totalBookingValue"),remEl=document.getElementById("remainingValue"),depEl=document.getElementById("depositTotalValue");
-if(totalEl)totalEl.textContent=money(total);if(remEl)remEl.textContent=money(remainingValue);if(depEl)depEl.textContent=money(chalet+coffeeDep);
+document.querySelectorAll(".coffee-check").forEach(chk=>{
+
+const input=document.querySelector(
+`[data-qty="${CSS.escape(chk.dataset.id)}"]`
+);
+
+if(input)
+input.disabled=!chk.checked;
+
+});
+
+updateSelectedCoffeeBox();
+
+const price=Number(
+document.getElementById("price")?.value||0
+);
+
+const paid=Number(
+document.getElementById("paid")?.value||0
+);
+
+const coffee=selectedCoffeeItems();
+
+const coffeeSum=coffee.reduce(
+(s,x)=>s+x.price*x.qty,0
+);
+
+const chaletDeposit=Number(
+document.getElementById("chaletDeposit")?.value||0
+);
+
+const coffeeDeposit=Number(
+document.getElementById("coffeeDeposit")?.value||0
+);
+
+const depositSum=chaletDeposit+coffeeDeposit;
+
+const total=price+coffeeSum+depositSum;
+
+const totalEl=document.getElementById("totalBookingValue");
+const remEl=document.getElementById("remainingValue");
+
+if(totalEl)totalEl.textContent=money(total);
+if(remEl)remEl.textContent=money(Math.max(0,total-paid));
 }
-/* =========================
-   الحجوزات
-========================= */
+
+function updateDepositTotal(){
+
+const chalet=Number(
+document.getElementById("chaletDeposit")?.value||0
+);
+
+const coffee=Number(
+document.getElementById("coffeeDeposit")?.value||0
+);
+
+const total=chalet+coffee;
+
+const totalEl=document.getElementById("totalDepositValue");
+
+if(totalEl)totalEl.textContent=money(total);
+
+updateBookingTotal();
+}
+
+/* الحجز */
 
 function openBooking(id=null){
+
 editingId=id;
 
-const modal=document.getElementById("modal");
-modal.classList.add("open");
-
-document.getElementById("bookingModalTitle").textContent=id?"تعديل الحجز":"حجز جديد";
-document.getElementById("saveButton").textContent=id?"حفظ التعديلات":"حفظ الحجز";
+document.getElementById("modal").classList.add("open");
 
 fillCustomers();
 
-let b=id?db.bookings.find(x=>x.id===id):null;
+if(id){
 
-if(b){
-document.getElementById("customerSelect").value=b.clientId||"";
-document.getElementById("startDate").value=b.startDate||"";
-document.getElementById("startTime").value=b.startTime||db.settings.defaultStart;
-document.getElementById("endDate").value=b.endDate||"";
-document.getElementById("endTime").value=b.endTime||db.settings.defaultEnd;
-document.getElementById("price").value=Number(b.price||0);
-document.getElementById("paid").value=Number(b.paid||0);
-document.getElementById("chaletDeposit").value=Number(b.chaletDeposit||0);
-document.getElementById("coffeeDeposit").value=Number(b.coffeeDeposit||0);
-document.getElementById("status").value=b.status||"مؤكد";
+const b=db.bookings.find(x=>x.id===id);
+if(!b)return;
+
+fillCustomers(b.clientId);
+
+document.getElementById("startDate").value=b.startDate;
+document.getElementById("startTime").value=b.startTime;
+document.getElementById("endDate").value=b.endDate;
+document.getElementById("endTime").value=b.endTime;
+document.getElementById("price").value=b.price;
+document.getElementById("paid").value=b.paid;
+
+document.getElementById("chaletDeposit").value=
+b.chaletDeposit??db.settings.defaultChaletDeposit??0;
+
+document.getElementById("coffeeDeposit").value=
+b.coffeeDeposit??db.settings.defaultCoffeeDeposit??0;
+
+updateDepositTotal();
+
+document.getElementById("status").value=b.status;
 document.getElementById("notes").value=b.notes||"";
 
+document.getElementById("saveButton").textContent="حفظ التعديلات";
+document.getElementById("bookingModalTitle").textContent="تعديل الحجز";
+
 renderCoffeePicker(getCoffeeItems(b));
-renderServicePicker(getServices(b));
+
 }else{
+
 const today=formatDateForInput(new Date());
 
-document.getElementById("customerSelect").value="";
 document.getElementById("startDate").value=today;
-document.getElementById("startTime").value=db.settings.defaultStart||"16:00";
+document.getElementById("startTime").value=db.settings.defaultStart;
 
-const next=addDays(today,1);
-document.getElementById("endDate").value=next;
-document.getElementById("endTime").value=db.settings.defaultEnd||"04:00";
+let endDate=today;
+
+if(db.settings.defaultEnd<=db.settings.defaultStart)
+endDate=addDays(today,1);
+
+document.getElementById("endDate").value=endDate;
+document.getElementById("endTime").value=db.settings.defaultEnd;
 
 document.getElementById("price").value="";
-document.getElementById("paid").value=0;
-document.getElementById("chaletDeposit").value="";
-document.getElementById("coffeeDeposit").value="";
+document.getElementById("paid").value="0";
+
+document.getElementById("chaletDeposit").value=
+Number(db.settings.defaultChaletDeposit||0);
+
+document.getElementById("coffeeDeposit").value=
+Number(db.settings.defaultCoffeeDeposit||0);
+
+updateDepositTotal();
+
 document.getElementById("status").value="مؤكد";
 document.getElementById("notes").value="";
+document.getElementById("customerSelect").value="";
+
+document.getElementById("saveButton").textContent="حفظ الحجز";
+document.getElementById("bookingModalTitle").textContent="حجز جديد";
 
 renderCoffeePicker([]);
-renderServicePicker([]);
 }
 
 updateBookingTotal();
@@ -542,143 +1929,133 @@ editingId=null;
 function saveBooking(){
 
 const clientId=document.getElementById("customerSelect").value;
-const startDate=document.getElementById("startDate").value;
-const startTime=document.getElementById("startTime").value;
-const endDate=document.getElementById("endDate").value;
-const endTime=document.getElementById("endTime").value;
+const client=db.clients.find(c=>c.id===clientId);
 
-const price=Number(document.getElementById("price").value||0);
-const paid=Number(document.getElementById("paid").value||0);
-
-const chaletDeposit=Number(document.getElementById("chaletDeposit").value||0);
-const coffeeDeposit=Number(document.getElementById("coffeeDeposit").value||0);
-
-if(!clientId){
-alert("اختر العميل");
-return;
-}
-
-if(!startDate||!endDate||!startTime||!endTime){
-alert("أدخل تاريخ ووقت الدخول والخروج");
-return;
-}
-
-if(endOf({
-startDate,startTime,endDate,endTime
-})<=startOf({
-startDate,startTime,endDate,endTime
-})){
-alert("وقت الخروج يجب أن يكون بعد وقت الدخول");
-return;
-}
-
-if(price<0||paid<0){
-alert("القيم المالية غير صحيحة");
+if(!client){
+alert("اختر العميل أو أضف عميلًا جديدًا");
 return;
 }
 
 const coffeeItems=selectedCoffeeItems();
-const services=selectedServiceItems();
 
-const operatingTotal=
-price+
-coffeeItems.reduce((s,x)=>s+Number(x.price||0)*Number(x.qty||1),0)+
-services.reduce((s,x)=>s+Number(x.price||0)*Number(x.qty||1),0);
+const b={
+id:editingId||Date.now().toString(),
+clientId,
 
-if(paid>operatingTotal){
-alert("المدفوع لا يمكن أن يتجاوز قيمة الحجز والخدمات والقهوة، والتأمين يسجل بشكل مستقل.");
+startDate:document.getElementById("startDate").value,
+startTime:document.getElementById("startTime").value,
+
+endDate:document.getElementById("endDate").value,
+endTime:document.getElementById("endTime").value,
+
+price:Number(document.getElementById("price").value||0),
+paid:Number(document.getElementById("paid").value||0),
+
+chaletDeposit:Number(
+document.getElementById("chaletDeposit").value||0
+),
+
+coffeeDeposit:Number(
+document.getElementById("coffeeDeposit").value||0
+),
+
+coffeeItems,
+
+status:document.getElementById("status").value,
+notes:document.getElementById("notes").value.trim()
+};
+
+if(!b.startDate||!b.endDate||!b.startTime||!b.endTime){
+alert("أكمل بيانات الدخول والخروج");
 return;
 }
 
-const old=editingId?db.bookings.find(x=>x.id===editingId):null;
-
-const booking={
-id:editingId||Date.now().toString(),
-clientId,
-startDate,
-startTime,
-endDate,
-endTime,
-price,
-paid,
-coffeeItems,
-services,
-chaletDeposit,
-coffeeDeposit,
-status:document.getElementById("status").value,
-notes:document.getElementById("notes").value.trim(),
-createdAt:old?.createdAt||new Date().toISOString(),
-updatedAt:new Date().toISOString()
-};
-
-if(editingId){
-const index=db.bookings.findIndex(x=>x.id===editingId);
-if(index!==-1)db.bookings[index]=booking;
-}else{
-db.bookings.push(booking);
+if(endOf(b)<=startOf(b)){
+alert("وقت الخروج يجب أن يكون بعد وقت الدخول");
+return;
 }
+
+if(b.paid>bookingTotal(b)){
+alert("المبلغ المدفوع لا يمكن أن يتجاوز إجمالي الحجز");
+return;
+}
+
+const conflict=db.bookings.some(x=>
+x.id!==b.id&&
+x.status!=="ملغي"&&
+startOf(b)<endOf(x)&&
+endOf(b)>startOf(x)
+);
+
+if(conflict){
+alert("يوجد حجز متعارض مع هذه الفترة");
+return;
+}
+
+const old=db.bookings.findIndex(x=>x.id===b.id);
+
+if(old>=0)
+db.bookings[old]=b;
+else
+db.bookings.push(b);
 
 persist();
 closeBooking();
 render();
 }
 
-function deleteBooking(id){
-const b=db.bookings.find(x=>x.id===id);
-if(!b)return;
+/* عرض الحجز */
 
-const client=getClient(b.clientId);
+function statusHTML(s){
 
-if(!confirm(`هل أنت متأكد من حذف حجز ${client?.name||"العميل"}؟`))return;
+let cls="pending";
 
-db.bookings=db.bookings.filter(x=>x.id!==id);
-db.invoices=db.invoices.filter(x=>x.bookingId!==id);
-db.signedContracts=db.signedContracts.filter(x=>x.bookingId!==id);
+if(s==="مؤكد"||s==="مكتمل")
+cls="confirmed";
 
-persist();
-render();
+if(s==="ملغي")
+cls="cancelled";
+
+return`<span class="status ${cls}">${safe(s)}</span>`;
 }
 
-function getClient(id){
-return db.clients.find(x=>x.id===id);
-}
+function coffeeText(b){
 
-function bookingClientName(b){
-return getClient(b.clientId)?.name||"عميل غير محدد";
-}
+const items=getCoffeeItems(b);
 
-function bookingClientPhone(b){
-return getClient(b.clientId)?.phone||"";
-}
+if(!items.length)return"بدون ركن قهوة";
 
-function bookingStatusClass(status){
-if(status==="ملغي")return"cancelled";
-if(status==="بانتظار العربون")return"pending";
-return"confirmed";
-}
-
-function bookingStatusText(status){
-return status||"مؤكد";
+return items.map(x=>
+`${safe(x.name)} × ${x.qty}`
+).join("<br>");
 }
 
 function bookingCard(b){
 
-const client=getClient(b.clientId);
-const coffee=coffeeTotal(b);
-const services=servicesTotal(b);
-const deposits=depositTotal(b);
-const total=bookingTotal(b);
-const rem=remaining(b);
+const c=db.clients.find(x=>x.id===b.clientId);
+
+const name=c?.name||"بدون اسم";
+const phone=c?.phone||"";
 
 return`
+
 <div class="booking">
 
 <div class="booking-top">
+
 <div>
-<div class="customer">${safe(client?.name||"عميل غير محدد")}</div>
-<div class="booking-no">رقم الحجز: ${safe(b.id)}</div>
+
+<div class="customer">${safe(name)}</div>
+
+<div class="booking-no">
+#${safe(b.id.slice(-6))}
+${phone?` · ${safe(phone)}`:""}
 </div>
-<div class="status ${bookingStatusClass(b.status)}">${safe(bookingStatusText(b.status))}</div>
+
+</div>
+
+${statusHTML(b.status)}
+
 </div>
 
 <div class="booking-grid">
@@ -694,553 +2071,18 @@ return`
 </div>
 
 <div class="info">
-<small>قيمة الحجز الأساسية</small>
-<strong>${money(b.price)}</strong>
+<small>مدة الحجز</small>
+<strong>${hours(b).toFixed(1)} ساعة</strong>
 </div>
 
 <div class="info">
-<small>الإجمالي شامل التأمين</small>
-<strong>${money(total)}</strong>
-</div>
-
-<div class="info">
-<small>المدفوع</small>
-<strong>${money(b.paid)}</strong>
-</div>
-
-<div class="info">
-<small>المتبقي بدون التأمين</small>
-<strong>${money(rem)}</strong>
-</div>
-
-${coffee>0?`
-<div class="info">
-<small>ركن القهوة</small>
-<strong>${money(coffee)}</strong>
-</div>`:""}
-
-${services>0?`
-<div class="info">
-<small>الخدمات الإضافية</small>
-<strong>${money(services)}</strong>
-</div>`:""}
-
-${deposits>0?`
-<div class="info">
-<small>التأمين المسترد</small>
-<strong>${money(deposits)}</strong>
-</div>`:""}
-
-</div>
-
-${b.notes?`<div style="margin-top:10px;font-size:11px;color:#777;background:#fafafa;border-radius:10px;padding:10px">📝 ${safe(b.notes)}</div>`:""}
-
-<div class="actions">
-<button class="primary" onclick="openInvoiceForBooking('${b.id}')">🧾 الفاتورة</button>
-<button class="success" onclick="whatsapp('${b.id}')">💬 واتساب</button>
-<button class="secondary" onclick="openBooking('${b.id}')">✏️ تعديل</button>
-<button class="danger" onclick="deleteBooking('${b.id}')">حذف</button>
-</div>
-
-</div>`;
-}
-
-
-/* =========================
-   واتساب
-========================= */
-
-function coffeeWhatsappText(b){
-
-const items=getCoffeeItems(b);
-
-if(!items.length)return"";
-
-const rows=items.map(x=>
-`• ${x.name} × ${Number(x.qty||1)} — ${money(Number(x.price||0)*Number(x.qty||1))}`
-).join("\n");
-
-return`☕ ركن القهوة:
-${rows}
-• إجمالي القهوة: ${money(coffeeTotal(b))}`;
-}
-
-function servicesWhatsappText(b){
-
-const items=getServices(b).filter(x=>x.showInWhatsapp!==false);
-
-if(!items.length)return"";
-
-const rows=items.map(x=>
-`• ${x.name} × ${Number(x.qty||1)} — ${money(Number(x.price||0)*Number(x.qty||1))}`
-).join("\n");
-
-return`🧾 الخدمات الإضافية:
-${rows}
-• إجمالي الخدمات: ${money(servicesTotal(b))}`;
-}
-
-function depositWhatsappText(b){
-
-const rows=[];
-
-if(chaletDeposit(b)>0){
-rows.push(`• تأمين الشاليه: ${money(chaletDeposit(b))}`);
-}
-
-if(coffeeDeposit(b)>0){
-rows.push(`• تأمين ركن القهوة: ${money(coffeeDeposit(b))}`);
-}
-
-if(!rows.length)return"";
-
-return`🔒 التأمين:
-${rows.join("\n")}
-
-مسترد في حال عدم وجود أي أضرار في الشالية.`;
-}
-
-function whatsappValues(b){
-
-const client=getClient(b.clientId);
-
-return{
-"{اسم_العميل}":client?.name||"",
-"{الجوال}":client?.phone||"",
-"{اسم_الشاليه}":db.settings.name||"روانا",
-
-"{تاريخ_الدخول}":dateText(b.startDate),
-"{وقت_الدخول}":timeText(b.startTime),
-
-"{تاريخ_الخروج}":dateText(b.endDate),
-"{وقت_الخروج}":timeText(b.endTime),
-
-"{قيمة_الحجز}":money(b.price),
-
-"{القهوة}":coffeeWhatsappText(b),
-"{الخدمات}":servicesWhatsappText(b),
-"{التأمين}":depositWhatsappText(b),
-
-"{المدفوع}":money(b.paid),
-"{المتبقي}":money(remaining(b)),
-
-"{إجمالي_الحجز}":money(bookingTotal(b)),
-"{قيمة_الخدمات}":money(serviceTotal(b)),
-"{إجمالي_التأمين}":money(depositTotal(b))
-};
-}
-
-function replaceWhatsappPlaceholders(template,b){
-
-const values=whatsappValues(b);
-let text=String(template||"");
-
-Object.entries(values).forEach(([key,value])=>{
-text=text.split(key).join(value||"");
-});
-
-return text;
-}
-
-function appendWhatsappDynamicSections(text,b){
-
-let result=text.trim();
-
-const coffee=coffeeWhatsappText(b);
-const services=servicesWhatsappText(b);
-const deposit=depositWhatsappText(b);
-
-/*
-المهم هنا:
-حتى لو العميل حذف {القهوة} أو {الخدمات} أو {التأمين}
-من قالب واتساب في الإعدادات، البيانات الفعلية لا تختفي.
-*/
-
-if(coffee && !String(db.settings.whatsappMessage||"").includes("{القهوة}")){
-result+=(result?"\n\n":"")+coffee;
-}
-
-if(services && !String(db.settings.whatsappMessage||"").includes("{الخدمات}")){
-result+=(result?"\n\n":"")+services;
-}
-
-if(deposit && !String(db.settings.whatsappMessage||"").includes("{التأمين}")){
-result+=(result?"\n\n":"")+deposit;
-}
-
-return result.trim();
-}
-
-function whatsapp(bid){
-
-const b=db.bookings.find(x=>x.id===bid);
-
-if(!b)return;
-
-const phone=bookingClientPhone(b).replace(/\D/g,"");
-
-if(!phone){
-alert("لا يوجد رقم جوال للعميل");
-return;
-}
-
-let text=replaceWhatsappPlaceholders(
-db.settings.whatsappMessage||"",
-b
-);
-
-text=appendWhatsappDynamicSections(text,b);
-
-const url=`https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-
-window.open(url,"_blank");
-}
-
-function whatsappByPhone(phone){
-const p=String(phone||"").replace(/\D/g,"");
-if(!p)return;
-window.open(`https://wa.me/${p}`,"_blank");
-}
-
-
-/* =========================
-   الفواتير
-========================= */
-
-function invoiceRowsHTML(b){
-
-let rows=`
-<tr>
-<td>حجز الشاليه</td>
-<td>1</td>
-<td>${money(b.price)}</td>
-<td>${money(b.price)}</td>
-</tr>`;
-
-getCoffeeItems(b).forEach(x=>{
-const qty=Number(x.qty||1);
-const amount=Number(x.price||0)*qty;
-
-rows+=`
-<tr>
-<td>☕ ${safe(x.name)}</td>
-<td>${qty}</td>
-<td>${money(x.price)}</td>
-<td>${money(amount)}</td>
-</tr>`;
-});
-
-getServices(b).forEach(x=>{
-const qty=Number(x.qty||1);
-const amount=Number(x.price||0)*qty;
-
-rows+=`
-<tr>
-<td>${safe(x.icon||"✨")} ${safe(x.name)}</td>
-<td>${qty}</td>
-<td>${money(x.price)}</td>
-<td>${money(amount)}</td>
-</tr>`;
-});
-
-if(chaletDeposit(b)>0){
-rows+=`
-<tr>
-<td>🔒 تأمين الشاليه</td>
-<td>1</td>
-<td>${money(chaletDeposit(b))}</td>
-<td>${money(chaletDeposit(b))}</td>
-</tr>`;
-}
-
-if(coffeeDeposit(b)>0){
-rows+=`
-<tr>
-<td>🔒 تأمين ركن القهوة</td>
-<td>1</td>
-<td>${money(coffeeDeposit(b))}</td>
-<td>${money(coffeeDeposit(b))}</td>
-</tr>`;
-}
-
-return rows;
-}
-
-function invoiceHTML(b,invoiceNo=""){
-
-const client=getClient(b.clientId);
-const total=bookingTotal(b);
-const operating=serviceTotal(b);
-const deposit=depositTotal(b);
-const paid=Number(b.paid||0);
-const rem=remaining(b);
-
-return`
-<div class="invoice-preview" id="printInvoiceArea">
-
-<div class="invoice-header">
-<div>
-<div class="invoice-brand">${safe(db.settings.name)}</div>
-<div style="font-size:11px;color:#777">${safe(db.settings.subtitle)}</div>
-</div>
-
-<div style="text-align:left">
-<div class="invoice-title">فاتورة</div>
-<div class="invoice-meta">
-رقم الفاتورة: ${safe(invoiceNo||"—")}<br>
-التاريخ: ${dateText(formatDateForInput(new Date()))}
-</div>
-</div>
-</div>
-
-<div class="invoice-meta" style="margin-top:15px">
-<strong>العميل:</strong> ${safe(client?.name||"—")}<br>
-<strong>الجوال:</strong> ${safe(client?.phone||"—")}<br>
-<strong>الدخول:</strong> ${dateText(b.startDate)} — ${timeText(b.startTime)}<br>
-<strong>الخروج:</strong> ${dateText(b.endDate)} — ${timeText(b.endTime)}
-</div>
-
-<table class="invoice-table">
-<thead>
-<tr>
-<th>البيان</th>
-<th>الكمية</th>
-<th>السعر</th>
-<th>الإجمالي</th>
-</tr>
-</thead>
-
-<tbody>
-${invoiceRowsHTML(b)}
-</tbody>
-</table>
-
-<div class="invoice-summary">
-
-<div class="invoice-summary-row">
-<span>إجمالي الخدمات</span>
-<strong>${money(operating)}</strong>
-</div>
-
-${deposit>0?`
-<div class="invoice-summary-row">
-<span>التأمين المسترد</span>
-<strong>${money(deposit)}</strong>
-</div>`:""}
-
-<div class="invoice-summary-row total">
-<span>إجمالي الحجز</span>
-<strong>${money(total)}</strong>
-</div>
-
-<div class="invoice-summary-row">
-<span>المدفوع</span>
-<strong>${money(paid)}</strong>
-</div>
-
-<div class="invoice-summary-row">
-<span>المتبقي بدون التأمين</span>
-<strong>${money(rem)}</strong>
-</div>
-
-</div>
-
-${deposit>0?`
-<div style="margin-top:15px;background:#FFF9E8;border:1px solid #EBDDAF;border-radius:12px;padding:11px;font-size:10px;line-height:1.9">
-<strong>ملاحظة التأمين:</strong><br>
-التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
-</div>`:""}
-
-<div class="invoice-footer">
-شكرًا لاختياركم ${safe(db.settings.name)} 🤍
-</div>
-
-</div>`;
-}
-
-function openInvoiceForBooking(bid){
-
-const b=db.bookings.find(x=>x.id===bid);
-
-if(!b)return;
-
-currentInvoiceId=bid;
-
-let inv=db.invoices.find(x=>x.bookingId===bid);
-
-if(!inv){
-inv={
-id:Date.now().toString(),
-bookingId:bid,
-total:bookingTotal(b),
-operatingTotal:serviceTotal(b),
-deposit:depositTotal(b),
-createdAt:new Date().toISOString()
-};
-
-db.invoices.push(inv);
-persist();
-}else{
-inv.total=bookingTotal(b);
-inv.operatingTotal=serviceTotal(b);
-inv.deposit=depositTotal(b);
-persist();
-}
-
-document.getElementById("invoicePreview").innerHTML=
-invoiceHTML(
-b,
-inv.id
-);
-
-document.getElementById("invoiceModal").classList.add("open");
-}
-
-function closeInvoiceModal(){
-document.getElementById("invoiceModal").classList.remove("open");
-currentInvoiceId=null;
-}
-
-function printInvoice(){
-
-const area=document.getElementById("printInvoiceArea");
-
-if(!area)return;
-
-printHTML(`
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>فاتورة</title>
-<style>
-body{font-family:Arial,Tahoma,sans-serif;padding:25px;color:#222}
-*{box-sizing:border-box}
-.invoice-preview{max-width:760px;margin:auto}
-.invoice-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #761F35;padding-bottom:15px}
-.invoice-brand{font-size:25px;font-weight:bold;color:#761F35}
-.invoice-title{font-size:22px;font-weight:bold}
-.invoice-meta{font-size:11px;line-height:2}
-.invoice-table{width:100%;border-collapse:collapse;margin-top:20px;font-size:11px}
-.invoice-table th,.invoice-table td{border:1px solid #ddd;padding:9px;text-align:right}
-.invoice-table th{background:#f5f5f5}
-.invoice-summary{max-width:320px;margin:20px 0 0 auto}
-.invoice-summary-row{display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee}
-.invoice-summary-row.total{font-size:16px;font-weight:bold;color:#761F35}
-.invoice-footer{text-align:center;border-top:1px solid #ddd;margin-top:25px;padding-top:15px;color:#777;font-size:10px}
-</style>
-</head>
-<body>
-${area.outerHTML}
-</body>
-</html>
-`);
-}
-
-function shareInvoice(){
-
-if(!currentInvoiceId)return;
-
-const b=db.bookings.find(x=>x.id===currentInvoiceId);
-if(!b)return;
-
-const client=getClient(b.clientId);
-
-const text=
-`🧾 فاتورة ${db.settings.name}
-
-العميل: ${client?.name||""}
-
-إجمالي الخدمات: ${money(serviceTotal(b))}
-${depositTotal(b)>0?`التأمين المسترد: ${money(depositTotal(b))}\n`:""}إجمالي الحجز: ${money(bookingTotal(b))}
-
-المدفوع: ${money(b.paid)}
-المتبقي بدون التأمين: ${money(remaining(b))}`;
-
-if(navigator.share){
-navigator.share({
-title:"فاتورة "+db.settings.name,
-text
-}).catch(()=>{});
-}else{
-navigator.clipboard?.writeText(text);
-alert("تم نسخ بيانات الفاتورة");
-}
-}
-
-function printHTML(html){
-
-const w=window.open("","_blank");
-
-if(!w){
-alert("اسمح بفتح النوافذ المنبثقة للطباعة");
-return;
-}
-
-w.document.open();
-w.document.write(html);
-w.document.close();
-
-setTimeout(()=>{
-w.focus();
-w.print();
-},500);
-}
-
-
-/* =========================
-   الفواتير المحفوظة
-========================= */
-
-function invoices(){
-
-const list=[...db.invoices].sort((a,b)=>
-new Date(b.createdAt||0)-new Date(a.createdAt||0)
-);
-
-return`
-<div>
-<div class="title">الفواتير</div>
-<div class="subtitle">جميع الفواتير المرتبطة بالحجوزات</div>
-
-<div class="section">
-
-${list.length?list.map(inv=>{
-
-const b=db.bookings.find(x=>x.id===inv.bookingId);
-
-if(!b)return"";
-
-const client=getClient(b.clientId);
-
-return`
-<div class="invoice-card">
-
-<div class="booking-top">
-<div>
-<div class="customer">${safe(client?.name||"—")}</div>
-<div class="booking-no">رقم الفاتورة: ${safe(inv.id)}</div>
-</div>
-
-<div style="font-weight:800;color:var(--burgundy)">
-${money(bookingTotal(b))}
-</div>
-</div>
-
-<div class="booking-grid">
-
-<div class="info">
-<small>إجمالي الخدمات</small>
-<strong>${money(serviceTotal(b))}</strong>
+<small>إجمالي الحجز</small>
+<strong>${money(bookingTotal(b))}</strong>
 </div>
 
 <div class="info">
-<small>التأمين</small>
-<strong>${money(depositTotal(b))}</strong>
-</div>
-
-<div class="info">
-<small>المدفوع</small>
-<strong>${money(b.paid)}</strong>
+<small>ركن القهوة</small>
+<strong>${coffeeText(b)}</strong>
 </div>
 
 <div class="info">
@@ -1251,1111 +2093,413 @@ ${money(bookingTotal(b))}
 </div>
 
 <div class="actions">
-<button class="primary" onclick="openInvoiceForBooking('${b.id}')">عرض الفاتورة</button>
-<button class="danger" onclick="deleteInvoice('${inv.id}')">حذف</button>
-</div>
 
-</div>`;
-}).join(""):`<div class="empty">لا توجد فواتير محفوظة</div>`}
-
-</div>
-</div>`;
-}
-
-function deleteInvoice(id){
-
-if(!confirm("هل تريد حذف الفاتورة؟"))return;
-
-db.invoices=db.invoices.filter(x=>x.id!==id);
-persist();
-render();
-}
-
-function printSavedInvoice(id){
-
-const inv=db.invoices.find(x=>x.id===id);
-
-if(!inv)return;
-
-const b=db.bookings.find(x=>x.id===inv.bookingId);
-
-if(!b)return;
-
-printHTML(`
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>فاتورة ${safe(inv.id)}</title>
-</head>
-<body>
-${invoiceHTML(b,inv.id)}
-</body>
-</html>
-`);
-}
-/* =========================
-   العقود
-========================= */
-
-function contractTemplate(){
-return db.settings.contractText||`
-بسم الله الرحمن الرحيم
-
-عقد حجز شالية
-
-تم الاتفاق بين الطرف الأول: {اسم_الشاليه}
-والطرف الثاني: {اسم_العميل}
-
-بيانات الحجز:
-• تاريخ الدخول: {تاريخ_الدخول} — {وقت_الدخول}
-• تاريخ الخروج: {تاريخ_الخروج} — {وقت_الخروج}
-
-قيمة الحجز:
-{قيمة_الحجز}
-
-{القهوة}
-
-{الخدمات}
-
-{التأمين}
-
-المدفوع: {المدفوع}
-المتبقي: {المتبقي}
-
-يلتزم العميل بالمحافظة على جميع محتويات ومرافق الشالية، ويتحمل قيمة أي أضرار تنتج أثناء فترة الحجز.
-
-التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
-
-نسعد بخدمتكم 🤍
-`;
-}
-
-function contractValues(b){
-
-const client=getClient(b.clientId);
-
-return{
-"{اسم_الشاليه}":db.settings.name||"روانا",
-"{اسم_العميل}":client?.name||"",
-"{الجوال}":client?.phone||"",
-
-"{تاريخ_الدخول}":dateText(b.startDate),
-"{وقت_الدخول}":timeText(b.startTime),
-
-"{تاريخ_الخروج}":dateText(b.endDate),
-"{وقت_الخروج}":timeText(b.endTime),
-
-"{قيمة_الحجز}":money(b.price),
-"{القهوة}":coffeeWhatsappText(b)||"لا توجد قهوة",
-"{الخدمات}":servicesWhatsappText(b)||"لا توجد خدمات إضافية",
-"{التأمين}":depositWhatsappText(b)||"لا يوجد تأمين",
-
-"{المدفوع}":money(b.paid),
-"{المتبقي}":money(remaining(b)),
-"{إجمالي_الحجز}":money(bookingTotal(b)),
-"{إجمالي_التأمين}":money(depositTotal(b))
-};
-}
-
-function applyContractTemplate(template,b){
-
-let text=String(template||"");
-const values=contractValues(b);
-
-Object.entries(values).forEach(([key,value])=>{
-text=text.split(key).join(value||"");
-});
-
-return text;
-}
-
-function openContractForBooking(bid){
-
-const b=db.bookings.find(x=>x.id===bid);
-
-if(!b)return;
-
-currentContractBookingId=bid;
-
-const text=applyContractTemplate(
-contractTemplate(),
-b
-);
-
-document.getElementById("contractPreview").innerHTML=`
-<div class="contract-paper" id="printContractArea">
-
-<div class="contract-head">
-<div class="contract-logo">${safe(db.settings.name||"روانا")}</div>
-<div class="contract-title">عقد حجز</div>
-</div>
-
-<div class="contract-content">
-${text.replace(/\n/g,"<br>")}
-</div>
-
-<div class="contract-signature-area">
-
-<div>
-<div class="signature-label">توقيع العميل</div>
-
-${
-db.settings.enableSignature!==false
-?
-(
-getSignature(bid)
-?
-`<img src="${getSignature(bid)}" class="saved-signature">`
-:
-`<div class="signature-line"></div>`
-)
-:
-""
-}
-
-</div>
-
-<div>
-<div class="signature-label">توقيع ${safe(db.settings.name||"روانا")}</div>
-<div class="signature-line"></div>
-</div>
-
-</div>
-
-</div>`;
-
-document.getElementById("contractModal").classList.add("open");
-}
-
-function closeContractModal(){
-document.getElementById("contractModal").classList.remove("open");
-currentContractBookingId=null;
-}
-
-function editContractTemplate(){
-
-document.getElementById("contractName").value=
-db.settings.contractName||"عقد حجز";
-
-document.getElementById("contractText").value=
-db.settings.contractText||contractTemplate();
-
-document.getElementById("editContractModal").classList.add("open");
-}
-
-function closeEditContract(){
-document.getElementById("editContractModal").classList.remove("open");
-}
-
-function saveContractTemplate(){
-
-db.settings.contractName=
-document.getElementById("contractName").value.trim()||"عقد حجز";
-
-db.settings.contractText=
-document.getElementById("contractText").value||contractTemplate();
-
-persist();
-closeEditContract();
-render();
-}
-
-function printContract(){
-
-const area=document.getElementById("printContractArea");
-
-if(!area)return;
-
-printHTML(`
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>عقد حجز</title>
-<style>
-body{
-font-family:Arial,Tahoma,sans-serif;
-padding:35px;
-color:#222;
-line-height:1.9;
-}
-.contract-paper{
-max-width:760px;
-margin:auto;
-}
-.contract-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:2px solid #761F35;
-padding-bottom:15px;
-margin-bottom:25px;
-}
-.contract-logo{
-font-size:26px;
-font-weight:bold;
-color:#761F35;
-}
-.contract-title{
-font-size:22px;
-font-weight:bold;
-}
-.contract-content{
-font-size:13px;
-line-height:2.1;
-}
-.contract-signature-area{
-display:flex;
-justify-content:space-between;
-gap:40px;
-margin-top:60px;
-}
-.signature-line{
-width:220px;
-border-bottom:1px solid #555;
-height:50px;
-}
-.signature-label{
-font-size:12px;
-margin-bottom:10px;
-font-weight:bold;
-}
-.saved-signature{
-width:220px;
-height:70px;
-object-fit:contain;
-}
-</style>
-</head>
-<body>
-${area.outerHTML}
-</body>
-</html>
-`);
-}
-
-function shareContract(){
-
-if(!currentContractBookingId)return;
-
-const b=db.bookings.find(x=>x.id===currentContractBookingId);
-
-if(!b)return;
-
-const client=getClient(b.clientId);
-
-const text=
-`📄 عقد حجز ${db.settings.name}
-
-العميل: ${client?.name||""}
-
-الدخول:
-${dateText(b.startDate)} — ${timeText(b.startTime)}
-
-الخروج:
-${dateText(b.endDate)} — ${timeText(b.endTime)}
-
-إجمالي الحجز: ${money(bookingTotal(b))}
-المدفوع: ${money(b.paid)}
-المتبقي بدون التأمين: ${money(remaining(b))}`;
-
-if(navigator.share){
-navigator.share({
-title:"عقد حجز",
-text
-}).catch(()=>{});
-}else{
-navigator.clipboard?.writeText(text);
-alert("تم نسخ بيانات العقد");
-}
-}
-
-
-/* =========================
-   التوقيع
-========================= */
-
-let signatureCanvas=null;
-let signatureDrawing=false;
-
-function openSignature(){
-
-if(!currentContractBookingId)return;
-
-document.getElementById("signatureModal").classList.add("open");
-
-signatureCanvas=document.getElementById("signatureCanvas");
-
-if(!signatureCanvas)return;
-
-const ctx=signatureCanvas.getContext("2d");
-
-ctx.clearRect(
-0,
-0,
-signatureCanvas.width,
-signatureCanvas.height
-);
-
-const old=getSignature(currentContractBookingId);
-
-if(old){
-const img=new Image();
-
-img.onload=()=>{
-ctx.drawImage(
-img,
-0,
-0,
-signatureCanvas.width,
-signatureCanvas.height
-);
-};
-
-img.src=old;
-}
-
-setupSignatureCanvas();
-}
-
-function closeSignature(){
-document.getElementById("signatureModal").classList.remove("open");
-}
-
-function setupSignatureCanvas(){
-
-if(!signatureCanvas)return;
-
-const ctx=signatureCanvas.getContext("2d");
-
-ctx.lineWidth=2;
-ctx.lineCap="round";
-ctx.lineJoin="round";
-
-function position(e){
-
-const rect=signatureCanvas.getBoundingClientRect();
-
-if(e.touches){
-return{
-x:(e.touches[0].clientX-rect.left)*
-(signatureCanvas.width/rect.width),
-
-y:(e.touches[0].clientY-rect.top)*
-(signatureCanvas.height/rect.height)
-};
-}
-
-return{
-x:(e.clientX-rect.left)*
-(signatureCanvas.width/rect.width),
-
-y:(e.clientY-rect.top)*
-(signatureCanvas.height/rect.height)
-};
-}
-
-function start(e){
-e.preventDefault();
-signatureDrawing=true;
-const p=position(e);
-ctx.beginPath();
-ctx.moveTo(p.x,p.y);
-}
-
-function move(e){
-
-if(!signatureDrawing)return;
-
-e.preventDefault();
-
-const p=position(e);
-
-ctx.lineTo(p.x,p.y);
-ctx.stroke();
-}
-
-function end(){
-signatureDrawing=false;
-ctx.closePath();
-}
-
-signatureCanvas.onmousedown=start;
-signatureCanvas.onmousemove=move;
-signatureCanvas.onmouseup=end;
-signatureCanvas.onmouseleave=end;
-
-signatureCanvas.ontouchstart=start;
-signatureCanvas.ontouchmove=move;
-signatureCanvas.ontouchend=end;
-}
-
-function clearSignature(){
-
-if(!signatureCanvas)return;
-
-const ctx=signatureCanvas.getContext("2d");
-
-ctx.clearRect(
-0,
-0,
-signatureCanvas.width,
-signatureCanvas.height
-);
-}
-
-function saveSignature(){
-
-if(!signatureCanvas||!currentContractBookingId)return;
-
-const data=signatureCanvas.toDataURL("image/png");
-
-if(!Array.isArray(db.signedContracts)){
-db.signedContracts=[];
-}
-
-const old=db.signedContracts.find(
-x=>x.bookingId===currentContractBookingId
-);
-
-if(old){
-old.signature=data;
-old.updatedAt=new Date().toISOString();
-}else{
-db.signedContracts.push({
-id:Date.now().toString(),
-bookingId:currentContractBookingId,
-signature:data,
-createdAt:new Date().toISOString()
-});
-}
-
-persist();
-
-closeSignature();
-
-openContractForBooking(currentContractBookingId);
-}
-
-function getSignature(bid){
-
-if(!Array.isArray(db.signedContracts))return"";
-
-return db.signedContracts.find(
-x=>x.bookingId===bid
-)?.signature||"";
-}
-
-
-/* =========================
-   صفحة العقود
-========================= */
-
-function contracts(){
-
-return`
-<div>
-
-<div class="title">العقود</div>
-<div class="subtitle">إدارة العقود وإنشاؤها للحجوزات</div>
-
-<div class="actions" style="margin-bottom:15px">
-<button class="primary" onclick="editContractTemplate()">⚙️ تعديل قالب العقد</button>
-</div>
-
-<div class="section">
-
-${
-db.bookings.length
-?
-db.bookings.map(b=>{
-
-const client=getClient(b.clientId);
-
-return`
-<div class="invoice-card">
-
-<div class="booking-top">
-
-<div>
-<div class="customer">${safe(client?.name||"—")}</div>
-<div class="booking-no">
-${dateText(b.startDate)} — ${dateText(b.endDate)}
-</div>
-</div>
-
-<div>
-${
-getSignature(b.id)
-?
-`<span style="font-size:11px;color:#218838">✓ موقع</span>`
-:
-`<span style="font-size:11px;color:#888">غير موقع</span>`
-}
-</div>
-
-</div>
-
-<div class="actions">
+<button class="secondary"
+onclick="openBooking('${b.id}')">
+تعديل
+</button>
 
 <button class="primary"
+onclick="openInvoiceForBooking('${b.id}')">
+الفاتورة
+</button>
+
+<button class="secondary"
 onclick="openContractForBooking('${b.id}')">
-📄 فتح العقد
+العقد
 </button>
 
-<button class="secondary"
-onclick="currentContractBookingId='${b.id}';openSignature()">
-✍️ التوقيع
-</button>
-
-</div>
-
-</div>`;
-}).join("")
-:
-`<div class="empty">لا توجد حجوزات</div>`
-}
-
-</div>
-
-</div>`;
-}
-
-
-/* =========================
-   المصروفات
-========================= */
-
-function openExpense(id=null){
-
-editingExpenseId=id;
-
-document.getElementById("expenseModal").classList.add("open");
-
-const e=id?db.expenses.find(x=>x.id===id):null;
-
-document.getElementById("expenseName").value=e?.name||"";
-document.getElementById("expenseAmount").value=e?.amount??"";
-document.getElementById("expenseDate").value=
-e?.date||formatDateForInput(new Date());
-
-document.getElementById("expenseCategory").value=
-e?.category||"عام";
-
-document.getElementById("expenseNotes").value=
-e?.notes||"";
-}
-
-function closeExpense(){
-document.getElementById("expenseModal").classList.remove("open");
-editingExpenseId=null;
-}
-
-function saveExpense(){
-
-const name=document.getElementById("expenseName").value.trim();
-const amount=Number(document.getElementById("expenseAmount").value||0);
-const date=document.getElementById("expenseDate").value;
-const category=document.getElementById("expenseCategory").value;
-const notes=document.getElementById("expenseNotes").value.trim();
-
-if(!name){
-alert("أدخل اسم المصروف");
-return;
-}
-
-if(amount<=0){
-alert("أدخل قيمة صحيحة للمصروف");
-return;
-}
-
-const old=editingExpenseId?
-db.expenses.find(x=>x.id===editingExpenseId):
-null;
-
-const item={
-id:editingExpenseId||Date.now().toString(),
-name,
-amount,
-date,
-category,
-notes,
-createdAt:old?.createdAt||new Date().toISOString(),
-updatedAt:new Date().toISOString()
-};
-
-if(editingExpenseId){
-
-const i=db.expenses.findIndex(
-x=>x.id===editingExpenseId
-);
-
-if(i!==-1)db.expenses[i]=item;
-
-}else{
-
-db.expenses.unshift(item);
-
-}
-
-persist();
-closeExpense();
-render();
-}
-
-function deleteExpense(id){
-
-if(!confirm("هل تريد حذف هذا المصروف؟"))return;
-
-db.expenses=db.expenses.filter(
-x=>x.id!==id
-);
-
-persist();
-render();
-}
-
-function expenses(){
-
-const total=db.expenses.reduce(
-(s,x)=>s+Number(x.amount||0),
-0
-);
-
-return`
-<div>
-
-<div class="title">المصروفات</div>
-<div class="subtitle">متابعة جميع المصروفات التشغيلية</div>
-
-<div class="stats">
-<div class="stat">
-<span>إجمالي المصروفات</span>
-<strong>${money(total)}</strong>
-</div>
-</div>
-
-<div class="actions" style="margin:15px 0">
-<button class="primary" onclick="openExpense()">+ إضافة مصروف</button>
-</div>
-
-<div class="section">
-
-${
-db.expenses.length
-?
-db.expenses.map(e=>`
-<div class="expense-card">
-
-<div class="booking-top">
-
-<div>
-<div class="customer">${safe(e.name)}</div>
-<div style="font-size:10px;color:#888">
-${safe(e.category||"عام")} • ${dateText(e.date)}
-</div>
-</div>
-
-<div style="font-weight:800;color:#b42318">
-${money(e.amount)}
-</div>
-
-</div>
-
-${e.notes?
-`<div style="font-size:11px;color:#777;margin-top:8px">
-${safe(e.notes)}
-</div>`:""}
-
-<div class="actions">
-<button class="secondary"
-onclick="openExpense('${e.id}')">
-✏️ تعديل
+<button class="success"
+onclick="whatsapp('${b.id}')">
+واتساب
 </button>
 
 <button class="danger"
-onclick="deleteExpense('${e.id}')">
+onclick="removeBooking('${b.id}')">
 حذف
 </button>
-</div>
-
-</div>
-`).join("")
-:
-`<div class="empty">لا توجد مصروفات</div>`
-}
 
 </div>
 
-</div>`;
-}
-
-
-/* =========================
-   المالية
-========================= */
-
-function finance(){
-
-const revenue=operatingRevenue();
-
-const expensesTotal=db.expenses.reduce(
-(s,x)=>s+Number(x.amount||0),
-0
-);
-
-const profit=revenue-expensesTotal;
-
-const bookingsRevenue=db.bookings.reduce(
-(s,b)=>s+Number(b.price||0),
-0
-);
-
-const coffeeRevenue=db.bookings.reduce(
-(s,b)=>s+coffeeTotal(b),
-0
-);
-
-const serviceRevenue=db.bookings.reduce(
-(s,b)=>s+servicesTotal(b),
-0
-);
-
-const deposits=db.bookings.reduce(
-(s,b)=>s+depositTotal(b),
-0
-);
-
-return`
-<div>
-
-<div class="title">المالية</div>
-<div class="subtitle">
-الإيرادات التشغيلية لا تشمل التأمينات المستردة
 </div>
-
-<div class="stats">
-
-<div class="stat">
-<span>الإيرادات التشغيلية</span>
-<strong>${money(revenue)}</strong>
-</div>
-
-<div class="stat">
-<span>المصروفات</span>
-<strong>${money(expensesTotal)}</strong>
-</div>
-
-<div class="stat">
-<span>صافي الربح</span>
-<strong>${money(profit)}</strong>
-</div>
-
-<div class="stat">
-<span>التأمينات المحصلة</span>
-<strong>${money(deposits)}</strong>
-</div>
-
-</div>
-
-<div class="section">
-
-<div class="finance-row">
-<span>إيرادات الحجوزات</span>
-<strong>${money(bookingsRevenue)}</strong>
-</div>
-
-<div class="finance-row">
-<span>إيرادات ركن القهوة</span>
-<strong>${money(coffeeRevenue)}</strong>
-</div>
-
-<div class="finance-row">
-<span>إيرادات الخدمات الإضافية</span>
-<strong>${money(serviceRevenue)}</strong>
-</div>
-
-<div class="finance-row">
-<span>إجمالي المصروفات</span>
-<strong>${money(expensesTotal)}</strong>
-</div>
-
-</div>
-
-</div>`;
-}
-
-
-/* =========================
-   التقارير
-========================= */
-
-function reports(){
-
-const bookings=db.bookings;
-
-const revenue=operatingRevenue();
-
-const expensesTotal=db.expenses.reduce(
-(s,x)=>s+Number(x.amount||0),
-0
-);
-
-const profit=revenue-expensesTotal;
-
-const coffeeRevenue=bookings.reduce(
-(s,b)=>s+coffeeTotal(b),
-0
-);
-
-const serviceRevenue=bookings.reduce(
-(s,b)=>s+servicesTotal(b),
-0
-);
-
-const deposits=bookings.reduce(
-(s,b)=>s+depositTotal(b),
-0
-);
-
-const paid=bookings.reduce(
-(s,b)=>s+operatingPaid(b),
-0
-);
-
-const remainingTotal=bookings.reduce(
-(s,b)=>s+remaining(b),
-0
-);
-
-return`
-<div>
-
-<div class="title">التقارير</div>
-<div class="subtitle">ملخص أداء الشاليه</div>
-
-<div class="stats">
-
-<div class="stat">
-<span>عدد الحجوزات</span>
-<strong>${bookings.length}</strong>
-</div>
-
-<div class="stat">
-<span>الإيرادات التشغيلية</span>
-<strong>${money(revenue)}</strong>
-</div>
-
-<div class="stat">
-<span>المدفوع التشغيلي</span>
-<strong>${money(paid)}</strong>
-</div>
-
-<div class="stat">
-<span>المتبقي التشغيلي</span>
-<strong>${money(remainingTotal)}</strong>
-</div>
-
-<div class="stat">
-<span>القهوة</span>
-<strong>${money(coffeeRevenue)}</strong>
-</div>
-
-<div class="stat">
-<span>الخدمات</span>
-<strong>${money(serviceRevenue)}</strong>
-</div>
-
-<div class="stat">
-<span>المصروفات</span>
-<strong>${money(expensesTotal)}</strong>
-</div>
-
-<div class="stat">
-<span>صافي الربح</span>
-<strong>${money(profit)}</strong>
-</div>
-
-<div class="stat">
-<span>التأمينات</span>
-<strong>${money(deposits)}</strong>
-</div>
-
-</div>
-
-<div class="section">
-
-<div class="section-title">ملاحظة مالية</div>
-
-<div style="font-size:12px;line-height:2;color:#666">
-التأمينات لا تدخل ضمن الإيرادات التشغيلية ولا الأرباح،
-ولا تدخل ضمن المتبقي على العميل، لأنها مبالغ مستردة.
-</div>
-
-</div>
-
-</div>`;
-}
-/* =========================
-   العملاء
-========================= */
-
-function fillCustomers(){
-
-const select=document.getElementById("customerSelect");
-
-if(!select)return;
-
-select.innerHTML=`
-<option value="">اختر العميل</option>
-${db.clients.map(c=>`
-<option value="${c.id}">
-${safe(c.name)}${c.phone?` — ${safe(c.phone)}`:""}
-</option>
-`).join("")}
 `;
 }
 
-function openClient(id=null){
+/* الرئيسية */
 
-editingClientId=id;
+function home(){
 
-document.getElementById("clientModal").classList.add("open");
+const today=formatDateForInput(new Date());
 
-const c=id?db.clients.find(x=>x.id===id):null;
+const upcoming=db.bookings
+.filter(b=>!past(b)&&b.status!=="ملغي")
+.sort((a,b)=>startOf(a)-startOf(b));
 
-document.getElementById("clientName").value=c?.name||"";
-document.getElementById("clientPhone").value=c?.phone||"";
-document.getElementById("clientNotes").value=c?.notes||"";
-}
+const todayBookings=db.bookings.filter(
+b=>b.startDate===today&&b.status!=="ملغي"
+).length;
 
-function closeClient(){
-
-document.getElementById("clientModal").classList.remove("open");
-
-editingClientId=null;
-}
-
-function saveClient(){
-
-const name=document.getElementById("clientName").value.trim();
-const phone=document.getElementById("clientPhone").value.trim();
-const notes=document.getElementById("clientNotes").value.trim();
-
-if(!name){
-alert("أدخل اسم العميل");
-return;
-}
-
-const old=editingClientId?
-db.clients.find(x=>x.id===editingClientId):
-null;
-
-const client={
-id:editingClientId||Date.now().toString(),
-name,
-phone,
-notes,
-createdAt:old?.createdAt||new Date().toISOString(),
-updatedAt:new Date().toISOString()
-};
-
-if(editingClientId){
-
-const i=db.clients.findIndex(
-x=>x.id===editingClientId
+const revenue=db.bookings.reduce(
+(s,b)=>s+revenueFromBooking(b),0
 );
 
-if(i!==-1)db.clients[i]=client;
-
-}else{
-
-db.clients.unshift(client);
-
-}
-
-persist();
-closeClient();
-render();
-}
-
-function deleteClient(id){
-
-const hasBookings=db.bookings.some(
-b=>b.clientId===id
+const expensesTotal=db.expenses.reduce(
+(s,e)=>s+Number(e.amount||0),0
 );
 
-if(hasBookings){
-alert("لا يمكن حذف عميل لديه حجوزات.");
-return;
+let stats="";
+
+if(db.settings.showToday)
+stats+=`
+<div class="card">
+<div class="stat-icon">📅</div>
+<div class="label">حجوزات اليوم</div>
+<div class="value">${todayBookings}</div>
+</div>`;
+
+if(db.settings.showUpcoming)
+stats+=`
+<div class="card">
+<div class="stat-icon">🗓️</div>
+<div class="label">الحجوزات القادمة</div>
+<div class="value">${upcoming.length}</div>
+</div>`;
+
+if(db.settings.showRevenue)
+stats+=`
+<div class="card">
+<div class="stat-icon">💰</div>
+<div class="label">الإيرادات</div>
+<div class="value">${money(revenue)}</div>
+</div>`;
+
+if(db.settings.showProfit)
+stats+=`
+<div class="card">
+<div class="stat-icon">📈</div>
+<div class="label">صافي الربح</div>
+<div class="value">${money(revenue-expensesTotal)}</div>
+</div>`;
+
+let quick="";
+
+if(db.settings.showQuick){
+
+if(db.settings.showQuickBooking)
+quick+=`
+<div class="quick-card" onclick="openBooking()">
+<div class="quick-icon">＋</div>
+<div class="quick-title">حجز سريع</div>
+<div class="quick-sub">إضافة حجز جديد</div>
+</div>`;
+
+if(db.settings.showQuickClients)
+quick+=`
+<div class="quick-card" onclick="go('clients')">
+<div class="quick-icon">👤</div>
+<div class="quick-title">العملاء</div>
+<div class="quick-sub">إدارة العملاء</div>
+</div>`;
+
+if(db.settings.showQuickInvoices)
+quick+=`
+<div class="quick-card" onclick="go('invoices')">
+<div class="quick-icon">🧾</div>
+<div class="quick-title">الفواتير</div>
+<div class="quick-sub">الفواتير المحفوظة</div>
+</div>`;
+
+if(db.settings.showQuickExpenses)
+quick+=`
+<div class="quick-card" onclick="go('expenses')">
+<div class="quick-icon">💸</div>
+<div class="quick-title">المصروفات</div>
+<div class="quick-sub">إدارة المصروفات</div>
+</div>`;
 }
 
-if(!confirm("هل تريد حذف العميل؟"))return;
+document.getElementById("content").innerHTML=`
 
-db.clients=db.clients.filter(
-x=>x.id!==id
-);
+<div class="title">لوحة التحكم</div>
 
-persist();
-render();
-}
+<div class="subtitle">${safe(db.settings.subtitle)}</div>
 
-function clients(){
-
-return`
-<div>
-
-<div class="title">العملاء</div>
-<div class="subtitle">قاعدة بيانات العملاء</div>
-
-<div class="actions" style="margin:15px 0">
-<button class="primary" onclick="openClient()">+ إضافة عميل</button>
+<div class="hero">
+<small>مرحباً بك</small>
+<h1>${safe(db.settings.name)} 👋</h1>
+<p>إدارة الشاليه والحجوزات والعملاء من مكان واحد</p>
 </div>
+
+${stats?`<div class="stats">${stats}</div>`:""}
 
 <div class="section">
 
-${
-db.clients.length
-?
-db.clients.map(c=>{
+<div class="section-head">
+<h3>الحجز القادم</h3>
+<button class="link" onclick="go('bookings')">عرض الكل</button>
+</div>
+
+${upcoming.length
+?bookingCard(upcoming[0])
+:`<div class="empty">لا توجد حجوزات قادمة</div>`}
+
+</div>
+
+${db.settings.showQuick&&quick?
+`
+<div class="section">
+
+<div class="section-head">
+<h3>إجراءات سريعة</h3>
+</div>
+
+<div class="quick-grid">${quick}</div>
+
+</div>
+`:""}
+
+`;
+}
+
+/* الحجوزات */
+
+function bookings(){
+
+let list=db.bookings.filter(
+b=>bookingType==="upcoming"?!past(b):past(b)
+);
+
+list.sort(
+(a,b)=>bookingType==="upcoming"
+?startOf(a)-startOf(b)
+:endOf(b)-endOf(a)
+);
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">الحجوزات</div>
+<div class="subtitle">إدارة حجوزات الشاليه</div>
+
+<div class="tabs">
+
+<button class="tab ${bookingType==="upcoming"?"active":""}"
+onclick="bookingType='upcoming';bookings()">
+القادمة
+</button>
+
+<button class="tab ${bookingType==="past"?"active":""}"
+onclick="bookingType='past';bookings()">
+السابقة
+</button>
+
+</div>
+
+<button class="primary"
+onclick="openBooking()"
+style="width:100%;margin-bottom:12px">
++ حجز جديد
+</button>
+
+${list.length
+?list.map(bookingCard).join("")
+:`<div class="empty">لا توجد حجوزات في هذا القسم</div>`}
+
+`;
+}
+
+/* التقويم */
+
+const gregorianMonths=[
+"يناير","فبراير","مارس","أبريل","مايو","يونيو",
+"يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"
+];
+
+function changeCalendarMonth(n){
+calendarDate.setMonth(calendarDate.getMonth()+n);
+calendar();
+}
+
+function calendar(){
+
+const year=calendarDate.getFullYear();
+const month=calendarDate.getMonth();
+
+const first=new Date(year,month,1).getDay();
+const total=new Date(year,month+1,0).getDate();
+
+let html="";
+
+for(let i=0;i<first;i++)html+="<div></div>";
+
+for(let d=1;d<=total;d++){
+
+const date=
+`${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+const jsDay=new Date(year,month,d).getDay();
+
+const weekend=jsDay===4||jsDay===5;
+
+const found=db.bookings.filter(
+b=>b.status!=="ملغي"&&
+b.startDate<=date&&
+b.endDate>=date
+);
+
+const today=date===formatDateForInput(new Date());
+
+html+=`
+
+<div class="day
+${found.length?"booked":""}
+${weekend&&db.settings.showWeekend?"weekend":""}
+${today?"today":""}">
+
+<strong>${d}</strong>
+
+${db.settings.showCalendarNames&&found.length?
+found.slice(0,1).map(b=>{
+
+const c=db.clients.find(x=>x.id===b.clientId);
+
+return`
+<div class="day-event">
+${safe(c?.name||"حجز")}
+</div>`;
+}).join(""):""}
+
+</div>`;
+}
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">التقويم</div>
+
+<div class="subtitle">
+التقويم الميلادي للحجوزات
+</div>
+
+<div class="calendar">
+
+<div class="calendar-head">
+
+<div>
+
+<div class="calendar-title">
+${gregorianMonths[month]}
+</div>
+
+<span class="calendar-year">${year} م</span>
+
+</div>
+
+<div class="calendar-nav">
+
+<button onclick="changeCalendarMonth(-1)">‹</button>
+<button onclick="changeCalendarMonth(1)">›</button>
+<button class="primary" onclick="openBooking()">+ حجز</button>
+
+</div>
+
+</div>
+
+<div class="calendar-legend">
+
+<div class="legend">
+<i style="background:var(--calendarBooked)"></i>
+محجوز
+</div>
+
+<div class="legend">
+<i style="background:var(--calendarAvailable)"></i>
+متاح
+</div>
+
+<div class="legend">
+<i style="background:var(--calendarWeekend)"></i>
+الخميس والجمعة
+</div>
+
+</div>
+
+<div class="calendar-grid">
+
+${[
+"الأحد","الإثنين","الثلاثاء","الأربعاء",
+"الخميس","الجمعة","السبت"
+].map((x,i)=>`
+<div class="week ${i===4||i===5?"weekend":""}">
+${x}
+</div>
+`).join("")}
+
+${html}
+
+</div>
+
+</div>
+`;
+}
+
+/* العملاء */
+
+function clients(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">العملاء</div>
+
+<div class="subtitle">قاعدة بيانات عملاء الشاليه</div>
+
+<button class="primary"
+onclick="openClientModal()"
+style="width:100%;margin-top:17px">
++ إضافة عميل
+</button>
+
+<input class="search"
+placeholder="ابحث عن عميل..."
+oninput="filterClients(this.value)"
+style="margin-top:10px">
+
+<div id="clientsList" style="margin-top:12px">
+${clientHTML(db.clients)}
+</div>
+`;
+}
+
+function clientHTML(list){
+
+if(!list.length)
+return`<div class="empty">لا يوجد عملاء</div>`;
+
+return list.map(c=>{
 
 const count=db.bookings.filter(
 b=>b.clientId===c.id
 ).length;
 
 return`
-<div class="client-card">
 
-<div class="booking-top">
+<div class="client">
 
-<div>
-<div class="customer">${safe(c.name)}</div>
+<div class="avatar">${safe(c.name.charAt(0))}</div>
 
-<div style="font-size:11px;color:#777">
-${c.phone?`📱 ${safe(c.phone)}`:"بدون رقم جوال"}
-</div>
-</div>
+<div class="grow">
 
-<div style="font-size:11px;color:#777">
-${count} حجز
-</div>
+<strong>${safe(c.name)}</strong>
 
+<div class="booking-no">
+${safe(c.phone)}
+<br>
+${count} حجوزات
 </div>
 
-${c.notes?
-`<div style="font-size:11px;color:#777;margin-top:7px">
-${safe(c.notes)}
-</div>`:""}
-
-<div class="actions">
+</div>
 
 <button class="secondary"
-onclick="openClient('${c.id}')">
-✏️ تعديل
-</button>
-
-<button class="success"
-onclick="whatsappByPhone('${safe(c.phone||"")}')">
-💬 واتساب
+onclick="whatsappByPhone('${safe(c.phone)}')">
+واتساب
 </button>
 
 <button class="danger"
@@ -2363,170 +2507,1188 @@ onclick="deleteClient('${c.id}')">
 حذف
 </button>
 
+</div>`;
+}).join("");
+}
+
+function filterClients(q){
+
+q=q.toLowerCase();
+
+const list=db.clients.filter(
+c=>`${c.name} ${c.phone}`.toLowerCase().includes(q)
+);
+
+document.getElementById("clientsList").innerHTML=clientHTML(list);
+}
+
+function deleteClient(id){
+
+const used=db.bookings.some(b=>b.clientId===id);
+
+if(used){
+alert("لا يمكن حذف عميل مرتبط بحجز. احذف الحجز أولاً.");
+return;
+}
+
+if(!confirm("هل تريد حذف العميل؟"))return;
+
+db.clients=db.clients.filter(x=>x.id!==id);
+persist();
+render();
+}
+
+/* الفواتير */
+
+function nextInvoiceNumber(){
+
+let max=0;
+
+db.invoices.forEach(inv=>{
+const n=parseInt(String(inv.number||"").replace(/\D/g,""),10);
+if(!isNaN(n))max=Math.max(max,n);
+});
+
+return String(max+1).padStart(5,"0");
+}
+
+function openInvoiceForBooking(bookingId){
+
+let inv=db.invoices.find(x=>x.bookingId===bookingId);
+
+if(!inv){
+
+const b=db.bookings.find(x=>x.id===bookingId);
+if(!b)return;
+
+inv={
+id:Date.now().toString(),
+number:nextInvoiceNumber(),
+bookingId:b.id,
+createdDate:formatDateForInput(new Date()),
+total:bookingTotal(b)
+};
+
+db.invoices.push(inv);
+persist();
+}
+
+openInvoice(inv.id);
+}
+
+function invoiceHTML(inv,b){
+
+const c=db.clients.find(x=>x.id===b.clientId);
+const items=getCoffeeItems(b);
+
+const base=Number(b.price||0);
+const coffeeAmount=coffeeTotal(b);
+
+const chaletDeposit=Number(b.chaletDeposit||0);
+const coffeeDeposit=Number(b.coffeeDeposit||0);
+const depositAmount=chaletDeposit+coffeeDeposit;
+
+const total=base+coffeeAmount+depositAmount;
+const paid=Number(b.paid||0);
+const rem=Math.max(0,total-paid);
+
+return`
+
+<div class="invoice-preview" id="printableInvoice">
+
+<div class="invoice-header">
+
+<div>
+
+<div class="invoice-brand">${safe(db.settings.name)}</div>
+
+<div class="invoice-meta">
+${safe(db.settings.subtitle)}
+</div>
+
+</div>
+
+<div style="text-align:left">
+
+<div class="invoice-title">فاتورة</div>
+
+<div class="invoice-meta">
+رقم الفاتورة: #${safe(inv.number)}
+<br>
+التاريخ: ${dateText(inv.createdDate)}
+</div>
+
+</div>
+
+</div>
+
+<div style="margin-top:15px">
+
+<strong style="font-size:12px">بيانات العميل</strong>
+
+<div class="invoice-meta">
+الاسم: ${safe(c?.name||"—")}
+<br>
+الجوال: ${safe(c?.phone||"—")}
+</div>
+
+</div>
+
+<table class="invoice-table">
+
+<thead>
+<tr>
+<th>البيان</th>
+<th>التفاصيل</th>
+<th>القيمة</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>الحجز</td>
+<td>
+دخول ${dateText(b.startDate)} ${timeText(b.startTime)}
+<br>
+خروج ${dateText(b.endDate)} ${timeText(b.endTime)}
+</td>
+<td>${money(base)}</td>
+</tr>
+
+${items.map(x=>`
+<tr>
+<td>☕ ركن القهوة</td>
+<td>${safe(x.name)} × ${x.qty}</td>
+<td>${money(x.price*x.qty)}</td>
+</tr>
+`).join("")}
+
+${chaletDeposit>0?`
+<tr>
+<td>🔐 تأمين الشالية</td>
+<td>
+مسترد في حال عدم وجود أي أضرار في الشالية
+</td>
+<td>${money(chaletDeposit)}</td>
+</tr>
+`:""}
+
+${coffeeDeposit>0?`
+<tr>
+<td>🔐 تأمين ركن القهوة</td>
+<td>
+مسترد في حال عدم وجود أي أضرار في الشالية
+</td>
+<td>${money(coffeeDeposit)}</td>
+</tr>
+`:""}
+
+</tbody>
+
+</table>
+
+<div class="invoice-summary">
+
+<div class="invoice-summary-row">
+<span>الإجمالي</span>
+<span>${money(total)}</span>
+</div>
+
+<div class="invoice-summary-row">
+<span>المدفوع</span>
+<span>${money(paid)}</span>
+</div>
+
+<div class="invoice-summary-row">
+<span>المتبقي</span>
+<span>${money(rem)}</span>
+</div>
+
+<div class="invoice-summary-row total">
+<span>الإجمالي المستحق</span>
+<span>${money(total)}</span>
+</div>
+
+</div>
+
+${depositAmount>0?`
+<div class="invoice-meta" style="margin-top:10px">
+🔐 التأمين: ${money(depositAmount)}
+<br>
+مسترد في حال عدم وجود أي أضرار في الشالية.
+</div>
+`:""}
+
+<div style="margin-top:15px">
+<span class="invoice-status">${safe(b.status)}</span>
+</div>
+
+${b.notes?
+`<div class="invoice-meta" style="margin-top:12px">
+ملاحظات: ${safe(b.notes)}
+</div>`:""}
+
+<div class="invoice-footer">
+شكرًا لاختياركم ${safe(db.settings.name)} 🤍
+</div>
+
+</div>`;
+}
+
+function openInvoice(id){
+
+const inv=db.invoices.find(x=>x.id===id);
+if(!inv)return;
+
+const b=db.bookings.find(x=>x.id===inv.bookingId);
+
+if(!b){
+alert("الحجز المرتبط بالفاتورة غير موجود");
+return;
+}
+
+currentInvoiceId=id;
+
+document.getElementById("invoiceModal").classList.add("open");
+document.getElementById("invoicePreview").innerHTML=invoiceHTML(inv,b);
+}
+
+function closeInvoiceModal(){
+document.getElementById("invoiceModal").classList.remove("open");
+currentInvoiceId=null;
+}
+
+function printInvoice(){
+
+if(!currentInvoiceId)return;
+
+const inv=db.invoices.find(x=>x.id===currentInvoiceId);
+const b=db.bookings.find(x=>x.id===inv?.bookingId);
+
+if(!inv||!b)return;
+
+printHTML(invoiceHTML(inv,b),"فاتورة #"+inv.number);
+}
+
+function printHTML(html,title){
+
+const w=window.open("","_blank");
+
+if(!w){
+alert("اسمح بفتح النوافذ المنبثقة للطباعة");
+return;
+}
+
+w.document.write(`
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${safe(title)}</title>
+
+<style>
+body{
+margin:0;
+background:#eee;
+font-family:Arial,Tahoma,sans-serif;
+}
+.invoice-preview,.contract-preview{
+width:100%;
+max-width:720px;
+margin:20px auto;
+background:#fff;
+padding:25px;
+}
+@media print{
+body{background:#fff}
+.invoice-preview,.contract-preview{
+margin:0;
+max-width:none;
+}
+}
+</style>
+
+</head>
+<body>
+
+${html}
+
+<script>
+window.onload=function(){
+setTimeout(function(){window.print()},300);
+};
+<\/script>
+
+</body>
+</html>
+`);
+
+w.document.close();
+}
+
+async function shareFileHTML(html,title){
+
+const full=`
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>${safe(title)}</title>
+<style>
+body{font-family:Arial,Tahoma,sans-serif;margin:20px}
+.invoice-preview,.contract-preview{max-width:720px;margin:auto;background:white}
+</style>
+</head>
+<body>${html}</body>
+</html>`;
+
+const blob=new Blob([full],{type:"text/html"});
+const file=new File([blob],title+".html",{type:"text/html"});
+
+if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){
+
+try{
+await navigator.share({
+title,
+files:[file]
+});
+return;
+}catch(e){}
+}
+
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");
+a.href=url;
+a.download=title+".html";
+a.click();
+
+setTimeout(()=>URL.revokeObjectURL(url),1000);
+
+alert("تم تجهيز الملف. يمكنك حفظه أو طباعته كـ PDF.");
+}
+
+function shareInvoice(){
+
+if(!currentInvoiceId)return;
+
+const inv=db.invoices.find(x=>x.id===currentInvoiceId);
+const b=db.bookings.find(x=>x.id===inv?.bookingId);
+
+if(!inv||!b)return;
+
+shareFileHTML(invoiceHTML(inv,b),"فاتورة-"+inv.number);
+}
+
+function deleteInvoice(id){
+
+if(!confirm("هل تريد حذف الفاتورة المحفوظة؟"))return;
+
+db.invoices=db.invoices.filter(x=>x.id!==id);
+
+persist();
+
+if(currentInvoiceId===id)
+closeInvoiceModal();
+
+render();
+}
+
+function invoices(){
+
+const list=db.invoices.slice().reverse();
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">الفواتير</div>
+
+<div class="subtitle">إنشاء وحفظ وطباعة الفواتير</div>
+
+<div style="margin-top:15px">
+
+${list.length?
+list.map(inv=>{
+
+const b=db.bookings.find(x=>x.id===inv.bookingId);
+const c=db.clients.find(x=>x.id===b?.clientId);
+
+return`
+
+<div class="invoice-card">
+
+<div class="invoice-top">
+
+<div>
+
+<div class="invoice-number">
+🧾 فاتورة #${safe(inv.number)}
+</div>
+
+<div class="invoice-date">
+${dateText(inv.createdDate)}
+${c?` · ${safe(c.name)}`:""}
+</div>
+
+</div>
+
+<div class="invoice-total">
+${money(bookingTotal(b||{}))}
+</div>
+
+</div>
+
+<div class="invoice-actions actions">
+
+<button class="secondary"
+onclick="openInvoice('${inv.id}')">
+فتح
+</button>
+
+<button class="primary"
+onclick="printSavedInvoice('${inv.id}')">
+PDF
+</button>
+
+<button class="danger"
+onclick="deleteInvoice('${inv.id}')">
+حذف
+</button>
+
 </div>
 
 </div>`;
 }).join("")
 :
-`<div class="empty">لا يوجد عملاء</div>`
-}
+`<div class="empty">لا توجد فواتير محفوظة</div>`}
 
 </div>
 
-</div>`;
+`;
 }
 
+function printSavedInvoice(id){
 
-/* =========================
-   القهوة
-========================= */
+const inv=db.invoices.find(x=>x.id===id);
+const b=db.bookings.find(x=>x.id===inv?.bookingId);
 
-function getCoffeeItems(b){
+if(!inv||!b)return;
 
-if(Array.isArray(b?.coffeeItems)){
-return b.coffeeItems;
+printHTML(invoiceHTML(inv,b),"فاتورة #"+inv.number);
 }
 
-if(Array.isArray(b?.coffee)){
-return b.coffee;
-}
+/* العقود */
 
-return[];
-}
+function replaceContractVariables(text,b){
 
-function coffeeTotal(b){
+const c=db.clients.find(x=>x.id===b.clientId);
 
-return getCoffeeItems(b).reduce(
-(s,x)=>
-s+
-Number(x.price||0)*
-Number(x.qty||1),
-0
-);
-}
+const items=getCoffeeItems(b);
 
-function renderCoffeePicker(selected=[]){
+const coffee=items.length?
+items.map(x=>`${x.name} × ${x.qty}`).join("، "):
+"بدون ركن قهوة";
 
-const box=document.getElementById("coffeePicker");
+const values={
+"{اسم_الشاليه}":db.settings.name,
+"{اسم_العميل}":c?.name||"—",
+"{الجوال}":c?.phone||"—",
+"{تاريخ_الدخول}":dateText(b.startDate),
+"{وقت_الدخول}":timeText(b.startTime),
+"{تاريخ_الخروج}":dateText(b.endDate),
+"{وقت_الخروج}":timeText(b.endTime),
+"{قيمة_الحجز}":money(bookingTotal(b)),
+"{المدفوع}":money(b.paid),
+"{المتبقي}":money(remaining(b)),
+"{القهوة}":coffee,
+"{تأمين_الشالية}":money(chaletDeposit(b)),
+"{تأمين_ركن_القهوة}":money(coffeeDeposit(b)),
+"{إجمالي_التأمين}":money(depositTotal(b))
+};
 
-if(!box)return;
+let result=String(text||"");
 
-const selectedMap={};
-
-selected.forEach(x=>{
-selectedMap[x.id]=Number(x.qty||1);
-});
-
-box.innerHTML=db.coffee.map(item=>`
-
-<div class="picker-row">
-
-<label>
-<input
-type="checkbox"
-class="coffee-check"
-data-id="${item.id}"
-${selectedMap[item.id]?"checked":""}
-onchange="updateBookingTotal()">
-<span>${safe(item.icon||"☕")}</span>
-<strong>${safe(item.name)}</strong>
-</label>
-
-<input
-type="number"
-min="1"
-class="qty-input"
-data-qty="${item.id}"
-value="${selectedMap[item.id]||1}"
-${selectedMap[item.id]?"":"disabled"}
-oninput="updateBookingTotal()">
-
-<span class="picker-price">
-${money(item.price)}
-</span>
-
-</div>
-
-`).join("")||
-`<div class="empty">أضف أصناف القهوة من الإعدادات</div>`;
-
-updateSelectedCoffeeBox();
-}
-
-function selectedCoffeeItems(){
-
-const result=[];
-
-document.querySelectorAll(".coffee-check:checked")
-.forEach(chk=>{
-
-const item=db.coffee.find(
-x=>x.id===chk.dataset.id
-);
-
-if(!item)return;
-
-const input=document.querySelector(
-`[data-qty="${CSS.escape(chk.dataset.id)}"]`
-);
-
-const qty=Math.max(
-1,
-Number(input?.value||1)
-);
-
-result.push({
-id:item.id,
-name:item.name,
-price:Number(item.price||0),
-qty,
-icon:item.icon||"☕"
-});
-
+Object.keys(values).forEach(k=>{
+result=result.split(k).join(values[k]);
 });
 
 return result;
 }
 
-function updateSelectedCoffeeBox(){
+function contractHTML(contract,b,signed=null){
 
-const box=document.getElementById("selectedCoffeeBox");
+const c=db.clients.find(x=>x.id===b.clientId);
 
-if(!box)return;
+const body=replaceContractVariables(contract.text,b);
 
-const items=selectedCoffeeItems();
+return`
 
-box.innerHTML=items.length?
-items.map(x=>`
+<div class="contract-preview">
+
+<div class="contract-header">
+
 <div>
-☕ ${safe(x.name)}
-× ${x.qty}
-— ${money(x.price*x.qty)}
+
+<div class="contract-brand">
+${safe(db.settings.name)}
 </div>
-`).join("")
+
+<div class="invoice-meta">
+${safe(db.settings.subtitle)}
+</div>
+
+</div>
+
+<div style="text-align:left">
+
+<div class="contract-title">
+${safe(contract.name)}
+</div>
+
+<div class="invoice-meta">
+رقم الحجز: #${safe(b.id.slice(-6))}
+<br>
+التاريخ: ${dateText(new Date().toISOString().slice(0,10))}
+</div>
+
+</div>
+
+</div>
+
+<div class="contract-fields">
+
+<div class="contract-field">
+<small>العميل</small>
+<strong>${safe(c?.name||"—")}</strong>
+</div>
+
+<div class="contract-field">
+<small>الجوال</small>
+<strong>${safe(c?.phone||"—")}</strong>
+</div>
+
+<div class="contract-field">
+<small>الدخول</small>
+<strong>${dateText(b.startDate)} — ${timeText(b.startTime)}</strong>
+</div>
+
+<div class="contract-field">
+<small>الخروج</small>
+<strong>${dateText(b.endDate)} — ${timeText(b.endTime)}</strong>
+</div>
+
+</div>
+
+<div class="contract-content">
+${safe(body)}
+</div>
+
+<div class="signature-box">
+
+<div class="signature-title">
+توقيع العميل
+</div>
+
+${signed?
+`<img src="${signed}" style="max-width:100%;height:150px;display:block;margin:auto">`
 :
-`<span style="color:#999">لم تتم إضافة قهوة</span>`;
+`<div style="height:120px;display:grid;place-items:center;color:#aaa">
+لم يتم التوقيع بعد
+</div>`
 }
 
-function openCoffee(id=null){
+<div style="font-size:9px;color:#888;text-align:center;margin-top:5px">
+${signed?"تم توقيع العقد إلكترونيًا":"مكان توقيع العميل"}
+</div>
+
+</div>
+
+<div class="contract-footer">
+${safe(db.settings.name)} — شكرًا لاختياركم لنا 🤍
+</div>
+
+</div>
+`;
+}
+
+function openContractForBooking(bookingId){
+
+let signed=db.signedContracts.find(
+x=>x.bookingId===bookingId
+);
+
+const contract=
+db.contracts.find(x=>x.default)||
+db.contracts[0];
+
+if(!contract){
+
+alert("لا يوجد عقد. أنشئ عقدًا أولًا من قسم العقود.");
+return;
+}
+
+currentContractId=contract.id;
+
+const b=db.bookings.find(x=>x.id===bookingId);
+
+if(!b)return;
+
+document.getElementById("contractModal").classList.add("open");
+
+document.getElementById("contractPreview").innerHTML=
+contractHTML(contract,b,signed?.signature||null);
+
+const signButton=document.createElement("div");
+
+signButton.className="actions";
+
+signButton.innerHTML=`
+
+<button class="primary"
+onclick="openSignModal('${contract.id}','${b.id}')">
+✍️ توقيع العميل
+</button>
+`;
+
+document.getElementById("contractPreview").appendChild(signButton);
+}
+
+function closeContractModal(){
+document.getElementById("contractModal").classList.remove("open");
+currentContractId=null;
+}
+
+function printContract(){
+
+if(!currentContractId)return;
+
+const contract=db.contracts.find(x=>x.id===currentContractId);
+
+if(!contract)return;
+
+const signed=db.signedContracts.find(
+x=>x.contractId===contract.id
+);
+
+const bookingId=signed?.bookingId;
+
+const b=db.bookings.find(x=>x.id===bookingId);
+
+if(!b){
+
+alert("افتح العقد من الحجز حتى تتمكن من طباعته.");
+return;
+}
+
+printHTML(
+contractHTML(contract,b,signed?.signature||null),
+contract.name
+);
+}
+
+function shareContract(){
+
+if(!currentContractId)return;
+
+const contract=db.contracts.find(x=>x.id===currentContractId);
+
+const signed=db.signedContracts.find(
+x=>x.contractId===currentContractId
+);
+
+const b=db.bookings.find(x=>x.id===signed?.bookingId);
+
+if(!contract||!b)return;
+
+shareFileHTML(
+contractHTML(contract,b,signed?.signature||null),
+contract.name
+);
+}
+
+function contracts(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">العقود</div>
+
+<div class="subtitle">
+إنشاء العقود وتعديلها وتوقيعها وحفظها
+</div>
+
+<button class="primary"
+onclick="openContractEditModal()"
+style="width:100%;margin-top:17px">
++ إنشاء عقد
+</button>
+
+<div style="margin-top:12px">
+
+${db.contracts.length?
+
+db.contracts.map(c=>`
+
+<div class="contract-card">
+
+<div style="display:flex;justify-content:space-between;gap:10px">
+
+<div>
+
+<div style="font-size:15px;font-weight:800">
+📄 ${safe(c.name)}
+</div>
+
+<div class="booking-no">
+${c.default?"⭐ العقد الافتراضي":"عقد محفوظ"}
+</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="secondary"
+onclick="openContractEditModal('${c.id}')">
+تعديل
+</button>
+
+<button class="primary"
+onclick="chooseContract('${c.id}')">
+اختيار افتراضي
+</button>
+
+<button class="danger"
+onclick="deleteContract('${c.id}')">
+حذف
+</button>
+
+</div>
+
+</div>
+
+`).join("")
+
+:
+`<div class="empty">
+لا توجد عقود محفوظة
+</div>`}
+
+</div>
+
+<div class="setting-note" style="margin-top:15px">
+بعد إنشاء العقد، افتح أي حجز واضغط «العقد» لتعبئة بيانات العميل والتوقيع.
+</div>
+
+`;
+}
+
+function openContractEditModal(id=null){
+
+editingContractId=id;
+
+document.getElementById("contractEditModal").classList.add("open");
+
+if(id){
+
+const c=db.contracts.find(x=>x.id===id);
+
+document.getElementById("contractEditTitle").textContent="تعديل العقد";
+document.getElementById("contractName").value=c.name;
+document.getElementById("contractText").value=c.text;
+
+}else{
+
+document.getElementById("contractEditTitle").textContent="إنشاء عقد";
+
+document.getElementById("contractName").value=
+db.settings.contractName||"عقد حجز الشاليه";
+
+document.getElementById("contractText").value=
+db.settings.contractText||"";
+}
+}
+
+function closeContractEditModal(){
+document.getElementById("contractEditModal").classList.remove("open");
+editingContractId=null;
+}
+
+function saveContract(){
+
+const name=document.getElementById("contractName").value.trim();
+const text=document.getElementById("contractText").value.trim();
+
+if(!name||!text){
+alert("اكتب اسم العقد ومحتواه");
+return;
+}
+
+const obj={
+id:editingContractId||Date.now().toString(),
+name,
+text,
+default:db.contracts.length===0
+};
+
+const i=db.contracts.findIndex(x=>x.id===obj.id);
+
+if(i>=0)
+db.contracts[i]={
+...db.contracts[i],
+...obj
+};
+else
+db.contracts.push(obj);
+
+if(obj.default){
+db.contracts.forEach(x=>{
+x.default=x.id===obj.id;
+});
+}
+
+db.settings.contractName=name;
+db.settings.contractText=text;
+
+persist();
+
+closeContractEditModal();
+render();
+}
+
+function chooseContract(id){
+
+db.contracts.forEach(x=>{
+x.default=x.id===id;
+});
+
+persist();
+render();
+}
+
+function deleteContract(id){
+
+if(db.contracts.length===1){
+alert("يجب أن يبقى عقد واحد على الأقل.");
+return;
+}
+
+if(!confirm("هل تريد حذف هذا العقد؟"))return;
+
+db.contracts=db.contracts.filter(x=>x.id!==id);
+
+if(!db.contracts.some(x=>x.default)&&db.contracts[0])
+db.contracts[0].default=true;
+
+persist();
+render();
+}
+
+/* التوقيع */
+
+let signatureCanvas=null;
+let signatureCtx=null;
+let drawing=false;
+
+function openSignModal(contractId,bookingId){
+
+signingContractId=contractId;
+
+document.getElementById("signModal").classList.add("open");
+
+setTimeout(()=>{
+
+signatureCanvas=document.getElementById("signatureCanvas");
+
+const ratio=window.devicePixelRatio||1;
+const rect=signatureCanvas.getBoundingClientRect();
+
+signatureCanvas.width=rect.width*ratio;
+signatureCanvas.height=rect.height*ratio;
+
+signatureCtx=signatureCanvas.getContext("2d");
+signatureCtx.scale(ratio,ratio);
+
+signatureCtx.lineWidth=2.5;
+signatureCtx.lineCap="round";
+signatureCtx.strokeStyle="#111";
+
+const existing=db.signedContracts.find(
+x=>x.contractId===contractId&&x.bookingId===bookingId
+);
+
+if(existing?.signature){
+
+const img=new Image();
+
+img.onload=()=>{
+signatureCtx.drawImage(
+img,0,0,rect.width,rect.height
+);
+};
+
+img.src=existing.signature;
+}
+
+signatureCanvas.onpointerdown=e=>{
+drawing=true;
+signatureCtx.beginPath();
+signatureCtx.moveTo(
+e.offsetX,e.offsetY
+);
+};
+
+signatureCanvas.onpointermove=e=>{
+
+if(!drawing)return;
+
+signatureCtx.lineTo(
+e.offsetX,e.offsetY
+);
+
+signatureCtx.stroke();
+};
+
+signatureCanvas.onpointerup=()=>{
+drawing=false;
+};
+
+signatureCanvas.onpointerleave=()=>{
+drawing=false;
+};
+
+},50);
+}
+
+function clearSignature(){
+
+if(!signatureCanvas||!signatureCtx)return;
+
+signatureCtx.clearRect(
+0,0,
+signatureCanvas.width,
+signatureCanvas.height
+);
+}
+
+function saveSignature(){
+
+if(!signatureCanvas)return;
+
+const signature=signatureCanvas.toDataURL("image/png");
+
+const bookingId=prompt(
+"اكتب رقم الحجز الأخير أو اتركه فارغًا للبحث تلقائيًا:"
+);
+
+let b=null;
+
+if(bookingId){
+
+b=db.bookings.find(
+x=>x.id===bookingId||
+x.id.slice(-6)===bookingId
+);
+}
+
+if(!b){
+
+b=db.bookings[db.bookings.length-1];
+}
+
+if(!b){
+
+alert("لا يوجد حجز مرتبط بالعقد");
+return;
+}
+
+const i=db.signedContracts.findIndex(
+x=>x.contractId===signingContractId&&x.bookingId===b.id
+);
+
+const obj={
+id:i>=0?db.signedContracts[i].id:Date.now().toString(),
+contractId:signingContractId,
+bookingId:b.id,
+signature,
+signedDate:formatDateForInput(new Date())
+};
+
+if(i>=0)
+db.signedContracts[i]=obj;
+else
+db.signedContracts.push(obj);
+
+persist();
+
+closeSignModal();
+
+alert("تم حفظ توقيع العميل");
+
+openContractForBooking(b.id);
+}
+
+function closeSignModal(){
+document.getElementById("signModal").classList.remove("open");
+}
+
+/* المصروفات */
+
+function openExpenseModal(id=null){
+
+editingExpenseId=id;
+
+document.getElementById("expenseModal").classList.add("open");
+
+if(id){
+
+const e=db.expenses.find(x=>x.id===id);
+
+document.getElementById("expenseModalTitle").textContent="تعديل المصروف";
+document.getElementById("expenseTitle").value=e.title;
+document.getElementById("expenseAmount").value=e.amount;
+document.getElementById("expenseDate").value=e.date;
+document.getElementById("expenseNotes").value=e.notes||"";
+
+}else{
+
+document.getElementById("expenseModalTitle").textContent="إضافة مصروف";
+document.getElementById("expenseTitle").value="";
+document.getElementById("expenseAmount").value="";
+document.getElementById("expenseDate").value=
+formatDateForInput(new Date());
+document.getElementById("expenseNotes").value="";
+}
+}
+
+function closeExpenseModal(){
+document.getElementById("expenseModal").classList.remove("open");
+editingExpenseId=null;
+}
+
+function saveExpense(){
+
+const title=document.getElementById("expenseTitle").value.trim();
+const amount=Number(document.getElementById("expenseAmount").value||0);
+const date=document.getElementById("expenseDate").value;
+const notes=document.getElementById("expenseNotes").value.trim();
+
+if(!title||amount<=0||!date){
+alert("أكمل بيانات المصروف");
+return;
+}
+
+const e={
+id:editingExpenseId||Date.now().toString(),
+title,amount,date,notes
+};
+
+const i=db.expenses.findIndex(x=>x.id===e.id);
+
+if(i>=0)db.expenses[i]=e;
+else db.expenses.push(e);
+
+persist();
+closeExpenseModal();
+render();
+}
+
+function removeExpense(id){
+
+if(!confirm("هل تريد حذف هذا المصروف؟"))return;
+
+db.expenses=db.expenses.filter(e=>e.id!==id);
+
+persist();
+render();
+}
+
+function expenses(){
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">المصروفات</div>
+
+<div class="subtitle">إدارة مصروفات الشاليه</div>
+
+<button class="primary"
+onclick="openExpenseModal()"
+style="width:100%;margin-top:17px">
++ إضافة مصروف
+</button>
+
+<div style="margin-top:12px">
+
+${db.expenses.length?
+
+db.expenses.slice().reverse().map(e=>`
+
+<div class="client">
+
+<div class="avatar">💸</div>
+
+<div class="grow">
+
+<strong>${safe(e.title)}</strong>
+
+<div class="booking-no">
+${dateText(e.date)}
+${e.notes?`<br>${safe(e.notes)}`:""}
+</div>
+
+</div>
+
+<strong>${money(e.amount)}</strong>
+
+<button class="secondary"
+onclick="openExpenseModal('${e.id}')">
+تعديل
+</button>
+
+<button class="danger"
+onclick="removeExpense('${e.id}')">
+حذف
+</button>
+
+</div>
+
+`).join("")
+
+:
+`<div class="empty">لا توجد مصروفات</div>`}
+
+</div>
+
+`;
+}
+
+/* القهوة */
+
+function openCoffeeModal(id=null){
 
 editingCoffeeId=id;
 
 document.getElementById("coffeeModal").classList.add("open");
 
-const item=id?
-db.coffee.find(x=>x.id===id):
-null;
+if(id){
 
-document.getElementById("coffeeName").value=item?.name||"";
-document.getElementById("coffeePrice").value=item?.price??"";
-document.getElementById("coffeeIcon").value=item?.icon||"☕";
+const c=db.coffeeCategories.find(x=>x.id===id);
+
+document.getElementById("coffeeModalTitle").textContent="تعديل فئة القهوة";
+document.getElementById("coffeeName").value=c.name;
+document.getElementById("coffeePrice").value=c.price;
+document.getElementById("coffeeDescription").value=c.description||"";
+
+}else{
+
+document.getElementById("coffeeModalTitle").textContent="إضافة فئة قهوة";
+document.getElementById("coffeeName").value="";
+document.getElementById("coffeePrice").value="";
+document.getElementById("coffeeDescription").value="";
+}
 }
 
-function closeCoffee(){
-
+function closeCoffeeModal(){
 document.getElementById("coffeeModal").classList.remove("open");
-
 editingCoffeeId=null;
 }
 
@@ -2534,1222 +3696,541 @@ function saveCoffee(){
 
 const name=document.getElementById("coffeeName").value.trim();
 const price=Number(document.getElementById("coffeePrice").value||0);
-const icon=document.getElementById("coffeeIcon").value.trim()||"☕";
+const description=document.getElementById("coffeeDescription").value.trim();
 
-if(!name){
-alert("أدخل اسم الصنف");
+if(!name||price<0){
+alert("أدخل اسم الفئة والسعر");
 return;
 }
 
-if(price<0){
-alert("السعر غير صحيح");
-return;
-}
-
-const old=editingCoffeeId?
-db.coffee.find(x=>x.id===editingCoffeeId):
-null;
-
-const item={
+const c={
 id:editingCoffeeId||Date.now().toString(),
-name,
-price,
-icon,
-createdAt:old?.createdAt||new Date().toISOString()
+name,price,description
 };
 
-if(editingCoffeeId){
+const i=db.coffeeCategories.findIndex(x=>x.id===c.id);
 
-const i=db.coffee.findIndex(
-x=>x.id===editingCoffeeId
-);
-
-if(i!==-1)db.coffee[i]=item;
-
-}else{
-
-db.coffee.push(item);
-
-}
+if(i>=0)db.coffeeCategories[i]=c;
+else db.coffeeCategories.push(c);
 
 persist();
-closeCoffee();
+closeCoffeeModal();
 render();
 }
 
-function deleteCoffee(id){
+function removeCoffee(id){
 
-const used=db.bookings.some(b=>
-getCoffeeItems(b).some(x=>x.id===id)
-);
+if(!confirm("هل تريد حذف فئة ركن القهوة؟"))return;
 
-if(used){
-alert("هذا الصنف مستخدم في حجوزات سابقة، لا يفضل حذفه.");
-return;
-}
-
-if(!confirm("هل تريد حذف صنف القهوة؟"))return;
-
-db.coffee=db.coffee.filter(
-x=>x.id!==id
-);
+db.coffeeCategories=db.coffeeCategories.filter(x=>x.id!==id);
 
 persist();
 render();
 }
 
-function coffeePage(){
+function coffee(){
 
-return`
-<div>
+document.getElementById("content").innerHTML=`
 
-<div class="title">ركن القهوة</div>
-<div class="subtitle">إدارة أصناف وأسعار القهوة</div>
-
-<div class="actions" style="margin:15px 0">
-<button class="primary" onclick="openCoffee()">
-+ إضافة صنف
-</button>
-</div>
-
-<div class="section">
-
-${
-db.coffee.length
-?
-db.coffee.map(item=>`
-<div class="coffee-card">
-
-<div class="booking-top">
-
-<div>
-<div class="customer">
-${safe(item.icon||"☕")} ${safe(item.name)}
-</div>
-</div>
-
-<strong>${money(item.price)}</strong>
-
-</div>
-
-<div class="actions">
-
-<button class="secondary"
-onclick="openCoffee('${item.id}')">
-✏️ تعديل
-</button>
-
-<button class="danger"
-onclick="deleteCoffee('${item.id}')">
-حذف
-</button>
-
-</div>
-
-</div>
-`).join("")
-:
-`<div class="empty">لا توجد أصناف</div>`
-}
-
-</div>
-
-</div>`;
-}
-
-
-/* =========================
-   الخدمات الإضافية
-========================= */
-
-function openService(id=null){
-
-editingServiceId=id;
-
-document.getElementById("serviceModal").classList.add("open");
-
-const item=id?
-db.services.find(x=>x.id===id):
-null;
-
-document.getElementById("serviceName").value=item?.name||"";
-document.getElementById("servicePrice").value=item?.price??"";
-document.getElementById("serviceIcon").value=item?.icon||"✨";
-
-document.getElementById("serviceWhatsapp").checked=
-item?.showInWhatsapp!==false;
-
-document.getElementById("serviceActive").checked=
-item?.active!==false;
-}
-
-function closeService(){
-
-document.getElementById("serviceModal").classList.remove("open");
-
-editingServiceId=null;
-}
-
-function saveService(){
-
-const name=document.getElementById("serviceName").value.trim();
-const price=Number(document.getElementById("servicePrice").value||0);
-const icon=document.getElementById("serviceIcon").value.trim()||"✨";
-
-if(!name){
-alert("أدخل اسم الخدمة");
-return;
-}
-
-if(price<0){
-alert("السعر غير صحيح");
-return;
-}
-
-const old=editingServiceId?
-db.services.find(x=>x.id===editingServiceId):
-null;
-
-const item={
-id:editingServiceId||Date.now().toString(),
-name,
-price,
-icon,
-showInWhatsapp:
-document.getElementById("serviceWhatsapp").checked,
-active:
-document.getElementById("serviceActive").checked,
-createdAt:old?.createdAt||new Date().toISOString()
-};
-
-if(editingServiceId){
-
-const i=db.services.findIndex(
-x=>x.id===editingServiceId
-);
-
-if(i!==-1)db.services[i]=item;
-
-}else{
-
-db.services.push(item);
-
-}
-
-persist();
-closeService();
-render();
-}
-
-function deleteService(id){
-
-const used=db.bookings.some(b=>
-getServices(b).some(x=>x.id===id)
-);
-
-if(used){
-
-if(!confirm(
-"هذه الخدمة مستخدمة في حجوزات سابقة. حذفها سيزيلها من قائمة الخدمات الجديدة فقط، وقد تبقى بياناتها داخل الحجوزات القديمة.\n\nهل تريد المتابعة؟"
-))return;
-
-}else{
-
-if(!confirm("هل تريد حذف الخدمة؟"))return;
-
-}
-
-db.services=db.services.filter(
-x=>x.id!==id
-);
-
-persist();
-render();
-}
-
-function servicesSettings(){
-
-return`
-<div class="section">
-
-<div class="section-title">
-الخدمات الإضافية
+<div class="title">
+☕ ${safe(db.settings.coffeeName||"ركن القهوة")}
 </div>
 
 <div class="subtitle">
-أضف أي خدمة وسيتم التعامل معها تلقائيًا في الحجوزات والفواتير وواتساب.
+إدارة فئات ركن القهوة والأسعار
 </div>
 
-<div class="actions" style="margin:12px 0">
-<button class="primary" onclick="openService()">
-+ إضافة خدمة
-</button>
-</div>
-
-${
-db.services.length
-?
-db.services.map(item=>`
-<div class="service-setting-row">
-
-<div>
-<strong>
-${safe(item.icon||"✨")}
-${safe(item.name)}
-</strong>
-
-<div style="font-size:10px;color:#888;margin-top:4px">
-${money(item.price)}
-•
-${item.active!==false?"مفعلة":"مخفية"}
-•
-${item.showInWhatsapp!==false?"تظهر في واتساب":"لا تظهر في واتساب"}
-</div>
-</div>
-
-<div class="actions">
-
-<button class="secondary"
-onclick="openService('${item.id}')">
-تعديل
-</button>
-
-<button class="danger"
-onclick="deleteService('${item.id}')">
-حذف
-</button>
-
-</div>
-
-</div>
-`).join("")
-:
-`<div class="empty">لا توجد خدمات إضافية</div>`
-}
-
-</div>`;
-}
-
-
-/* =========================
-   الإعدادات
-========================= */
-
-function saveSettings(){
-
-db.settings.name=
-document.getElementById("settingName").value.trim()||"روانا";
-
-db.settings.subtitle=
-document.getElementById("settingSubtitle").value.trim();
-
-db.settings.defaultStart=
-document.getElementById("settingDefaultStart").value||"16:00";
-
-db.settings.defaultEnd=
-document.getElementById("settingDefaultEnd").value||"04:00";
-
-db.settings.whatsappMessage=
-document.getElementById("settingWhatsapp").value;
-
-db.settings.contractName=
-document.getElementById("settingContractName").value.trim()||"عقد حجز";
-
-db.settings.contractText=
-document.getElementById("settingContractText").value;
-
-db.settings.enableSignature=
-document.getElementById("settingSignature").checked;
-
-persist();
-
-alert("تم حفظ الإعدادات");
-
-render();
-}
-
-function settings(){
-
-return`
-<div>
-
-<div class="title">الإعدادات</div>
-<div class="subtitle">تحكم كامل في بيانات وروابط ورسائل روانا</div>
-
-<div class="section">
-
-<div class="section-title">بيانات الشاليه</div>
-
-<div class="form-grid">
-
-<div class="field">
-<label>اسم الشاليه</label>
-<input id="settingName"
-value="${safeAttr(db.settings.name||"روانا")}">
-</div>
-
-<div class="field">
-<label>الوصف المختصر</label>
-<input id="settingSubtitle"
-value="${safeAttr(db.settings.subtitle||"")}">
-</div>
-
-</div>
-
-<div class="section-title" style="margin-top:20px">
-أوقات الحجز الافتراضية
-</div>
-
-<div class="form-grid">
-
-<div class="field">
-<label>وقت الدخول</label>
-<input type="time"
-id="settingDefaultStart"
-value="${safeAttr(db.settings.defaultStart||"16:00")}">
-</div>
-
-<div class="field">
-<label>وقت الخروج</label>
-<input type="time"
-id="settingDefaultEnd"
-value="${safeAttr(db.settings.defaultEnd||"04:00")}">
-</div>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-💬 رسالة واتساب
-</div>
-
-<div class="subtitle">
-تقدر تعدل الرسالة براحتك. البيانات الديناميكية لن تختفي حتى لو حذفت المتغيرات من الرسالة.
-</div>
-
-<textarea id="settingWhatsapp"
-rows="13"
-class="large-textarea"
-placeholder="اكتب رسالة واتساب...">${safe(
-db.settings.whatsappMessage||""
-)}</textarea>
-
-<div class="hint">
-المتغيرات المتاحة:
-<br>
-{اسم_العميل}
-{الجوال}
-{اسم_الشاليه}
-{تاريخ_الدخول}
-{وقت_الدخول}
-{تاريخ_الخروج}
-{وقت_الخروج}
-{قيمة_الحجز}
-{القهوة}
-{الخدمات}
-{التأمين}
-{المدفوع}
-{المتبقي}
-{إجمالي_الحجز}
-{قيمة_الخدمات}
-{إجمالي_التأمين}
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-📄 العقد
-</div>
-
-<div class="field">
-
-<label>اسم العقد</label>
-
-<input id="settingContractName"
-value="${safeAttr(db.settings.contractName||"عقد حجز")}">
-
-</div>
-
-<div class="field" style="margin-top:10px">
-
-<label>نص العقد</label>
-
-<textarea
-id="settingContractText"
-rows="15"
-class="large-textarea">${safe(
-db.settings.contractText||contractTemplate()
-)}</textarea>
-
-</div>
-
-<div class="hint">
-يمكن استخدام نفس المتغيرات الموجودة في رسالة واتساب.
-</div>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-✍️ التوقيع
-</div>
-
-<label class="switch-row">
-
-<span>تفعيل توقيع العميل</span>
-
-<input type="checkbox"
-id="settingSignature"
-${db.settings.enableSignature!==false?"checked":""}>
-
-</label>
-
-</div>
-
-
-${servicesSettings()}
-
-
-<div class="section">
-
-<div class="section-title">
-☕ إدارة ركن القهوة
-</div>
-
-<div class="actions">
 <button class="primary"
-onclick="openCoffee()">
-+ إضافة صنف قهوة
+onclick="openCoffeeModal()"
+style="width:100%;margin-top:17px">
++ إضافة فئة
 </button>
-</div>
 
 <div style="margin-top:12px">
 
-${
-db.coffee.map(item=>`
-<div class="service-setting-row">
+${db.coffeeCategories.length?
+
+db.coffeeCategories.map(c=>`
+
+<div class="coffee-category">
+
+<div style="display:flex;align-items:center;justify-content:space-between">
 
 <div>
-<strong>
-${safe(item.icon||"☕")}
-${safe(item.name)}
-</strong>
 
-<div style="font-size:10px;color:#888">
-${money(item.price)}
+<div style="font-weight:800;font-size:13px">
+☕ ${safe(c.name)}
 </div>
+
+<div class="booking-no">
+${safe(c.description||"بدون وصف")}
+</div>
+
+</div>
+
+<div style="color:var(--burgundy);font-weight:800">
+${money(c.price)}
+</div>
+
 </div>
 
 <div class="actions">
+
 <button class="secondary"
-onclick="openCoffee('${item.id}')">
+onclick="openCoffeeModal('${c.id}')">
 تعديل
 </button>
 
 <button class="danger"
-onclick="deleteCoffee('${item.id}')">
+onclick="removeCoffee('${c.id}')">
 حذف
 </button>
+
 </div>
 
 </div>
+
 `).join("")
-||
-`<div class="empty">لا توجد أصناف قهوة</div>`
-}
+
+:
+`<div class="empty">
+لا توجد فئات لركن القهوة.
+</div>`}
 
 </div>
 
-</div>
-
-
-<div class="actions" style="margin-top:20px">
-
-<button class="primary big-button"
-onclick="saveSettings()">
-💾 حفظ جميع الإعدادات
-</button>
-
-</div>
-
-</div>`;
+`;
 }
 
+/* المالية والتقارير */
 
-/* =========================
-   التقويم
-========================= */
+function finance(){
 
-function calendar(){
-
-const year=calendarYear;
-const month=calendarMonth;
-
-const first=new Date(year,month,1);
-const last=new Date(year,month+1,0);
-
-const days=last.getDate();
-const startDay=first.getDay();
-
-const monthNames=[
-"يناير",
-"فبراير",
-"مارس",
-"أبريل",
-"مايو",
-"يونيو",
-"يوليو",
-"أغسطس",
-"سبتمبر",
-"أكتوبر",
-"نوفمبر",
-"ديسمبر"
-];
-
-let html="";
-
-for(let i=0;i<startDay;i++){
-html+=`<div class="calendar-day empty-day"></div>`;
-}
-
-for(let d=1;d<=days;d++){
-
-const date=
-`${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-
-const jsDay=new Date(year,month,d).getDay();
-
-const bookingsForDay=db.bookings.filter(b=>
-date>=b.startDate &&
-date<=b.endDate &&
-b.status!=="ملغي"
+const total=db.bookings.reduce(
+(s,b)=>s+serviceTotal(b),0
 );
 
-let cls="available";
-
-if(bookingsForDay.length){
-cls="booked";
-}else if(jsDay===4||jsDay===5){
-cls="weekend";
-}
-
-html+=`
-<div class="calendar-day ${cls}"
-onclick="calendarDayClick('${date}')">
-
-<div class="day-number">${d}</div>
-
-${
-bookingsForDay.length
-?
-`<div class="day-bookings">
-${bookingsForDay.length} حجز
-</div>`
-:""
-}
-
-</div>`;
-}
-
-return`
-<div>
-
-<div class="title">التقويم</div>
-<div class="subtitle">متابعة الحجوزات والأيام المتاحة</div>
-
-<div class="calendar-head">
-
-<button class="secondary"
-onclick="previousMonth()">
-‹
-</button>
-
-<strong>
-${monthNames[month]} ${year}
-</strong>
-
-<button class="secondary"
-onclick="nextMonth()">
-›
-</button>
-
-</div>
-
-<div class="calendar-weekdays">
-<div>الأحد</div>
-<div>الإثنين</div>
-<div>الثلاثاء</div>
-<div>الأربعاء</div>
-<div>الخميس</div>
-<div>الجمعة</div>
-<div>السبت</div>
-</div>
-
-<div class="calendar-grid">
-${html}
-</div>
-
-<div class="calendar-legend">
-
-<span>
-<i class="legend available"></i>
-متاح
-</span>
-
-<span>
-<i class="legend booked"></i>
-محجوز
-</span>
-
-<span>
-<i class="legend weekend"></i>
-الخميس والجمعة
-</span>
-
-</div>
-
-</div>`;
-}
-
-function calendarDayClick(date){
-
-const list=db.bookings.filter(b=>
-date>=b.startDate &&
-date<=b.endDate &&
-b.status!=="ملغي"
+const paid=db.bookings.reduce(
+(s,b)=>s+revenueFromBooking(b),0
 );
-
-if(list.length){
-
-const names=list.map(
-b=>bookingClientName(b)
-).join("\n");
-
-alert(
-`الحجوزات في ${dateText(date)}:\n\n${names}`
-);
-
-}else{
-
-openBooking();
-
-document.getElementById("startDate").value=date;
-
-document.getElementById("endDate").value=
-addDays(date,1);
-
-updateBookingTotal();
-}
-}
-
-function previousMonth(){
-
-calendarMonth--;
-
-if(calendarMonth<0){
-calendarMonth=11;
-calendarYear--;
-}
-
-render();
-}
-
-function nextMonth(){
-
-calendarMonth++;
-
-if(calendarMonth>11){
-calendarMonth=0;
-calendarYear++;
-}
-
-render();
-}
-
-
-/* =========================
-   الصفحة الرئيسية
-========================= */
-
-function home(){
-
-const totalBookings=db.bookings.length;
-
-const confirmed=db.bookings.filter(
-b=>b.status!=="ملغي"
-).length;
-
-const revenue=operatingRevenue();
 
 const expensesTotal=db.expenses.reduce(
-(s,x)=>s+Number(x.amount||0),
-0
+(s,e)=>s+Number(e.amount||0),0
 );
 
-const profit=revenue-expensesTotal;
+const remainingTotal=db.bookings.reduce(
+(s,b)=>s+remaining(b),0
+);
 
-const upcoming=[...db.bookings]
-.filter(b=>b.status!=="ملغي")
-.sort((a,b)=>
-(`${a.startDate} ${a.startTime}`)
-.localeCompare(`${b.startDate} ${b.startTime}`)
-)
-.slice(0,5);
+document.getElementById("content").innerHTML=`
 
-return`
-<div>
+<div class="title">الإيرادات</div>
+<div class="subtitle">الملخص المالي للشاليه</div>
 
-<div class="title">
-مرحبًا بك في ${safe(db.settings.name||"روانا")} 👋
+<div class="finance">
+
+<small>الإيرادات التشغيلية</small>
+<strong>${money(paid)}</strong>
+
 </div>
 
-<div class="subtitle">
-لوحة التحكم
+<div class="finance-grid">
+
+<div class="card">
+<div class="label">إجمالي الحجوزات</div>
+<div class="value">${money(total)}</div>
 </div>
+
+<div class="card">
+<div class="label">المتبقي</div>
+<div class="value">${money(remainingTotal)}</div>
+</div>
+
+<div class="card">
+<div class="label">المصروفات</div>
+<div class="value">${money(expensesTotal)}</div>
+</div>
+
+<div class="card">
+<div class="label">صافي الربح</div>
+<div class="value">${money(paid-expensesTotal)}</div>
+</div>
+
+</div>
+`;
+}
+
+function reports(){
+
+const bookingsCount=db.bookings.length;
+
+const revenue=db.bookings.reduce(
+(s,b)=>s+revenueFromBooking(b),0
+);
+
+const expensesTotal=db.expenses.reduce(
+(s,e)=>s+Number(e.amount||0),0
+);
+
+const coffeeRevenue=db.bookings.reduce(
+(s,b)=>s+coffeeTotal(b),0
+);
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">التقارير</div>
+
+<div class="subtitle">ملخص أداء الشاليه</div>
 
 <div class="stats">
 
-<div class="stat">
-<span>الحجوزات</span>
-<strong>${totalBookings}</strong>
+<div class="card">
+<div class="stat-icon">📅</div>
+<div class="label">عدد الحجوزات</div>
+<div class="value">${bookingsCount}</div>
 </div>
 
-<div class="stat">
-<span>الحجوزات الفعالة</span>
-<strong>${confirmed}</strong>
+<div class="card">
+<div class="stat-icon">💰</div>
+<div class="label">الإيرادات</div>
+<div class="value">${money(revenue)}</div>
 </div>
 
-<div class="stat">
-<span>الإيرادات التشغيلية</span>
-<strong>${money(revenue)}</strong>
+<div class="card">
+<div class="stat-icon">☕</div>
+<div class="label">مبيعات ركن القهوة</div>
+<div class="value">${money(coffeeRevenue)}</div>
 </div>
 
-<div class="stat">
-<span>المصروفات</span>
-<strong>${money(expensesTotal)}</strong>
+<div class="card">
+<div class="stat-icon">💸</div>
+<div class="label">المصروفات</div>
+<div class="value">${money(expensesTotal)}</div>
 </div>
 
-<div class="stat">
-<span>صافي الربح</span>
-<strong>${money(profit)}</strong>
+<div class="card">
+<div class="stat-icon">📈</div>
+<div class="label">الصافي</div>
+<div class="value">${money(revenue-expensesTotal)}</div>
 </div>
 
 </div>
-
-
-<div class="actions" style="margin:15px 0">
-
-<button class="primary big-button"
-onclick="openBooking()">
-+ حجز جديد
-</button>
-
-<button class="secondary"
-onclick="openClient()">
-+ عميل جديد
-</button>
-
-</div>
-
-
-<div class="section">
-
-<div class="section-title">
-الحجوزات القادمة
-</div>
-
-${
-upcoming.length
-?
-upcoming.map(bookingCard).join("")
-:
-`<div class="empty">لا توجد حجوزات قادمة</div>`
+`;
 }
 
-</div>
+/* الإعدادات */
 
-</div>`;
+function toggleSetting(key){
+db.settings[key]=!db.settings[key];
+persist();
+renderSettings();
 }
 
-
-/* =========================
-   الحجوزات
-========================= */
-
-function bookingsPage(){
-
-const list=[...db.bookings].sort((a,b)=>
-(`${a.startDate} ${a.startTime}`)
-.localeCompare(`${b.startDate} ${b.startTime}`)
-);
+function settingSwitch(key,label,value){
 
 return`
-<div>
 
-<div class="title">الحجوزات</div>
-<div class="subtitle">إدارة حجوزات روانا</div>
+<div class="check-row">
 
-<div class="actions" style="margin:15px 0">
+<span>${label}</span>
+
+<button class="switch ${value?"on":""}"
+onclick="toggleSetting('${key}')">
+</button>
+
+</div>
+`;
+}
+
+function renderSettings(){
+
+const s=db.settings;
+
+document.getElementById("content").innerHTML=`
+
+<div class="title">الإعدادات</div>
+
+<div class="subtitle">
+تحكم كامل في شكل التطبيق والتقويم والرئيسية والخدمات
+</div>
+
+<div class="section">
+
+<div class="section-head">
+<h3>🏠 بيانات التطبيق</h3>
+</div>
+
+<div class="setting-row">
+<label>اسم الشاليه</label>
+<input id="setName" value="${safe(s.name)}">
+</div>
+
+<div class="setting-row">
+<label>الوصف</label>
+<input id="setSubtitle" value="${safe(s.subtitle)}">
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-row">
+<label>اللون الرئيسي</label>
+<input id="setPrimary" type="color" value="${safe(s.primary)}">
+</div>
+
+<div class="setting-row">
+<label>اللون الداكن</label>
+<input id="setDark" type="color" value="${safe(s.dark)}">
+</div>
+
+<div class="setting-row">
+<label>لون البطاقات</label>
+<input id="setLight" type="color" value="${safe(s.light)}">
+</div>
+
+<div class="setting-row">
+<label>لون الخلفية</label>
+<input id="setBg" type="color" value="${safe(s.bg)}">
+</div>
+
+</div>
+
+<div class="setting-row">
+
+<label>العملة</label>
+
+<select id="setCurrency">
+
+<option ${s.currency==="ر.س"?"selected":""}>ر.س</option>
+<option ${s.currency==="دولار"?"selected":""}>دولار</option>
+<option ${s.currency==="درهم"?"selected":""}>درهم</option>
+<option ${s.currency==="دينار"?"selected":""}>دينار</option>
+
+</select>
+
+</div>
 
 <button class="primary"
-onclick="openBooking()">
-+ حجز جديد
+onclick="saveSettings()"
+style="width:100%">
+حفظ الإعدادات
 </button>
 
 </div>
 
 <div class="section">
 
-${
-list.length
-?
-list.map(bookingCard).join("")
-:
-`<div class="empty">لا توجد حجوزات</div>`
-}
+<div class="section-head">
+<h3>🗓️ ألوان التقويم</h3>
+</div>
+
+<div class="settings-grid">
+
+<div class="setting-row">
+<label>لون الخانة المحجوزة</label>
+<input id="setBooked" type="color"
+value="${safe(s.calendarBooked)}">
+</div>
+
+<div class="setting-row">
+<label>لون الخانة المتاحة</label>
+<input id="setAvailable" type="color"
+value="${safe(s.calendarAvailable)}">
+</div>
+
+<div class="setting-row">
+<label>لون الخميس</label>
+<input id="setThursday" type="color"
+value="${safe(s.calendarWeekend)}">
+</div>
+
+<div class="setting-row">
+<label>لون الجمعة</label>
+<input id="setFriday" type="color"
+value="${safe(s.calendarWeekend)}">
+</div>
 
 </div>
 
-</div>`;
-}
+${settingSwitch(
+"showWeekend",
+"إظهار تمييز الخميس والجمعة",
+s.showWeekend
+)}
+
+${settingSwitch(
+"showCalendarNames",
+"إظهار اسم العميل داخل التقويم",
+s.showCalendarNames
+)}
+
+<button class="primary"
+onclick="saveCalendarSettings()"
+style="width:100%">
+حفظ ألوان التقويم
+</button>
 
+</div>
 
-/* =========================
-   التنقل
-========================= */
+<div class="section">
 
-function navigate(page){
+<div class="section-head">
+<h3>📅 أوقات الحجوزات</h3>
+</div>
 
-currentPage=page;
+<div class="settings-grid">
 
-document.querySelectorAll(".nav-item")
-.forEach(x=>{
-x.classList.toggle(
-"active",
-x.dataset.page===page
-);
-});
+<div class="setting-row">
+<label>وقت الدخول الافتراضي</label>
+<input id="setStart" type="time"
+value="${safe(s.defaultStart)}">
+</div>
 
-render();
-}
+<div class="setting-row">
+<label>وقت الخروج الافتراضي</label>
+<input id="setEnd" type="time"
+value="${safe(s.defaultEnd)}">
+</div>
 
-function render(){
+</div>
 
-const app=document.getElementById("app");
+<div class="setting-note">
+هذه الأوقات تستخدم تلقائيًا عند إنشاء حجز جديد، ويمكن تعديلها في أي وقت.
+</div>
 
-if(!app)return;
+<button class="primary"
+onclick="saveDefaultBookingTimes()"
+style="width:100%">
+💾 حفظ أوقات الدخول والخروج
+</button>
 
-let html="";
+</div>
 
-switch(currentPage){
+<div class="section">
 
-case"home":
-html=home();
-break;
+<div class="section-head">
+<h3>🏠 تخصيص الرئيسية</h3>
+</div>
 
-case"bookings":
-html=bookingsPage();
-break;
+${settingSwitch("showToday","حجوزات اليوم",s.showToday)}
+${settingSwitch("showUpcoming","الحجوزات القادمة",s.showUpcoming)}
+${settingSwitch("showRevenue","الإيرادات",s.showRevenue)}
+${settingSwitch("showProfit","صافي الربح",s.showProfit)}
+${settingSwitch("showQuick","الإجراءات السريعة",s.showQuick)}
+${settingSwitch("showQuickBooking","حجز سريع",s.showQuickBooking)}
+${settingSwitch("showQuickClients","إدارة العملاء",s.showQuickClients)}
+${settingSwitch("showQuickInvoices","الفواتير",s.showQuickInvoices)}
+${settingSwitch("showQuickExpenses","المصروفات",s.showQuickExpenses)}
 
-case"calendar":
-html=calendar();
-break;
+</div>
 
-case"clients":
-html=clients();
-break;
+<div class="section">
 
-case"coffee":
-html=coffeePage();
-break;
+<div class="section-head">
+<h3>🔐 مبالغ التأمين</h3>
+</div>
 
-case"invoices":
-html=invoices();
-break;
+<div class="setting-note">
+التأمين مسترد في حال عدم وجود أي أضرار في الشالية.
+</div>
 
-case"contracts":
-html=contracts();
-break;
+<div class="settings-grid">
 
-case"finance":
-html=finance();
-break;
+<div class="setting-row">
+<label>تأمين الشالية الافتراضي</label>
+<input id="setChaletDeposit" type="number" min="0"
+value="${safe(s.defaultChaletDeposit||0)}">
+</div>
 
-case"expenses":
-html=expenses();
-break;
+<div class="setting-row">
+<label>تأمين ركن القهوة الافتراضي</label>
+<input id="setCoffeeDeposit" type="number" min="0"
+value="${safe(s.defaultCoffeeDeposit||0)}">
+</div>
 
-case"reports":
-html=reports();
-break;
+</div>
 
-case"settings":
-html=settings();
-break;
+<button class="primary"
+onclick="saveDepositSettings()"
+style="width:100%">
+💾 حفظ مبالغ التأمين
+</button>
 
-default:
-currentPage="home";
-html=home();
+</div>
 
-}
+<div class="section">
 
-app.innerHTML=html;
+<div class="section-head">
+<h3>☕ اسم ركن القهوة</h3>
+</div>
 
-document.querySelectorAll(".nav-item")
-.forEach(x=>{
-x.classList.toggle(
-"active",
-x.dataset.page===currentPage
-);
-});
+<div class="setting-row">
 
-updateHeader();
-}
+<label>اسم القسم</label>
 
-function updateHeader(){
+<input id="setCoffeeName"
+value="${safe(s.coffeeName||"ركن القهوة")}">
 
-const title=document.getElementById("pageTitle");
+</div>
 
-if(!title)return;
+<button class="primary"
+onclick="saveCoffeeSettings()"
+style="width:100%">
+حفظ
+</button>
 
-const names={
-home:"الرئيسية",
-bookings:"الحجوزات",
-calendar:"التقويم",
-clients:"العملاء",
-coffee:"ركن القهوة",
-invoices:"الفواتير",
-contracts:"العقود",
-finance:"المالية",
-expenses:"المصروفات",
-reports:"التقارير",
-settings:"الإعدادات"
-};
+</div>
 
-title.textContent=
-names[currentPage]||"روانا";
-}
+<div class="section">
 
+<div class="section-head">
+<h3>📄 إعدادات العقد</h3>
+</div>
 
-/* =========================
-   أدوات مساعدة
-========================= */
+<div class="setting-row">
 
-function money(value){
+<label>اسم العقد الافتراضي</label>
 
-const n=Number(value||0);
+<input id="setContractName"
+value="${safe(s.contractName||"عقد حجز الشاليه")}">
 
-return n.toLocaleString("ar-SA",{
-minimumFractionDigits:0,
-maximumFractionDigits:2
-})+" ر.س";
-}
+</div>
 
-function safe(value){
+<div class="setting-row">
 
-return String(value??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
+<label>محتوى العقد الافتراضي</label>
 
-function safeAttr(value){
+<textarea id="setContractText"
+rows="14">${safe(s.contractText||"")}</textarea>
 
-return safe(value)
-.replace(/\n/g," ")
-.replace(/\r/g," ");
-}
+</div>
 
-function formatDateForInput(date){
+<div class="setting-note">
+المتغيرات:
+{اسم_الشاليه} — {اسم_العميل} — {الجوال} — {تاريخ_الدخول} — {وقت_الدخول} — {تاريخ_الخروج} — {وقت_الخروج} — {قيمة_الحجز} — {المدفوع} — {المتبقي} — {القهوة}
+<br>
+{تأمين_الشالية} — {تأمين_ركن_القهوة} — {إجمالي_التأمين}
+</div>
 
-const d=new Date(date);
+<button class="primary"
+onclick="saveContractSettings()"
+style="width:100%">
+حفظ إعدادات العقد
+</button>
 
-return`${d.getFullYear()}-${String(
-d.getMonth()+1
-).padStart(2,"0")}-${String(
-d.getDate()
-).padStart(2,"0")}`;
-}
+</div>
 
-function addDays(dateString,days){
+<div class="section">
 
-const d=new Date(dateString+"T00:00:00");
+<div class="section-head">
+<h3>💬 رسالة واتساب</h3>
+</div>
 
-d.setDate(d.getDate()+days);
+<div class="setting-row">
 
-return formatDateForInput(d);
-}
+<label>رسالة تأكيد الحجز</label>
 
-function dateText(value){
-
-if(!value)return"—";
-
-const parts=value.split("-");
-
-if(parts.length!==3)return value;
-
-return`${parts[2]}/${parts[1]}/${parts[0]}`;
-}
-
-function timeText(value){
-
-if(!value)return"—";
-
-return value;
-}
-
-function startOf(x){
-
-return new Date(
-`${x.startDate}T${x.startTime}:00`
-).getTime();
-}
-
-function endOf(x){
-
-return new Date(
-`${x.endDate}T${x.endTime}:00`
-).getTime();
-}
-
-
-/* =========================
-   الحفظ
-========================= */
-
-function persist(){
-
-localStorage.setItem(
-KEY,
-JSON.stringify(db)
-);
-}
-
-
-/* =========================
-   تشغيل التطبيق
-========================= */
-
-document.addEventListener("click",e=>{
-
-const nav=e.target.closest(".nav-item");
-
-if(nav){
-
-e.preventDefault();
-
-navigate(nav.dataset.page);
-
-}
-
-});
-
-
-document.addEventListener("input",e=>{
-
-if(
-e.target.id==="price"||
-e.target.id==="paid"||
-e.target.id==="chaletDeposit"||
-e.target.id==="coffeeDeposit"
-){
-updateBookingTotal();
-}
-
-});
-
-
-document.addEventListener("change",e=>{
-
-if(
-e.target.classList.contains("coffee-check")||
-e.target.classList.contains("service-check")
-){
-updateBookingTotal();
-}
-
-});
-
-
-/* إغلاق النوافذ عند الضغط خارج المحتوى */
-
-document.addEventListener("click",e=>{
-
-if(e.target.classList.contains("modal")){
-
-e.target.classList.remove("open");
-
-}
-
-});
-
-
-/* منع إغلاق النافذة عند الضغط داخل المحتوى */
-
-document.querySelectorAll(".modal-content")
-.forEach(el=>{
-
-el.addEventListener("click",e=>{
-e.stopPropagation();
-});
-
-});
-
-
-/* =========================
-   تهيئة البيانات القديمة
-========================= */
-
-function normalizeDatabase(){
-
-if(!Array.isArray(db.bookings))
-db.bookings=[];
-
-if(!Array.isArray(db.clients))
-db.clients=[];
-
-if(!Array.isArray(db.coffee))
-db.coffee=[];
-
-if(!Array.isArray(db.services))
-db.services=[];
-
-if(!Array.isArray(db.expenses))
-db.expenses=[];
-
-if(!Array.isArray(db.invoices))
-db.invoices=[];
-
-if(!Array.isArray(db.signedContracts))
-db.signedContracts=[];
-
-if(!db.settings)
-db.settings={};
-
-if(!db.settings.name)
-db.settings.name="روانا";
-
-if(!db.settings.defaultStart)
-db.settings.defaultStart="16:00";
-
-if(!db.settings.defaultEnd)
-db.settings.defaultEnd="04:00";
-
-if(!db.settings.whatsappMessage){
-
-db.settings.whatsappMessage=
-`السلام عليكم {اسم_العميل} 🌹
+<textarea id="setWhatsappMessage"
+rows="18">${safe(s.whatsappMessage||`السلام عليكم {اسم_العميل} 🌹
 
 تم تأكيد حجزكم في {اسم_الشاليه}.
 
@@ -3762,66 +4243,495 @@ db.settings.whatsappMessage=
 🕐 {وقت_الخروج}
 
 💰 قيمة الحجز:
-{قيمة_الحجز} 
+{قيمة_الحجز}
 
 {القهوة}
 
-{الخدمات}
+💳 المدفوع:
+{المدفوع}
+
+💵 المتبقي:
+{المتبقي}
+
+💰 إجمالي الحجز:
+{إجمالي_الحجز}
 
 {التأمين}
 
-💵 المدفوع:
-{المدفوع}
+شاكرين لكم اختيار {اسم_الشاليه} 🤍`)}</textarea>
 
-💳 المتبقي:
-{المتبقي}
+</div>
 
-شكرًا لاختياركم {اسم_الشاليه} 🤍`;
+<div class="setting-note">
+يمكنك تعديل صياغة الرسالة كما تريد.
+<br><br>
+المتغيرات المتاحة:
+<br>
+{اسم_الشاليه} — {اسم_العميل} — {الجوال}
+<br>
+{تاريخ_الدخول} — {وقت_الدخول}
+<br>
+{تاريخ_الخروج} — {وقت_الخروج}
+<br>
+{قيمة_الحجز} — {المدفوع} — {المتبقي} — {إجمالي_الحجز}
+<br>
+{القهوة} — {التأمين}
+<br>
+{تأمين_الشالية} — {تأمين_ركن_القهوة} — {إجمالي_التأمين}
+<br><br>
+☕ إذا كان ركن القهوة مضافًا للحجز سيظهر تلقائيًا.
+<br>
+🔐 إذا كان هناك تأمين سيظهر تلقائيًا مع توضيح أنه مسترد في حال عدم وجود أي أضرار في الشالية، حتى لو تم تعديل نص الرسالة.
+</div>
+
+<button class="primary"
+onclick="saveWhatsappSettings()"
+style="width:100%">
+💾 حفظ رسالة واتساب
+</button>
+
+</div>
+
+<div class="section">
+
+<div class="section-head">
+<h3>⚙️ إدارة البيانات</h3>
+</div>
+
+<button class="danger"
+onclick="resetSettings()"
+style="width:100%;margin-bottom:8px">
+إعادة إعدادات الشكل والخيارات
+</button>
+
+<button class="danger"
+onclick="clearAllData()"
+style="width:100%">
+حذف جميع بيانات التطبيق
+</button>
+
+</div>
+
+`;
 }
 
-if(db.settings.enableSignature===undefined)
-db.settings.enableSignature=true;
+function saveDefaultBookingTimes(){
+
+const start=document.getElementById("setStart").value;
+const end=document.getElementById("setEnd").value;
+
+if(!start||!end){
+alert("حدد وقت الدخول ووقت الخروج");
+return;
+}
+
+db.settings.defaultStart=start;
+db.settings.defaultEnd=end;
+
+persist();
+
+alert("تم حفظ أوقات الدخول والخروج");
+}
+
+function saveSettings(){
+
+const s=db.settings;
+
+s.name=document.getElementById("setName").value.trim()||"روانا";
+s.subtitle=document.getElementById("setSubtitle").value.trim()||"إدارة الشاليه";
+s.primary=document.getElementById("setPrimary").value;
+s.dark=document.getElementById("setDark").value;
+s.light=document.getElementById("setLight").value;
+s.bg=document.getElementById("setBg").value;
+s.currency=document.getElementById("setCurrency").value;
+s.defaultStart=document.getElementById("setStart").value;
+s.defaultEnd=document.getElementById("setEnd").value;
+
+persist();
+applyTheme();
+
+alert("تم حفظ الإعدادات");
+render();
+}
+
+function saveCalendarSettings(){
+
+db.settings.calendarBooked=
+document.getElementById("setBooked").value;
+
+db.settings.calendarAvailable=
+document.getElementById("setAvailable").value;
+
+db.settings.calendarWeekend=
+document.getElementById("setThursday").value;
+
+db.settings.calendarThursday=
+document.getElementById("setThursday").value;
+
+db.settings.calendarFriday=
+document.getElementById("setFriday").value;
+
+persist();
+applyTheme();
+
+alert("تم حفظ ألوان التقويم");
+render();
+}
+
+function saveCoffeeSettings(){
+
+db.settings.coffeeName=
+document.getElementById("setCoffeeName").value.trim()||"ركن القهوة";
+
+persist();
+render();
+}
+
+function saveDepositSettings(){
+
+db.settings.defaultChaletDeposit=
+Number(document.getElementById("setChaletDeposit").value||0);
+
+db.settings.defaultCoffeeDeposit=
+Number(document.getElementById("setCoffeeDeposit").value||0);
+
+persist();
+render();
+
+}
+
+function saveContractSettings(){
+
+db.settings.contractName=
+document.getElementById("setContractName").value.trim()||
+"عقد حجز الشاليه";
+
+db.settings.contractText=
+document.getElementById("setContractText").value.trim();
+
+let defaultContract=db.contracts.find(x=>x.default);
+
+if(defaultContract){
+
+defaultContract.name=db.settings.contractName;
+defaultContract.text=db.settings.contractText;
+
+}else if(db.contracts.length===0){
+
+db.contracts.push({
+id:Date.now().toString(),
+name:db.settings.contractName,
+text:db.settings.contractText,
+default:true
+});
+
+}
+
+persist();
+
+alert("تم حفظ إعدادات العقد");
+}
+
+function saveWhatsappSettings(){
+
+const message=document.getElementById("setWhatsappMessage").value.trim();
+
+if(!message){
+alert("اكتب رسالة واتساب أولاً");
+return;
+}
+
+db.settings.whatsappMessage=message;
+
+persist();
+
+alert("تم حفظ رسالة واتساب");
+render();
+}
+
+function resetSettings(){
+
+if(!confirm("هل تريد إعادة إعدادات الشكل والخيارات الافتراضية؟"))
+return;
+
+db.settings={
+...defaults.settings
+};
+
+persist();
+applyTheme();
+render();
+}
+
+function clearAllData(){
+
+const answer=prompt(
+"اكتب حذف لتأكيد حذف جميع الحجوزات والعملاء والمصروفات والفواتير والعقود:"
+);
+
+if(answer!=="حذف")return;
+
+db.bookings=[];
+db.clients=[];
+db.expenses=[];
+db.coffeeCategories=[];
+db.invoices=[];
+db.contracts=[];
+db.signedContracts=[];
+
+persist();
+
+alert("تم حذف جميع البيانات");
+render();
+}
+
+/* واتساب */
+
+function whatsapp(id){
+
+const b=db.bookings.find(x=>x.id===id);
+if(!b)return;
+
+const c=db.clients.find(x=>x.id===b.clientId);
+const phone=c?.phone||"";
+
+let clean=phone.replace(/\D/g,"");
+
+if(!clean){
+alert("لا يوجد رقم جوال للعميل");
+return;
+}
+
+if(clean.startsWith("0"))
+clean="966"+clean.slice(1);
+
+const coffee=getCoffeeItems(b);
+
+const chaletDeposit=Number(b.chaletDeposit||0);
+const coffeeDeposit=Number(b.coffeeDeposit||0);
+const totalDeposit=chaletDeposit+coffeeDeposit;
+
+let coffeeText="";
+
+if(coffee.length){
+
+coffeeText=
+`☕ ركن القهوة:
+${coffee.map(item=>
+`• ${item.name} — ${money(item.price*item.qty)}`
+).join("\n")}
+
+}
+
+let depositText="";
+
+if(totalDeposit>0){
+
+depositText=
+`🔐 التأمين:
+• تأمين الشالية — ${money(chaletDeposit)}
+• تأمين ركن القهوة — ${money(coffeeDeposit)}
 
 
-/* تحويل بعض البيانات القديمة */
+التأمين مسترد في حال عدم وجود أي أضرار في الشالية.`;
+
+}
+
+const template=db.settings.whatsappMessage||`السلام عليكم {اسم_العميل} 🌹
+
+تم تأكيد حجزكم في {اسم_الشاليه}.
+
+📅 الدخول:
+{تاريخ_الدخول}
+🕐 {وقت_الدخول}
+
+📅 الخروج:
+{تاريخ_الخروج}
+🕐 {وقت_الخروج}
+
+💰 قيمة الحجز:
+{قيمة_الحجز}
+
+{القهوة}
+
+💳 المدفوع:
+{المدفوع}
+
+💵 المتبقي:
+{المتبقي}
+
+💰 إجمالي الحجز:
+{إجمالي_الحجز}
+
+{التأمين}
+
+شاكرين لكم اختيار {اسم_الشاليه} 🤍`;
+
+const values={
+"{اسم_الشاليه}":db.settings.name,
+"{اسم_العميل}":c?.name||"عميلنا الكريم",
+"{الجوال}":c?.phone||"",
+"{تاريخ_الدخول}":dateText(b.startDate),
+"{وقت_الدخول}":timeText(b.startTime),
+"{تاريخ_الخروج}":dateText(b.endDate),
+"{وقت_الخروج}":timeText(b.endTime),
+"{قيمة_الحجز}":money(serviceTotal(b)),
+"{المدفوع}":money(b.paid),
+"{المتبقي}":money(remaining(b)),
+"{إجمالي_الحجز}":money(bookingTotal(b)),
+"{القهوة}":coffeeText,
+"{التأمين}":depositText,
+"{تأمين_الشالية}":chaletDeposit>0?money(chaletDeposit):"",
+"{تأمين_ركن_القهوة}":coffeeDeposit>0?money(coffeeDeposit):"",
+"{إجمالي_التأمين}":totalDeposit>0?money(totalDeposit):""
+};
+
+let text=template;
+
+Object.keys(values).forEach(key=>{
+text=text.split(key).join(values[key]);
+});
+
+/*
+حتى لو المستخدم حذف المتغير من الرسالة المخصصة،
+نضيف المعلومات تلقائيًا إذا كانت موجودة بالحجز.
+*/
+
+if(coffeeText&&!template.includes("{القهوة}")){
+
+text=text.trim()+
+"\n\n"+
+coffeeText;
+
+}
+
+if(depositText&&!template.includes("{التأمين}")){
+
+text=text.trim()+
+"\n\n"+
+depositText;
+
+}
+
+window.open(
+"https://wa.me/"+clean+"?text="+encodeURIComponent(text.trim()),
+"_blank"
+);
+}
+
+function whatsappByPhone(phone){
+
+let clean=phone.replace(/\D/g,"");
+
+if(!clean){
+alert("لا يوجد رقم جوال");
+return;
+}
+
+if(clean.startsWith("0"))
+clean="966"+clean.slice(1);
+
+window.open("https://wa.me/"+clean,"_blank");
+}
+
+function removeBooking(id){
+
+if(!confirm("هل تريد حذف الحجز؟"))return;
+
+db.bookings=db.bookings.filter(b=>b.id!==id);
+
+db.invoices=db.invoices.filter(
+x=>x.bookingId!==id
+);
+
+db.signedContracts=db.signedContracts.filter(
+x=>x.bookingId!==id
+);
+
+persist();
+render();
+}
+
+/* التشغيل */
+
+function render(){
+
+applyTheme();
+
+if(page==="home")home();
+if(page==="bookings")bookings();
+if(page==="calendar")calendar();
+if(page==="clients")clients();
+if(page==="invoices")invoices();
+if(page==="contracts")contracts();
+if(page==="finance")finance();
+if(page==="expenses")expenses();
+if(page==="coffee")coffee();
+if(page==="reports")reports();
+if(page==="settings")settings();
+}
+
+function settings(){
+renderSettings();
+}
+
+/* ترقية بيانات القهوة القديمة */
+
+function migrateOldCoffeeData(){
 
 db.bookings.forEach(b=>{
 
 if(!Array.isArray(b.coffeeItems)){
 
-if(Array.isArray(b.coffee)){
-b.coffeeItems=b.coffee;
+if(b.coffeeId){
+
+const c=db.coffeeCategories.find(
+x=>x.id===b.coffeeId
+);
+
+b.coffeeItems=[{
+id:b.coffeeId,
+qty:1,
+price:Number(b.coffeePrice||c?.price||0),
+name:c?.name||"ركن قهوة"
+}];
+
 }else{
 b.coffeeItems=[];
 }
 
 }
 
-if(!Array.isArray(b.services))
-b.services=[];
+});
 
-if(b.chaletDeposit===undefined)
-b.chaletDeposit=Number(b.deposit||0);
+/* ترقية مبالغ التأمين القديمة */
 
-if(b.coffeeDeposit===undefined)
-b.coffeeDeposit=0;
+db.bookings.forEach(b=>{
 
-if(b.paid===undefined)
-b.paid=0;
-
-if(b.price===undefined)
-b.price=0;
+b.chaletDeposit=Number(b.chaletDeposit||0);
+b.coffeeDeposit=Number(b.coffeeDeposit||0);
 
 });
+
+if(!db.contracts.length){
+
+db.contracts.push({
+id:Date.now().toString(),
+name:db.settings.contractName||"عقد حجز الشاليه",
+text:db.settings.contractText||defaults.settings.contractText,
+default:true
+});
+
+}
 
 persist();
 }
 
-
-/* =========================
-   بدء التطبيق
-========================= */
-
-normalizeDatabase();
-
+migrateOldCoffeeData();
+persist();
 render();
+
+</script>
+
+</body>
+</html>
