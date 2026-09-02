@@ -4534,7 +4534,7 @@ depositText=
 • تأمين ركن القهوة — ${money(coffeeDeposit)}
 • إجمالي التأمين — ${money(totalDeposit)}
 
-مسترد في حال عدم وجود أي أضرار في الشالية.`;
+التأمين مسترد في حال عدم وجود أي أضرار في الشالية.`;
 
 }
 
@@ -4606,13 +4606,7 @@ coffeeText;
 
 }
 
-const hasDepositPlaceholder=
-template.includes("{التأمين}")||
-template.includes("{تأمين_الشالية}")||
-template.includes("{تأمين_ركن_القهوة}")||
-template.includes("{إجمالي_التأمين}");
-
-if(depositText&&!hasDepositPlaceholder){
+if(depositText&&!template.includes("{التأمين}")){
 
 text=text.trim()+
 "\n\n"+
