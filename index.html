@@ -2,619 +2,1125 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>RAWANA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>روانا | إدارة الشالية</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+:root{
+  --bg:#f5f3ef;
+  --surface:#fff;
+  --surface2:#faf9f6;
+  --ink:#181818;
+  --muted:#85827b;
+  --line:#e9e5de;
+  --accent:#a88952;
+  --accent-soft:#f1eadc;
+  --green:#3f8065;
+  --green-soft:#e8f3ed;
+  --orange:#b47735;
+  --orange-soft:#f8eddf;
+  --red:#b55d5d;
+  --red-soft:#f8e9e9;
+  --shadow:0 14px 45px rgba(25,22,16,.07);
+  --radius:24px;
 }
 
-:root{
-    --bg:#f4f3ef;
-    --card:#ffffff;
-    --text:#171717;
-    --muted:#858585;
-    --line:#e8e6e1;
-    --dark:#151515;
-    --gold:#b99a5b;
-    --green:#3d8068;
-    --red:#b85d5d;
-    --radius:22px;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  min-height:100%;
 }
 
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
 }
 
-/* APP */
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
 .app{
-    display:flex;
-    min-height:100vh;
+  min-height:100vh;
+  display:flex;
 }
 
-/* SIDEBAR */
+/* ================= SIDEBAR ================= */
+
 .sidebar{
-    width:250px;
-    background:var(--dark);
-    color:#fff;
-    padding:28px 18px;
-    position:fixed;
-    right:0;
-    top:0;
-    bottom:0;
-    z-index:50;
+  width:255px;
+  background:#171716;
+  color:#fff;
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  padding:27px 18px;
+  z-index:50;
 }
 
-.logo{
-    padding:5px 12px 35px;
+.brand{
+  padding:4px 12px 35px;
 }
 
-.logo strong{
-    font-size:25px;
-    letter-spacing:4px;
+.brand-title{
+  font-size:25px;
+  letter-spacing:5px;
+  font-weight:800;
 }
 
-.logo span{
-    display:block;
-    color:#aaa;
-    font-size:11px;
-    margin-top:5px;
+.brand-sub{
+  color:#77756f;
+  font-size:9px;
+  letter-spacing:1.7px;
+  margin-top:6px;
 }
 
-.nav{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+.side-section{
+  margin:0 7px 10px;
+  color:#65635f;
+  font-size:10px;
 }
 
-.nav button{
-    border:0;
-    background:transparent;
-    color:#aaa;
-    padding:14px 15px;
-    border-radius:14px;
-    cursor:pointer;
-    font-size:14px;
-    text-align:right;
-    transition:.2s;
+.side-nav{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
 }
 
-.nav button:hover{
-    background:#242424;
-    color:#fff;
+.side-nav button{
+  border:0;
+  background:transparent;
+  color:#999791;
+  width:100%;
+  text-align:right;
+  border-radius:15px;
+  padding:13px 14px;
+  transition:.2s;
+  font-size:13px;
 }
 
-.nav button.active{
-    background:#292929;
-    color:#fff;
+.side-nav button:hover{
+  color:#fff;
+  background:#242422;
 }
 
-.nav-icon{
-    margin-left:10px;
+.side-nav button.active{
+  color:#fff;
+  background:#292927;
 }
 
-/* MAIN */
+.side-nav .ico{
+  display:inline-flex;
+  width:27px;
+  justify-content:center;
+  margin-left:8px;
+}
+
+/* ================= MAIN ================= */
+
 .main{
-    width:calc(100% - 250px);
-    margin-right:250px;
-    padding:32px;
+  width:calc(100% - 255px);
+  margin-right:255px;
+  padding:30px;
 }
 
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:28px;
-}
-
-.page-title h1{
-    font-size:28px;
-    font-weight:750;
-}
-
-.page-title p{
-    color:var(--muted);
-    font-size:13px;
-    margin-top:5px;
-}
-
-.primary{
-    border:0;
-    background:var(--dark);
-    color:#fff;
-    padding:13px 19px;
-    border-radius:14px;
-    cursor:pointer;
-    font-weight:600;
-    transition:.2s;
-}
-
-.primary:hover{
-    transform:translateY(-1px);
-    opacity:.9;
-}
-
-/* PAGES */
 .page{
-    display:none;
+  display:none;
+  max-width:1400px;
+  margin:auto;
 }
 
 .page.active{
-    display:block;
+  display:block;
 }
 
-/* CARDS */
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:25px;
 }
 
-.card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:22px;
+.eyebrow{
+  color:var(--muted);
+  font-size:11px;
+  margin-bottom:6px;
 }
 
-.stat{
-    position:relative;
-    overflow:hidden;
+h1{
+  font-size:29px;
+  line-height:1.1;
 }
 
-.stat small{
-    color:var(--muted);
-    font-size:12px;
+.subtitle{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:7px;
 }
 
-.stat h2{
-    margin-top:12px;
-    font-size:28px;
+.primary{
+  border:0;
+  background:var(--ink);
+  color:#fff;
+  border-radius:15px;
+  padding:13px 18px;
+  font-weight:700;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
 }
 
-.stat .dot{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#f1eee7;
-    position:absolute;
-    left:18px;
-    top:18px;
+.primary:hover{
+  background:#2b2b29;
 }
 
-/* DASHBOARD */
+.secondary{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  border-radius:14px;
+  padding:12px 16px;
+}
+
+.danger{
+  border:0;
+  background:var(--red-soft);
+  color:var(--red);
+  border-radius:13px;
+  padding:11px 15px;
+}
+
+/* ================= DASHBOARD ================= */
+
 .hero{
-    margin-top:18px;
-    background:var(--dark);
-    color:white;
-    border-radius:28px;
-    padding:28px;
-    min-height:190px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  background:#181817;
+  color:#fff;
+  border-radius:30px;
+  padding:28px;
+  min-height:205px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:var(--shadow);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:50%;
+  left:-100px;
+  top:-130px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+}
+
+.hero-label{
+  color:#9c9a94;
+  font-size:11px;
+  margin-bottom:10px;
 }
 
 .hero h2{
-    font-size:28px;
-    margin-bottom:8px;
+  font-size:29px;
+  margin-bottom:7px;
 }
 
 .hero p{
-    color:#aaa;
-    font-size:13px;
+  color:#9c9a94;
+  font-size:12px;
 }
 
-.hero .date{
-    font-size:50px;
-    font-weight:800;
-    color:#d7c397;
+.hero-date{
+  position:relative;
+  z-index:1;
+  text-align:center;
 }
 
-/* SECTIONS */
-.section{
-    margin-top:22px;
+.hero-day{
+  font-size:68px;
+  line-height:.9;
+  font-weight:800;
+  color:#d2b778;
 }
 
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:12px;
+.hero-month{
+  font-size:11px;
+  color:#aaa69c;
+  margin-top:10px;
 }
 
-.section-head h3{
-    font-size:17px;
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:15px;
 }
 
-.muted{
-    color:var(--muted);
-    font-size:12px;
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:0 5px 25px rgba(20,18,12,.025);
 }
 
-/* BOOKINGS */
-.booking-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+.stat{
+  padding:20px;
+  min-height:135px;
+  position:relative;
 }
 
-.booking{
-    background:white;
-    border:1px solid var(--line);
-    border-radius:18px;
-    padding:17px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    cursor:pointer;
-    transition:.2s;
+.stat-label{
+  font-size:11px;
+  color:var(--muted);
 }
 
-.booking:hover{
-    transform:translateY(-1px);
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
+.stat-value{
+  font-size:25px;
+  font-weight:800;
+  margin-top:14px;
 }
 
-.booking-info{
-    display:flex;
-    align-items:center;
-    gap:14px;
+.stat-foot{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:6px;
+}
+
+.stat-mark{
+  position:absolute;
+  left:18px;
+  top:18px;
+  width:35px;
+  height:35px;
+  border-radius:12px;
+  background:var(--accent-soft);
+}
+
+/* ================= DASH GRID ================= */
+
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:15px;
+  margin-top:15px;
+}
+
+.panel{
+  padding:21px;
+}
+
+.panel-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:17px;
+}
+
+.panel-head h3{
+  font-size:15px;
+}
+
+.panel-head span{
+  font-size:10px;
+  color:var(--muted);
+}
+
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.timeline-item{
+  border:1px solid var(--line);
+  border-radius:17px;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.timeline-left{
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
 .avatar{
-    width:45px;
-    height:45px;
-    border-radius:15px;
-    background:#eee9df;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:#eee9df;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:800;
 }
 
-.booking-name{
-    font-weight:700;
+.item-name{
+  font-size:13px;
+  font-weight:750;
 }
 
-.booking-date{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
+.item-meta{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:5px;
 }
 
-.badge{
-    padding:7px 10px;
-    border-radius:9px;
-    font-size:11px;
-    font-weight:600;
+.status{
+  border-radius:9px;
+  padding:6px 9px;
+  font-size:9px;
+  font-weight:700;
+  white-space:nowrap;
 }
 
-.badge.green{
-    background:#e8f3ed;
-    color:var(--green);
+.status.upcoming{
+  background:var(--accent-soft);
+  color:#92733c;
 }
 
-.badge.red{
-    background:#f8e9e9;
-    color:var(--red);
+.status.active{
+  background:var(--green-soft);
+  color:var(--green);
 }
 
-.badge.gold{
-    background:#f5efe1;
-    color:#9b7b39;
+.status.done{
+  background:#efefed;
+  color:#77756f;
 }
 
-/* CALENDAR */
+.status.cancelled{
+  background:var(--red-soft);
+  color:var(--red);
+}
+
+/* ================= ACTIONS ================= */
+
+.quick-actions{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+
+.quick{
+  border:1px solid var(--line);
+  background:var(--surface2);
+  border-radius:17px;
+  padding:15px;
+  text-align:right;
+  transition:.2s;
+}
+
+.quick:hover{
+  border-color:#d5c9b2;
+  background:#fff;
+}
+
+.quick-icon{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:#eee9df;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.quick strong{
+  display:block;
+  font-size:12px;
+}
+
+.quick small{
+  color:var(--muted);
+  font-size:9px;
+}
+
+/* ================= ALERTS ================= */
+
+.alerts{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.alert{
+  padding:16px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.alert.orange{
+  background:var(--orange-soft);
+}
+
+.alert.green{
+  background:var(--green-soft);
+}
+
+.alert.red{
+  background:var(--red-soft);
+}
+
+.alert-icon{
+  width:35px;
+  height:35px;
+  border-radius:11px;
+  background:rgba(255,255,255,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.alert strong{
+  display:block;
+  font-size:11px;
+}
+
+.alert span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+  display:flex;
+  gap:9px;
+  align-items:center;
+  margin-bottom:15px;
+  flex-wrap:wrap;
+}
+
+.search{
+  flex:1;
+  min-width:220px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:12px 14px;
+  outline:none;
+}
+
+.search:focus{
+  border-color:var(--accent);
+}
+
+/* ================= CALENDAR ================= */
+
+.calendar-card{
+  padding:21px;
+}
+
 .calendar-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
 }
 
-.calendar-actions{
-    display:flex;
-    gap:8px;
+.month-name{
+  font-size:19px;
+  font-weight:800;
 }
 
-.icon-btn{
-    width:40px;
-    height:40px;
-    border:1px solid var(--line);
-    background:#fff;
-    border-radius:12px;
-    cursor:pointer;
+.calendar-controls{
+  display:flex;
+  gap:6px;
 }
 
-.month-title{
-    font-size:21px;
-    font-weight:750;
+.cal-btn{
+  height:38px;
+  min-width:38px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:11px;
 }
 
 .weekdays,
-.days{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:7px;
+.calendar-grid{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:7px;
 }
 
 .weekdays div{
-    text-align:center;
-    font-size:11px;
-    color:var(--muted);
-    padding:10px;
+  color:var(--muted);
+  font-size:10px;
+  text-align:center;
+  padding:7px;
 }
 
-.day{
-    min-height:85px;
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:15px;
-    padding:10px;
-    cursor:pointer;
-    position:relative;
+.cal-day{
+  min-height:94px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:15px;
+  padding:9px;
+  cursor:pointer;
+  transition:.15s;
 }
 
-.day:hover{
-    border-color:#bbb;
+.cal-day:hover{
+  border-color:#cfc5b5;
 }
 
-.day.muted-day{
-    opacity:.35;
+.cal-day.today{
+  box-shadow:inset 0 0 0 2px var(--accent);
 }
 
-.day.today{
-    box-shadow:inset 0 0 0 2px var(--gold);
+.cal-day.other{
+  opacity:.3;
 }
 
-.day-number{
-    font-size:13px;
-    font-weight:700;
+.cal-number{
+  font-size:12px;
+  font-weight:800;
 }
 
-.day-booking{
-    margin-top:9px;
-    font-size:10px;
-    background:#eee8dc;
-    padding:5px;
-    border-radius:7px;
-    overflow:hidden;
-    white-space:nowrap;
+.cal-event{
+  margin-top:9px;
+  background:#eee9df;
+  color:#5f5542;
+  border-radius:7px;
+  padding:5px 6px;
+  font-size:8px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-/* FORMS */
-.form{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
+/* ================= BOOKINGS ================= */
+
+.booking-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+}
+
+.booking-row{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  transition:.2s;
+}
+
+.booking-row:hover{
+  box-shadow:0 8px 30px rgba(20,18,12,.05);
+}
+
+.booking-main{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.booking-text{
+  min-width:0;
+}
+
+.booking-text strong{
+  display:block;
+  font-size:13px;
+}
+
+.booking-text span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-top:5px;
+}
+
+.booking-price{
+  text-align:left;
+  white-space:nowrap;
+}
+
+.booking-price strong{
+  font-size:13px;
+}
+
+.booking-price span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* ================= FINANCE ================= */
+
+.finance-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.money-card{
+  padding:22px;
+}
+
+.money-card small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.money-card h2{
+  margin-top:12px;
+  font-size:27px;
+}
+
+.money-card p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:6px;
+}
+
+.bar-wrap{
+  margin-top:25px;
+}
+
+.bar-line{
+  height:10px;
+  border-radius:20px;
+  background:#eeeae3;
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  width:0;
+  background:var(--accent);
+  border-radius:20px;
+  transition:.5s;
+}
+
+/* ================= EMPTY ================= */
+
+.empty{
+  text-align:center;
+  padding:55px 20px;
+  color:var(--muted);
+}
+
+.empty-icon{
+  width:55px;
+  height:55px;
+  margin:0 auto 13px;
+  border-radius:18px;
+  background:var(--accent-soft);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+}
+
+.empty strong{
+  display:block;
+  color:var(--ink);
+  font-size:13px;
+  margin-bottom:6px;
+}
+
+.empty span{
+  font-size:10px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(10,10,9,.5);
+  backdrop-filter:blur(7px);
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modal-box{
+  width:min(650px,100%);
+  max-height:92vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:27px;
+  padding:25px;
+  box-shadow:0 30px 90px rgba(0,0,0,.2);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.modal-head h2{
+  font-size:21px;
+}
+
+.close{
+  border:0;
+  width:38px;
+  height:38px;
+  background:#f2f1ee;
+  border-radius:12px;
+  font-size:20px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
 }
 
 .field{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .field.full{
-    grid-column:1/-1;
+  grid-column:1/-1;
 }
 
 .field label{
-    font-size:12px;
-    color:var(--muted);
+  color:var(--muted);
+  font-size:10px;
 }
 
 .field input,
 .field select,
 .field textarea{
-    width:100%;
-    border:1px solid var(--line);
-    background:#faf9f7;
-    border-radius:13px;
-    padding:13px;
-    font-family:inherit;
-    outline:none;
+  width:100%;
+  border:1px solid var(--line);
+  background:#faf9f7;
+  padding:12px;
+  border-radius:13px;
+  outline:none;
+}
+
+.field textarea{
+  min-height:85px;
+  resize:vertical;
 }
 
 .field input:focus,
 .field select:focus,
 .field textarea:focus{
-    border-color:var(--gold);
+  border-color:var(--accent);
 }
 
-textarea{
-    min-height:100px;
-    resize:vertical;
+.form-footer{
+  display:flex;
+  justify-content:flex-start;
+  gap:8px;
+  margin-top:18px;
 }
 
-.form-actions{
-    grid-column:1/-1;
-    display:flex;
-    justify-content:flex-start;
-    gap:10px;
-    margin-top:5px;
+/* ================= COFFEE ================= */
+
+.coffee-board{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:12px;
 }
 
-.secondary{
-    border:1px solid var(--line);
-    background:#fff;
-    padding:13px 18px;
-    border-radius:13px;
-    cursor:pointer;
+.coffee-column{
+  background:#eeece7;
+  border-radius:19px;
+  padding:12px;
+  min-height:300px;
 }
 
-/* MODAL */
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.48);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:100;
-    padding:20px;
+.coffee-column h3{
+  font-size:11px;
+  padding:5px 5px 12px;
 }
 
-.modal.show{
-    display:flex;
+.coffee-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:13px;
+  margin-bottom:8px;
+  cursor:pointer;
 }
 
-.modal-box{
-    width:min(600px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:#fff;
-    border-radius:25px;
-    padding:25px;
+.coffee-card strong{
+  font-size:11px;
 }
 
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:22px;
+.coffee-card span{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:5px;
 }
 
-.close{
-    border:0;
-    background:#f2f1ee;
-    width:38px;
-    height:38px;
-    border-radius:12px;
-    cursor:pointer;
+.coffee-card b{
+  display:block;
+  margin-top:10px;
+  font-size:11px;
 }
 
-/* EMPTY */
-.empty{
-    text-align:center;
-    padding:55px 20px;
-    color:var(--muted);
+/* ================= CLIENTS ================= */
+
+.client-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
 
-.empty strong{
-    display:block;
-    color:var(--text);
-    margin-bottom:7px;
+.client-card{
+  padding:18px;
 }
 
-/* MOBILE */
+.client-card-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.client-card strong{
+  font-size:13px;
+}
+
+.client-card small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-top:4px;
+}
+
+.client-info{
+  border-top:1px solid var(--line);
+  margin-top:15px;
+  padding-top:12px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.client-info span{
+  font-size:9px;
+  color:var(--muted);
+}
+
+.client-info b{
+  font-size:11px;
+}
+
+/* ================= MOBILE ================= */
+
 .mobile-nav{
-    display:none;
+  display:none;
 }
 
-@media(max-width:900px){
-    .sidebar{
-        display:none;
-    }
+@media(max-width:1050px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .main{
-        width:100%;
-        margin:0;
-        padding:20px 16px 95px;
-    }
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
 
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
+  .alerts{
+    grid-template-columns:1fr;
+  }
 
-    .hero{
-        padding:22px;
-    }
+  .client-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
 
-    .hero .date{
-        font-size:35px;
-    }
+@media(max-width:800px){
+  .sidebar{
+    display:none;
+  }
 
-    .mobile-nav{
-        position:fixed;
-        display:flex;
-        bottom:12px;
-        left:12px;
-        right:12px;
-        background:rgba(20,20,20,.96);
-        border-radius:20px;
-        padding:8px;
-        z-index:80;
-        justify-content:space-around;
-    }
+  .main{
+    width:100%;
+    margin:0;
+    padding:18px 15px 95px;
+  }
 
-    .mobile-nav button{
-        background:transparent;
-        color:#aaa;
-        border:0;
-        padding:10px;
-        font-size:11px;
-        cursor:pointer;
-    }
+  .mobile-nav{
+    display:flex;
+    position:fixed;
+    right:12px;
+    left:12px;
+    bottom:12px;
+    background:rgba(23,23,22,.97);
+    border-radius:21px;
+    padding:7px;
+    z-index:90;
+    justify-content:space-around;
+    box-shadow:0 15px 45px rgba(0,0,0,.2);
+  }
 
-    .mobile-nav button.active{
-        color:#fff;
-    }
+  .mobile-nav button{
+    border:0;
+    background:transparent;
+    color:#85847f;
+    padding:9px 12px;
+    font-size:9px;
+    border-radius:14px;
+  }
 
-    .weekdays,
-    .days{
-        gap:4px;
-    }
+  .mobile-nav button.active{
+    color:#fff;
+    background:#2c2c2a;
+  }
 
-    .day{
-        min-height:65px;
-        padding:7px;
-        border-radius:10px;
-    }
+  .hero{
+    min-height:170px;
+    padding:22px;
+  }
 
-    .day-booking{
-        font-size:8px;
-    }
+  .hero h2{
+    font-size:24px;
+  }
+
+  .hero-day{
+    font-size:52px;
+  }
+
+  .coffee-board{
+    grid-template-columns:1fr;
+  }
+
+  .coffee-column{
+    min-height:100px;
+  }
+
+  .client-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 @media(max-width:600px){
-    .topbar{
-        align-items:flex-start;
-    }
+  h1{
+    font-size:23px;
+  }
 
-    .topbar .primary{
-        padding:11px 13px;
-        font-size:12px;
-    }
+  .top{
+    margin-bottom:18px;
+  }
 
-    .page-title h1{
-        font-size:23px;
-    }
+  .top .primary{
+    padding:11px 13px;
+    font-size:11px;
+  }
 
-    .grid{
-        gap:10px;
-    }
+  .stats{
+    gap:9px;
+  }
 
-    .card{
-        padding:17px;
-    }
+  .stat{
+    min-height:118px;
+    padding:16px;
+  }
 
-    .stat h2{
-        font-size:22px;
-    }
+  .stat-value{
+    font-size:20px;
+  }
 
-    .form{
-        grid-template-columns:1fr;
-    }
+  .stat-mark{
+    width:28px;
+    height:28px;
+    left:14px;
+    top:14px;
+  }
 
-    .field.full{
-        grid-column:auto;
-    }
+  .hero{
+    margin-top:12px;
+  }
 
-    .form-actions{
-        grid-column:auto;
-    }
+  .form-grid{
+    grid-template-columns:1fr;
+  }
 
-    .hero{
-        min-height:160px;
-    }
+  .field.full{
+    grid-column:auto;
+  }
+
+  .booking-row{
+    align-items:flex-start;
+  }
+
+  .booking-price{
+    display:none;
+  }
+
+  .calendar-card{
+    padding:12px;
+  }
+
+  .weekdays,
+  .calendar-grid{
+    gap:3px;
+  }
+
+  .cal-day{
+    min-height:65px;
+    border-radius:9px;
+    padding:6px;
+  }
+
+  .cal-event{
+    margin-top:6px;
+    padding:4px;
+    font-size:7px;
+  }
 }
 </style>
 </head>
@@ -623,910 +1129,1904 @@ textarea{
 
 <div class="app">
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-    <div class="logo">
-        <strong>RAWANA</strong>
-        <span>SMART CHALET MANAGEMENT</span>
-    </div>
+<!-- ================= SIDEBAR ================= -->
 
-    <nav class="nav">
-        <button class="active" data-page="home">⌂ <span class="nav-icon">الرئيسية</span></button>
-        <button data-page="calendar">▣ <span class="nav-icon">التقويم</span></button>
-        <button data-page="bookings">◷ <span class="nav-icon">الحجوزات</span></button>
-        <button data-page="clients">◎ <span class="nav-icon">العملاء</span></button>
-        <button data-page="finance">◈ <span class="nav-icon">المالية</span></button>
-    </nav>
+<aside class="sidebar">
+
+  <div class="brand">
+    <div class="brand-title">RAWANA</div>
+    <div class="brand-sub">CHALET MANAGEMENT</div>
+  </div>
+
+  <div class="side-section">إدارة روانا</div>
+
+  <nav class="side-nav">
+
+    <button class="active" data-page="home">
+      <span class="ico">⌂</span>الرئيسية
+    </button>
+
+    <button data-page="calendar">
+      <span class="ico">▦</span>التقويم
+    </button>
+
+    <button data-page="bookings">
+      <span class="ico">◷</span>الحجوزات
+    </button>
+
+    <button data-page="coffee">
+      <span class="ico">☕</span>ركن القهوة
+    </button>
+
+    <button data-page="clients">
+      <span class="ico">◎</span>العملاء
+    </button>
+
+    <button data-page="finance">
+      <span class="ico">◈</span>المالية
+    </button>
+
+  </nav>
+
 </aside>
+
+
+<!-- ================= MAIN ================= -->
 
 <main class="main">
 
-<!-- HOME -->
+
+<!-- ================= HOME ================= -->
+
 <section class="page active" id="home">
-    <div class="topbar">
-        <div class="page-title">
-            <h1>صباح الخير 👋</h1>
-            <p id="todayText"></p>
-        </div>
-        <button class="primary" id="newBookingBtn">+ حجز جديد</button>
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">لوحة روانا</div>
+      <h1 id="greeting">صباح الخير</h1>
+      <div class="subtitle" id="todayFull"></div>
     </div>
 
-    <div class="grid">
-        <div class="card stat">
-            <small>حجوزات هذا الشهر</small>
-            <h2 id="statBookings">0</h2>
-            <div class="dot"></div>
-        </div>
+    <button class="primary" id="openBooking">
+      + حجز جديد
+    </button>
+  </div>
 
-        <div class="card stat">
-            <small>الإيرادات</small>
-            <h2 id="statRevenue">0</h2>
-            <div class="dot"></div>
-        </div>
 
-        <div class="card stat">
-            <small>المبالغ المتبقية</small>
-            <h2 id="statRemaining">0</h2>
-            <div class="dot"></div>
-        </div>
+  <div class="hero">
 
-        <div class="card stat">
-            <small>العملاء</small>
-            <h2 id="statClients">0</h2>
-            <div class="dot"></div>
-        </div>
+    <div class="hero-content">
+      <div class="hero-label">حالة اليوم</div>
+      <h2 id="heroStatus">روانا جاهزة</h2>
+      <p id="heroSub">ما عندك عمليات معلقة.</p>
     </div>
 
-    <div class="hero">
-        <div>
-            <h2>روانا</h2>
-            <p>كل شيء تحت السيطرة.</p>
-        </div>
-        <div class="date" id="heroDay">02</div>
+    <div class="hero-date">
+      <div class="hero-day" id="heroDay">02</div>
+      <div class="hero-month" id="heroMonth"></div>
     </div>
 
-    <div class="section">
-        <div class="section-head">
-            <h3>الحجوزات القادمة</h3>
-            <span class="muted" id="upcomingCount"></span>
-        </div>
+  </div>
 
-        <div class="booking-list" id="upcomingList"></div>
+
+  <div class="stats">
+
+    <div class="card stat">
+      <div class="stat-label">حجوزات هذا الشهر</div>
+      <div class="stat-value" id="statBookings">0</div>
+      <div class="stat-foot">إجمالي الحجوزات</div>
+      <div class="stat-mark"></div>
     </div>
+
+    <div class="card stat">
+      <div class="stat-label">إيرادات الحجوزات</div>
+      <div class="stat-value" id="statRevenue">0</div>
+      <div class="stat-foot">قبل المصروفات</div>
+      <div class="stat-mark"></div>
+    </div>
+
+    <div class="card stat">
+      <div class="stat-label">المبالغ المتبقية</div>
+      <div class="stat-value" id="statRemaining">0</div>
+      <div class="stat-foot">تحتاج تحصيل</div>
+      <div class="stat-mark"></div>
+    </div>
+
+    <div class="card stat">
+      <div class="stat-label">طلبات القهوة</div>
+      <div class="stat-value" id="statCoffee">0</div>
+      <div class="stat-foot">تحتاج متابعة</div>
+      <div class="stat-mark"></div>
+    </div>
+
+  </div>
+
+
+  <div class="dashboard-grid">
+
+    <div class="card panel">
+
+      <div class="panel-head">
+        <h3>اليوم والقادم</h3>
+        <span id="upcomingCount"></span>
+      </div>
+
+      <div class="timeline" id="dashboardBookings"></div>
+
+    </div>
+
+
+    <div class="card panel">
+
+      <div class="panel-head">
+        <h3>اختصارات</h3>
+        <span>الوصول السريع</span>
+      </div>
+
+      <div class="quick-actions">
+
+        <button class="quick" id="quickBooking">
+          <div class="quick-icon">＋</div>
+          <strong>حجز جديد</strong>
+          <small>إضافة حجز</small>
+        </button>
+
+        <button class="quick" id="quickCoffee">
+          <div class="quick-icon">☕</div>
+          <strong>طلب قهوة</strong>
+          <small>إضافة طلب</small>
+        </button>
+
+        <button class="quick" id="quickCalendar">
+          <div class="quick-icon">▦</div>
+          <strong>التقويم</strong>
+          <small>شوف الأيام</small>
+        </button>
+
+        <button class="quick" id="quickFinance">
+          <div class="quick-icon">◈</div>
+          <strong>المالية</strong>
+          <small>راجع الأرقام</small>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="alerts" id="alerts"></div>
+
 </section>
 
 
-<!-- CALENDAR -->
+<!-- ================= CALENDAR ================= -->
+
 <section class="page" id="calendar">
-    <div class="topbar">
-        <div class="page-title">
-            <h1>التقويم</h1>
-            <p>جميع مواعيد روانا</p>
-        </div>
-        <button class="primary" id="calendarNewBtn">+ حجز جديد</button>
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">المواعيد</div>
+      <h1>التقويم</h1>
+      <div class="subtitle">نظرة كاملة على إشغال روانا</div>
     </div>
 
-    <div class="card">
-        <div class="calendar-head">
-            <div class="month-title" id="monthTitle"></div>
+    <button class="primary" id="calendarBooking">
+      + حجز جديد
+    </button>
+  </div>
 
-            <div class="calendar-actions">
-                <button class="icon-btn" id="prevMonth">‹</button>
-                <button class="icon-btn" id="todayBtn">اليوم</button>
-                <button class="icon-btn" id="nextMonth">›</button>
-            </div>
-        </div>
 
-        <div class="weekdays">
-            <div>Sun</div>
-            <div>Mon</div>
-            <div>Tue</div>
-            <div>Wed</div>
-            <div>Thu</div>
-            <div>Fri</div>
-            <div>Sat</div>
-        </div>
+  <div class="card calendar-card">
 
-        <div class="days" id="calendarDays"></div>
+    <div class="calendar-head">
+
+      <div class="month-name" id="monthTitle"></div>
+
+      <div class="calendar-controls">
+        <button class="cal-btn" id="prevMonth">‹</button>
+        <button class="cal-btn" id="todayMonth">اليوم</button>
+        <button class="cal-btn" id="nextMonth">›</button>
+      </div>
+
     </div>
+
+    <div class="weekdays">
+      <div>الأحد</div>
+      <div>الاثنين</div>
+      <div>الثلاثاء</div>
+      <div>الأربعاء</div>
+      <div>الخميس</div>
+      <div>الجمعة</div>
+      <div>السبت</div>
+    </div>
+
+    <div class="calendar-grid" id="calendarGrid"></div>
+
+  </div>
+
 </section>
 
 
-<!-- BOOKINGS -->
+<!-- ================= BOOKINGS ================= -->
+
 <section class="page" id="bookings">
-    <div class="topbar">
-        <div class="page-title">
-            <h1>الحجوزات</h1>
-            <p>إدارة جميع الحجوزات</p>
-        </div>
-        <button class="primary" id="bookingsNewBtn">+ حجز جديد</button>
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">الإقامة</div>
+      <h1>الحجوزات</h1>
+      <div class="subtitle">كل حجوزات روانا في مكان واحد</div>
     </div>
 
-    <div class="card">
-        <div class="booking-list" id="allBookings"></div>
-    </div>
+    <button class="primary" id="bookingPageNew">
+      + حجز جديد
+    </button>
+  </div>
+
+
+  <div class="toolbar">
+    <input
+      class="search"
+      id="bookingSearch"
+      placeholder="ابحث باسم العميل أو رقم الجوال..."
+    >
+  </div>
+
+
+  <div class="card" style="padding:15px">
+    <div class="booking-list" id="bookingList"></div>
+  </div>
+
 </section>
 
 
-<!-- CLIENTS -->
+<!-- ================= COFFEE ================= -->
+
+<section class="page" id="coffee">
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">الخدمات</div>
+      <h1>ركن القهوة</h1>
+      <div class="subtitle">الطلب يمشي من التجهيز إلى التسليم</div>
+    </div>
+
+    <button class="primary" id="newCoffee">
+      + طلب قهوة
+    </button>
+  </div>
+
+
+  <div class="coffee-board">
+
+    <div class="coffee-column">
+      <h3>جديد</h3>
+      <div id="coffeeNew"></div>
+    </div>
+
+    <div class="coffee-column">
+      <h3>قيد التجهيز</h3>
+      <div id="coffeePreparing"></div>
+    </div>
+
+    <div class="coffee-column">
+      <h3>جاهز</h3>
+      <div id="coffeeReady"></div>
+    </div>
+
+    <div class="coffee-column">
+      <h3>تم التسليم</h3>
+      <div id="coffeeDone"></div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CLIENTS ================= -->
+
 <section class="page" id="clients">
-    <div class="topbar">
-        <div class="page-title">
-            <h1>العملاء</h1>
-            <p>قاعدة بيانات عملاء روانا</p>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="booking-list" id="clientsList"></div>
+  <div class="top">
+    <div>
+      <div class="eyebrow">العلاقات</div>
+      <h1>العملاء</h1>
+      <div class="subtitle">العملاء يظهرون تلقائيًا من الحجوزات</div>
     </div>
+  </div>
+
+  <div class="client-grid" id="clientGrid"></div>
+
 </section>
 
 
-<!-- FINANCE -->
+<!-- ================= FINANCE ================= -->
+
 <section class="page" id="finance">
-    <div class="topbar">
-        <div class="page-title">
-            <h1>المالية</h1>
-            <p>نظرة واضحة على أرقامك</p>
-        </div>
+
+  <div class="top">
+    <div>
+      <div class="eyebrow">الأرقام</div>
+      <h1>المالية</h1>
+      <div class="subtitle">صورة واضحة بدون تعقيد</div>
+    </div>
+  </div>
+
+
+  <div class="finance-grid">
+
+    <div class="card money-card">
+      <small>إجمالي الحجوزات</small>
+      <h2 id="financeTotal">0</h2>
+      <p>قيمة الحجوزات</p>
     </div>
 
-    <div class="grid">
-        <div class="card stat">
-            <small>إجمالي الحجوزات</small>
-            <h2 id="financeRevenue">0</h2>
-        </div>
-
-        <div class="card stat">
-            <small>المحصّل</small>
-            <h2 id="financePaid">0</h2>
-        </div>
-
-        <div class="card stat">
-            <small>المتبقي</small>
-            <h2 id="financeRemaining">0</h2>
-        </div>
-
-        <div class="card stat">
-            <small>عدد الحجوزات</small>
-            <h2 id="financeBookings">0</h2>
-        </div>
+    <div class="card money-card">
+      <small>المحصّل</small>
+      <h2 id="financePaid">0</h2>
+      <p>المبالغ المدفوعة</p>
     </div>
+
+    <div class="card money-card">
+      <small>المتبقي</small>
+      <h2 id="financeRemaining">0</h2>
+      <p>المبالغ المطلوب تحصيلها</p>
+    </div>
+
+  </div>
+
+
+  <div class="card panel" style="margin-top:15px">
+
+    <div class="panel-head">
+      <h3>التحصيل</h3>
+      <span id="collectionPercent">0%</span>
+    </div>
+
+    <div class="bar-wrap">
+      <div class="bar-line">
+        <div class="bar-fill" id="collectionBar"></div>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
 </main>
 </div>
 
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav">
-    <button class="active" data-page="home">⌂<br>الرئيسية</button>
-    <button data-page="calendar">▣<br>التقويم</button>
-    <button data-page="bookings">◷<br>الحجوزات</button>
-    <button data-page="clients">◎<br>العملاء</button>
+<!-- ================= MOBILE NAV ================= -->
+
+<nav class="mobile-nav">
+
+  <button class="active" data-page="home">
+    ⌂<br>الرئيسية
+  </button>
+
+  <button data-page="calendar">
+    ▦<br>التقويم
+  </button>
+
+  <button data-page="bookings">
+    ◷<br>الحجوزات
+  </button>
+
+  <button data-page="coffee">
+    ☕<br>القهوة
+  </button>
+
+  <button data-page="finance">
+    ◈<br>المالية
+  </button>
+
+</nav>
+
+
+<!-- ================= BOOKING MODAL ================= -->
+
+<div class="modal" id="bookingModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>حجز جديد</h2>
+      <button class="close" data-close="bookingModal">×</button>
+    </div>
+
+    <form id="bookingForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>اسم العميل</label>
+          <input id="bClient" required placeholder="مثال: محمد">
+        </div>
+
+        <div class="field">
+          <label>رقم الجوال</label>
+          <input id="bPhone" inputmode="tel" placeholder="05xxxxxxxx">
+        </div>
+
+        <div class="field">
+          <label>الدخول</label>
+          <input id="bIn" type="date" required>
+        </div>
+
+        <div class="field">
+          <label>الخروج</label>
+          <input id="bOut" type="date" required>
+        </div>
+
+        <div class="field">
+          <label>قيمة الحجز</label>
+          <input id="bPrice" type="number" min="0" required placeholder="0">
+        </div>
+
+        <div class="field">
+          <label>المدفوع</label>
+          <input id="bPaid" type="number" min="0" value="0">
+        </div>
+
+        <div class="field full">
+          <label>ملاحظات</label>
+          <textarea id="bNotes" placeholder="أي ملاحظة مهمة للحجز..."></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-footer">
+        <button class="primary" type="submit">حفظ الحجز</button>
+        <button class="secondary" type="button" data-close="bookingModal">إلغاء</button>
+      </div>
+
+    </form>
+
+  </div>
+
 </div>
 
 
-<!-- NEW BOOKING MODAL -->
-<div class="modal" id="bookingModal">
-    <div class="modal-box">
+<!-- ================= COFFEE MODAL ================= -->
 
-        <div class="modal-head">
-            <h2>حجز جديد</h2>
-            <button class="close" id="closeModal">×</button>
+<div class="modal" id="coffeeModal">
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+      <h2>طلب ركن القهوة</h2>
+      <button class="close" data-close="coffeeModal">×</button>
+    </div>
+
+    <form id="coffeeForm">
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label>العميل</label>
+          <select id="cClient"></select>
         </div>
 
-        <form class="form" id="bookingForm">
+        <div class="field">
+          <label>نوع الطلب</label>
+          <input id="cType" required placeholder="مثال: 40 كوب">
+        </div>
 
-            <div class="field">
-                <label>اسم العميل</label>
-                <input id="clientName" required placeholder="مثال: محمد">
-            </div>
+        <div class="field">
+          <label>التاريخ</label>
+          <input id="cDate" type="date" required>
+        </div>
 
-            <div class="field">
-                <label>رقم الجوال</label>
-                <input id="clientPhone" inputmode="tel" placeholder="05xxxxxxxx">
-            </div>
+        <div class="field">
+          <label>القيمة</label>
+          <input id="cPrice" type="number" min="0" value="0">
+        </div>
 
-            <div class="field">
-                <label>تاريخ الدخول</label>
-                <input id="checkIn" type="date" required>
-            </div>
+        <div class="field full">
+          <label>ملاحظات الطلب</label>
+          <textarea id="cNotes" placeholder="مثال: التسليم الساعة 4:00"></textarea>
+        </div>
 
-            <div class="field">
-                <label>تاريخ الخروج</label>
-                <input id="checkOut" type="date" required>
-            </div>
+      </div>
 
-            <div class="field">
-                <label>قيمة الحجز</label>
-                <input id="price" type="number" min="0" required placeholder="0">
-            </div>
+      <div class="form-footer">
+        <button class="primary" type="submit">إضافة الطلب</button>
+        <button class="secondary" type="button" data-close="coffeeModal">إلغاء</button>
+      </div>
 
-            <div class="field">
-                <label>المدفوع</label>
-                <input id="paid" type="number" min="0" value="0">
-            </div>
+    </form>
 
-            <div class="field full">
-                <label>ملاحظات</label>
-                <textarea id="notes" placeholder="أي ملاحظات..."></textarea>
-            </div>
+  </div>
 
-            <div class="form-actions">
-                <button type="submit" class="primary">حفظ الحجز</button>
-                <button type="button" class="secondary" id="cancelModal">إلغاء</button>
-            </div>
-
-        </form>
-    </div>
 </div>
 
 
 <script>
 
-/* =========================
-   DATA
-========================= */
+/* =========================================================
+   RAWANA ENGINE
+========================================================= */
 
-const STORAGE_KEY = "RAWANA_V1_DATA";
+const KEY = "RAWANA_ULTIMATE_DATA_V2";
 
-let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
-    bookings: []
+const defaultData = {
+  bookings: [],
+  coffee: []
 };
 
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+let db = loadData();
+
+let viewMonth = new Date().getMonth();
+let viewYear = new Date().getFullYear();
 
 
-/* =========================
-   HELPERS
-========================= */
+/* =========================================================
+   STORAGE
+========================================================= */
 
-function save(){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+function loadData(){
+
+  try{
+
+    const saved = localStorage.getItem(KEY);
+
+    if(saved){
+      const parsed = JSON.parse(saved);
+
+      return {
+        bookings:Array.isArray(parsed.bookings) ? parsed.bookings : [],
+        coffee:Array.isArray(parsed.coffee) ? parsed.coffee : []
+      };
+    }
+
+  }catch(e){}
+
+  return structuredClone(defaultData);
 }
+
+
+function saveData(){
+
+  localStorage.setItem(KEY,JSON.stringify(db));
+
+}
+
+
+/* =========================================================
+   BASIC HELPERS
+========================================================= */
+
+function englishNumber(value){
+
+  return Number(value || 0).toLocaleString("en-US");
+
+}
+
 
 function money(value){
-    return Number(value || 0).toLocaleString("en-US") + " SAR";
+
+  return englishNumber(value) + " ر.س";
+
 }
 
-function dateObj(value){
-    return new Date(value + "T00:00:00");
+
+function isoToday(){
+
+  const d = new Date();
+
+  return (
+    d.getFullYear() +
+    "-" +
+    String(d.getMonth()+1).padStart(2,"0") +
+    "-" +
+    String(d.getDate()).padStart(2,"0")
+  );
+
 }
+
+
+function parseDate(value){
+
+  return new Date(value + "T00:00:00");
+
+}
+
+
+function dateISO(date){
+
+  return (
+    date.getFullYear() +
+    "-" +
+    String(date.getMonth()+1).padStart(2,"0") +
+    "-" +
+    String(date.getDate()).padStart(2,"0")
+  );
+
+}
+
 
 function formatDate(value){
-    if(!value) return "";
-    return dateObj(value).toLocaleDateString("en-US",{
-        year:"numeric",
-        month:"short",
-        day:"numeric"
-    });
-}
 
-function getClients(){
+  if(!value) return "";
 
-    const map = {};
+  return parseDate(value).toLocaleDateString("en-US",{
+    day:"numeric",
+    month:"short",
+    year:"numeric"
+  });
 
-    data.bookings.forEach(b=>{
-        if(!b.client) return;
-
-        if(!map[b.client]){
-            map[b.client] = {
-                name:b.client,
-                phone:b.phone || "",
-                count:0
-            };
-        }
-
-        map[b.client].count++;
-    });
-
-    return Object.values(map);
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+function arabicMonth(date){
 
-function showPage(page){
+  return date.toLocaleDateString("ar-SA-u-ca-gregory",{
+    month:"long"
+  });
 
-    document.querySelectorAll(".page").forEach(el=>{
-        el.classList.remove("active");
-    });
-
-    const target = document.getElementById(page);
-
-    if(target){
-        target.classList.add("active");
-    }
-
-    document.querySelectorAll("[data-page]").forEach(btn=>{
-        btn.classList.toggle("active",btn.dataset.page === page);
-    });
-
-    if(page === "home") renderHome();
-    if(page === "calendar") renderCalendar();
-    if(page === "bookings") renderBookings();
-    if(page === "clients") renderClients();
-    if(page === "finance") renderFinance();
 }
 
-document.querySelectorAll("[data-page]").forEach(btn=>{
-    btn.addEventListener("click",()=>{
-        showPage(btn.dataset.page);
-    });
-});
-
-
-/* =========================
-   MODAL
-========================= */
-
-const modal = document.getElementById("bookingModal");
-
-function openModal(){
-
-    document.getElementById("bookingForm").reset();
-
-    const today = new Date();
-    const iso = today.toISOString().split("T")[0];
-
-    document.getElementById("checkIn").value = iso;
-
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate()+1);
-
-    document.getElementById("checkOut").value =
-        tomorrow.toISOString().split("T")[0];
-
-    modal.classList.add("show");
-}
-
-function closeModal(){
-    modal.classList.remove("show");
-}
-
-document.getElementById("newBookingBtn").onclick = openModal;
-document.getElementById("calendarNewBtn").onclick = openModal;
-document.getElementById("bookingsNewBtn").onclick = openModal;
-
-document.getElementById("closeModal").onclick = closeModal;
-document.getElementById("cancelModal").onclick = closeModal;
-
-modal.addEventListener("click",e=>{
-    if(e.target === modal) closeModal();
-});
-
-
-/* =========================
-   SAVE BOOKING
-========================= */
-
-document.getElementById("bookingForm").addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    const client = document.getElementById("clientName").value.trim();
-    const phone = document.getElementById("clientPhone").value.trim();
-    const checkIn = document.getElementById("checkIn").value;
-    const checkOut = document.getElementById("checkOut").value;
-    const price = Number(document.getElementById("price").value || 0);
-    const paid = Number(document.getElementById("paid").value || 0);
-    const notes = document.getElementById("notes").value.trim();
-
-    if(checkOut <= checkIn){
-        alert("تاريخ الخروج يجب أن يكون بعد تاريخ الدخول.");
-        return;
-    }
-
-    if(paid > price){
-        alert("المبلغ المدفوع لا يمكن أن يكون أكبر من قيمة الحجز.");
-        return;
-    }
-
-    /* CHECK OVERLAP */
-
-    const overlap = data.bookings.some(b => {
-
-        return (
-            checkIn < b.checkOut &&
-            checkOut > b.checkIn
-        );
-
-    });
-
-    if(overlap){
-        alert("يوجد حجز متعارض مع هذه الفترة.");
-        return;
-    }
-
-    const booking = {
-        id:Date.now(),
-        client,
-        phone,
-        checkIn,
-        checkOut,
-        price,
-        paid,
-        remaining:price-paid,
-        notes
-    };
-
-    data.bookings.push(booking);
-
-    save();
-
-    closeModal();
-
-    renderAll();
-
-    showPage("bookings");
-
-    alert("تم حفظ الحجز بنجاح ✓");
-});
-
-
-/* =========================
-   HOME
-========================= */
-
-function renderHome(){
-
-    const now = new Date();
-
-    document.getElementById("todayText").textContent =
-        now.toLocaleDateString("en-US",{
-            weekday:"long",
-            year:"numeric",
-            month:"long",
-            day:"numeric"
-        });
-
-    document.getElementById("heroDay").textContent =
-        String(now.getDate()).padStart(2,"0");
-
-    const monthBookings = data.bookings.filter(b=>{
-        const d = dateObj(b.checkIn);
-
-        return (
-            d.getMonth() === now.getMonth() &&
-            d.getFullYear() === now.getFullYear()
-        );
-    });
-
-    const revenue = data.bookings.reduce((sum,b)=>sum+b.price,0);
-    const remaining = data.bookings.reduce((sum,b)=>sum+b.remaining,0);
-
-    document.getElementById("statBookings").textContent =
-        monthBookings.length.toLocaleString("en-US");
-
-    document.getElementById("statRevenue").textContent =
-        money(revenue);
-
-    document.getElementById("statRemaining").textContent =
-        money(remaining);
-
-    document.getElementById("statClients").textContent =
-        getClients().length.toLocaleString("en-US");
-
-
-    const upcoming = [...data.bookings]
-        .filter(b=>dateObj(b.checkOut) >= now)
-        .sort((a,b)=>dateObj(a.checkIn)-dateObj(b.checkIn))
-        .slice(0,5);
-
-    document.getElementById("upcomingCount").textContent =
-        upcoming.length.toLocaleString("en-US") + " حجوزات";
-
-    const box = document.getElementById("upcomingList");
-
-    if(!upcoming.length){
-        box.innerHTML = `
-            <div class="empty">
-                <strong>ما عندك حجوزات قادمة</strong>
-                أضف أول حجز لروانا
-            </div>
-        `;
-        return;
-    }
-
-    box.innerHTML = upcoming.map(bookingHTML).join("");
-}
-
-
-/* =========================
-   BOOKING HTML
-========================= */
-
-function bookingHTML(b){
-
-    const initial =
-        (b.client || "?").charAt(0);
-
-    let status = "قادمة";
-    let cls = "gold";
-
-    const today = new Date();
-    const inDate = dateObj(b.checkIn);
-    const outDate = dateObj(b.checkOut);
-
-    if(today >= inDate && today < outDate){
-        status = "مستخدمة الآن";
-        cls = "green";
-    }
-
-    if(today >= outDate){
-        status = "منتهية";
-        cls = "red";
-    }
-
-    return `
-        <div class="booking" onclick="viewBooking(${b.id})">
-
-            <div class="booking-info">
-
-                <div class="avatar">
-                    ${initial}
-                </div>
-
-                <div>
-                    <div class="booking-name">
-                        ${escapeHTML(b.client)}
-                    </div>
-
-                    <div class="booking-date">
-                        ${formatDate(b.checkIn)}
-                        →
-                        ${formatDate(b.checkOut)}
-                    </div>
-                </div>
-
-            </div>
-
-            <div style="text-align:left">
-
-                <div class="badge ${cls}">
-                    ${status}
-                </div>
-
-                <div style="font-size:11px;margin-top:6px;color:#888">
-                    ${money(b.price)}
-                </div>
-
-            </div>
-
-        </div>
-    `;
-}
-
-
-/* =========================
-   BOOKINGS
-========================= */
-
-function renderBookings(){
-
-    const box = document.getElementById("allBookings");
-
-    const bookings = [...data.bookings]
-        .sort((a,b)=>dateObj(a.checkIn)-dateObj(b.checkIn));
-
-    if(!bookings.length){
-
-        box.innerHTML = `
-            <div class="empty">
-                <strong>لا توجد حجوزات</strong>
-                اضغط "حجز جديد" لإضافة أول حجز.
-            </div>
-        `;
-
-        return;
-    }
-
-    box.innerHTML = bookings.map(bookingHTML).join("");
-}
-
-
-/* =========================
-   CLIENTS
-========================= */
-
-function renderClients(){
-
-    const box = document.getElementById("clientsList");
-    const clients = getClients();
-
-    if(!clients.length){
-
-        box.innerHTML = `
-            <div class="empty">
-                <strong>لا يوجد عملاء</strong>
-                سيظهر العملاء هنا تلقائيًا بعد إضافة الحجوزات.
-            </div>
-        `;
-
-        return;
-    }
-
-    box.innerHTML = clients.map(c=>`
-
-        <div class="booking">
-
-            <div class="booking-info">
-
-                <div class="avatar">
-                    ${escapeHTML(c.name.charAt(0))}
-                </div>
-
-                <div>
-                    <div class="booking-name">
-                        ${escapeHTML(c.name)}
-                    </div>
-
-                    <div class="booking-date">
-                        ${escapeHTML(c.phone || "لا يوجد رقم")}
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="badge gold">
-                ${c.count.toLocaleString("en-US")} حجوزات
-            </div>
-
-        </div>
-
-    `).join("");
-}
-
-
-/* =========================
-   FINANCE
-========================= */
-
-function renderFinance(){
-
-    const revenue =
-        data.bookings.reduce((s,b)=>s+b.price,0);
-
-    const paid =
-        data.bookings.reduce((s,b)=>s+b.paid,0);
-
-    const remaining =
-        data.bookings.reduce((s,b)=>s+b.remaining,0);
-
-    document.getElementById("financeRevenue").textContent =
-        money(revenue);
-
-    document.getElementById("financePaid").textContent =
-        money(paid);
-
-    document.getElementById("financeRemaining").textContent =
-        money(remaining);
-
-    document.getElementById("financeBookings").textContent =
-        data.bookings.length.toLocaleString("en-US");
-}
-
-
-/* =========================
-   CALENDAR
-========================= */
-
-function renderCalendar(){
-
-    const first = new Date(currentYear,currentMonth,1);
-    const last = new Date(currentYear,currentMonth+1,0);
-
-    const monthName =
-        first.toLocaleDateString("en-US",{
-            month:"long",
-            year:"numeric"
-        });
-
-    document.getElementById("monthTitle").textContent =
-        monthName;
-
-    const container =
-        document.getElementById("calendarDays");
-
-    container.innerHTML = "";
-
-    const startDay = first.getDay();
-
-    for(let i=0;i<startDay;i++){
-
-        const blank = document.createElement("div");
-        blank.className = "day muted-day";
-        container.appendChild(blank);
-
-    }
-
-    for(let day=1;day<=last.getDate();day++){
-
-        const el = document.createElement("div");
-        el.className = "day";
-
-        const date = new Date(
-            currentYear,
-            currentMonth,
-            day
-        );
-
-        const iso =
-            date.getFullYear() + "-" +
-            String(date.getMonth()+1).padStart(2,"0") + "-" +
-            String(date.getDate()).padStart(2,"0");
-
-        const today = new Date();
-
-        if(
-            today.getFullYear() === currentYear &&
-            today.getMonth() === currentMonth &&
-            today.getDate() === day
-        ){
-            el.classList.add("today");
-        }
-
-        el.innerHTML =
-            `<div class="day-number">${day.toLocaleString("en-US")}</div>`;
-
-        const booking = data.bookings.find(b =>
-            iso >= b.checkIn &&
-            iso < b.checkOut
-        );
-
-        if(booking){
-
-            el.innerHTML += `
-                <div class="day-booking">
-                    ${escapeHTML(booking.client)}
-                </div>
-            `;
-
-        }
-
-        el.onclick = ()=>{
-            if(booking){
-                viewBooking(booking.id);
-            }else{
-                openModalWithDate(iso);
-            }
-        };
-
-        container.appendChild(el);
-    }
-}
-
-
-/* =========================
-   CALENDAR NAV
-========================= */
-
-document.getElementById("prevMonth").onclick = ()=>{
-
-    currentMonth--;
-
-    if(currentMonth < 0){
-        currentMonth = 11;
-        currentYear--;
-    }
-
-    renderCalendar();
-};
-
-document.getElementById("nextMonth").onclick = ()=>{
-
-    currentMonth++;
-
-    if(currentMonth > 11){
-        currentMonth = 0;
-        currentYear++;
-    }
-
-    renderCalendar();
-};
-
-document.getElementById("todayBtn").onclick = ()=>{
-
-    const now = new Date();
-
-    currentMonth = now.getMonth();
-    currentYear = now.getFullYear();
-
-    renderCalendar();
-};
-
-
-function openModalWithDate(date){
-
-    openModal();
-
-    document.getElementById("checkIn").value = date;
-
-    const d = dateObj(date);
-    d.setDate(d.getDate()+1);
-
-    document.getElementById("checkOut").value =
-        d.toISOString().split("T")[0];
-}
-
-
-/* =========================
-   VIEW BOOKING
-========================= */
-
-function viewBooking(id){
-
-    const b = data.bookings.find(x=>x.id===id);
-
-    if(!b) return;
-
-    const action = confirm(
-        "الحجز: " + b.client +
-        "\\n\\nالدخول: " + formatDate(b.checkIn) +
-        "\\nالخروج: " + formatDate(b.checkOut) +
-        "\\nالقيمة: " + money(b.price) +
-        "\\nالمدفوع: " + money(b.paid) +
-        "\\nالمتبقي: " + money(b.remaining) +
-        "\\n\\nاضغط موافق لحذف الحجز."
-    );
-
-    if(action){
-
-        const ok = confirm(
-            "متأكد أنك تريد حذف هذا الحجز؟"
-        );
-
-        if(ok){
-
-            data.bookings =
-                data.bookings.filter(x=>x.id!==id);
-
-            save();
-
-            renderAll();
-        }
-    }
-}
-
-
-/* =========================
-   SECURITY
-========================= */
 
 function escapeHTML(value){
 
-    return String(value ?? "")
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
 }
 
 
-/* =========================
-   RENDER ALL
-========================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(page){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  const target=document.getElementById(page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll("[data-page]").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
+  });
+
+  renderAll();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+document.querySelectorAll("[data-page]").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+    go(btn.dataset.page);
+  });
+
+});
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openModal(id){
+
+  document.getElementById(id).classList.add("open");
+
+}
+
+
+function closeModal(id){
+
+  document.getElementById(id).classList.remove("open");
+
+}
+
+
+document.querySelectorAll("[data-close]").forEach(btn=>{
+
+  btn.addEventListener("click",()=>{
+    closeModal(btn.dataset.close);
+  });
+
+});
+
+
+document.querySelectorAll(".modal").forEach(modal=>{
+
+  modal.addEventListener("click",e=>{
+
+    if(e.target===modal){
+      modal.classList.remove("open");
+    }
+
+  });
+
+});
+
+
+/* =========================================================
+   BOOKING
+========================================================= */
+
+function openBooking(date=null){
+
+  document.getElementById("bookingForm").reset();
+
+  const start=date || isoToday();
+
+  const endDate=parseDate(start);
+
+  endDate.setDate(endDate.getDate()+1);
+
+  document.getElementById("bIn").value=start;
+
+  document.getElementById("bOut").value=dateISO(endDate);
+
+  document.getElementById("bPaid").value=0;
+
+  openModal("bookingModal");
+
+}
+
+
+function hasOverlap(start,end){
+
+  return db.bookings.some(b=>{
+
+    if(b.status==="cancelled") return false;
+
+    return start < b.checkOut && end > b.checkIn;
+
+  });
+
+}
+
+
+document.getElementById("bookingForm").addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+  const client=document.getElementById("bClient").value.trim();
+
+  const phone=document.getElementById("bPhone").value.trim();
+
+  const checkIn=document.getElementById("bIn").value;
+
+  const checkOut=document.getElementById("bOut").value;
+
+  const price=Number(document.getElementById("bPrice").value||0);
+
+  const paid=Number(document.getElementById("bPaid").value||0);
+
+  const notes=document.getElementById("bNotes").value.trim();
+
+
+  if(checkOut<=checkIn){
+
+    alert("تاريخ الخروج يجب أن يكون بعد تاريخ الدخول.");
+
+    return;
+
+  }
+
+
+  if(paid>price){
+
+    alert("المدفوع أكبر من قيمة الحجز.");
+
+    return;
+
+  }
+
+
+  if(hasOverlap(checkIn,checkOut)){
+
+    alert("⚠️ الفترة متعارضة مع حجز موجود.");
+
+    return;
+
+  }
+
+
+  db.bookings.push({
+
+    id:Date.now(),
+
+    client,
+
+    phone,
+
+    checkIn,
+
+    checkOut,
+
+    price,
+
+    paid,
+
+    remaining:price-paid,
+
+    notes,
+
+    status:"upcoming",
+
+    createdAt:Date.now()
+
+  });
+
+
+  saveData();
+
+  closeModal("bookingModal");
+
+  renderAll();
+
+  go("bookings");
+
+});
+
+
+/* =========================================================
+   BOOKING STATUS
+========================================================= */
+
+function bookingStatus(b){
+
+  const today=isoToday();
+
+  if(b.status==="cancelled"){
+    return {
+      text:"ملغي",
+      cls:"cancelled"
+    };
+  }
+
+  if(today < b.checkIn){
+
+    return {
+      text:"قادم",
+      cls:"upcoming"
+    };
+
+  }
+
+  if(today>=b.checkIn && today<b.checkOut){
+
+    return {
+      text:"داخل الآن",
+      cls:"active"
+    };
+
+  }
+
+  return {
+    text:"منتهي",
+    cls:"done"
+  };
+
+}
+
+
+/* =========================================================
+   BOOKING ROW
+========================================================= */
+
+function bookingRow(b){
+
+  const s=bookingStatus(b);
+
+  const initial=(b.client || "?").charAt(0);
+
+  return `
+
+    <div class="booking-row"
+         onclick="bookingDetails(${b.id})">
+
+      <div class="booking-main">
+
+        <div class="avatar">
+          ${escapeHTML(initial)}
+        </div>
+
+        <div class="booking-text">
+
+          <strong>
+            ${escapeHTML(b.client)}
+          </strong>
+
+          <span>
+            ${formatDate(b.checkIn)}
+            ←
+            ${formatDate(b.checkOut)}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <div class="status ${s.cls}">
+          ${s.text}
+        </div>
+
+      </div>
+
+
+      <div class="booking-price">
+
+        <strong>${money(b.price)}</strong>
+
+        <span>
+          متبقي ${money(b.remaining)}
+        </span>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   BOOKING DETAILS
+========================================================= */
+
+function bookingDetails(id){
+
+  const b=db.bookings.find(x=>x.id===id);
+
+  if(!b) return;
+
+  const coffee=db.coffee.filter(x=>x.bookingClient===b.client);
+
+  let message=
+`العميل: ${b.client}
+الدخول: ${formatDate(b.checkIn)}
+الخروج: ${formatDate(b.checkOut)}
+القيمة: ${money(b.price)}
+المدفوع: ${money(b.paid)}
+المتبقي: ${money(b.remaining)}`;
+
+  if(b.phone){
+    message+="\nالجوال: "+b.phone;
+  }
+
+  if(b.notes){
+    message+="\nملاحظات: "+b.notes;
+  }
+
+  if(coffee.length){
+    message+=
+      "\n\nطلبات القهوة: "+
+      coffee.length.toLocaleString("en-US");
+  }
+
+  const action=confirm(
+    message+
+    "\n\nموافق = إلغاء الحجز\nإلغاء = رجوع"
+  );
+
+  if(action){
+
+    const sure=confirm("تأكيد إلغاء الحجز؟");
+
+    if(sure){
+
+      b.status="cancelled";
+
+      saveData();
+
+      renderAll();
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+function renderCalendar(){
+
+  const first=new Date(viewYear,viewMonth,1);
+
+  const last=new Date(viewYear,viewMonth+1,0);
+
+  document.getElementById("monthTitle").textContent=
+    first.toLocaleDateString("ar-SA-u-ca-gregory",{
+      month:"long",
+      year:"numeric"
+    });
+
+
+  const grid=document.getElementById("calendarGrid");
+
+  grid.innerHTML="";
+
+
+  const firstDay=first.getDay();
+
+
+  for(let i=0;i<firstDay;i++){
+
+    const blank=document.createElement("div");
+
+    blank.className="cal-day other";
+
+    grid.appendChild(blank);
+
+  }
+
+
+  for(let day=1;day<=last.getDate();day++){
+
+    const date=new Date(viewYear,viewMonth,day);
+
+    const iso=dateISO(date);
+
+    const el=document.createElement("div");
+
+    el.className="cal-day";
+
+
+    if(iso===isoToday()){
+      el.classList.add("today");
+    }
+
+
+    el.innerHTML=`
+      <div class="cal-number">
+        ${englishNumber(day)}
+      </div>
+    `;
+
+
+    const booking=db.bookings.find(b=>{
+
+      return (
+        b.status!=="cancelled" &&
+        iso>=b.checkIn &&
+        iso<b.checkOut
+      );
+
+    });
+
+
+    if(booking){
+
+      el.innerHTML+=`
+        <div class="cal-event">
+          ${escapeHTML(booking.client)}
+        </div>
+      `;
+
+    }
+
+
+    el.addEventListener("click",()=>{
+
+      if(booking){
+        bookingDetails(booking.id);
+      }else{
+        openBooking(iso);
+      }
+
+    });
+
+
+    grid.appendChild(el);
+
+  }
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function renderHome(){
+
+  const now=new Date();
+
+  const hour=now.getHours();
+
+  let greeting="مساء الخير";
+
+  if(hour<12) greeting="صباح الخير";
+
+  if(hour>=12 && hour<18) greeting="مساء الخير";
+
+
+  document.getElementById("greeting").textContent=
+    greeting+" 👋";
+
+
+  document.getElementById("todayFull").textContent=
+    now.toLocaleDateString("ar-SA-u-ca-gregory",{
+      weekday:"long",
+      year:"numeric",
+      month:"long",
+      day:"numeric"
+    });
+
+
+  document.getElementById("heroDay").textContent=
+    englishNumber(now.getDate());
+
+
+  document.getElementById("heroMonth").textContent=
+    arabicMonth(now);
+
+
+  const active=db.bookings.filter(b=>b.status!=="cancelled");
+
+
+  const monthBookings=active.filter(b=>{
+
+    const d=parseDate(b.checkIn);
+
+    return (
+      d.getMonth()===now.getMonth() &&
+      d.getFullYear()===now.getFullYear()
+    );
+
+  });
+
+
+  const revenue=active.reduce((s,b)=>s+Number(b.price||0),0);
+
+  const remaining=active.reduce((s,b)=>s+Number(b.remaining||0),0);
+
+
+  const pendingCoffee=db.coffee.filter(c=>
+    c.status!=="done"
+  );
+
+
+  document.getElementById("statBookings").textContent=
+    englishNumber(monthBookings.length);
+
+  document.getElementById("statRevenue").textContent=
+    money(revenue);
+
+  document.getElementById("statRemaining").textContent=
+    money(remaining);
+
+  document.getElementById("statCoffee").textContent=
+    englishNumber(pendingCoffee.length);
+
+
+  const current=db.bookings.find(b=>{
+
+    if(b.status==="cancelled") return false;
+
+    return isoToday()>=b.checkIn &&
+           isoToday()<b.checkOut;
+
+  });
+
+
+  if(current){
+
+    document.getElementById("heroStatus").textContent=
+      "الشالية مشغول";
+
+    document.getElementById("heroSub").textContent=
+      "الضيف الحالي: "+current.client;
+
+  }else{
+
+    document.getElementById("heroStatus").textContent=
+      "روانا جاهزة";
+
+    document.getElementById("heroSub").textContent=
+      "تابع حجوزاتك وطلباتك من هنا.";
+
+  }
+
+
+  const upcoming=active
+    .filter(b=>b.checkOut>=isoToday())
+    .sort((a,b)=>a.checkIn.localeCompare(b.checkIn))
+    .slice(0,5);
+
+
+  document.getElementById("upcomingCount").textContent=
+    englishNumber(upcoming.length)+" حجوزات";
+
+
+  const box=document.getElementById("dashboardBookings");
+
+
+  if(!upcoming.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">⌂</div>
+        <strong>ما عندك حجوزات قادمة</strong>
+        <span>ابدأ بإضافة أول حجز.</span>
+      </div>
+    `;
+
+  }else{
+
+    box.innerHTML=upcoming.map(b=>{
+
+      const s=bookingStatus(b);
+
+      return `
+
+        <div class="timeline-item"
+             onclick="bookingDetails(${b.id})">
+
+          <div class="timeline-left">
+
+            <div class="avatar">
+              ${escapeHTML(b.client.charAt(0))}
+            </div>
+
+            <div>
+
+              <div class="item-name">
+                ${escapeHTML(b.client)}
+              </div>
+
+              <div class="item-meta">
+                ${formatDate(b.checkIn)}
+                ←
+                ${formatDate(b.checkOut)}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="status ${s.cls}">
+            ${s.text}
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+  }
+
+
+  renderAlerts();
+
+}
+
+
+function renderAlerts(){
+
+  const box=document.getElementById("alerts");
+
+  const unpaid=db.bookings.filter(b=>
+    b.status!=="cancelled" &&
+    b.remaining>0
+  );
+
+  const pendingCoffee=db.coffee.filter(c=>
+    c.status!=="done"
+  );
+
+
+  const current=db.bookings.find(b=>
+    b.status!=="cancelled" &&
+    isoToday()>=b.checkIn &&
+    isoToday()<b.checkOut
+  );
+
+
+  const alerts=[];
+
+
+  if(pendingCoffee.length){
+
+    alerts.push(`
+      <div class="alert orange"
+           onclick="go('coffee')"
+           style="cursor:pointer">
+
+        <div class="alert-icon">☕</div>
+
+        <div>
+          <strong>
+            ${englishNumber(pendingCoffee.length)}
+            طلب قهوة يحتاج متابعة
+          </strong>
+          <span>افتح ركن القهوة</span>
+        </div>
+
+      </div>
+    `);
+
+  }
+
+
+  if(unpaid.length){
+
+    const total=unpaid.reduce((s,b)=>s+b.remaining,0);
+
+    alerts.push(`
+      <div class="alert red">
+
+        <div class="alert-icon">﷼</div>
+
+        <div>
+          <strong>
+            مبالغ تحتاج تحصيل
+          </strong>
+          <span>${money(total)}</span>
+        </div>
+
+      </div>
+    `);
+
+  }
+
+
+  if(current){
+
+    alerts.push(`
+      <div class="alert green">
+
+        <div class="alert-icon">✓</div>
+
+        <div>
+          <strong>
+            الشالية مشغول الآن
+          </strong>
+          <span>${escapeHTML(current.client)}</span>
+        </div>
+
+      </div>
+    `);
+
+  }
+
+
+  if(!alerts.length){
+
+    alerts.push(`
+      <div class="alert green">
+
+        <div class="alert-icon">✓</div>
+
+        <div>
+          <strong>كل شيء مرتب</strong>
+          <span>ما عندك تنبيهات حالية.</span>
+        </div>
+
+      </div>
+    `);
+
+  }
+
+
+  box.innerHTML=alerts.join("");
+
+}
+
+
+/* =========================================================
+   BOOKINGS PAGE
+========================================================= */
+
+function renderBookings(){
+
+  const query=
+    document.getElementById("bookingSearch")?.value
+    .trim()
+    .toLowerCase() || "";
+
+
+  let list=[...db.bookings]
+    .sort((a,b)=>a.checkIn.localeCompare(b.checkIn));
+
+
+  if(query){
+
+    list=list.filter(b=>
+      b.client.toLowerCase().includes(query) ||
+      b.phone.toLowerCase().includes(query)
+    );
+
+  }
+
+
+  const box=document.getElementById("bookingList");
+
+
+  if(!list.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        <div class="empty-icon">◷</div>
+        <strong>لا توجد حجوزات</strong>
+        <span>أضف أول حجز لروانا.</span>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=list.map(bookingRow).join("");
+
+}
+
+
+/* =========================================================
+   CLIENTS
+========================================================= */
+
+function getClients(){
+
+  const map={};
+
+
+  db.bookings.forEach(b=>{
+
+    if(!b.client) return;
+
+    if(!map[b.client]){
+
+      map[b.client]={
+        name:b.client,
+        phone:b.phone || "",
+        bookings:0,
+        total:0
+      };
+
+    }
+
+    map[b.client].bookings++;
+
+    map[b.client].total+=Number(b.price||0);
+
+  });
+
+
+  return Object.values(map)
+    .sort((a,b)=>b.bookings-a.bookings);
+
+}
+
+
+function renderClients(){
+
+  const clients=getClients();
+
+  const box=document.getElementById("clientGrid");
+
+
+  if(!clients.length){
+
+    box.innerHTML=`
+      <div class="card empty" style="grid-column:1/-1">
+        <div class="empty-icon">◎</div>
+        <strong>ما عندك عملاء حتى الآن</strong>
+        <span>سيظهر العميل تلقائيًا عند إضافة حجز.</span>
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=clients.map(c=>`
+
+    <div class="card client-card">
+
+      <div class="client-card-top">
+
+        <div class="avatar">
+          ${escapeHTML(c.name.charAt(0))}
+        </div>
+
+        <div>
+          <strong>${escapeHTML(c.name)}</strong>
+          <small>
+            ${escapeHTML(c.phone || "لا يوجد رقم")}
+          </small>
+        </div>
+
+      </div>
+
+
+      <div class="client-info">
+
+        <div>
+          <span>الحجوزات</span>
+          <b>${englishNumber(c.bookings)}</b>
+        </div>
+
+        <div>
+          <span>القيمة</span>
+          <b>${money(c.total)}</b>
+        </div>
+
+      </div>
+
+    </div>
+
+  `).join("");
+
+}
+
+
+/* =========================================================
+   COFFEE
+========================================================= */
+
+const coffeeStatuses=[
+  "new",
+  "preparing",
+  "ready",
+  "done"
+];
+
+
+function coffeeLabel(status){
+
+  return {
+    new:"جديد",
+    preparing:"قيد التجهيز",
+    ready:"جاهز",
+    done:"تم التسليم"
+  }[status];
+
+}
+
+
+function renderCoffee(){
+
+  coffeeStatuses.forEach(status=>{
+
+    const box=document.getElementById(
+      status==="new" ? "coffeeNew" :
+      status==="preparing" ? "coffeePreparing" :
+      status==="ready" ? "coffeeReady" :
+      "coffeeDone"
+    );
+
+
+    const list=db.coffee.filter(c=>c.status===status);
+
+
+    if(!list.length){
+
+      box.innerHTML=`
+        <div style="
+          color:#aaa;
+          font-size:9px;
+          text-align:center;
+          padding:25px 5px;
+        ">
+          لا يوجد
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    box.innerHTML=list.map(c=>`
+
+      <div class="coffee-card"
+           onclick="advanceCoffee(${c.id})">
+
+        <strong>
+          ${escapeHTML(c.type)}
+        </strong>
+
+        <span>
+          ${escapeHTML(c.bookingClient || "طلب مباشر")}
+        </span>
+
+        <span>
+          ${formatDate(c.date)}
+        </span>
+
+        <b>
+          ${money(c.price)}
+        </b>
+
+      </div>
+
+    `).join("");
+
+  });
+
+
+}
+
+
+function advanceCoffee(id){
+
+  const c=db.coffee.find(x=>x.id===id);
+
+  if(!c) return;
+
+
+  const index=coffeeStatuses.indexOf(c.status);
+
+
+  if(index<coffeeStatuses.length-1){
+
+    c.status=coffeeStatuses[index+1];
+
+  }else{
+
+    const remove=confirm(
+      "تم تسليم الطلب بالفعل.\nهل تريد حذفه من سجل الطلبات؟"
+    );
+
+    if(remove){
+
+      db.coffee=db.coffee.filter(x=>x.id!==id);
+
+    }
+
+  }
+
+
+  saveData();
+
+  renderAll();
+
+}
+
+
+function openCoffee(){
+
+  const select=document.getElementById("cClient");
+
+  const clients=getClients();
+
+
+  select.innerHTML=
+    `<option value="">طلب مباشر</option>`+
+    clients.map(c=>
+      `<option value="${escapeHTML(c.name)}">
+        ${escapeHTML(c.name)}
+      </option>`
+    ).join("");
+
+
+  document.getElementById("coffeeForm").reset();
+
+  document.getElementById("cDate").value=isoToday();
+
+  openModal("coffeeModal");
+
+}
+
+
+document.getElementById("coffeeForm").addEventListener("submit",e=>{
+
+  e.preventDefault();
+
+
+  db.coffee.push({
+
+    id:Date.now(),
+
+    bookingClient:
+      document.getElementById("cClient").value,
+
+    type:
+      document.getElementById("cType").value.trim(),
+
+    date:
+      document.getElementById("cDate").value,
+
+    price:
+      Number(document.getElementById("cPrice").value||0),
+
+    notes:
+      document.getElementById("cNotes").value.trim(),
+
+    status:"new",
+
+    createdAt:Date.now()
+
+  });
+
+
+  saveData();
+
+  closeModal("coffeeModal");
+
+  renderAll();
+
+  go("coffee");
+
+});
+
+
+/* =========================================================
+   FINANCE
+========================================================= */
+
+function renderFinance(){
+
+  const active=db.bookings.filter(b=>
+    b.status!=="cancelled"
+  );
+
+
+  const total=
+    active.reduce((s,b)=>s+Number(b.price||0),0);
+
+
+  const paid=
+    active.reduce((s,b)=>s+Number(b.paid||0),0);
+
+
+  const remaining=
+    active.reduce((s,b)=>s+Number(b.remaining||0),0);
+
+
+  document.getElementById("financeTotal").textContent=
+    money(total);
+
+  document.getElementById("financePaid").textContent=
+    money(paid);
+
+  document.getElementById("financeRemaining").textContent=
+    money(remaining);
+
+
+  const percent=total?
+    Math.round((paid/total)*100):0;
+
+
+  document.getElementById("collectionPercent").textContent=
+    englishNumber(percent)+"%";
+
+
+  document.getElementById("collectionBar").style.width=
+    Math.min(percent,100)+"%";
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
 
 function renderAll(){
 
-    renderHome();
-    renderCalendar();
-    renderBookings();
-    renderClients();
-    renderFinance();
+  renderHome();
+  renderCalendar();
+  renderBookings();
+  renderCoffee();
+  renderClients();
+  renderFinance();
 
 }
 
 
-/* =========================
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+document.getElementById("openBooking").onclick=
+  ()=>openBooking();
+
+document.getElementById("quickBooking").onclick=
+  ()=>openBooking();
+
+document.getElementById("calendarBooking").onclick=
+  ()=>openBooking();
+
+document.getElementById("bookingPageNew").onclick=
+  ()=>openBooking();
+
+document.getElementById("quickCoffee").onclick=
+  ()=>openCoffee();
+
+document.getElementById("newCoffee").onclick=
+  ()=>openCoffee();
+
+document.getElementById("quickCalendar").onclick=
+  ()=>go("calendar");
+
+document.getElementById("quickFinance").onclick=
+  ()=>go("finance");
+
+
+document.getElementById("bookingSearch").addEventListener(
+  "input",
+  renderBookings
+);
+
+
+/* =========================================================
+   CALENDAR CONTROLS
+========================================================= */
+
+document.getElementById("prevMonth").onclick=()=>{
+
+  viewMonth--;
+
+  if(viewMonth<0){
+
+    viewMonth=11;
+    viewYear--;
+
+  }
+
+  renderCalendar();
+
+};
+
+
+document.getElementById("nextMonth").onclick=()=>{
+
+  viewMonth++;
+
+  if(viewMonth>11){
+
+    viewMonth=0;
+    viewYear++;
+
+  }
+
+  renderCalendar();
+
+};
+
+
+document.getElementById("todayMonth").onclick=()=>{
+
+  const now=new Date();
+
+  viewMonth=now.getMonth();
+
+  viewYear=now.getFullYear();
+
+  renderCalendar();
+
+};
+
+
+/* =========================================================
    START
-========================= */
+========================================================= */
 
 renderAll();
 
