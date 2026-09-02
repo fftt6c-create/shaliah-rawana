@@ -2449,8 +2449,6 @@ let signingBookingId=null;
 
 let calendarDate=new Date();
 
-let signatureCanvas=null;
-let signatureCtx=null;
 let drawing=false;
 
 /* =========================================================
@@ -5652,8 +5650,6 @@ html,
    CONTRACTS — العقود
    ========================================================= */
 
-let signingBookingId = null;
-
 function ensureContractDefaults(){
   if(!db.settings) db.settings = {};
   if(db.settings.showSignature == null) db.settings.showSignature = true;
@@ -5948,10 +5944,7 @@ function contractHTML(title,body,b){
    SIGNATURE — التوقيع
    ========================================================= */
 
-let signatureCanvas = null;
-let signatureCtx = null;
 let drawingSignature = false;
-
 function openSignatureModal(){
   if(!signingBookingId){
     showToast("افتح عقد الحجز أولًا");
