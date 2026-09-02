@@ -4341,6 +4341,32 @@ clean="966"+clean.slice(1);
 
 const coffee=getCoffeeItems(b);
 
+let coffeeText="";
+
+let depositText="";
+
+if((b.chaletDeposit||0)>0 || (b.coffeeDeposit||0)>0){
+
+depositText="\n🔐 التأمين:\n";
+
+if((b.chaletDeposit||0)>0)
+depositText+=`• تأمين الشالية — ${money(b.chaletDeposit)}\n`;
+
+if((b.coffeeDeposit||0)>0)
+depositText+=`• تأمين ركن القهوة — ${money(b.coffeeDeposit)}\n`;
+
+}
+
+if(coffee.length){
+
+coffeeText="\n☕ ركن القهوة:\n";
+
+coffee.forEach(item=>{
+coffeeText+=`• ${item.name} — ${money(item.price*item.qty)}\n`;
+});
+
+}
+
 const template=db.settings.whatsappMessage||`السلام عليكم {اسم_العميل} 🌹
 
 تم تأكيد حجزكم في {اسم_الشاليه}.
@@ -4356,6 +4382,8 @@ const template=db.settings.whatsappMessage||`السلام عليكم {اسم_ا�
 💰 قيمة الحجز:
 {قيمة_الحجز}
 
+{القهوة}
+
 💳 المدفوع:
 {المدفوع}
 
@@ -4365,15 +4393,10 @@ const template=db.settings.whatsappMessage||`السلام عليكم {اسم_ا�
 💰 إجمالي الحجز:
 {إجمالي_الحجز}
 
+{التأمين}
+
  
-🔐 تأمين الشالية:
-{تأمين_الشالية}
 
-☕ تأمين ركن القهوة:
-{تأمين_ركن_القهوة}
-
-🔐 إجمالي التأمين:
-{إجمالي_التأمين}
 
 شاكرين لكم اختيار {اسم_الشاليه} 🤍`;
 
@@ -4389,9 +4412,8 @@ const values={
 "{المدفوع}":money(b.paid),
 "{المتبقي}":money(remaining(b)),
 "{إجمالي_الحجز}":money(bookingTotal(b)),
-"{تأمين_الشالية}":money(b.chaletDeposit||0),
-"{تأمين_ركن_القهوة}":money(b.coffeeDeposit||0),
-"{إجمالي_التأمين}":money((b.chaletDeposit||0)+(b.coffeeDeposit||0))
+"{القهوة}":coffeeText,
+"{التأمين}":depositText,
 };
 
 let text=template;
