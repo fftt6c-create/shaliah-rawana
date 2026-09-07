@@ -233,12 +233,13 @@ textarea{resize:vertical;min-height:60px;}
       <h2 style="font-family:'Cairo';color:var(--primary);margin:8px 0 4px;font-size:20px;">روانا</h2>
       <div style="font-size:12.5px;color:var(--ink-soft);line-height:1.7;">سجّل دخولك برقم الجوال والرمز عشان توصل لبياناتك (الحجوزات والعملاء وكل شي) من أي جهاز</div>
     </div>
+    <div id="loginSavedAccounts"></div>
     <label>رقم الجوال</label>
     <input type="tel" id="loginPhone" placeholder="05xxxxxxxx">
     <label>الرمز (٤ أرقام على الأقل)</label>
     <input type="password" id="loginPin" inputmode="numeric" placeholder="••••">
     <div class="error-text" id="loginError"></div>
-    <div class="btn-row"><button class="btn-full" onclick="doLogin()">دخول / إنشاء حساب</button></div>
+    <div class="btn-row"><button class="btn-full" onclick="doLogin()">دخول / إنشاء حساب جديد</button></div>
     <div style="font-size:11px;color:var(--ink-soft);margin-top:12px;text-align:center;line-height:1.7;">أول مرة تدخل فيها رقم جديد بينشئ لك حساب تلقائيًا بنفس الرمز اللي تحطه.<br>استخدم نفس الرقم والرمز بالضبط من أي جهاز ثاني عشان توصل لنفس بياناتك.</div>
   </div>
 </div>
@@ -463,8 +464,18 @@ textarea{resize:vertical;min-height:60px;}
         <div class="accordion-head" onclick="toggleAcc(this)">الحساب <span>▾</span></div>
         <div class="accordion-body">
           <div class="report-row"><span>مسجّل دخول برقم</span><b id="accPhoneDisplay">-</b></div>
-          <div style="font-size:11px;color:var(--ink-soft);margin:6px 0 12px;">لفتح نفس بياناتك من جهاز ثاني، سجّل دخول هناك بنفس رقم الجوال والرمز بالضبط.</div>
-          <div class="btn-row"><button class="btn-outline" onclick="logoutAccount()">تسجيل الخروج / تبديل الحساب</button></div>
+
+          <div class="section-title" style="font-size:12.5px;margin:14px 0 6px;"><span>حساباتك المحفوظة</span><button class="mini-btn primary" onclick="openAddAccount()">+ إضافة حساب</button></div>
+          <div id="accountSwitcherList"></div>
+
+          <div class="section-title" style="font-size:12.5px;margin:16px 0 6px;">تغيير الرمز</div>
+          <label>الرمز الحالي</label><input type="password" id="chgPinOld" inputmode="numeric">
+          <label>الرمز الجديد</label><input type="password" id="chgPinNew" inputmode="numeric">
+          <label>تأكيد الرمز الجديد</label><input type="password" id="chgPinConfirm" inputmode="numeric">
+          <div class="error-text" id="chgPinError"></div>
+          <div class="btn-row"><button class="btn-full" onclick="changePin()">تغيير الرمز</button></div>
+
+          <div class="btn-row"><button class="btn-outline" onclick="logoutAccount()">تسجيل الخروج من هذا الجهاز</button></div>
         </div>
       </div>
 
@@ -847,19 +858,45 @@ function normalizePhoneKey(phone){
   return p;
 }
 
+// ---- locally-remembered accounts (for quick switching on this device) ----
+function getSavedAccounts(){
+  try{
+    const arr = JSON.parse(localStorage.getItem('rawana_accounts')||'null');
+    if(Array.isArray(arr)) return arr;
+  }catch(e){}
+  // migrate from older single-account storage if present
+  try{
+    const last = JSON.parse(localStorage.getItem('rawana_last_account')||'null');
+    if(last && last.key && last.pin) return [{...last, lastUsed:Date.now()}];
+  }catch(e){}
+  return [];
+}
+function saveSavedAccounts(arr){ try{ localStorage.setItem('rawana_accounts', JSON.stringify(arr)); }catch(e){} }
+function upsertSavedAccount(acc){
+  const arr = getSavedAccounts().filter(a=>a.key!==acc.key);
+  arr.push({...acc, lastUsed:Date.now()});
+  saveSavedAccounts(arr);
+}
+function removeSavedAccount(key){
+  const arr = getSavedAccounts().filter(a=>a.key!==key);
+  saveSavedAccounts(arr);
+  if(document.getElementById('page-settings')) renderAccountSwitcher();
+  renderLoginGateAccounts();
+}
+
 async function initApp(){
   buildTimeSelectOptions();
-  let last = null;
-  try{ last = JSON.parse(localStorage.getItem('rawana_last_account')||'null'); }catch(e){}
-  if(last && last.key && last.pin){
+  const accounts = getSavedAccounts().sort((a,b)=>(b.lastUsed||0)-(a.lastUsed||0));
+  const mostRecent = accounts[0];
+  if(mostRecent){
     try{
-      const rec = await sharedGet(last.key);
+      const rec = await sharedGet(mostRecent.key);
       if(rec){
         const parsed = JSON.parse(rec.value);
-        if(parsed.pin===last.pin){
+        if(parsed.pin===mostRecent.pin){
           data = deepMerge(data, parsed.data||{});
-          currentAccountKey = last.key;
-          currentAccountPin = last.pin;
+          currentAccountKey = mostRecent.key;
+          currentAccountPin = mostRecent.pin;
           document.getElementById('loginGate').style.display='none';
           renderEverything();
           return;
@@ -868,7 +905,38 @@ async function initApp(){
     }catch(e){}
   }
   document.getElementById('loginGate').style.display='flex';
-  if(last && last.phoneDisplay) document.getElementById('loginPhone').value = last.phoneDisplay;
+  if(mostRecent && mostRecent.phoneDisplay) document.getElementById('loginPhone').value = mostRecent.phoneDisplay;
+  renderLoginGateAccounts();
+}
+
+function renderLoginGateAccounts(){
+  const wrap = document.getElementById('loginSavedAccounts');
+  if(!wrap) return;
+  const accounts = getSavedAccounts().sort((a,b)=>(b.lastUsed||0)-(a.lastUsed||0));
+  if(accounts.length===0){ wrap.innerHTML=''; return; }
+  wrap.innerHTML = `<div style="font-size:11.5px;color:var(--ink-soft);margin-bottom:6px;">حساباتك المحفوظة على هالجهاز:</div>` +
+    accounts.map(a=>`<div class="list-row"><span style="font-size:13px;">📱 ${escapeHtml(a.phoneDisplay||a.key)}</span><button class="mini-btn primary" onclick="quickSwitchFromGate('${a.key}')">دخول</button></div>`).join('') +
+    `<div style="height:14px;"></div>`;
+}
+async function quickSwitchFromGate(key){
+  const accounts = getSavedAccounts();
+  const acc = accounts.find(a=>a.key===key);
+  if(!acc) return;
+  const errEl = document.getElementById('loginError');
+  errEl.classList.remove('show');
+  try{
+    const rec = await sharedGet(key);
+    if(!rec){ errEl.textContent='تعذر إيجاد هذا الحساب'; errEl.classList.add('show'); return; }
+    const parsed = JSON.parse(rec.value);
+    if(parsed.pin !== acc.pin){ errEl.textContent='تغيّر رمز هذا الحساب، سجّل دخول يدويًا'; errEl.classList.add('show'); return; }
+    data = deepMerge(data, parsed.data||{});
+    currentAccountKey = key;
+    currentAccountPin = acc.pin;
+    upsertSavedAccount(acc);
+    document.getElementById('loginGate').style.display='none';
+    renderEverything();
+    showToast('تم تسجيل الدخول');
+  }catch(e){ errEl.textContent='تعذر الاتصال، حاول مرة أخرى'; errEl.classList.add('show'); }
 }
 
 async function doLogin(){
@@ -904,16 +972,78 @@ async function doLogin(){
   }
   currentAccountKey = key;
   currentAccountPin = pin;
-  try{ localStorage.setItem('rawana_last_account', JSON.stringify({key,pin,phoneDisplay:phoneRaw})); }catch(e){}
+  upsertSavedAccount({key, pin, phoneDisplay:phoneRaw});
   document.getElementById('loginGate').style.display='none';
+  document.getElementById('loginPin').value='';
   renderEverything();
   showToast('تم تسجيل الدخول');
 }
 function logoutAccount(){
-  showConfirm('هل تبي تسجل خروج وتبدّل الحساب؟ بياناتك الحالية محفوظة وبترجع لها لو دخلت بنفس رقم الجوال والرمز.', ()=>{
-    try{ localStorage.removeItem('rawana_last_account'); }catch(e){}
+  showConfirm('هل تبي تسجل خروج من هذا الحساب على هالجهاز؟ بياناته باقية وتقدر ترجع له بنفس الرقم والرمز.', ()=>{
+    if(currentAccountKey){
+      const arr = getSavedAccounts().filter(a=>a.key!==currentAccountKey);
+      saveSavedAccounts(arr);
+    }
     location.reload();
   });
+}
+function openAddAccount(){
+  document.getElementById('loginPhone').value='';
+  document.getElementById('loginPin').value='';
+  document.getElementById('loginError').classList.remove('show');
+  renderLoginGateAccounts();
+  document.getElementById('loginGate').style.display='flex';
+}
+function renderAccountSwitcher(){
+  const wrap = document.getElementById('accountSwitcherList');
+  if(!wrap) return;
+  const accounts = getSavedAccounts().sort((a,b)=>(b.lastUsed||0)-(a.lastUsed||0));
+  wrap.innerHTML = accounts.map(a=>`
+    <div class="list-row">
+      <span style="font-size:13px;">📱 ${escapeHtml(a.phoneDisplay||a.key)} ${a.key===currentAccountKey?'<b style=\"color:var(--primary);\">(الحالي)</b>':''}</span>
+      <div style="display:flex;gap:6px;">
+        ${a.key===currentAccountKey ? '' : `<button class="mini-btn primary" onclick="switchToSavedAccount('${a.key}')">تبديل</button>`}
+        <button class="mini-btn danger" onclick="removeSavedAccount('${a.key}')">نسيان</button>
+      </div>
+    </div>`).join('') || `<div class="empty" style="padding:8px 0;">ما فيه حسابات محفوظة ثانية</div>`;
+}
+async function switchToSavedAccount(key){
+  const accounts = getSavedAccounts();
+  const acc = accounts.find(a=>a.key===key);
+  if(!acc) return;
+  try{
+    const rec = await sharedGet(key);
+    if(!rec){ showToast('تعذر إيجاد هذا الحساب'); return; }
+    const parsed = JSON.parse(rec.value);
+    if(parsed.pin !== acc.pin){ showToast('تغيّر رمز هذا الحساب، سجّل دخول يدويًا من صفحة الدخول'); return; }
+    data = deepMerge(data, parsed.data||{});
+    currentAccountKey = key;
+    currentAccountPin = acc.pin;
+    upsertSavedAccount(acc);
+    renderEverything();
+    fillSettingsForm();
+    showToast('تم التبديل إلى ' + (acc.phoneDisplay||''));
+  }catch(e){ showToast('تعذر الاتصال، حاول مرة أخرى'); }
+}
+async function changePin(){
+  const errEl = document.getElementById('chgPinError');
+  errEl.classList.remove('show');
+  if(!currentAccountKey){ showToast('سجّل دخولك أولاً'); return; }
+  const oldPin = document.getElementById('chgPinOld').value.trim();
+  const newPin = document.getElementById('chgPinNew').value.trim();
+  const confirmPin = document.getElementById('chgPinConfirm').value.trim();
+  if(oldPin !== currentAccountPin){ errEl.textContent='الرمز الحالي غير صحيح'; errEl.classList.add('show'); return; }
+  if(!newPin || newPin.length<4){ errEl.textContent='الرمز الجديد لازم يكون 4 أرقام على الأقل'; errEl.classList.add('show'); return; }
+  if(newPin !== confirmPin){ errEl.textContent='تأكيد الرمز الجديد غير مطابق'; errEl.classList.add('show'); return; }
+  currentAccountPin = newPin;
+  await sharedSet(currentAccountKey, JSON.stringify({pin:newPin, data}));
+  const accounts = getSavedAccounts();
+  const acc = accounts.find(a=>a.key===currentAccountKey);
+  if(acc){ acc.pin = newPin; saveSavedAccounts(accounts); }
+  document.getElementById('chgPinOld').value='';
+  document.getElementById('chgPinNew').value='';
+  document.getElementById('chgPinConfirm').value='';
+  showToast('تم تغيير الرمز بنجاح');
 }
 function deepMerge(base, loaded){
   const out = {...base, ...loaded};
@@ -1788,9 +1918,11 @@ function toggleAcc(head){
 function fillSettingsForm(){
   buildTimeSelectOptions();
   try{
-    const last = JSON.parse(localStorage.getItem('rawana_last_account')||'null');
-    document.getElementById('accPhoneDisplay').textContent = (last && last.phoneDisplay) ? last.phoneDisplay : '-';
+    const accounts = getSavedAccounts();
+    const cur = accounts.find(a=>a.key===currentAccountKey);
+    document.getElementById('accPhoneDisplay').textContent = cur ? cur.phoneDisplay : '-';
   }catch(e){}
+  renderAccountSwitcher();
   const s = data.settings;
   document.getElementById('setChaletName').value = s.chaletName;
   document.getElementById('setPhone').value = s.phone;
