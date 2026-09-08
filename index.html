@@ -99,6 +99,10 @@ main{padding:14px 14px 90px;}
 .badge.completed{background:#EFEAE0;color:var(--ink-soft);}
 .badge.cancelled{background:#F6E1DC;color:var(--red);}
 
+.bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;}
+.bk-cell .lbl{font-size:11px;color:var(--ink-soft);}
+.bk-cell .val{font-size:13.5px;font-weight:700;margin-top:2px;color:var(--ink);}
+.bk-ref{font-size:11.5px;color:var(--ink-soft);margin-top:2px;}
 .booking-item{border:1px solid var(--line);border-radius:var(--radius-m);padding:11px 12px;margin-bottom:9px;background:var(--white);}
 .booking-item .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
 .booking-item .name{font-weight:700;font-size:14.5px;}
@@ -118,6 +122,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-of
 textarea{resize:vertical;min-height:60px;}
 .form-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .time-picker{display:grid;grid-template-columns:1fr 1fr 0.8fr;gap:6px;}
+.date-picker{display:grid;grid-template-columns:0.7fr 1.5fr 0.9fr;gap:6px;}
 .btn-row{display:flex;gap:10px;margin-top:16px;}
 .btn-full{flex:1;background:var(--primary);color:var(--white);border:none;padding:12px;border-radius:var(--radius-s);font-size:14.5px;font-weight:700;font-family:'Tajawal';cursor:pointer;}
 .btn-outline{flex:1;background:transparent;color:var(--ink-soft);border:1.5px solid var(--line);padding:12px;border-radius:var(--radius-s);font-size:14.5px;font-weight:700;font-family:'Tajawal';cursor:pointer;}
@@ -158,6 +163,7 @@ textarea{resize:vertical;min-height:60px;}
 .cal-day.thufri{background:#FCF1D2;}
 .cal-day.booked{background:var(--red);color:#fff;}
 .cal-day .dnum{font-weight:800;font-size:11px;}
+.cal-day .hijri-mini{font-size:6.5px;opacity:.65;line-height:1;margin-top:1px;}
 .cal-day .cname{font-size:8px;line-height:1.15;margin-top:1px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
 .cal-day .ctime{font-size:7px;line-height:1.1;opacity:.9;}
 .legend{display:flex;gap:10px;margin-top:12px;font-size:10.5px;color:var(--ink-soft);flex-wrap:wrap;}
@@ -276,6 +282,7 @@ textarea{resize:vertical;min-height:60px;}
         <div class="tab active" data-d="upcoming" onclick="setBookingDateView('upcoming')">📌 القادمة</div>
         <div class="tab" data-d="past" onclick="setBookingDateView('past')">🕓 السابقة</div>
       </div>
+      <div class="btn-row" style="margin-top:0;"><button class="btn-full" onclick="openBookingForm()">+ حجز جديد</button></div>
       <div id="upcomingBookingsGroup">
         <div class="section-title">📌 الحجوزات القادمة</div>
         <div id="upcomingBookingsList"></div>
@@ -356,6 +363,7 @@ textarea{resize:vertical;min-height:60px;}
 
     <!-- EXPENSES -->
     <div class="page" id="page-expenses">
+      <div class="btn-row" style="margin-top:0;"><button class="btn-full" onclick="openExpenseModalNew()">+ إضافة مصروف</button></div>
       <div class="card"><input type="text" id="expenseSearch" placeholder="بحث في المصاريف..." oninput="renderExpenses()"></div>
       <div class="card"><div id="expensesList"></div></div>
     </div>
@@ -435,6 +443,16 @@ textarea{resize:vertical;min-height:60px;}
             <label class="switch"><input type="checkbox" id="setAllowOverlap"><span class="slider"></span></label>
           </div>
           <div class="btn-row"><button class="btn-full" onclick="saveBookingSettings()">حفظ</button></div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleAcc(this)">ألوان التطبيق <span>▾</span></div>
+        <div class="accordion-body">
+          <label>اللون الأساسي</label><input type="color" id="themePrimary">
+          <label>لون التمييز (الذهبي)</label><input type="color" id="themeGold">
+          <label>خلفية التطبيق</label><input type="color" id="themeCream">
+          <div class="btn-row"><button class="btn-full" onclick="saveThemeColors()">حفظ الألوان</button></div>
         </div>
       </div>
 
@@ -548,13 +566,23 @@ textarea{resize:vertical;min-height:60px;}
 
     <div class="field-group">
       <div class="field-group-title">موعد الدخول</div>
-      <label>التاريخ الميلادي</label><input type="date" id="checkInDate" onchange="onCheckInDateChange()">
+      <label>التاريخ الميلادي</label>
+      <div class="date-picker">
+        <select id="ciDateD" onchange="onCheckInDateChange()"></select>
+        <select id="ciDateMo" onchange="onCheckInDateChange()"></select>
+        <select id="ciDateY" onchange="onCheckInDateChange()"></select>
+      </div>
       <label>الوقت</label>
       <div class="time-picker"><select id="ciH"></select><select id="ciM"></select><select id="ciAP"><option value="ص">ص</option><option value="م">م</option></select></div>
     </div>
     <div class="field-group">
       <div class="field-group-title">موعد الخروج</div>
-      <label>التاريخ الميلادي</label><input type="date" id="checkOutDate">
+      <label>التاريخ الميلادي</label>
+      <div class="date-picker">
+        <select id="coDateD"></select>
+        <select id="coDateMo"></select>
+        <select id="coDateY"></select>
+      </div>
       <label>الوقت</label>
       <div class="time-picker"><select id="coH"></select><select id="coM"></select><select id="coAP"><option value="ص">ص</option><option value="م">م</option></select></div>
     </div>
@@ -628,7 +656,12 @@ textarea{resize:vertical;min-height:60px;}
     <div class="modal-head"><h3>إضافة مصروف</h3><button class="close-x" onclick="closeModal('expenseModal')">✕</button></div>
     <label>اسم المصروف</label><input type="text" id="expName">
     <label>القيمة</label><input type="number" id="expAmount">
-    <label>التاريخ</label><input type="date" id="expDate">
+    <label>التاريخ</label>
+    <div class="date-picker">
+      <select id="expDateD"></select>
+      <select id="expDateMo"></select>
+      <select id="expDateY"></select>
+    </div>
     <label>ملاحظات</label><textarea id="expNotes"></textarea>
     <div class="btn-row">
       <button class="btn-full" onclick="saveExpense()">حفظ</button>
@@ -643,7 +676,12 @@ textarea{resize:vertical;min-height:60px;}
     <div class="modal-head"><h3>مصروف ركن القهوة</h3><button class="close-x" onclick="closeModal('coffeeExpenseModal')">✕</button></div>
     <label>اسم المصروف</label><input type="text" id="cofExpName">
     <label>القيمة</label><input type="number" id="cofExpAmount">
-    <label>التاريخ</label><input type="date" id="cofExpDate">
+    <label>التاريخ</label>
+    <div class="date-picker">
+      <select id="cofExpDateD"></select>
+      <select id="cofExpDateMo"></select>
+      <select id="cofExpDateY"></select>
+    </div>
     <label>ملاحظات</label><textarea id="cofExpNotes"></textarea>
     <div class="btn-row">
       <button class="btn-full" onclick="saveCoffeeExpense()">حفظ</button>
@@ -790,6 +828,7 @@ let data = {
     defaultCheckInTime:'15:00', defaultCheckOutTime:'04:00', allowOverlap:false,
     calendarColors:{available:'#E9F5EE', booked:'#B23B2E', thuFri:'#FCF1D2'},
     currencySymbol:'ر.س', invoicePrefix:'INV', taxNumber:'',
+    themeColors:{primary:'#0B7285', gold:'#E3A857', cream:'#FBF3E1'},
     homeSections:{statUpcoming:true, statRevenue:true, statNet:true, statRemaining:true, upcomingList:true, quickActions:true},
     templates: {
       confirm:'مرحبًا {اسم_العميل} \u{1F3DD}\uFE0F\nتم تأكيد حجزكم.\n\u{1F4C5} من {تاريخ_الدخول} الساعة {وقت_الدخول}\n\u{1F4C5} إلى {تاريخ_الخروج} الساعة {وقت_الخروج}\n\u{1F4B5} قيمة الحجز: {قيمة_الحجز}\nالمتبقي: {المتبقي}\n{القهوة}\nبانتظار استضافتكم \u{1F3DD}\uFE0F',
@@ -1051,6 +1090,7 @@ function deepMerge(base, loaded){
   out.settings.templates = {...base.settings.templates, ...((loaded.settings||{}).templates||{})};
   out.settings.calendarColors = {...base.settings.calendarColors, ...((loaded.settings||{}).calendarColors||{})};
   out.settings.homeSections = {...base.settings.homeSections, ...((loaded.settings||{}).homeSections||{})};
+  out.settings.themeColors = {...base.settings.themeColors, ...((loaded.settings||{}).themeColors||{})};
   return out;
 }
 async function saveData(){
@@ -1068,6 +1108,27 @@ function fmtNum(n){ return Number(n||0).toLocaleString('en-US'); }
 function toDate(str){ return new Date(str+'T00:00:00'); }
 function todayStr(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 function fmtDateAr(str){ if(!str) return ''; const d=toDate(str); return `${d.getDate()} ${gMonths[d.getMonth()]} ${d.getFullYear()}`; }
+function fmtDateHijri(str){
+  if(!str) return '';
+  try{ return new Intl.DateTimeFormat('ar',{calendar:'islamic-umalqura', day:'numeric', month:'long', year:'numeric'}).format(toDate(str)); }
+  catch(e){ return ''; }
+}
+function fmtDateBoth(str){
+  const g = fmtDateAr(str), h = fmtDateHijri(str);
+  return h ? `${g}<div style="color:var(--ink-soft);font-size:10.5px;margin-top:1px;">${h}هـ</div>` : g;
+}
+function fmtHijriShort(str){
+  try{ return new Intl.DateTimeFormat('ar',{calendar:'islamic-umalqura', day:'numeric', month:'numeric'}).format(toDate(str)); }
+  catch(e){ return ''; }
+}
+function fmtDateBothText(str){
+  const g = fmtDateAr(str), h = fmtDateHijri(str);
+  return h ? `${g} (${h}هـ)` : g;
+}
+function durationHours(b){
+  const ms = toDateTime(b.checkOutDate,b.checkOutTime) - toDateTime(b.checkInDate,b.checkInTime);
+  return Math.max(0, Math.round((ms/3600000)*10)/10);
+}
 function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
 function dateRangeDays(a,b){ const days=[]; let d=toDate(a); const end=toDate(b); while(d<end){days.push(d.toISOString().slice(0,10)); d.setDate(d.getDate()+1);} return days; }
@@ -1075,6 +1136,12 @@ function coffeeRevenueOf(b){ return (b.coffee||[]).reduce((s,x)=>s+Number(x.pric
 function chaletRevenueOf(b){ return Number(b.price||0); }
 function bookingTotal(b){ return chaletRevenueOf(b)+coffeeRevenueOf(b); }
 function bookingRemaining(b){ return bookingTotal(b)-Number(b.paid||0); }
+function chaletRemainingOf(b){ return Math.max(0, chaletRevenueOf(b) - Number(b.paid||0)); }
+function coffeeRemainingOf(b){
+  const chalet = chaletRevenueOf(b), coffee = coffeeRevenueOf(b);
+  const leftoverPaid = Math.max(0, Number(b.paid||0) - chalet);
+  return Math.max(0, coffee - leftoverPaid);
+}
 function computedStatus(b){
   if(b.status==='cancelled') return 'cancelled';
   const now=new Date();
@@ -1123,6 +1190,28 @@ function getTimeVal(prefixH,prefixM,prefixAP){
   if(ap==='ص'){ if(h===12) h=0; } else { if(h!==12) h+=12; }
   return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
 }
+function buildDateSelectOptions(prefix){
+  const dSel = document.getElementById(prefix+'D');
+  if(!dSel || dSel.dataset.built) return;
+  dSel.innerHTML = Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}">${d}</option>`).join('');
+  document.getElementById(prefix+'Mo').innerHTML = gMonths.map((m,i)=>`<option value="${i+1}">${m}</option>`).join('');
+  const curY = new Date().getFullYear();
+  document.getElementById(prefix+'Y').innerHTML = Array.from({length:6},(_,i)=>curY-1+i).map(y=>`<option value="${y}">${y}</option>`).join('');
+  dSel.dataset.built='1';
+}
+function setDateVal(prefix, dateStr){
+  buildDateSelectOptions(prefix);
+  const d = toDate(dateStr||todayStr());
+  document.getElementById(prefix+'D').value = d.getDate();
+  document.getElementById(prefix+'Mo').value = d.getMonth()+1;
+  document.getElementById(prefix+'Y').value = d.getFullYear();
+}
+function getDateVal(prefix){
+  const day = String(document.getElementById(prefix+'D').value).padStart(2,'0');
+  const mo = String(document.getElementById(prefix+'Mo').value).padStart(2,'0');
+  const y = document.getElementById(prefix+'Y').value;
+  return `${y}-${mo}-${day}`;
+}
 
 // ---------------- nav ----------------
 function toggleDrawer(show){ document.getElementById('drawer').classList.toggle('show',show); document.getElementById('drawerBackdrop').classList.toggle('show',show); }
@@ -1133,7 +1222,7 @@ function switchPage(p){
   document.querySelectorAll('.drawer-item').forEach(el=>el.classList.toggle('active', el.dataset.p===p));
   document.querySelectorAll('.nav-btn').forEach(el=>el.classList.toggle('active', el.dataset.p===p));
   toggleDrawer(false);
-  document.getElementById('fabAdd').style.display = ['home','bookings','calendar','coffee','expenses'].includes(p)?'flex':'none';
+  document.getElementById('fabAdd').style.display = ['home','calendar','coffee'].includes(p)?'flex':'none';
   if(p==='settings') fillSettingsForm();
   if(p==='reports') renderReports();
 }
@@ -1144,7 +1233,14 @@ function handleFabClick(){
 }
 
 // ---------------- render orchestrator ----------------
+function applyThemeColors(){
+  const t = data.settings.themeColors;
+  document.documentElement.style.setProperty('--primary', t.primary);
+  document.documentElement.style.setProperty('--gold', t.gold);
+  document.documentElement.style.setProperty('--cream', t.cream);
+}
 function renderEverything(){
+  applyThemeColors();
   document.getElementById('chaletTitle').textContent = data.settings.chaletName;
   document.getElementById('drawerChaletName').textContent = data.settings.chaletName;
   renderHome(); renderBookingsList(); renderCalendar(); renderCustomers(); renderCoffee();
@@ -1167,8 +1263,8 @@ function renderHome(){
   const totalChaletRevenue = active.reduce((s,b)=>s+chaletRevenueOf(b),0);
   const expTotal = data.expenses.reduce((s,e)=>s+Number(e.amount||0),0);
   const netProfit = totalChaletRevenue - expTotal;
-  const remaining = active.reduce((s,b)=>s+Math.max(0,bookingRemaining(b)),0);
-  const upcoming = active.filter(b=> toDateTime(b.checkInDate,b.checkInTime) > now).sort((a,b)=>toDateTime(a.checkInDate,a.checkInTime)-toDateTime(b.checkInDate,b.checkInTime));
+  const remaining = active.reduce((s,b)=>s+chaletRemainingOf(b),0);
+  const upcoming = active.filter(b=> toDateTime(b.checkOutDate,b.checkOutTime) > now).sort((a,b)=>toDateTime(a.checkInDate,a.checkInTime)-toDateTime(b.checkInDate,b.checkInTime));
 
   let flags='';
   if(checkins.length>0) flags += `<span class="flag checkin">🔵 دخول اليوم (${checkins.length})</span>`;
@@ -1195,7 +1291,7 @@ function renderHome(){
         ? `<div class="empty"><span class="big">📭</span>لا توجد حجوزات قادمة</div>`
         : upcoming.slice(0,3).map(b=>`
           <div class="list-row">
-            <div><div style="font-weight:700;font-size:13px;">${escapeHtml(b.customerName)}</div><div style="font-size:11.5px;color:var(--ink-soft);">${fmtDateAr(b.checkInDate)} · ${fmtTime(b.checkInTime)}</div></div>
+            <div><div style="font-weight:700;font-size:13px;">${escapeHtml(b.customerName)}</div><div style="font-size:11.5px;color:var(--ink-soft);">${fmtDateBoth(b.checkInDate)} · ${fmtTime(b.checkInTime)}</div></div>
             <button class="mini-btn primary" onclick="openBookingDetail('${b.id}')">عرض</button>
           </div>`).join('')}
     </div>`;
@@ -1217,17 +1313,24 @@ function renderHome(){
 // ---------------- BOOKINGS LIST ----------------
 function bookingItemHtml(b){
   const st = computedStatus(b);
-  const svcTags = (b.coffee||[]).map(s=>`<span class="svc-tag">☕ ${escapeHtml(s.name)}</span>`).join('');
+  const coffeeLabel = (b.coffee||[]).length ? (b.coffee||[]).map(s=>s.name).join('، ') : 'بدون ركن قهوة';
   return `<div class="booking-item">
     <div class="top-row"><div class="name">${escapeHtml(b.customerName)}</div><span class="badge ${st}">${statusLabel(st)}</span></div>
-    <div class="dates">${fmtDateAr(b.checkInDate)} ${fmtTime(b.checkInTime)} ← ${fmtDateAr(b.checkOutDate)} ${fmtTime(b.checkOutTime)}</div>
-    ${svcTags?`<div class="svc-tags">${svcTags}</div>`:''}
-    <div class="money-row"><span>الإجمالي <b>${fmtMoney(bookingTotal(b))}</b></span><span>متبقي <b>${fmtMoney(bookingRemaining(b))}</b></span></div>
+    <div class="bk-ref">${b.customerPhone||''}${b.customerPhone?' · ':''}#${b.id.slice(-6).toUpperCase()}</div>
+    <div class="bk-grid">
+      <div class="bk-cell"><div class="lbl">الدخول</div><div class="val">${fmtDateBoth(b.checkInDate)}</div><div class="val">${fmtTime(b.checkInTime)}</div></div>
+      <div class="bk-cell"><div class="lbl">الخروج</div><div class="val">${fmtDateBoth(b.checkOutDate)}</div><div class="val">${fmtTime(b.checkOutTime)}</div></div>
+      <div class="bk-cell"><div class="lbl">مدة الحجز</div><div class="val">${durationHours(b)} ساعة</div></div>
+      <div class="bk-cell"><div class="lbl">إجمالي الحجز</div><div class="val">${fmtMoney(bookingTotal(b))}</div></div>
+      <div class="bk-cell"><div class="lbl">ركن القهوة</div><div class="val">${escapeHtml(coffeeLabel)}</div></div>
+      <div class="bk-cell"><div class="lbl">المتبقي</div><div class="val">${fmtMoney(bookingRemaining(b))}</div></div>
+    </div>
     <div class="actions">
-      <button class="mini-btn primary" onclick="openBookingDetail('${b.id}')">عرض</button>
       <button class="mini-btn" onclick="openBookingForm('${b.id}')">✏️ تعديل</button>
-      <button class="mini-btn" onclick="openMessageModal('${b.id}')">📱 واتساب</button>
-      <button class="mini-btn danger" onclick="deleteBooking('${b.id}')">🗑️ حذف</button>
+      <button class="mini-btn primary" onclick="openInvoiceForBooking('${b.id}')">الفاتورة</button>
+      <button class="mini-btn" onclick="openContractForBooking('${b.id}')">العقد</button>
+      <button class="mini-btn" onclick="openMessageModal('${b.id}')">واتساب</button>
+      <button class="mini-btn danger" onclick="deleteBooking('${b.id}')">حذف</button>
     </div>
   </div>`;
 }
@@ -1373,6 +1476,7 @@ function renderCoffee(){
     });
   });
   const coffeeExpTotal = data.coffeeExpenses.reduce((s,e)=>s+Number(e.amount||0),0);
+  const coffeeRemainingTotal = active.reduce((s,b)=>s+coffeeRemainingOf(b),0);
   const sumEl = document.getElementById('coffeeFinanceSummary');
   if(sumEl){
     const rows = Object.entries(perItem).map(([name,total])=>`<div class="report-row"><span>${escapeHtml(name)}</span><b>${fmtMoney(total)}</b></div>`).join('');
@@ -1380,6 +1484,7 @@ function renderCoffee(){
       <div class="report-row"><span>إجمالي مبيعات القهوة</span><b>${fmtMoney(coffeeRevenue)}</b></div>
       <div class="report-row"><span>عدد الطلبات</span><b>${ordersCount}</b></div>
       <div class="report-row"><span>مصروفات ركن القهوة</span><b>${fmtMoney(coffeeExpTotal)}</b></div>
+      <div class="report-row"><span>مبالغ قهوة لم تصل بعد</span><b>${fmtMoney(coffeeRemainingTotal)}</b></div>
       <div class="report-row"><span>صافي ربح ركن القهوة</span><b>${fmtMoney(coffeeRevenue-coffeeExpTotal)}</b></div>
       ${rows}`;
   }
@@ -1427,14 +1532,14 @@ async function deleteCoffee(id){ data.coffeeCategories = data.coffeeCategories.f
 function openCoffeeExpenseModal(){
   document.getElementById('cofExpName').value='';
   document.getElementById('cofExpAmount').value='';
-  document.getElementById('cofExpDate').value=todayStr();
+  setDateVal('cofExpDate', todayStr());
   document.getElementById('cofExpNotes').value='';
   document.getElementById('coffeeExpenseModal').classList.add('show');
 }
 async function saveCoffeeExpense(){
   const name = document.getElementById('cofExpName').value.trim();
   const amount = Number(document.getElementById('cofExpAmount').value||0);
-  const date = document.getElementById('cofExpDate').value;
+  const date = getDateVal('cofExpDate');
   const notes = document.getElementById('cofExpNotes').value.trim();
   if(!name||!amount||!date){ showToast('يرجى تعبئة كل الحقول'); return; }
   data.coffeeExpenses.push({id:uid(), name, amount, date, notes});
@@ -1474,11 +1579,11 @@ function recalcTotals(){
 }
 function onCheckInDateChange(){
   // convenience: keep checkout = checkin+1 day if it's currently before/equal checkin (overnight pattern)
-  const ci = document.getElementById('checkInDate').value;
-  const co = document.getElementById('checkOutDate').value;
+  const ci = getDateVal('ciDate');
+  const co = getDateVal('coDate');
   if(!co || co<=ci){
     const d = toDate(ci); d.setDate(d.getDate()+1);
-    document.getElementById('checkOutDate').value = d.toISOString().slice(0,10);
+    setDateVal('coDate', d.toISOString().slice(0,10));
   }
 }
 function openBookingForm(id){
@@ -1490,9 +1595,9 @@ function openBookingForm(id){
   document.getElementById('bookingId').value = id||'';
   if(existing){
     document.getElementById('customerSelect').value = existing.customerId||'';
-    document.getElementById('checkInDate').value = existing.checkInDate;
+    setDateVal('ciDate', existing.checkInDate);
     setTimeVal('ciH','ciM','ciAP', existing.checkInTime||data.settings.defaultCheckInTime);
-    document.getElementById('checkOutDate').value = existing.checkOutDate;
+    setDateVal('coDate', existing.checkOutDate);
     setTimeVal('coH','coM','coAP', existing.checkOutTime||data.settings.defaultCheckOutTime);
     document.getElementById('bookPrice').value = existing.price;
     document.getElementById('bookPaid').value = existing.paid||0;
@@ -1501,10 +1606,10 @@ function openBookingForm(id){
     renderCoffeeCheckboxes(existing.coffee||[]);
   } else {
     const t = todayStr();
-    document.getElementById('checkInDate').value = t;
+    setDateVal('ciDate', t);
     setTimeVal('ciH','ciM','ciAP', data.settings.defaultCheckInTime);
     const d = toDate(t); d.setDate(d.getDate()+1);
-    document.getElementById('checkOutDate').value = d.toISOString().slice(0,10);
+    setDateVal('coDate', d.toISOString().slice(0,10));
     setTimeVal('coH','coM','coAP', data.settings.defaultCheckOutTime);
     document.getElementById('bookPrice').value='';
     document.getElementById('bookPaid').value=0;
@@ -1521,9 +1626,9 @@ async function saveBooking(){
   const customerId = document.getElementById('customerSelect').value;
   if(!customerId){ showToast('يرجى اختيار عميل أو إضافة عميل جديد'); return; }
   const c = findCustomer(customerId);
-  const ci = document.getElementById('checkInDate').value;
+  const ci = getDateVal('ciDate');
   const cit = getTimeVal('ciH','ciM','ciAP');
-  const co = document.getElementById('checkOutDate').value;
+  const co = getDateVal('coDate');
   const cot = getTimeVal('coH','coM','coAP');
   const price = document.getElementById('bookPrice').value;
   const paid = document.getElementById('bookPaid').value;
@@ -1583,26 +1688,27 @@ async function saveBooking(){
 function openBookingDetail(id){
   const b = data.bookings.find(x=>x.id===id); if(!b) return;
   const st = computedStatus(b);
-  const svcTags = (b.coffee||[]).map(s=>`<span class="svc-tag">☕ ${escapeHtml(s.name)} (${fmtMoney(s.price)})</span>`).join(' ');
+  const coffeeLabel = (b.coffee||[]).length ? (b.coffee||[]).map(s=>s.name).join('، ') : 'بدون ركن قهوة';
   document.getElementById('detailBody').innerHTML = `
-    <div class="card">
-      <div class="top-row" style="display:flex;justify-content:space-between;"><b>${escapeHtml(b.customerName)}</b><span class="badge ${st}">${statusLabel(st)}</span></div>
-      <div class="dates" style="margin-top:6px;">📱 ${b.customerPhone||'-'}</div>
-      <div class="dates">دخول: ${fmtDateAr(b.checkInDate)} ${fmtTime(b.checkInTime)}</div>
-      <div class="dates">خروج: ${fmtDateAr(b.checkOutDate)} ${fmtTime(b.checkOutTime)}</div>
-      ${svcTags?`<div class="svc-tags" style="margin-top:8px;">${svcTags}</div>`:''}
-      <div class="report-row" style="margin-top:8px;"><span>قيمة الحجز</span><b>${fmtMoney(b.price)}</b></div>
-      <div class="report-row"><span>الإجمالي</span><b>${fmtMoney(bookingTotal(b))}</b></div>
-      <div class="report-row"><span>المدفوع</span><b>${fmtMoney(b.paid)}</b></div>
-      <div class="report-row"><span>المتبقي</span><b>${fmtMoney(bookingRemaining(b))}</b></div>
+    <div class="booking-item">
+      <div class="top-row"><div class="name">${escapeHtml(b.customerName)}</div><span class="badge ${st}">${statusLabel(st)}</span></div>
+      <div class="bk-ref">${b.customerPhone||''}${b.customerPhone?' · ':''}#${b.id.slice(-6).toUpperCase()}</div>
+      <div class="bk-grid">
+        <div class="bk-cell"><div class="lbl">الدخول</div><div class="val">${fmtDateBoth(b.checkInDate)}</div><div class="val">${fmtTime(b.checkInTime)}</div></div>
+        <div class="bk-cell"><div class="lbl">الخروج</div><div class="val">${fmtDateBoth(b.checkOutDate)}</div><div class="val">${fmtTime(b.checkOutTime)}</div></div>
+        <div class="bk-cell"><div class="lbl">مدة الحجز</div><div class="val">${durationHours(b)} ساعة</div></div>
+        <div class="bk-cell"><div class="lbl">إجمالي الحجز</div><div class="val">${fmtMoney(bookingTotal(b))}</div></div>
+        <div class="bk-cell"><div class="lbl">ركن القهوة</div><div class="val">${escapeHtml(coffeeLabel)}</div></div>
+        <div class="bk-cell"><div class="lbl">المتبقي</div><div class="val">${fmtMoney(bookingRemaining(b))}</div></div>
+      </div>
       ${b.notes?`<div class="dates" style="margin-top:8px;">📝 ${escapeHtml(b.notes)}</div>`:''}
     </div>
     <div class="actions">
       <button class="mini-btn" onclick="closeModal('detailModal');openBookingForm('${b.id}')">✏️ تعديل</button>
-      <button class="mini-btn danger" onclick="closeModal('detailModal');deleteBooking('${b.id}')">🗑️ حذف</button>
-      <button class="mini-btn" onclick="closeModal('detailModal');openContractForBooking('${b.id}')">📄 العقد</button>
-      <button class="mini-btn" onclick="closeModal('detailModal');openInvoiceForBooking('${b.id}')">🧾 الفاتورة</button>
-      <button class="mini-btn" onclick="closeModal('detailModal');openMessageModal('${b.id}')">📱 واتساب</button>
+      <button class="mini-btn primary" onclick="closeModal('detailModal');openInvoiceForBooking('${b.id}')">الفاتورة</button>
+      <button class="mini-btn" onclick="closeModal('detailModal');openContractForBooking('${b.id}')">العقد</button>
+      <button class="mini-btn" onclick="closeModal('detailModal');openMessageModal('${b.id}')">واتساب</button>
+      <button class="mini-btn danger" onclick="closeModal('detailModal');deleteBooking('${b.id}')">حذف</button>
     </div>`;
   document.getElementById('detailModal').classList.add('show');
 }
@@ -1629,7 +1735,7 @@ function renderCalendar(){
     const isToday = dStr===today;
     let cls = 'cal-day';
     if(isToday) cls += ' today';
-    let inner = `<div class="dnum">${day}</div>`;
+    let inner = `<div class="dnum">${day}</div><div class="hijri-mini">${fmtHijriShort(dStr)}هـ</div>`;
     if(bks && bks.length>0){
       cls += ' booked';
       const b = bks[0];
@@ -1645,7 +1751,7 @@ function renderCalendar(){
 }
 function openDayInfo(dStr){
   const bs = data.bookings.filter(b=>b.status!=='cancelled' && dateRangeDays(b.checkInDate,b.checkOutDate).includes(dStr));
-  let body = `<div class="card"><h3>${fmtDateAr(dStr)}</h3>`;
+  let body = `<div class="card"><h3>${fmtDateBoth(dStr)}</h3>`;
   if(bs.length===0){
     body += `<div class="empty">اليوم متاح</div><div class="btn-row"><button class="btn-full" onclick="closeModal('detailModal');openBookingFormForDate('${dStr}')">+ إضافة حجز</button></div>`;
   } else {
@@ -1658,7 +1764,7 @@ function openDayInfo(dStr){
 }
 function openBookingFormForDate(dStr){
   openBookingForm();
-  document.getElementById('checkInDate').value = dStr;
+  setDateVal('ciDate', dStr);
   onCheckInDateChange();
 }
 
@@ -1683,7 +1789,7 @@ function openInvoiceForBooking(bookingId){
     <div style="font-size:11px;color:var(--ink-soft);margin-bottom:10px;">${s.phone||''}${s.taxNumber?' · ض.ر: '+escapeHtml(s.taxNumber):''}</div>
     <div class="doc-row"><span>رقم الفاتورة</span><span>${escapeHtml(s.invoicePrefix||'INV')}-${b.id.slice(-5).toUpperCase()}</span></div>
     <div class="doc-row"><span>العميل</span><span>${escapeHtml(b.customerName)}</span></div>
-    <div class="doc-row"><span>تاريخ الحجز</span><span>${fmtDateAr(b.checkInDate)} → ${fmtDateAr(b.checkOutDate)}</span></div>
+    <div class="doc-row"><span>تاريخ الحجز</span><span>${fmtDateBoth(b.checkInDate)} → ${fmtDateBoth(b.checkOutDate)}</span></div>
     <div class="doc-row"><span>قيمة الحجز</span><span>${fmtMoney(b.price)}</span></div>
     ${svcRows}
     <div class="doc-row doc-total"><span>الإجمالي</span><span>${fmtMoney(bookingTotal(b))}</span></div>
@@ -1708,7 +1814,7 @@ function renderContracts(){
   el.innerHTML = list.length===0 ? `<div class="card"><div class="empty">لا توجد عقود بعد</div></div>` : list.map(b=>`
     <div class="booking-item">
       <div class="top-row"><div class="name">عقد #${b.id.slice(-5).toUpperCase()}</div><span class="badge ${computedStatus(b)}">${statusLabel(computedStatus(b))}</span></div>
-      <div class="dates">${escapeHtml(b.customerName)} · ${fmtDateAr(b.checkInDate)} → ${fmtDateAr(b.checkOutDate)}</div>
+      <div class="dates">${escapeHtml(b.customerName)} · ${fmtDateBoth(b.checkInDate)} → ${fmtDateBoth(b.checkOutDate)}</div>
       <div class="actions"><button class="mini-btn primary" onclick="openContractForBooking('${b.id}')">عرض العقد</button></div>
     </div>`).join('');
 }
@@ -1740,9 +1846,9 @@ function fillContractVars(text, b){
     .replaceAll('{اسم_الشاليه}', s.chaletName)
     .replaceAll('{اسم_العميل}', b.customerName)
     .replaceAll('{الجوال}', b.customerPhone||'')
-    .replaceAll('{تاريخ_الدخول}', fmtDateAr(b.checkInDate))
+    .replaceAll('{تاريخ_الدخول}', fmtDateBothText(b.checkInDate))
     .replaceAll('{وقت_الدخول}', fmtTime(b.checkInTime))
-    .replaceAll('{تاريخ_الخروج}', fmtDateAr(b.checkOutDate))
+    .replaceAll('{تاريخ_الخروج}', fmtDateBothText(b.checkOutDate))
     .replaceAll('{وقت_الخروج}', fmtTime(b.checkOutTime))
     .replaceAll('{قيمة_الحجز}', fmtMoney(bookingTotal(b)))
     .replaceAll('{المدفوع}', fmtMoney(b.paid))
@@ -1820,14 +1926,14 @@ function renderFinancial(){
 function openExpenseModalNew(){
   document.getElementById('expName').value='';
   document.getElementById('expAmount').value='';
-  document.getElementById('expDate').value=todayStr();
+  setDateVal('expDate', todayStr());
   document.getElementById('expNotes').value='';
   document.getElementById('expenseModal').classList.add('show');
 }
 async function saveExpense(){
   const name = document.getElementById('expName').value.trim();
   const amount = Number(document.getElementById('expAmount').value||0);
-  const date = document.getElementById('expDate').value;
+  const date = getDateVal('expDate');
   const notes = document.getElementById('expNotes').value.trim();
   if(!name||!amount||!date){ showToast('يرجى تعبئة كل الحقول'); return; }
   data.expenses.push({id:uid(), name, amount, date, notes});
@@ -1932,6 +2038,9 @@ function fillSettingsForm(){
   document.getElementById('setCurrency').value = s.currencySymbol;
   document.getElementById('setInvoicePrefix').value = s.invoicePrefix;
   document.getElementById('setTaxNumber').value = s.taxNumber;
+  document.getElementById('themePrimary').value = s.themeColors.primary;
+  document.getElementById('themeGold').value = s.themeColors.gold;
+  document.getElementById('themeCream').value = s.themeColors.cream;
   document.getElementById('hsStatUpcoming').checked = !!s.homeSections.statUpcoming;
   document.getElementById('hsStatRevenue').checked = !!s.homeSections.statRevenue;
   document.getElementById('hsStatNet').checked = !!s.homeSections.statNet;
@@ -1961,6 +2070,14 @@ async function saveChaletSettings(){
     taxNumber: document.getElementById('setTaxNumber').value.trim(),
   });
   await saveData(); renderEverything(); showToast('تم حفظ إعدادات الشالية');
+}
+async function saveThemeColors(){
+  data.settings.themeColors = {
+    primary: document.getElementById('themePrimary').value,
+    gold: document.getElementById('themeGold').value,
+    cream: document.getElementById('themeCream').value,
+  };
+  await saveData(); applyThemeColors(); showToast('تم حفظ ألوان التطبيق');
 }
 async function saveHomeSettings(){
   data.settings.homeSections = {
@@ -2040,9 +2157,9 @@ function buildMessage(){
   const coffeeNames = (b.coffee||[]).map(s=>s.name).join('، ');
   tpl = tpl
     .replaceAll('{اسم_العميل}', b.customerName)
-    .replaceAll('{تاريخ_الدخول}', fmtDateAr(b.checkInDate))
+    .replaceAll('{تاريخ_الدخول}', fmtDateBothText(b.checkInDate))
     .replaceAll('{وقت_الدخول}', fmtTime(b.checkInTime))
-    .replaceAll('{تاريخ_الخروج}', fmtDateAr(b.checkOutDate))
+    .replaceAll('{تاريخ_الخروج}', fmtDateBothText(b.checkOutDate))
     .replaceAll('{وقت_الخروج}', fmtTime(b.checkOutTime))
     .replaceAll('{قيمة_الحجز}', fmtMoney(bookingTotal(b)))
     .replaceAll('{المتبقي}', fmtMoney(bookingRemaining(b)))
