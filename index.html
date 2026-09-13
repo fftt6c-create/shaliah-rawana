@@ -240,6 +240,8 @@ textarea{resize:vertical;min-height:60px;}
   .topbar,.drawer,.fab,.bottom-nav,.modal-head,.msg-actions,.doc-actions{display:none !important;}
 }
 </style>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 </head>
 <body>
 <div id="loginGate" style="position:fixed;inset:0;background:var(--cream);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;">
@@ -526,6 +528,34 @@ textarea{resize:vertical;min-height:60px;}
           <label>طلب تقييم Google</label><textarea id="tplReviewRequest"></textarea>
           <div style="font-size:11px;color:var(--ink-soft);margin-top:6px;">المتغيرات: {اسم_الشاليه} {اسم_العميل} {تاريخ_الدخول} {وقت_الدخول} {تاريخ_الخروج} {وقت_الخروج} {قيمة_الحجز} {المدفوع} {المتبقي} {إجمالي_الحجز} {القهوة} {موقع} {تأمين_الشاليه} {تأمين_ركن_القهوة} {تقييم}<br>ملاحظة: {تقييم} يظهر تلقائيًا فقط إذا حاطط رابط Google Reviews بإعدادات الشالية، وإلا يختفي بدون فراغ.</div>
           <div class="btn-row"><button class="btn-full" onclick="saveTemplates()">حفظ الرسائل</button></div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-head" onclick="toggleAcc(this)">مزامنة حقيقية بين الأجهزة (قاعدة بيانات سحابية) <span>▾</span></div>
+        <div class="accordion-body">
+          <div style="font-size:12px;color:var(--ink-soft);line-height:1.8;margin-bottom:10px;">
+            بدون هذا الربط، كل جهاز يحفظ بياناته لحاله فقط (حتى لو دخلت بنفس الرقم والرمز).
+            لتفعيل مزامنة حقيقية بين جوالين فأكثر، تحتاج تربط حساب <b>Firebase</b> مجاني (من Google) — خطوات سريعة:
+            <ol style="margin:8px 0 0;padding-right:18px;">
+              <li>روح <b>console.firebase.google.com</b> وسجّل دخول بحساب Google</li>
+              <li>Add project ← اعطه أي اسم ← أكمل (تقدر توقف Google Analytics)</li>
+              <li>من القائمة الجانبية: Build ← Firestore Database ← Create database ← اختر "Start in test mode"</li>
+              <li>من الصفحة الرئيسية للمشروع اضغط أيقونة الويب "</>" لإضافة تطبيق، وسجّله</li>
+              <li>بينزل لك كود فيه القيم تحت — انسخها بالحقول هنا</li>
+            </ol>
+          </div>
+          <label>apiKey</label><input type="text" id="fbApiKey">
+          <label>authDomain</label><input type="text" id="fbAuthDomain">
+          <label>projectId</label><input type="text" id="fbProjectId">
+          <label>storageBucket</label><input type="text" id="fbStorageBucket">
+          <label>messagingSenderId</label><input type="text" id="fbSenderId">
+          <label>appId</label><input type="text" id="fbAppId">
+          <div class="error-text" id="fbConfigError"></div>
+          <div style="font-size:11px;color:var(--ink-soft);margin-top:8px;">
+            كرر لصق نفس القيم بكل جهاز تبي تستخدمه. وتأكد إن قواعد Firestore تسمح بالقراءة والكتابة (test mode كافية أول 30 يوم، وبعدها حدّثها من Firestore ← Rules إلى <code>allow read, write: if true;</code> للاستمرار — هذا مستوى حماية بسيط يعتمد على سرية رقمك ورمزك بس، مثل باقي نظام الدخول).
+          </div>
+          <div class="btn-row"><button class="btn-full" onclick="saveFirebaseConfig()">حفظ الربط</button></div>
         </div>
       </div>
 
@@ -967,13 +997,42 @@ async function storageSet(key, val){
   }
   try{ localStorage.setItem(key, val); return {value:val}; }catch(e){ return null; }
 }
+let firestoreDb = null, firebaseInitTried = false;
+function tryInitFirebase(){
+  if(firestoreDb) return true;
+  if(firebaseInitTried) return false;
+  firebaseInitTried = true;
+  try{
+    const cfgStr = localStorage.getItem('rawana_firebase_config');
+    if(!cfgStr) return false;
+    const cfg = JSON.parse(cfgStr);
+    if(!cfg.apiKey || !cfg.projectId) return false;
+    if(typeof firebase==='undefined') return false;
+    const app = firebase.apps && firebase.apps.length ? firebase.apps[0] : firebase.initializeApp(cfg);
+    firestoreDb = firebase.firestore(app);
+    return true;
+  }catch(e){ console.error('firebase init failed', e); return false; }
+}
 async function sharedGet(key){
+  if(tryInitFirebase()){
+    try{
+      const snap = await firestoreDb.collection('rawana_accounts').doc(key).get();
+      if(snap.exists) return {value: JSON.stringify(snap.data())};
+      return null;
+    }catch(e){ console.error('firestore get failed', e); }
+  }
   if(typeof window.storage!=='undefined' && window.storage){
     try{ return await window.storage.get(key, true); }catch(e){}
   }
   try{ const v = localStorage.getItem('shared_'+key); return v!==null ? {value:v} : null; }catch(e){ return null; }
 }
 async function sharedSet(key, val){
+  if(tryInitFirebase()){
+    try{
+      await firestoreDb.collection('rawana_accounts').doc(key).set(JSON.parse(val));
+      return {value: val};
+    }catch(e){ console.error('firestore set failed', e); }
+  }
   if(typeof window.storage!=='undefined' && window.storage){
     try{ return await window.storage.set(key, val, true); }catch(e){}
   }
@@ -2400,6 +2459,17 @@ function fillSettingsForm(){
     document.getElementById('accPhoneDisplay').textContent = cur ? cur.phoneDisplay : '-';
   }catch(e){}
   renderAccountSwitcher();
+  try{
+    const cfg = JSON.parse(localStorage.getItem('rawana_firebase_config')||'null');
+    if(cfg){
+      document.getElementById('fbApiKey').value = cfg.apiKey||'';
+      document.getElementById('fbAuthDomain').value = cfg.authDomain||'';
+      document.getElementById('fbProjectId').value = cfg.projectId||'';
+      document.getElementById('fbStorageBucket').value = cfg.storageBucket||'';
+      document.getElementById('fbSenderId').value = cfg.messagingSenderId||'';
+      document.getElementById('fbAppId').value = cfg.appId||'';
+    }
+  }catch(e){}
   const s = data.settings;
   document.getElementById('setChaletName').value = s.chaletName;
   document.getElementById('setPhone').value = s.phone;
@@ -2434,6 +2504,30 @@ function fillSettingsForm(){
   document.getElementById('tplDepositChalet').value = s.templates.depositChalet;
   document.getElementById('tplDepositCoffee').value = s.templates.depositCoffee;
   document.getElementById('tplReviewRequest').value = s.templates.reviewRequest;
+}
+function saveFirebaseConfig(){
+  const errEl = document.getElementById('fbConfigError');
+  errEl.classList.remove('show');
+  const cfg = {
+    apiKey: document.getElementById('fbApiKey').value.trim(),
+    authDomain: document.getElementById('fbAuthDomain').value.trim(),
+    projectId: document.getElementById('fbProjectId').value.trim(),
+    storageBucket: document.getElementById('fbStorageBucket').value.trim(),
+    messagingSenderId: document.getElementById('fbSenderId').value.trim(),
+    appId: document.getElementById('fbAppId').value.trim(),
+  };
+  if(!cfg.apiKey || !cfg.projectId){
+    errEl.textContent = 'يرجى تعبئة apiKey و projectId على الأقل';
+    errEl.classList.add('show');
+    return;
+  }
+  try{
+    localStorage.setItem('rawana_firebase_config', JSON.stringify(cfg));
+    showToast('تم حفظ الربط — أعد فتح التطبيق عشان يبدأ يستخدمه');
+  }catch(e){
+    errEl.textContent = 'تعذر الحفظ بهذا المتصفح';
+    errEl.classList.add('show');
+  }
 }
 async function saveChaletSettings(){
   Object.assign(data.settings, {
