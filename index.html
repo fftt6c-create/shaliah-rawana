@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+‏<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -334,8 +334,17 @@ textarea{resize:vertical;min-height:60px;}
     <div class="page" id="page-coffee">
       <div class="section-title">☕ إيرادات ركن القهوة (منفصلة عن الشاليه)</div>
       <div id="coffeeFinanceSummary"></div>
-      <div class="section-title"><span>طلبات قهوة مستقلة (بدون حجز شاليه)</span><button class="mini-btn primary" onclick="openCoffeeOrderForm()">+ طلب جديد</button></div>
-      <div class="card"><div id="coffeeOrdersList"></div></div>
+      <div class="section-title"><span>حجوزات ركن القهوة (داخل وخارج الشاليه)</span><button class="mini-btn primary" onclick="openCoffeeOrderForm()">+ طلب جديد</button></div>
+      <div class="tabs" id="coffeeOrderDateTabs">
+        <div class="tab active" data-d="upcoming" onclick="setCoffeeOrderDateView('upcoming')">📌 القادمة</div>
+        <div class="tab" data-d="past" onclick="setCoffeeOrderDateView('past')">🕓 السابقة</div>
+      </div>
+      <div id="upcomingCoffeeOrdersGroup">
+        <div class="card"><div id="coffeeOrdersList"></div></div>
+      </div>
+      <div id="pastCoffeeOrdersGroup" style="display:none;">
+        <div class="card"><div id="pastCoffeeOrdersList"></div></div>
+      </div>
       <div class="section-title"><span>مصروفات ركن القهوة</span><button class="mini-btn primary" onclick="openCoffeeExpenseModal()">+ إضافة مصروف</button></div>
       <div class="card"><div id="coffeeExpensesList"></div></div>
       <div class="section-title"><span>الفئات</span><button class="mini-btn primary" onclick="openCoffeeForm()">+ إضافة فئة</button></div>
@@ -1462,19 +1471,19 @@ function renderHome(){
     const today0 = todayStr();
     const upcomingCoffeeItems = [];
     active.filter(b=>(b.coffee||[]).length>0 && b.checkInDate>=today0).forEach(b=>{
-      upcomingCoffeeItems.push({date:b.checkInDate, name:b.customerName, itemsLabel:(b.coffee||[]).map(c=>c.name).join('، '), kind:'حجز', ref:b.id, refType:'booking'});
+      upcomingCoffeeItems.push({date:b.checkInDate, name:b.customerName, itemsLabel:(b.coffee||[]).map(c=>c.name).join('، '), kind:'داخل الشاليه', ref:b.id, refType:'booking'});
     });
     data.coffeeOrders.filter(o=>o.date>=today0).forEach(o=>{
-      upcomingCoffeeItems.push({date:o.date, name:o.customerName||'-', itemsLabel:(o.items||[]).map(c=>c.name).join('، '), kind:'طلب مستقل', ref:o.id, refType:'order'});
+      upcomingCoffeeItems.push({date:o.date, name:o.customerName||'-', itemsLabel:(o.items||[]).map(c=>c.name).join('، '), kind:'خارج', ref:o.id, refType:'order'});
     });
     upcomingCoffeeItems.sort((a,b)=>toDate(a.date)-toDate(b.date));
     html += `<div class="wide-box">
       <div class="wb-head"><h3>☕ طلبات ركن القهوة القادمة</h3><a onclick="switchPage('coffee')">عرض الكل ›</a></div>
       ${upcomingCoffeeItems.length===0
         ? `<div class="empty"><span class="big">☕</span>لا توجد طلبات قهوة قادمة</div>`
-        : upcomingCoffeeItems.slice(0,3).map(it=>`
+        : upcomingCoffeeItems.map(it=>`
           <div class="list-row">
-            <div><div style="font-weight:700;font-size:13px;">${escapeHtml(it.name)} <span style="font-size:10.5px;color:var(--ink-soft);">(${it.kind})</span></div><div style="font-size:11.5px;color:var(--ink-soft);">${fmtDateBoth(it.date)} · ${escapeHtml(it.itemsLabel)}</div></div>
+            <div><div style="font-weight:700;font-size:13px;">${escapeHtml(it.name)} <span style="font-size:10.5px;font-weight:700;color:${it.refType==='booking'?'var(--primary)':'var(--gold)'};">(${it.kind})</span></div><div style="font-size:11.5px;color:var(--ink-soft);">${fmtDateBoth(it.date)} · ${escapeHtml(it.itemsLabel)}</div></div>
             <button class="mini-btn primary" onclick="${it.refType==='booking'?`openBookingDetail('${it.ref}')`:`switchPage('coffee')`}">عرض</button>
           </div>`).join('')}
     </div>`;
@@ -1527,6 +1536,13 @@ function setBookingDateView(v){
   document.querySelectorAll('#bookingDateTabs .tab').forEach(t=>t.classList.toggle('active', t.dataset.d===v));
   document.getElementById('upcomingBookingsGroup').style.display = v==='upcoming' ? 'block':'none';
   document.getElementById('pastBookingsGroup').style.display = v==='past' ? 'block':'none';
+}
+let coffeeOrderDateView = 'upcoming';
+function setCoffeeOrderDateView(v){
+  coffeeOrderDateView = v;
+  document.querySelectorAll('#coffeeOrderDateTabs .tab').forEach(t=>t.classList.toggle('active', t.dataset.d===v));
+  document.getElementById('upcomingCoffeeOrdersGroup').style.display = v==='upcoming' ? 'block':'none';
+  document.getElementById('pastCoffeeOrdersGroup').style.display = v==='past' ? 'block':'none';
 }
 function renderBookingsList(){
   const now = new Date();
@@ -1686,23 +1702,50 @@ function renderCoffee(){
       </div>
       ${rows ? `<div class="card" style="margin-top:12px;"><h3>تفصيل حسب الفئة</h3>${rows}</div>` : ''}`;
   }
+  function coffeeOrderItemHtml(o){
+    const total = coffeeOrderTotal(o);
+    const itemsLabel = (o.items||[]).map(i=>i.name).join('، ');
+    return `<div class="booking-item">
+      <div class="top-row"><div class="name">${escapeHtml(o.customerName||'بدون اسم')} <span style="font-size:10.5px;font-weight:700;color:var(--gold);">(خارج الشاليه)</span></div><span class="bk-ref">${fmtDateBoth(o.date)}</span></div>
+      <div class="dates">${escapeHtml(itemsLabel)}</div>
+      <div class="money-row"><span>الإجمالي <b>${fmtMoney(total)}</b></span><span>المتبقي <b>${fmtMoney(Math.max(0,total-Number(o.paid||0)))}</b></span></div>
+      <div class="actions">
+        <button class="mini-btn" onclick="openCoffeeOrderForm('${o.id}')">✏️ تعديل</button>
+        <button class="mini-btn" onclick="openCoffeeOrderMessageModal('${o.id}')">📱 واتساب</button>
+        <button class="mini-btn danger" onclick="deleteCoffeeOrder('${o.id}')">🗑️ حذف</button>
+      </div>
+    </div>`;
+  }
+  function coffeeBookingItemHtml(b){
+    const itemsLabel = (b.coffee||[]).map(c=>c.name).join('، ');
+    const total = coffeeRevenueOf(b);
+    const remaining = coffeeRemainingOf(b);
+    return `<div class="booking-item">
+      <div class="top-row"><div class="name">${escapeHtml(b.customerName)} <span style="font-size:10.5px;font-weight:700;color:var(--primary);">(داخل الشاليه)</span></div><span class="bk-ref">${fmtDateBoth(b.checkInDate)}</span></div>
+      <div class="dates">${escapeHtml(itemsLabel)}</div>
+      <div class="money-row"><span>إجمالي القهوة <b>${fmtMoney(total)}</b></span><span>المتبقي <b>${fmtMoney(remaining)}</b></span></div>
+      <div class="actions">
+        <button class="mini-btn primary" onclick="openBookingDetail('${b.id}')">عرض تفاصيل الحجز</button>
+      </div>
+    </div>`;
+  }
+  const todayCof = todayStr();
+  const coffeeCombined = [];
+  active.filter(b=>(b.coffee||[]).length>0).forEach(b=>{
+    coffeeCombined.push({date:b.checkInDate, time:b.checkInTime, refType:'booking', html:coffeeBookingItemHtml(b)});
+  });
+  data.coffeeOrders.forEach(o=>{
+    coffeeCombined.push({date:o.date, time:null, refType:'order', html:coffeeOrderItemHtml(o)});
+  });
+  const upcomingCoffeeCombined = coffeeCombined.filter(it=>it.date>=todayCof).sort((a,b)=>toDateTime(a.date,a.time||'00:00')-toDateTime(b.date,b.time||'00:00'));
+  const pastCoffeeCombined = coffeeCombined.filter(it=>it.date<todayCof).sort((a,b)=>toDateTime(b.date,b.time||'00:00')-toDateTime(a.date,a.time||'00:00'));
   const ordersEl = document.getElementById('coffeeOrdersList');
   if(ordersEl){
-    const list = [...data.coffeeOrders].sort((a,b)=>toDate(b.date)-toDate(a.date));
-    ordersEl.innerHTML = list.length===0 ? `<div class="empty">لا توجد طلبات قهوة مستقلة بعد</div>` : list.map(o=>{
-      const total = coffeeOrderTotal(o);
-      const itemsLabel = (o.items||[]).map(i=>i.name).join('، ');
-      return `<div class="booking-item">
-        <div class="top-row"><div class="name">${escapeHtml(o.customerName||'بدون اسم')}</div><span class="bk-ref">${fmtDateBoth(o.date)}</span></div>
-        <div class="dates">${escapeHtml(itemsLabel)}</div>
-        <div class="money-row"><span>الإجمالي <b>${fmtMoney(total)}</b></span><span>المتبقي <b>${fmtMoney(Math.max(0,total-Number(o.paid||0)))}</b></span></div>
-        <div class="actions">
-          <button class="mini-btn" onclick="openCoffeeOrderForm('${o.id}')">✏️ تعديل</button>
-          <button class="mini-btn" onclick="openCoffeeOrderMessageModal('${o.id}')">📱 واتساب</button>
-          <button class="mini-btn danger" onclick="deleteCoffeeOrder('${o.id}')">🗑️ حذف</button>
-        </div>
-      </div>`;
-    }).join('');
+    ordersEl.innerHTML = upcomingCoffeeCombined.length===0 ? `<div class="empty">لا توجد حجوزات قهوة قادمة</div>` : upcomingCoffeeCombined.map(it=>it.html).join('');
+  }
+  const pastOrdersEl = document.getElementById('pastCoffeeOrdersList');
+  if(pastOrdersEl){
+    pastOrdersEl.innerHTML = pastCoffeeCombined.length===0 ? `<div class="empty">لا توجد حجوزات قهوة سابقة</div>` : pastCoffeeCombined.map(it=>it.html).join('');
   }
   const expEl = document.getElementById('coffeeExpensesList');
   if(expEl){
@@ -2759,5 +2802,3 @@ function closeModal(id){ document.getElementById(id).classList.remove('show'); }
 
 initApp();
 </script>
-</body>
-</html>
